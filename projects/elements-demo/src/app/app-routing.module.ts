@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './features/home/home/home.component';
+import { EagerComponent } from './features/eager/eager/eager.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'eager',
-    component: HomeComponent
+    component: EagerComponent
   },
   {
     path: 'lazy',

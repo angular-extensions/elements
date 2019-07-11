@@ -1,7 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatIconRegistry, MatToolbarModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LazyElementsModule } from '../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
@@ -17,10 +18,12 @@ import { EagerModule } from './features/eager/eager.module';
     // vendor
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
     // material
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
 
     // the library module
     LazyElementsModule,
@@ -33,4 +36,8 @@ import { EagerModule } from './features/eager/eager.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon('github', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/github.svg'));
+  }
+}
