@@ -12,7 +12,7 @@
     "ci": "npm run test && npm run build",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different",
-    "release": "npm run test && npm run build && standard-version -a && git push --follow-tags origin master"
+    "release": "npm run test && npm run build && cpx README.md dist/elements && standard-version -a && git push --follow-tags origin master"
   },
   "standard-version": {
     "scripts": {

@@ -22,6 +22,8 @@ after_success:
   - codecov
 before_deploy:
   - cd dist/elements
+after_deploy:
+  - cd ../../
 deploy:
   - provider: npm
     email: tomas.trajan@gmail.com
