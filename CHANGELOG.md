@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/angular-extensions/elements/compare/v0.2.5...v0.3.0) (2019-07-12)
+
+
+### Bug Fixes
+
+* **workspace:** demo base href add slash ([7f72fbd](https://github.com/angular-extensions/elements/commit/7f72fbd))
+
+
+### Features
+
+* **workspace:** rework deployment to be purely .travis.yml based ([681e6df](https://github.com/angular-extensions/elements/commit/681e6df))
+
+
+
 ### [0.2.5](https://github.com/angular-extensions/elements/compare/v0.2.4...v0.2.5) (2019-07-12)
 
 
