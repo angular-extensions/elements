@@ -12,11 +12,11 @@
     "ci": "npm run test && npm run build",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different",
-    "release": "npm run test && npm run build && standard-version --no-verify && git push --follow-tags origin master"
+    "release": "npm run test && npm run build && standard-version --no-verify -a && git push --follow-tags origin master"
   },
   "standard-version": {
     "scripts": {
-      "precommit": "node sync-versions.js && npm run format:write"
+      "precommit": "node sync-versions.js && npm run format:write && git add ."
     }
   },
   "commitlint": {
