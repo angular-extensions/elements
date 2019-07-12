@@ -38,6 +38,9 @@ import { EagerModule } from './features/eager/eager.module';
 })
 export class AppModule {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
-    this.matIconRegistry.addSvgIcon('github', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/github.svg'));
+    this.matIconRegistry.addSvgIcon(
+      'github',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/github.svg')
+    );
   }
 }

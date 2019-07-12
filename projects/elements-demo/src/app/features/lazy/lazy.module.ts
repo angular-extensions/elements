@@ -6,9 +6,6 @@ import { LazyComponent } from './lazy/lazy.component';
 
 @NgModule({
   declarations: [LazyComponent],
-  imports: [
-    CommonModule,
-    LazyRoutingModule
-  ]
+  imports: [CommonModule, LazyRoutingModule]
 })
-export class LazyModule { }
+export class LazyModule {}

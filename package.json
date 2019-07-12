@@ -4,10 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "test": "ng lint && npm run format:test && ng test --watch false",
+    "watch": "ng test",
+    "e2e": "ng e2e",
+    "build": "ng build",
+    "format:write": "prettier projects/**/*.{ts,json,md} --write",
+    "format:test": "prettier projects/**/*.{ts,json,md} --list-different"
   },
   "private": true,
   "dependencies": {
@@ -42,9 +45,11 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "karma-spec-reporter": "0.0.32",
     "ng-packagr": "^5.1.0",
     "prettier": "^1.18.2",
     "protractor": "~5.4.0",
+    "standard-version": "^6.0.1",
     "ts-node": "~7.0.0",
     "tsickle": "^0.35.0",
     "tslint": "~5.15.0",

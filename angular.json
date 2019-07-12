@@ -119,7 +119,7 @@
               "projects/elements-demo/src/assets"
             ],
             "styles": [
-              "projects/elements-demo/src/styles.css"
+              "projects/elements-demo/src/styles.scss"
             ],
             "scripts": []
           }

@@ -7,7 +7,7 @@ import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
 })
 export class LazyElementDirective implements OnInit {
   @Input('axLazyElement') url: string;
-  @Input('axLazyElementLoading') loadingTemplateRef: TemplateRef<any>;
+  @Input('axLazyElementLoading') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
 
   constructor(
     private vcr: ViewContainerRef,
@@ -22,11 +22,9 @@ export class LazyElementDirective implements OnInit {
       this.vcr.createEmbeddedView(this.loadingTemplateRef);
     }
 
-    this.elementsLoaderService
-      .loadElement(this.url, elementTag)
-      .then(() => {
-        this.vcr.clear();
-        this.vcr.createEmbeddedView(this.template);
-      });
+    this.elementsLoaderService.loadElement(this.url, elementTag).then(() => {
+      this.vcr.clear();
+      this.vcr.createEmbeddedView(this.template);
+    });
   }
 }

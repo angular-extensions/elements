@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   simple = 'simple';
   complex = { id: 1 };
 
@@ -21,6 +20,4 @@ export class AppComponent implements OnInit {
   onComplexChange(newComplexValue) {
     this.complex = newComplexValue;
   }
-
-
 }
