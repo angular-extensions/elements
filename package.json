@@ -11,7 +11,13 @@
     "build": "ng build",
     "ci": "npm run test && npm run build",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
-    "format:test": "prettier projects/**/*.{ts,json,md} --list-different"
+    "format:test": "prettier projects/**/*.{ts,json,md} --list-different",
+    "release": "npm run test && npm run build && standard-version && git push --follow-tags origin master"
+  },
+  "standard-version": {
+    "scripts": {
+      "precommit": "node sync-version.js"
+    }
   },
   "commitlint": {
     "extends": [
