@@ -23,6 +23,12 @@ describe('LazyElementsLoaderService', () => {
     );
   });
 
+  it('throws error if used without valid tag', () => {
+    expect(() => service.loadElement('http://elements.com/some-element', '')).toThrowError(
+      "@angular-extensions/elements - tag for 'http://elements.com/some-element' not found, the *axLazyElement has to be used on HTML element"
+    );
+  });
+
   it('adds a script tag into dom to load element bundle', () => {
     service.loadElement('http://elements.com/some-element', 'some-element');
 

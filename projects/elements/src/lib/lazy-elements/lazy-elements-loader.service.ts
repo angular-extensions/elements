@@ -15,6 +15,10 @@ export class LazyElementsLoaderService {
       throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
     }
 
+    if (!tag) {
+      throw new Error(`${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`);
+    }
+
     if (!this.hasElement(url)) {
       const notifier = this.addElement(url);
       const script = document.createElement('script') as HTMLScriptElement;
