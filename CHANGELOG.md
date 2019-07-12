@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/angular-extensions/elements/compare/v0.3.0...v0.3.1) (2019-07-12)
+
+
+### Bug Fixes
+
+* **workspace:** package name, change folder before npm publish ([cb2a5ed](https://github.com/angular-extensions/elements/commit/cb2a5ed))
+
+
+
 ## [0.3.0](https://github.com/angular-extensions/elements/compare/v0.2.5...v0.3.0) (2019-07-12)
 
 
