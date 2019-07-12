@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-echo Deploy demo to GitHub Pages & publish library to npm - INIT
+echo "Deploy demo to GitHub Pages and publish library to npm - INIT"
 
 # only deploy tags
 if [ -z "$TRAVIS_TAG" ]; then
 
-  echo Deploy demo to GitHub Pages & publish library to npm - SKIP
+  echo "Deploy demo to GitHub Pages and publish library to npm - SKIP"
 
 else
 
-  echo Deploy demo to GitHub Pages & publish library to npm - START
+  echo "Deploy demo to GitHub Pages and publish library to npm - START"
 
   # go to the directory which contains build artifacts and create a *new* Git repo
   # directory may be different based on your particular build process
@@ -32,18 +32,19 @@ else
   # tokens GH_TOKEN and GH_REF will be provided as Travis CI environment variables
   git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 
-  echo Deploy demo to GitHub Pages - SUCCESS
+  echo "Deploy demo to GitHub Pages - SUCCESS"
 
 
   # Publish lib to npm
-  echo Publish elements library to npm - START
+  echo "Publish elements library to npm - START"
 
   cd ..
   cd elements
+
   npm publish ./dist --access public"
 
-  echo Publish elements library to npm - SUCCESS
+  echo "Publish elements library to npm - SUCCESS"
 
 fi
 
-echo Deploy to demo GitHub Pages - Finish
+echo "Deploy to demo GitHub Pages - Finish"
