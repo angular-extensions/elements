@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/angular-extensions/elements/compare/v0.2.4...v0.2.5) (2019-07-12)
+
+
+### Bug Fixes
+
+* **workspace:** demo base href ([e28d789](https://github.com/angular-extensions/elements/commit/e28d789))
+* **workspace:** npm publish path ([ef43c02](https://github.com/angular-extensions/elements/commit/ef43c02))
+
+
+
 ### [0.2.4](https://github.com/angular-extensions/elements/compare/v0.2.3...v0.2.4) (2019-07-12)
 
 
