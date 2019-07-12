@@ -13,7 +13,18 @@
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different"
   },
-  "private": true,
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "pretty-quick --staged && ng lint --silent"
+    }
+  },
+  "private": false,
   "dependencies": {
     "@angular/animations": "~8.0.0",
     "@angular/cdk": "~8.0.1",
@@ -35,10 +46,13 @@
     "@angular/cli": "~8.0.2",
     "@angular/compiler-cli": "~8.0.0",
     "@angular/language-service": "~8.0.0",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "husky": "^3.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -49,6 +63,7 @@
     "karma-spec-reporter": "0.0.32",
     "ng-packagr": "^5.1.0",
     "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
     "protractor": "~5.4.0",
     "standard-version": "^6.0.1",
     "ts-node": "~7.0.0",
