@@ -9,6 +9,7 @@
     "watch": "ng test",
     "e2e": "ng e2e",
     "build": "ng build",
+    "ci": "npm run test && npm run build",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different"
   },
