@@ -16,7 +16,7 @@
   },
   "standard-version": {
     "scripts": {
-      "precommit": "node sync-version.js && npm run format:write"
+      "precommit": "node sync-versions.js && npm run format:write"
     }
   },
   "commitlint": {
