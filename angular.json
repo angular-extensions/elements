@@ -48,6 +48,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "deployUrl": "elements-demo",
+            "baseHref": "elements-demo",
             "outputPath": "dist/elements-demo",
             "index": "projects/elements-demo/src/index.html",
             "main": "projects/elements-demo/src/main.ts",
