@@ -27,13 +27,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/elements/tsconfig.lib.json",
-              "projects/elements/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/elements/tsconfig.lib.json", "projects/elements/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -48,21 +43,16 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "deployUrl": "elements-demo",
-            "baseHref": "elements-demo",
+            "deployUrl": "elements",
+            "baseHref": "elements",
             "outputPath": "dist/elements-demo",
             "index": "projects/elements-demo/src/index.html",
             "main": "projects/elements-demo/src/main.ts",
             "polyfills": "projects/elements-demo/src/polyfills.ts",
             "tsConfig": "projects/elements-demo/tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "projects/elements-demo/src/favicon.ico",
-              "projects/elements-demo/src/assets"
-            ],
-            "styles": [
-              "projects/elements-demo/src/styles.scss"
-            ],
+            "assets": ["projects/elements-demo/src/favicon.ico", "projects/elements-demo/src/assets"],
+            "styles": ["projects/elements-demo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -116,13 +106,8 @@
             "polyfills": "projects/elements-demo/src/polyfills.ts",
             "tsConfig": "projects/elements-demo/tsconfig.spec.json",
             "karmaConfig": "projects/elements-demo/karma.conf.js",
-            "assets": [
-              "projects/elements-demo/src/favicon.ico",
-              "projects/elements-demo/src/assets"
-            ],
-            "styles": [
-              "projects/elements-demo/src/styles.scss"
-            ],
+            "assets": ["projects/elements-demo/src/favicon.ico", "projects/elements-demo/src/assets"],
+            "styles": ["projects/elements-demo/src/styles.scss"],
             "scripts": []
           }
         },
@@ -134,9 +119,7 @@
               "projects/elements-demo/tsconfig.spec.json",
               "projects/elements-demo/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
