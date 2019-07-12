@@ -41,7 +41,7 @@ else
   cd ..
   cd elements
 
-  npm publish ./dist --access public"
+  npm publish ./dist --access public
 
   echo "Publish elements library to npm - SUCCESS"
 
