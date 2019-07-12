@@ -20,10 +20,13 @@ script:
   - npm run ci
 after_success:
   - codecov
+before_deploy:
+  - cd dist/elements
 deploy:
   - provider: npm
     email: tomas.trajan@gmail.com
     api_key: $NPM_TOKEN
+    skip_cleanup: true
     on:
       tags: true
   - provider: pages
