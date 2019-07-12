@@ -30,6 +30,9 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "private": false,
   "dependencies": {
     "@angular/animations": "~8.0.0",
