@@ -18,7 +18,19 @@ install:
 script:
   # run build script specified in package.json
   - npm run ci
-  # call script for deploying of produced artifacts
-  - bash ./.travis-deploy.sh
 after_success:
   - codecov
+deploy:
+  - provider: npm
+    email: tomas.trajan@gmail.com
+    api_key: $NPM_TOKEN
+    on:
+      tags: true
+  - provider: pages
+    name: tomastrajan
+    email: tomas.trajan@gmail.com
+    local_dir: dist/elements-demo
+    skip_cleanup: true
+    github_token: $GH_TOKEN
+    on:
+      tags: true
