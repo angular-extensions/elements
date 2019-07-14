@@ -1,0 +1,10 @@
+:host {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  .signature {
+    flex: 1 0 auto;
+  }
+}

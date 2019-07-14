@@ -1,4 +1,10 @@
-import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef
+} from '@angular/core';
 
 import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
 
@@ -16,7 +22,8 @@ export class LazyElementDirective implements OnInit {
   ) {}
 
   ngOnInit() {
-    const elementTag = (this.template as any)._def.element.template.nodes[0].element.name;
+    const elementTag = (this.template as any)._def.element.template.nodes[0]
+      .element.name;
 
     if (this.loadingTemplateRef) {
       this.vcr.createEmbeddedView(this.loadingTemplateRef);

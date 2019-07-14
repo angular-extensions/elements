@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-eager',
+  selector: 'demo-eager',
   templateUrl: './eager.component.html',
   styleUrls: ['./eager.component.scss']
 })

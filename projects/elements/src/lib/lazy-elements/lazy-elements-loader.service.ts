@@ -16,7 +16,9 @@ export class LazyElementsLoaderService {
     }
 
     if (!tag) {
-      throw new Error(`${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`);
+      throw new Error(
+        `${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`
+      );
     }
 
     if (!this.hasElement(url)) {
@@ -32,7 +34,10 @@ export class LazyElementsLoaderService {
 
   private addElement(url: string): () => void {
     let notifier;
-    this.registry.set(this.stripUrlProtocol(url), new Promise<void>(resolve => (notifier = resolve)));
+    this.registry.set(
+      this.stripUrlProtocol(url),
+      new Promise<void>(resolve => (notifier = resolve))
+    );
     return notifier;
   }
 

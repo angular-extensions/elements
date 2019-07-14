@@ -1,29 +1,27 @@
-<mat-toolbar color="primary">
-  <span>@angular-extensions/elements demo</span>
+<demo-toolbar></demo-toolbar>
+<mat-sidenav-container hasBackdrop="false">
+  <mat-sidenav mode="push" opened>
+    <demo-navigation></demo-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<demo-footer></demo-footer>
 
-  <span class="spacer"></span>
-  <button mat-flat-button routerLink="home" routerLinkActive="active" color="primary">Home</button>
-  <button mat-flat-button routerLink="eager" routerLinkActive="active" color="primary">Eager</button>
-  <button mat-flat-button routerLink="lazy" routerLinkActive="active" color="primary">Lazy</button>
-  <a mat-icon-button href="https://github.com/angular-extensions/elements" target="_blank">
-    <mat-icon svgIcon="github" aria-hidden="false" aria-label="GitHub"></mat-icon>
-  </a>
-</mat-toolbar>
+<!--    <p>Parent simple: {{ simple }}</p>-->
+<!--    <p>Parent complex: {{ complex | json }}</p>-->
 
-<router-outlet></router-outlet>
-<p>Parent simple: {{ simple }}</p>
-<p>Parent complex: {{ complex | json }}</p>
+<!--    <ng-template #loading>-->
+<!--      <p>Loading...</p>-->
+<!--    </ng-template>-->
 
-<ng-template #loading>
-  <p>Loading...</p>
-</ng-template>
-
-<some-element
-  *axLazyElement="'assets/some-element.js'; loading: loading"
-  [simple]="simple"
-  [complex]="complex"
-  (simpleChange)="onSimpleChange($event.detail)"
-  (complexChange)="onComplexChange($event.detail)"
->
-  <p>Projected content</p>
-</some-element>
+<!--    <some-element-->
+<!--      *axLazyElement="'assets/some-element.js'; loading: loading"-->
+<!--      [simple]="simple"-->
+<!--      [complex]="complex"-->
+<!--      (simpleChange)="onSimpleChange($event.detail)"-->
+<!--      (complexChange)="onComplexChange($event.detail)"-->
+<!--    >-->
+<!--      <p>Projected content</p>-->
+<!--    </some-element>-->

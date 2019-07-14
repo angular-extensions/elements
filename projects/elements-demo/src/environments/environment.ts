@@ -3,6 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  // version:start
+  version: '0.3.7',
+  // version:end
   production: false
 };
 

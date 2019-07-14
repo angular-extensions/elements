@@ -27,7 +27,10 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/elements/tsconfig.lib.json", "projects/elements/tsconfig.spec.json"],
+            "tsConfig": [
+              "projects/elements/tsconfig.lib.json",
+              "projects/elements/tsconfig.spec.json"
+            ],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -35,10 +38,9 @@
     },
     "elements-demo": {
       "projectType": "application",
-      "schematics": {},
       "root": "projects/elements-demo",
       "sourceRoot": "projects/elements-demo/src",
-      "prefix": "app",
+      "prefix": "demo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -51,7 +53,10 @@
             "polyfills": "projects/elements-demo/src/polyfills.ts",
             "tsConfig": "projects/elements-demo/tsconfig.app.json",
             "aot": false,
-            "assets": ["projects/elements-demo/src/favicon.ico", "projects/elements-demo/src/assets"],
+            "assets": [
+              "projects/elements-demo/src/favicon.ico",
+              "projects/elements-demo/src/assets"
+            ],
             "styles": ["projects/elements-demo/src/styles.scss"],
             "scripts": []
           },
@@ -106,7 +111,10 @@
             "polyfills": "projects/elements-demo/src/polyfills.ts",
             "tsConfig": "projects/elements-demo/tsconfig.spec.json",
             "karmaConfig": "projects/elements-demo/karma.conf.js",
-            "assets": ["projects/elements-demo/src/favicon.ico", "projects/elements-demo/src/assets"],
+            "assets": [
+              "projects/elements-demo/src/favicon.ico",
+              "projects/elements-demo/src/assets"
+            ],
             "styles": ["projects/elements-demo/src/styles.scss"],
             "scripts": []
           }
@@ -137,7 +145,7 @@
       }
     }
   },
-  "defaultProject": "elements",
+  "defaultProject": "elements-demo",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

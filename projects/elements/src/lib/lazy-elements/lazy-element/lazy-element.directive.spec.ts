@@ -5,18 +5,26 @@ import { LazyElementDirective } from './lazy-element.directive';
 
 @Component({
   template: `
-    <some-element *axLazyElement="'http://elements.com/some-element'"></some-element>
+    <some-element
+      *axLazyElement="'http://elements.com/some-element'"
+    ></some-element>
     <div *ngIf="addSameElement">
-      <some-element *axLazyElement="'http://elements.com/some-element'"></some-element>
+      <some-element
+        *axLazyElement="'http://elements.com/some-element'"
+      ></some-element>
     </div>
     <div *ngIf="addOtherElement">
-      <some-other-element *axLazyElement="'http://elements.com/some-other-element'"></some-other-element>
+      <some-other-element
+        *axLazyElement="'http://elements.com/some-other-element'"
+      ></some-other-element>
     </div>
     <div *ngIf="useLoadingTemplate">
       <ng-template #loading>
         <p class="loading">Loading...</p>
       </ng-template>
-      <some-element *axLazyElement="'http://elements.com/some-element'; loading: loading"></some-element>
+      <some-element
+        *axLazyElement="'http://elements.com/some-element'; loading: loading"
+      ></some-element>
     </div>
   `
 })
@@ -51,7 +59,9 @@ describe('LazyElementDirective', () => {
 
   it('adds a script tag into dom to load element bundle', () => {
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe('http://elements.com/some-element');
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-element'
+    );
   });
 
   it('adds a script tag only once for elements with same url', () => {
@@ -59,7 +69,9 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe('http://elements.com/some-element');
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-element'
+    );
   });
 
   it('adds multiple script tags if elements have different bundle url', () => {
@@ -67,8 +79,12 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe('http://elements.com/some-element');
-    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe('http://elements.com/some-other-element');
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
+      'http://elements.com/some-other-element'
+    );
   });
 
   it('renders loading template', () => {
