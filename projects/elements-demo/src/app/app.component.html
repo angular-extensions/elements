@@ -1,6 +1,6 @@
-<demo-toolbar></demo-toolbar>
-<mat-sidenav-container hasBackdrop="false">
-  <mat-sidenav mode="push" opened>
+<demo-toolbar (toggle)="onNavToggle()"></demo-toolbar>
+<mat-sidenav-container [hasBackdrop]="isSmallScreen | async">
+  <mat-sidenav mode="push" [opened]="navOpened | async">
     <demo-navigation></demo-navigation>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -8,20 +8,3 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 <demo-footer></demo-footer>
-
-<!--    <p>Parent simple: {{ simple }}</p>-->
-<!--    <p>Parent complex: {{ complex | json }}</p>-->
-
-<!--    <ng-template #loading>-->
-<!--      <p>Loading...</p>-->
-<!--    </ng-template>-->
-
-<!--    <some-element-->
-<!--      *axLazyElement="'assets/some-element.js'; loading: loading"-->
-<!--      [simple]="simple"-->
-<!--      [complex]="complex"-->
-<!--      (simpleChange)="onSimpleChange($event.detail)"-->
-<!--      (complexChange)="onComplexChange($event.detail)"-->
-<!--    >-->
-<!--      <p>Projected content</p>-->
-<!--    </some-element>-->

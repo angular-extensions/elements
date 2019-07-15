@@ -1,31 +1,41 @@
 <mat-toolbar color="primary">
-  <span>@angular-extensions/elements demo</span>
+  <button
+    mat-icon-button
+    *ngIf="isSmallScreen | async"
+    class="menu"
+    (click)="toggleMenu()"
+  >
+    <mat-icon aria-hidden="false" aria-label="Menu">menu</mat-icon>
+  </button>
+  <span>@angular-extensions/elements</span>
 
   <span class="spacer"></span>
-  <button
-    mat-flat-button
-    routerLink="home"
-    routerLinkActive="active"
-    color="primary"
-  >
-    Home
-  </button>
-  <button
-    mat-flat-button
-    routerLink="docs"
-    routerLinkActive="active"
-    color="primary"
-  >
-    Docs
-  </button>
-  <button
-    mat-flat-button
-    routerLink="examples"
-    routerLinkActive="active"
-    color="primary"
-  >
-    Examples
-  </button>
+  <ng-container *ngIf="!(isSmallScreen | async)">
+    <button
+      mat-flat-button
+      routerLink="home"
+      routerLinkActive="active"
+      color="primary"
+    >
+      Home
+    </button>
+    <button
+      mat-flat-button
+      routerLink="docs"
+      routerLinkActive="active"
+      color="primary"
+    >
+      Docs
+    </button>
+    <button
+      mat-flat-button
+      routerLink="examples"
+      routerLinkActive="active"
+      color="primary"
+    >
+      Examples
+    </button>
+  </ng-container>
   <a
     mat-icon-button
     href="https://github.com/angular-extensions/elements"

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FlatTreeControl } from '@angular/cdk/tree';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-root',
@@ -7,23 +9,23 @@ import { FlatTreeControl } from '@angular/cdk/tree';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  treeControl = new FlatTreeControl<any>(
-    node => node.level,
-    node => node.expandable
-  );
+  navOpened: Observable<boolean>;
+  navToggled = new BehaviorSubject(false);
+  isSmallScreen: Observable<boolean>;
 
-  simple = 'simple';
-  complex = { id: 1 };
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
-  ngOnInit(): void {
-    setTimeout(() => {}, 5000);
+  ngOnInit() {
+    this.isSmallScreen = this.breakpointObserver
+      .observe([Breakpoints.Small, Breakpoints.XSmall])
+      .pipe(map(result => result.matches));
+
+    this.navOpened = combineLatest([this.isSmallScreen, this.navToggled]).pipe(
+      map(([isSmallScreen, navToggled]) => (!isSmallScreen ? true : navToggled))
+    );
   }
 
-  onSimpleChange(newSimpleValue) {
-    this.simple = newSimpleValue;
-  }
-
-  onComplexChange(newComplexValue) {
-    this.complex = newComplexValue;
+  onNavToggle() {
+    this.navToggled.next(!this.navToggled.value);
   }
 }
