@@ -10,7 +10,7 @@
   <span>@angular-extensions/elements</span>
 
   <span class="spacer"></span>
-  <ng-container *ngIf="!(isSmallScreen | async)">
+  <ng-container *ngIf="(isSmallScreen | async) === false">
     <button
       mat-flat-button
       routerLink="home"
