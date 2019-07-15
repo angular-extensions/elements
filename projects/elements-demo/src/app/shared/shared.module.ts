@@ -40,5 +40,9 @@ export class SharedModule {
         'assets/logo/twitter.svg'
       )
     );
+    this.matIconRegistry.addSvgIcon(
+      'logo',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/logo.svg')
+    );
   }
 }

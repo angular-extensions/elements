@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/angular-extensions/elements/master/projects/elements-demo/src/assets/logo/github.svg)
+
 # Angular Elements - @angular-extensions/elements
 
 by [@tomastrajan](https://twitter.com/tomastrajan)

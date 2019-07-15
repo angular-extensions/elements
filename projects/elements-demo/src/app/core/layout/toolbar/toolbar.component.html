@@ -9,7 +9,16 @@
       navOpened ? 'close' : 'menu'
     }}</mat-icon>
   </button>
-  <span>@angular-extensions/elements</span>
+
+  <a mat-icon-button routerLink="home">
+    <mat-icon
+      inline
+      svgIcon="logo"
+      aria-hidden="false"
+      aria-label="@angular-extensions/elements"
+    ></mat-icon>
+  </a>
+  <span class="project-name">@angular-extensions/elements</span>
 
   <span class="spacer"></span>
   <ng-container *ngIf="(isSmallScreen | async) === false">
