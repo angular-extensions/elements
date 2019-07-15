@@ -5,12 +5,14 @@ import {
   MatButtonModule,
   MatIconModule,
   MatIconRegistry,
+  MatListModule,
   MatSidenavModule,
   MatToolbarModule,
   MatTreeModule
 } from '@angular/material';
 
 const ANGULAR_MATERIAL_MODULES = [
+  MatListModule,
   MatIconModule,
   MatTreeModule,
   MatButtonModule,

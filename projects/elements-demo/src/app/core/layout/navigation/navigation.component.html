@@ -1,1 +1,26 @@
-<p>navigation works!</p>
+<mat-nav-list>
+  <ng-container *ngFor="let nav of navigation">
+    <a
+      mat-list-item
+      [routerLink]="nav.url"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+    >
+      {{ nav.label }}
+      <mat-icon matListIcon>{{
+        nav.children && rla.isActive ? 'expand_more' : 'chevron_right'
+      }}</mat-icon>
+    </a>
+    <ng-container *ngIf="nav.children && rla.isActive">
+      <a
+        mat-list-item
+        class="sub-nav"
+        *ngFor="let child of nav.children"
+        [routerLink]="child.url"
+        routerLinkActive="active"
+      >
+        {{ child.label }}
+      </a>
+    </ng-container>
+  </ng-container>
+</mat-nav-list>

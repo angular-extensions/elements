@@ -8,7 +8,6 @@ import { LazyElementsModule } from '../../../elements/src/lib/lazy-elements/lazy
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './features/home/home.module';
-import { EagerModule } from './features/eager/eager.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -29,8 +28,7 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     AppRoutingModule,
-    HomeModule,
-    EagerModule
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

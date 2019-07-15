@@ -24,12 +24,15 @@ $elements-demo-theme: mat-light-theme(
   $elements-demo-warn
 );
 
+// custom theme imports
 @import './app/app.component.scss-theme';
+@import './app/core/layout/navigation/navigation.component.scss-theme';
 @import './app/core/layout/footer/footer.component.scss-theme';
 
 @mixin custom-components-theme($theme) {
   // include custom components themes
   @include demo-root-component-theme($theme);
+  @include demo-navigation-component-theme($theme);
   @include demo-footer-component-theme($theme);
 }
 

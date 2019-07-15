@@ -1,0 +1,13 @@
+mat-nav-list {
+  padding-top: 0;
+}
+
+a[mat-list-item] {
+  width: 250px;
+
+  &.sub-nav {
+    width: auto;
+    padding-left: 33px !important;
+    font-size: 1em !important;
+  }
+}
