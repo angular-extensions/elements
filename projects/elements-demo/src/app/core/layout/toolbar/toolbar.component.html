@@ -5,7 +5,9 @@
     class="menu"
     (click)="toggleMenu()"
   >
-    <mat-icon aria-hidden="false" aria-label="Menu">menu</mat-icon>
+    <mat-icon aria-hidden="false" aria-label="Menu">{{
+      navOpened ? 'close' : 'menu'
+    }}</mat-icon>
   </button>
   <span>@angular-extensions/elements</span>
 

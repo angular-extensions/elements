@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -9,6 +10,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
+
   navOpened: Observable<boolean>;
   navToggled = new BehaviorSubject(false);
   isSmallScreen: Observable<boolean>;
@@ -27,5 +30,9 @@ export class AppComponent implements OnInit {
 
   onNavToggle() {
     this.navToggled.next(!this.navToggled.value);
+  }
+
+  onBackdropClick() {
+    this.navToggled.next(false);
   }
 }

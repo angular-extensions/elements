@@ -1,6 +1,12 @@
-<demo-toolbar (toggle)="onNavToggle()"></demo-toolbar>
-<mat-sidenav-container [hasBackdrop]="isSmallScreen | async">
-  <mat-sidenav mode="push" [opened]="navOpened | async">
+<demo-toolbar
+  (toggle)="onNavToggle()"
+  [navOpened]="navOpened | async"
+></demo-toolbar>
+<mat-sidenav-container
+  [hasBackdrop]="isSmallScreen | async"
+  (backdropClick)="onBackdropClick()"
+>
+  <mat-sidenav mode="push" [opened]="navOpened | async" disableClose>
     <demo-navigation></demo-navigation>
   </mat-sidenav>
   <mat-sidenav-content>
