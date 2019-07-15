@@ -6,7 +6,7 @@
   [hasBackdrop]="isSmallScreen | async"
   (backdropClick)="onBackdropClick()"
 >
-  <mat-sidenav mode="push" [opened]="navOpened | async" disableClose>
+  <mat-sidenav mode="side" [opened]="navOpened | async" disableClose>
     <demo-navigation></demo-navigation>
   </mat-sidenav>
   <mat-sidenav-content>
