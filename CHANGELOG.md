@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/angular-extensions/elements/compare/v0.3.7...v0.4.0) (2019-07-15)
+
+### Bug Fixes
+
+- **layout:** negate value of async pipe ([3e88497](https://github.com/angular-extensions/elements/commit/3e88497))
+
+### Features
+
+- **layout:** add base layout ([b291bee](https://github.com/angular-extensions/elements/commit/b291bee))
+- **layout:** responsive menu ([510e68c](https://github.com/angular-extensions/elements/commit/510e68c))
+
 ### [0.3.7](https://github.com/angular-extensions/elements/compare/v0.3.6...v0.3.7) (2019-07-12)
 
 ### Bug Fixes
