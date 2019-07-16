@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   navOpened: Observable<boolean>;
   navToggled = new BehaviorSubject(false);
