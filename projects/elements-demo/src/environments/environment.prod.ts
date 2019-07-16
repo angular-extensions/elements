@@ -1,6 +1,6 @@
 export const environment = {
   // version:start
-  version: '0.7.0',
+  version: '8.0.0',
   // version:end
   production: true
 };

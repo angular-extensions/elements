@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/angular-extensions/elements/compare/v0.7.0...v8.0.0) (2019-07-16)
+
+### Bug Fixes
+
+- **workspace:** add missing --project flag to build lib ([3491f0d](https://github.com/angular-extensions/elements/commit/3491f0d))
+
+### Features
+
+- **workspace:** bump version and force peer dependency on Angular 8 ([88630b1](https://github.com/angular-extensions/elements/commit/88630b1))
+
+### BREAKING CHANGES
+
+- **workspace:** adjust peer dependencies, works only with Angular 8
+
 ## [0.7.0](https://github.com/angular-extensions/elements/compare/v0.6.0...v0.7.0) (2019-07-15)
 
 ### Features
