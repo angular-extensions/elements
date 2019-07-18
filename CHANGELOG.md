@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/angular-extensions/elements/compare/v8.0.0...v8.1.0) (2019-07-18)
+
+### Features
+
+- **demo:** add home page content ([31e4730](https://github.com/angular-extensions/elements/commit/31e4730))
+
 ## [8.0.0](https://github.com/angular-extensions/elements/compare/v0.7.0...v8.0.0) (2019-07-16)
 
 ### Bug Fixes
