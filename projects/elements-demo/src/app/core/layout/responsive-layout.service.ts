@@ -18,6 +18,9 @@ export class ResponsiveLayoutService {
   columnCount: Observable<number>;
   isResponsiveLayout: Observable<boolean>;
 
+  // sync
+  isResponsiveLayoutSync: boolean;
+
   constructor(private breakpointObserver: BreakpointObserver) {
     this.isXSmallScreen = this.breakpointObserver
       .observe([Breakpoints.XSmall])

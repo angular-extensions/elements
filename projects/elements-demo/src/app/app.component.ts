@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { delay, map, tap } from 'rxjs/operators';
 
 import { ResponsiveLayoutService } from './core/layout/responsive-layout.service';
 
@@ -11,6 +11,9 @@ import { ResponsiveLayoutService } from './core/layout/responsive-layout.service
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @HostBinding('class')
+  demoRootCssClass = '';
+
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
 
   navOpened: Observable<boolean>;
@@ -20,7 +23,10 @@ export class AppComponent implements OnInit {
   constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
 
   ngOnInit() {
-    this.isResponsiveLayout = this.responsiveLayoutService.isResponsiveLayout;
+    this.isResponsiveLayout = this.responsiveLayoutService.isResponsiveLayout.pipe(
+      delay(1),
+      tap(value => (this.demoRootCssClass = value ? 'responsive' : ''))
+    );
 
     this.navOpened = combineLatest([
       this.isResponsiveLayout,

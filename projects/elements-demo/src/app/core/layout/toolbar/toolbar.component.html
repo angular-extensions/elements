@@ -10,6 +10,8 @@
     }}</mat-icon>
   </button>
 
+  <span class="spacer-responsive"></span>
+
   <a mat-icon-button routerLink="home">
     <mat-icon
       inline
@@ -18,7 +20,11 @@
       aria-label="@angular-extensions/elements"
     ></mat-icon>
   </a>
-  <span class="project-name">@angular-extensions/elements</span>
+  <span class="project-name"
+    >{{
+      (isResponsiveLayout | async) ? '' : '@angular-extensions/'
+    }}elements</span
+  >
 
   <span class="spacer"></span>
   <ng-container *ngIf="(isResponsiveLayout | async) === false">

@@ -66,8 +66,14 @@
         width: calc(100% - 50px);
         height: calc(100% - 50px);
 
+        mat-card-title {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
         mat-card-subtitle {
-          height: 60px;
+          height: 80px;
           width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -78,5 +84,18 @@
         }
       }
     }
+  }
+}
+
+:host-context(.responsive) {
+  .cta {
+    button {
+      width: 100%;
+    }
+  }
+
+  code {
+    white-space: normal;
+    padding: 0 8px 1px 8px;
   }
 }

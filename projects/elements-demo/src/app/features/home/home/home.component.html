@@ -51,7 +51,7 @@
           <mat-icon color="primary">{{ feature.icon }}</mat-icon>
         </div>
         <mat-card-title>{{ feature.title }}</mat-card-title>
-        <mat-card-subtitle>{{ feature.subtitle }}</mat-card-subtitle>
+        <mat-card-subtitle [innerHTML]="feature.subtitle"></mat-card-subtitle>
       </mat-card-header>
     </mat-card>
   </mat-grid-tile>

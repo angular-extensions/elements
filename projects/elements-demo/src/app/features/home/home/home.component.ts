@@ -13,7 +13,7 @@ const FEATURES = [
   {
     title: 'Simple API',
     subtitle:
-      'Just grab *axLazyElement directive set the element bundle url and you are ready to go!',
+      'Just grab <code>*axLazyElement</code> directive set the element bundle url and you are ready to go!',
     icon: 'sentiment_satisfied_alt'
   },
   {
