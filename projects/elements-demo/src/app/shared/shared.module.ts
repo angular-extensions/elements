@@ -2,28 +2,34 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
-  MatButtonModule,
+  MatCardModule,
   MatIconModule,
-  MatIconRegistry,
   MatListModule,
+  MatTreeModule,
+  MatIconRegistry,
+  MatButtonModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatTreeModule
+  MatGridListModule
 } from '@angular/material';
 
+import { LazyElementsModule } from '../../../../elements/src/lib/lazy-elements/lazy-elements.module';
+
 const ANGULAR_MATERIAL_MODULES = [
-  MatListModule,
+  MatCardModule,
   MatIconModule,
+  MatListModule,
   MatTreeModule,
   MatButtonModule,
   MatToolbarModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatGridListModule
 ];
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, ...ANGULAR_MATERIAL_MODULES],
-  exports: [CommonModule, ...ANGULAR_MATERIAL_MODULES]
+  imports: [CommonModule, LazyElementsModule, ...ANGULAR_MATERIAL_MODULES],
+  exports: [CommonModule, LazyElementsModule, ...ANGULAR_MATERIAL_MODULES]
 })
 export class SharedModule {
   constructor(

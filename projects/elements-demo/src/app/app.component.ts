@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { ResponsiveLayoutService } from './core/layout/responsive-layout.service';
 
 @Component({
   selector: 'demo-root',
@@ -14,16 +15,17 @@ export class AppComponent implements OnInit {
 
   navOpened: Observable<boolean>;
   navToggled = new BehaviorSubject(false);
-  isSmallScreen: Observable<boolean>;
+  isResponsiveLayout: Observable<boolean>;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
 
   ngOnInit() {
-    this.isSmallScreen = this.breakpointObserver
-      .observe([Breakpoints.Small, Breakpoints.XSmall])
-      .pipe(map(result => result.matches));
+    this.isResponsiveLayout = this.responsiveLayoutService.isResponsiveLayout;
 
-    this.navOpened = combineLatest([this.isSmallScreen, this.navToggled]).pipe(
+    this.navOpened = combineLatest([
+      this.isResponsiveLayout,
+      this.navToggled
+    ]).pipe(
       map(([isSmallScreen, navToggled]) => (!isSmallScreen ? true : navToggled))
     );
   }

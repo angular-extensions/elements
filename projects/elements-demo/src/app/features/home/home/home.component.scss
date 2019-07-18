@@ -31,16 +31,52 @@
     }
 
     h3 {
-      font-size: 2em;
+      font-size: 1.8em;
       line-height: 1.3em;
       opacity: 0.5;
-      text-transform: uppercase;
-      padding: 20px 50px;
+      margin: 0;
     }
 
     mat-icon {
-      height: 160px;
-      margin: 0 0 25px 0;
+      height: 170px;
+      margin: 0 0 50px 0;
+    }
+  }
+
+  .cta {
+    margin: 40px 0 0 0;
+
+    button {
+      margin: 5px;
+      padding: 5px 35px;
+    }
+  }
+
+  h2 {
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin: 50px 0 15px 0;
+  }
+
+  mat-grid-list {
+    width: 100%;
+
+    mat-grid-tile {
+      mat-card {
+        width: calc(100% - 50px);
+        height: calc(100% - 50px);
+
+        mat-card-subtitle {
+          height: 60px;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        mat-icon {
+          font-size: 3em;
+        }
+      }
     }
   }
 }

@@ -21,9 +21,6 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     HttpClientModule,
 
-    // the library module
-    LazyElementsModule,
-
     // local
     CoreModule,
     SharedModule,

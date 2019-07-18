@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <button
     mat-icon-button
-    *ngIf="isSmallScreen | async"
+    *ngIf="isResponsiveLayout | async"
     class="menu"
     (click)="toggleMenu()"
   >
@@ -21,7 +21,7 @@
   <span class="project-name">@angular-extensions/elements</span>
 
   <span class="spacer"></span>
-  <ng-container *ngIf="(isSmallScreen | async) === false">
+  <ng-container *ngIf="(isResponsiveLayout | async) === false">
     <button
       mat-flat-button
       routerLink="home"
