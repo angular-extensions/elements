@@ -10,7 +10,11 @@ export class LazyElementsLoaderService {
 
   constructor() {}
 
-  loadElement(url: string, tag: string): Promise<void> {
+  loadElement(
+    url: string,
+    tag: string,
+    isModule: boolean = false
+  ): Promise<void> {
     if (!url) {
       throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
     }
@@ -24,6 +28,9 @@ export class LazyElementsLoaderService {
     if (!this.hasElement(url)) {
       const notifier = this.addElement(url);
       const script = document.createElement('script') as HTMLScriptElement;
+      if (isModule) {
+        script.type = 'module';
+      }
       script.src = url;
       script.onload = notifier;
       document.body.appendChild(script);

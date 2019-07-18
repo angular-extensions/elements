@@ -26,16 +26,22 @@ import { LazyElementDirective } from './lazy-element.directive';
         *axLazyElement="'http://elements.com/some-element'; loading: loading"
       ></some-element>
     </div>
+    <div *ngIf="useModule">
+      <some-element
+        *axLazyElement="'http://elements.com/some-element-module'; module: true"
+      ></some-element>
+    </div>
   `
 })
 class TestHostComponent {
   addSameElement = false;
   addOtherElement = false;
   useLoadingTemplate = false;
+  useModule = false;
 }
 
 describe('LazyElementDirective', () => {
-  let component: TestHostComponent;
+  let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let appendChildSpy: jasmine.Spy;
 
@@ -48,13 +54,13 @@ describe('LazyElementDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
-    component = fixture.componentInstance;
+    testHostComponent = fixture.componentInstance;
     appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(testHostComponent).toBeTruthy();
   });
 
   it('adds a script tag into dom to load element bundle', () => {
@@ -65,7 +71,7 @@ describe('LazyElementDirective', () => {
   });
 
   it('adds a script tag only once for elements with same url', () => {
-    component.addSameElement = true;
+    testHostComponent.addSameElement = true;
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -75,7 +81,7 @@ describe('LazyElementDirective', () => {
   });
 
   it('adds multiple script tags if elements have different bundle url', () => {
-    component.addOtherElement = true;
+    testHostComponent.addOtherElement = true;
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
@@ -90,7 +96,7 @@ describe('LazyElementDirective', () => {
   it('renders loading template', () => {
     expect(document.querySelector('.loading')).toBe(null);
 
-    component.useLoadingTemplate = true;
+    testHostComponent.useLoadingTemplate = true;
     fixture.detectChanges();
 
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
@@ -99,7 +105,7 @@ describe('LazyElementDirective', () => {
   it('removes loading template when element is loaded', done => {
     expect(document.querySelector('.loading')).toBe(null);
 
-    component.useLoadingTemplate = true;
+    testHostComponent.useLoadingTemplate = true;
     fixture.detectChanges();
 
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
@@ -112,5 +118,24 @@ describe('LazyElementDirective', () => {
       expect(document.querySelector('.loading')).toBe(null);
       done();
     });
+  });
+
+  it('uses type module on script tag when specified', () => {
+    fixture.detectChanges();
+
+    expect(appendChildSpy).toHaveBeenCalledTimes(1);
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('');
+
+    testHostComponent.useModule = true;
+    fixture.detectChanges();
+
+    expect(appendChildSpy).toHaveBeenCalledTimes(2);
+    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
+      'http://elements.com/some-element-module'
+    );
+    expect(appendChildSpy.calls.argsFor(1)[0].type).toBe('module');
   });
 });
