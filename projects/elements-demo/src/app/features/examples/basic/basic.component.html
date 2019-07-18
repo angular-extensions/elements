@@ -1,0 +1,28 @@
+<h1>Basic</h1>
+
+<div class="content">
+  <div class="implementation">
+    <ng-template #loading>Loading...</ng-template>
+    <mwc-button
+      raised
+      (click)="increment()"
+      *axLazyElement="
+        'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
+        module: true;
+        loading: loading
+      "
+    >
+      Increment
+    </mwc-button>
+
+    Counter: {{ counter }}
+  </div>
+  <div class="description">
+    <p>
+      The most simple example, all we need is to use element tag, for example
+      <code>&#60;mwc-button></code> and add
+      <code>*axLazyElement</code> directive with the url pointing to the element
+      implementation.
+    </p>
+  </div>
+</div>

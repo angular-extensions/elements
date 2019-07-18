@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+
+    .implementation {
+      flex: 1;
+    }
+
+    .description {
+      flex: 1.5;
+    }
+  }
+}

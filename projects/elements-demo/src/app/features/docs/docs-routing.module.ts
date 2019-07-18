@@ -21,9 +21,11 @@ const routes: Routes = [
           )
       },
       {
-        path: 'mechanism',
+        path: 'how-it-works',
         loadChildren: () =>
-          import('./mechanism/mechanism.module').then(m => m.MechanismModule)
+          import('./how-it-works/how-it-works.module').then(
+            m => m.HowItWorksModule
+          )
       }
     ]
   }

@@ -14,8 +14,8 @@ const NAVIGATION = [
         url: 'docs/getting-started'
       },
       {
-        label: 'Mechanism',
-        url: 'docs/mechanism'
+        label: 'How it works',
+        url: 'docs/how-it-works'
       }
     ]
   },
@@ -25,11 +25,11 @@ const NAVIGATION = [
     children: [
       {
         label: 'Basic',
-        url: 'basic'
+        url: 'examples/basic'
       },
       {
         label: 'Lazy Loading',
-        url: 'lazy'
+        url: 'examples/lazy'
       }
     ]
   }
