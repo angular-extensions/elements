@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.2.0](https://github.com/angular-extensions/elements/compare/v8.1.0...v8.2.0) (2019-07-18)
+
+### Bug Fixes
+
+- **demo:** responsive-layout ([45baa9b](https://github.com/angular-extensions/elements/commit/45baa9b))
+
+### Features
+
+- **lib:** add support for urls with type module ([a52fe1e](https://github.com/angular-extensions/elements/commit/a52fe1e))
+
 ## [8.1.0](https://github.com/angular-extensions/elements/compare/v8.0.0...v8.1.0) (2019-07-18)
 
 ### Features
