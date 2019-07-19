@@ -1,1 +1,82 @@
-<h1>How it works</h1>
+<div class="wrapper">
+  <h1>How it works</h1>
+
+  <p>
+    The <code>*axLazyElement</code> directive is used to load any Angular
+    element (or any other web component) and display it in the standard Angular
+    component template.
+  </p>
+
+  <h2>Angular elements</h2>
+
+  <blockquote>
+    Angular elements are Angular components packaged as custom elements (also
+    called Web Components), a web standard for defining new HTML elements in a
+    framework-agnostic way -
+    <a href="https://angular.io/guide/elements" target="_blank"
+      >Official Angular Docs</a
+    >
+  </blockquote>
+
+  <p>
+    As written in the official Angular documentation, Angular elements
+    <code>@angular/elements</code>
+    provide us with a way to convert standard Angular components to custom
+    elements (web components) which then can be consumed as standard built-in
+    HTML elements from the point of view of the consumer application.
+  </p>
+
+  <p>
+    The elements can be built with the help of Angular CLI and
+    <code>ngx-build-plus</code>
+    <a
+      href="https://github.com/manfredsteyer/ngx-build-plus#readme"
+      target="_blank"
+      >library</a
+    >
+    into single a bundle. Having a single bundle file makes it very convenient
+    to consume custom Angular element in the consumer app!
+  </p>
+
+  <h2>
+    Standard way of using Angular elements (and other web components) in Angular
+    applications
+  </h2>
+
+  <p>
+    Let's say we have created an Angular element, for example
+    <code>&#60;my-org-customer-info-card>&#60;/my-org-customer-info-card></code>
+    and built and packaged it into a single bundle file
+    <code>my-org-customer-info-card.js</code>.
+  </p>
+
+  <p>
+    Usually we would have to include
+    <code
+      >&#60;script
+      src="path/to/my-org-customer-info-card.js">&#60;/script></code
+    >
+    in our <code>index.html</code> so that we can be sure that the element loads
+    before it was used in the template of some component of our consumer app.
+  </p>
+
+  <p>
+    This approach has <strong>one main disadvantage</strong>, which is that it
+    increases initial javascript payload that needs to be downloaded, parsed and
+    executed... Initial payload hurts even more if we're dealing with
+    "sub-application" style Angular elements which can be considerably more
+    complex compared to single components like button or card.
+  </p>
+
+  <p>
+    Initial loading time can make huge impact on overall success of many kind of
+    applications and represents the main reason for existence of this library
+    which enables us to <strong>lazy-load Angular elements</strong> with ease
+    and highest possible granularity!
+  </p>
+
+  <h2>
+    Much Better Way of using Angular elements (and other web components) in
+    Angular applications
+  </h2>
+</div>

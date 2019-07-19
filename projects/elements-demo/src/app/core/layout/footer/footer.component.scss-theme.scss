@@ -10,5 +10,15 @@
   demo-footer {
     color: mat-color($primary, lighter-contrast);
     background-color: mat-color($primary, lighter);
+
+    a {
+      &:hover {
+        color: mat-color($primary, lighter-contrast);
+      }
+    }
+
+    img {
+      border: 1px solid mat-color($foreground, text);
+    }
   }
 }

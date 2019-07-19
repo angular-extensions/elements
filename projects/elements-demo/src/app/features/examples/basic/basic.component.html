@@ -3,15 +3,7 @@
 <div class="content">
   <div class="implementation">
     <ng-template #loading>Loading...</ng-template>
-    <mwc-button
-      raised
-      (click)="increment()"
-      *axLazyElement="
-        'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
-        module: true;
-        loading: loading
-      "
-    >
+    <mwc-button raised (click)="increment()">
       Increment
     </mwc-button>
 

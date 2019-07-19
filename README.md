@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/angular-extensions/elements/master/projects/elements-demo/src/assets/logo/github.svg)
+<img src="https://raw.github.com/angular-extensions/elements/master/projects/elements-demo/src/assets/logo/logo.svg?sanitize=true">
 
 # Angular Elements - @angular-extensions/elements
 
