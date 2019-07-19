@@ -15,7 +15,7 @@
 
 <div class="cta">
   <button mat-flat-button color="primary" routerLink="../docs">
-    Learn more
+    Get started
   </button>
   <button mat-flat-button color="accent" routerLink="../examples">
     Explore examples
@@ -27,19 +27,20 @@
   <li>Install <code>npm i @angular-extension/elements</code></li>
   <li>
     Add
-    <code
-      >import &#123; LazyElementsModule } from
-      '@angular-extension/elements';</code
-    >
+    <code>
+      import &#123; LazyElementsModule } from '@angular-extension/elements';
+    </code>
   </li>
   <li>
     Append <code>LazyElementsModule</code> to the <code>imports: []</code> of
-    your <code>AppModule</code>
+    your
+    <code>AppModule</code>
   </li>
   <li>
     Add new <code>schemas: []</code> property with
     <code>CUSTOM_ELEMENTS_SCHEMA</code> value to
-    <code>@NgModule</code> decorator of your <code>AppModule</code>
+    <code>@NgModule</code> decorator of your
+    <code>AppModule</code>
   </li>
   <li>
     Use <code>*axLazyElement</code> directive on an element you wish to load and

@@ -16,6 +16,10 @@ const NAVIGATION = [
       {
         label: 'How it works',
         url: 'docs/how-it-works'
+      },
+      {
+        label: 'API',
+        url: 'docs/api'
       }
     ]
   },

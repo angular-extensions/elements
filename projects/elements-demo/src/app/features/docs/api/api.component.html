@@ -1,0 +1,120 @@
+<h1>API</h1>
+
+<section>
+  <h2>LazyElementDirective</h2>
+  <code color="accent">Directive</code>
+  <br />
+  <p>
+    A structural directive which lazy loads desired Angular element (or any
+    other webcomponent)
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Property</th>
+        <th>Description</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>selector</pre></td>
+          <td>
+            <p>
+              The selector is <code>axLazyElement</code> which should be used
+              with <code>*</code> as in <code>*axLazyElement</code> because it
+              is a structural directive.
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <pre>
+@Input('axLazyElement')
+url: string;</pre
+            >
+          </td>
+          <td>
+            <p>
+              The url of the element bundle (or module). This is the main
+              property which corresponds to the main directive selector.
+            </p>
+            <ul>
+              <li>
+                Inline string value -
+                <code
+                  >&#60;some-element
+                  *axLazyElement="'https://elements.com/some-element'">&#60;/some-element></code
+                >
+              </li>
+              <li>
+                Component property reference -
+                <code
+                  >&#60;some-element
+                  *axLazyElement="url">&#60;/some-element></code
+                >
+              </li>
+            </ul>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <pre>
+@Input('axLazyElementLoading')
+loadingTemplateRef: TemplateRef&#60;any>;</pre
+            >
+          </td>
+          <td>
+            <p>
+              Reference to Angular template which will be displayed before the
+              element bundle (or module) was loaded. To show loader we can
+              create following template
+              <code
+                >&#60;ng-template #spinner>Loading...&#60;/ng-template></code
+              >
+              and then we have to reference it
+              <code
+                >&#60;some-element *axLazyElement="url; loading:
+                spinner">&#60;/some-element></code
+              >
+            </p>
+          </td>
+          <td>
+            <p>
+              <code color="accent">Optional</code><br />
+              <code>Default: undefined</code>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>
+@Input('axLazyElementModule')
+isModule: boolean;</pre
+            >
+          </td>
+          <td>
+            <p>
+              Flag that specifies if the element is loaded as bundle (default)
+              or as module. This will influence the generated
+              <code>&#60;script></code> tag which will get
+              <code>type="module"</code> in case this flag was set to true. The
+              flag can be set using
+              <code
+                >&#60;some-element *axLazyElement="url; module:
+                true">&#60;/some-element></code
+              >
+            </p>
+          </td>
+          <td>
+            <p>
+              <code color="accent">Optional</code><br />
+              <code>Default: false</code>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
