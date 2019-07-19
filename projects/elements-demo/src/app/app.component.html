@@ -3,7 +3,7 @@
   [navOpened]="navOpened | async"
 ></demo-toolbar>
 <mat-sidenav-container
-  [hasBackdrop]="isResponsiveLayout | async"
+  [hasBackdrop]="isSmallOrSmaller | async"
   (backdropClick)="onBackdropClick()"
 >
   <mat-sidenav mode="side" [opened]="navOpened | async" disableClose>

@@ -7,6 +7,14 @@
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
+  a {
+    color: mat-color($accent);
+
+    &:hover {
+      color: mat-color($accent, darker);
+    }
+  }
+
   code {
     color: mat-color($foreground, text);
     background-color: mat-color($background, unselected-chip);

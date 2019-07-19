@@ -1,1 +1,71 @@
-<p>getting-started works!</p>
+<div class="wrapper">
+  <h1>Getting started</h1>
+
+  <p>
+    Start using Angular elements or any other web components in your
+    applications by following these 5 steps...
+  </p>
+
+  <ol>
+    <li>Install <code>npm i @angular-extension/elements</code></li>
+    <li>
+      Add
+      <code>
+        import &#123; LazyElementsModule } from '@angular-extension/elements';
+      </code>
+    </li>
+    <li>
+      Append <code>LazyElementsModule</code> to the <code>imports: []</code> of
+      your
+      <code>AppModule</code>
+    </li>
+    <li>
+      Add new <code>schemas: []</code> property with
+      <code>CUSTOM_ELEMENTS_SCHEMA</code> value to
+      <code>@NgModule</code> decorator of your
+      <code>AppModule</code>
+    </li>
+    <li>
+      Use <code>*axLazyElement</code> directive on an element you wish to load
+      and pass in the url of the element bundle
+    </li>
+  </ol>
+
+  <p>That way we get...</p>
+
+  <pre [highlight]="codeExampleAppModule"></pre>
+
+  <br />
+  <p>
+    and can use <code>*axLazyElement</code> in the template of our component...
+  </p>
+
+  <pre [highlight]="codeExampleComponent"></pre>
+
+  <h2>Using in other (and lazy loaded) modules</h2>
+
+  <p>
+    Any non-trivial Angular application will usually contain more than a single
+    <code>AppModule</code>.
+  </p>
+  <p>More so, some of these additional modules could be lazy loaded.</p>
+
+  <p>
+    Any module which contains components which are using
+    <code>*axLazyElement</code> directive has to have
+    <code>schemas: [CUSTOM_ELEMENTS_SCHEMA]</code> in its
+    <code>@NgModule</code> decorator configuration. Also the module has to
+    either import <code>LazyElementsModule</code>. Let's have a look on the
+    following example...
+  </p>
+
+  <pre [highlight]="codeExampleModule"></pre>
+
+  <br />
+  <p>
+    Or import other module (most commonly <code>SharedModule</code>) which both
+    imports and exports <code>LazyElementsModule</code>.
+  </p>
+
+  <pre [highlight]="codeExampleSharedModule"></pre>
+</div>

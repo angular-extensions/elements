@@ -17,7 +17,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
 
   ngOnInit() {
-    this.isResponsiveLayout = this.responsiveLayoutService.isResponsiveLayout;
+    this.isResponsiveLayout = this.responsiveLayoutService.isSmallOrSmaller;
   }
 
   toggleMenu() {

@@ -6,13 +6,18 @@ import { DocsComponent } from './docs.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'getting-started',
+    redirectTo: 'motivation',
     pathMatch: 'full'
   },
   {
     path: '',
     component: DocsComponent,
     children: [
+      {
+        path: 'motivation',
+        loadChildren: () =>
+          import('./motivation/motivation.module').then(m => m.MotivationModule)
+      },
       {
         path: 'getting-started',
         loadChildren: () =>

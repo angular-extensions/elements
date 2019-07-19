@@ -18,18 +18,30 @@ export class AppComponent implements OnInit {
 
   navOpened: Observable<boolean>;
   navToggled = new BehaviorSubject(false);
-  isResponsiveLayout: Observable<boolean>;
+  isSmallOrSmaller: Observable<boolean>;
 
   constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
 
   ngOnInit() {
-    this.isResponsiveLayout = this.responsiveLayoutService.isResponsiveLayout.pipe(
+    this.isSmallOrSmaller = combineLatest(
+      this.responsiveLayoutService.isSmallOrSmaller,
+      this.responsiveLayoutService.isLargeOrBigger
+    ).pipe(
       delay(1),
-      tap(value => (this.demoRootCssClass = value ? 'responsive' : ''))
+      tap(([isSmall, isLarge]) => {
+        this.demoRootCssClass = '';
+        if (isSmall) {
+          this.demoRootCssClass = 'responsive';
+        }
+        if (isLarge) {
+          this.demoRootCssClass = 'responsive-large';
+        }
+      }),
+      map(([isSmall]) => isSmall)
     );
 
     this.navOpened = combineLatest([
-      this.isResponsiveLayout,
+      this.isSmallOrSmaller,
       this.navToggled
     ]).pipe(
       map(([isSmallScreen, navToggled]) => (!isSmallScreen ? true : navToggled))
