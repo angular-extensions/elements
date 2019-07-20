@@ -2,8 +2,18 @@
 
 <div class="content">
   <div class="implementation">
+    <ng-template #error>Loading failed...</ng-template>
     <ng-template #loading>Loading...</ng-template>
-    <mwc-button raised (click)="increment()">
+    <mwc-button
+      *axLazyElement="
+        'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
+        loadingTemplate: loading;
+        errorTemplate: error;
+        module: true
+      "
+      raised
+      (click)="increment()"
+    >
       Increment
     </mwc-button>
 

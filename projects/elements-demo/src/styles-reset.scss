@@ -24,6 +24,7 @@ code {
 pre {
   border-radius: 10px;
   padding: 20px !important;
+  margin: 0 0 20px 0;
 }
 
 p {
@@ -39,4 +40,12 @@ blockquote {
   padding: 10px 20px;
   border-left: 2px solid;
   margin: 20px 0;
+
+  &.large {
+    font-style: normal;
+    border: 0;
+    font-size: 2em;
+    line-height: 1.6em;
+    padding: 10px 60px;
+  }
 }

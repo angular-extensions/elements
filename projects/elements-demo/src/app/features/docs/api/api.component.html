@@ -58,7 +58,7 @@ url: string;</pre
         <tr>
           <td>
             <pre>
-@Input('axLazyElementLoading')
+@Input('axLazyElementLoadingTemplate')
 loadingTemplateRef: TemplateRef&#60;any>;</pre
             >
           </td>
@@ -68,12 +68,39 @@ loadingTemplateRef: TemplateRef&#60;any>;</pre
               element bundle (or module) was loaded. To show loader we can
               create following template
               <code
-                >&#60;ng-template #spinner>Loading...&#60;/ng-template></code
+                >&#60;ng-template #loading>Loading...&#60;/ng-template></code
               >
               and then we have to reference it
               <code
-                >&#60;some-element *axLazyElement="url; loading:
-                spinner">&#60;/some-element></code
+                >&#60;some-element *axLazyElement="url; loadingTemplate:
+                loading">&#60;/some-element></code
+              >
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>
+@Input('axLazyElementErrorTemplate')
+errorTemplateRef: TemplateRef&#60;any>;</pre
+            >
+          </td>
+          <td>
+            <p>
+              Reference to Angular template which will be hich will be displayed
+              before the element bundle (or module) loading failed. To show
+              error message we can create following template
+              <code
+                >&#60;ng-template #error>Loading
+                failed...&#60;/ng-template></code
+              >
+              and then we have to reference it
+              <code
+                >&#60;some-element *axLazyElement="url; errorTemplate:
+                error">&#60;/some-element></code
               >
             </p>
             <code color="accent">Optional</code>&nbsp;<code color="accent"

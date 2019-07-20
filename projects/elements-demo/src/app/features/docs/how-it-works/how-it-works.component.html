@@ -6,6 +6,11 @@
     element (or any other web component) and display it in the standard Angular
     component template.
   </p>
+  <blockquote>
+    In case you are wondering about possible use cases of this approach please
+    check out <a routerLink="../../motivation">motivation</a>
+    page to learn more...
+  </blockquote>
 
   <h2>Angular elements</h2>
 
@@ -45,16 +50,15 @@
 
   <p>
     Let's say we have created an Angular element, for example
-    <code>&#60;my-org-customer-info-card>&#60;/my-org-customer-info-card></code>
+    <code>&#60;your-org-customer-editor>&#60;/your-org-customer-editor></code>
     and built and packaged it into a single bundle file
-    <code>my-org-customer-info-card.js</code>.
+    <code>your-org-customer-editor.js</code>.
   </p>
 
   <p>
     Usually we would have to include
     <code
-      >&#60;script
-      src="path/to/my-org-customer-info-card.js">&#60;/script></code
+      >&#60;script src="path/to/your-org-customer-editor.js">&#60;/script></code
     >
     in our <code>index.html</code> so that we can be sure that the element loads
     before it was used in the template of some component of our consumer app.
@@ -76,7 +80,55 @@
   </p>
 
   <h2>
-    Much Better Way of using Angular elements (and other web components) in
-    Angular applications
+    Much Better Way of using Angular elements (and other web components)
   </h2>
+
+  <p>
+    Wouldn't it be better if we could use our elements in the same way as any
+    other HTML element while postpone their loading from some backend until the
+    very latest possible time?
+  </p>
+  <p>
+    More so wouldn't it be great if this happened automatically without the need
+    to manually trigger some kind of loading and retrieving of bundle?
+  </p>
+
+  <blockquote class="large">
+    What if all this could be achieved by using simple structural directive
+    <code>*axLazyElement</code>?
+  </blockquote>
+
+  <pre [highlight]="codeExampleComponent"></pre>
+
+  <p>
+    The <code>*axLazyElement</code> is a structural directive which means it
+    will <strong>remove</strong>
+    the element on which it was added from the DOM by default. This is very
+    useful because we DO NOT want to render element before it was actually
+    loaded from the backend!
+  </p>
+
+  <h2>Loading mechanism</h2>
+
+  <p>
+    Loading starts only once we want to display an Angular component which
+    renders given element in it's template. After that the loading goes through
+    the following process
+  </p>
+
+  <ol>
+    <li>
+      Check if we provided reference to <code>loading</code> template (<code
+        >&#60;ng-template #loading>Loading ...&#60;/ng-template></code
+      >) and display it in place of the element...
+    </li>
+    <li>Check if element was already loaded in the past</li>
+    <li>✅ remove loading template and render given element instead!</li>
+    <li>
+      ⬇️ create a <code>&#60;script></code> tag with <code>src = url</code> and
+      handler for the <code>onload</code>
+      event to notify directive when element was loaded
+    </li>
+    <li>Append <code>&#60;script></code> to the body</li>
+  </ol>
 </div>

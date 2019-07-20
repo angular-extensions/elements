@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { HighlightModule } from 'ngx-highlightjs';
+
+import { SharedModule } from '../../../shared/shared.module';
 
 import { HowItWorksRoutingModule } from './how-it-works-routing.module';
 import { HowItWorksComponent } from './how-it-works.component';
 
 @NgModule({
   declarations: [HowItWorksComponent],
-  imports: [CommonModule, HowItWorksRoutingModule]
+  imports: [
+    RouterModule,
+    HighlightModule,
+    SharedModule,
+    HowItWorksRoutingModule
+  ]
 })
 export class HowItWorksModule {}
