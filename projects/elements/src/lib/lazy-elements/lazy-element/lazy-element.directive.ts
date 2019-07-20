@@ -8,12 +8,16 @@ import {
 
 import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
 
+const LOG_PREFIX = '@angular-extensions/elements';
+
 @Directive({
   selector: '[axLazyElement]'
 })
 export class LazyElementDirective implements OnInit {
   @Input('axLazyElement') url: string;
-  @Input('axLazyElementLoading') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementModule') isModule: boolean; // tslint:disable-line:no-input-rename
 
   constructor(
     private vcr: ViewContainerRef,
@@ -29,9 +33,21 @@ export class LazyElementDirective implements OnInit {
       this.vcr.createEmbeddedView(this.loadingTemplateRef);
     }
 
-    this.elementsLoaderService.loadElement(this.url, elementTag).then(() => {
-      this.vcr.clear();
-      this.vcr.createEmbeddedView(this.template);
-    });
+    this.elementsLoaderService
+      .loadElement(this.url, elementTag, this.isModule)
+      .then(() => {
+        this.vcr.clear();
+        this.vcr.createEmbeddedView(this.template);
+      })
+      .catch(() => {
+        this.vcr.clear();
+        if (this.errorTemplateRef) {
+          this.vcr.createEmbeddedView(this.errorTemplateRef);
+        } else {
+          console.error(
+            `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
+          );
+        }
+      });
   }
 }

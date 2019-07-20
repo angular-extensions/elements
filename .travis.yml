@@ -30,7 +30,8 @@ deploy:
     api_key: $NPM_TOKEN
     skip_cleanup: true
     on:
-      tags: true
+      tags: true,
+      branch: master
   - provider: pages
     name: tomastrajan
     email: tomas.trajan@gmail.com
@@ -38,4 +39,5 @@ deploy:
     skip_cleanup: true
     github_token: $GH_TOKEN
     on:
-      tags: true
+      tags: true,
+      branch: master

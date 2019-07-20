@@ -10,7 +10,11 @@ export class LazyElementsLoaderService {
 
   constructor() {}
 
-  loadElement(url: string, tag: string): Promise<void> {
+  loadElement(
+    url: string,
+    tag: string,
+    isModule: boolean = false
+  ): Promise<void> {
     if (!url) {
       throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
     }
@@ -24,19 +28,23 @@ export class LazyElementsLoaderService {
     if (!this.hasElement(url)) {
       const notifier = this.addElement(url);
       const script = document.createElement('script') as HTMLScriptElement;
+      if (isModule) {
+        script.type = 'module';
+      }
       script.src = url;
-      script.onload = notifier;
+      script.onload = notifier.resolve;
+      script.onerror = notifier.reject;
       document.body.appendChild(script);
     }
 
     return this.registry.get(this.stripUrlProtocol(url));
   }
 
-  private addElement(url: string): () => void {
-    let notifier;
+  private addElement(url: string): Notifier {
+    let notifier: Notifier;
     this.registry.set(
       this.stripUrlProtocol(url),
-      new Promise<void>(resolve => (notifier = resolve))
+      new Promise<void>((resolve, reject) => (notifier = { resolve, reject }))
     );
     return notifier;
   }
@@ -48,4 +56,9 @@ export class LazyElementsLoaderService {
   private stripUrlProtocol(url: string): string {
     return url.replace(/https?:\/\//, '');
   }
+}
+
+interface Notifier {
+  resolve: () => void;
+  reject: (error: any) => void;
 }

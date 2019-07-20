@@ -80,4 +80,46 @@ describe('LazyElementsLoaderService', () => {
       done();
     });
   });
+
+  it('rejects promise once element bundle loading failed', done => {
+    const promise = service.loadElement(
+      'http://elements.com/some-element',
+      'some-element'
+    );
+
+    appendChildSpy.calls.argsFor(0)[0].onerror('404');
+
+    promise
+      .then(() => {
+        fail('should reject promise instead');
+      })
+      .catch(error => {
+        expect(error).toBe('404');
+        done();
+      });
+  });
+
+  it('adds a script tag without module type', () => {
+    service.loadElement('http://elements.com/some-element', 'some-element');
+
+    expect(appendChildSpy).toHaveBeenCalledTimes(1);
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('');
+  });
+
+  it('adds a script tag with module type', () => {
+    service.loadElement(
+      'http://elements.com/some-element',
+      'some-element',
+      true
+    );
+
+    expect(appendChildSpy).toHaveBeenCalledTimes(1);
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('module');
+  });
 });
