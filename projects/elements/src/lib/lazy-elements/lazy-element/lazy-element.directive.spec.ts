@@ -23,7 +23,25 @@ import { LazyElementDirective } from './lazy-element.directive';
         <p class="loading">Loading...</p>
       </ng-template>
       <some-element
-        *axLazyElement="'http://elements.com/some-element'; loading: loading"
+        *axLazyElement="
+          'http://elements.com/some-element';
+          loadingTemplate: loading
+        "
+      ></some-element>
+    </div>
+    <div *ngIf="useErrorTemplate">
+      <ng-template #loading>
+        <p class="loading">Loading...</p>
+      </ng-template>
+      <ng-template #error>
+        <p class="error">Loading failed...</p>
+      </ng-template>
+      <some-element
+        *axLazyElement="
+          'http://elements.com/some-element';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
       ></some-element>
     </div>
     <div *ngIf="useModule">
@@ -37,6 +55,7 @@ class TestHostComponent {
   addSameElement = false;
   addOtherElement = false;
   useLoadingTemplate = false;
+  useErrorTemplate = false;
   useModule = false;
 }
 
@@ -116,6 +135,35 @@ describe('LazyElementDirective', () => {
 
     setTimeout(() => {
       expect(document.querySelector('.loading')).toBe(null);
+      done();
+    });
+  });
+
+  it('renders error template loading of element failed', done => {
+    const consoleErrorSpy: jasmine.Spy = spyOn(console, 'error').and.stub();
+    expect(document.querySelector('.loading')).toBe(null);
+    expect(document.querySelector('.error')).toBe(null);
+
+    testHostComponent.useErrorTemplate = true;
+    fixture.detectChanges();
+
+    expect(document.querySelector('.loading').textContent).toBe('Loading...');
+    expect(document.querySelector('.error')).toBe(null);
+
+    appendChildSpy.calls.argsFor(0)[0].onerror('404');
+
+    fixture.detectChanges();
+
+    setTimeout(() => {
+      expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        '@angular-extensions/elements - Loading of element <some-element> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element'
+      );
+      expect(document.querySelector('.loading')).toBe(null);
+      expect(document.querySelector('.error').textContent).toBe(
+        'Loading failed...'
+      );
+      consoleErrorSpy.and.callThrough();
       done();
     });
   });

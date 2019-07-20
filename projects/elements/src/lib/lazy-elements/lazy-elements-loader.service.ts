@@ -32,18 +32,19 @@ export class LazyElementsLoaderService {
         script.type = 'module';
       }
       script.src = url;
-      script.onload = notifier;
+      script.onload = notifier.resolve;
+      script.onerror = notifier.reject;
       document.body.appendChild(script);
     }
 
     return this.registry.get(this.stripUrlProtocol(url));
   }
 
-  private addElement(url: string): () => void {
-    let notifier;
+  private addElement(url: string): Notifier {
+    let notifier: Notifier;
     this.registry.set(
       this.stripUrlProtocol(url),
-      new Promise<void>(resolve => (notifier = resolve))
+      new Promise<void>((resolve, reject) => (notifier = { resolve, reject }))
     );
     return notifier;
   }
@@ -55,4 +56,9 @@ export class LazyElementsLoaderService {
   private stripUrlProtocol(url: string): string {
     return url.replace(/https?:\/\//, '');
   }
+}
+
+interface Notifier {
+  resolve: () => void;
+  reject: (error: any) => void;
 }
