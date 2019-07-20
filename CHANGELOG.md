@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.3.0](https://github.com/angular-extensions/elements/compare/v8.2.0...v8.3.0) (2019-07-20)
+
+### Features
+
+- **demo:** add API page ([a619911](https://github.com/angular-extensions/elements/commit/a619911))
+- **demo:** add basic example skeleton ([f220845](https://github.com/angular-extensions/elements/commit/f220845))
+- **demo:** add how it works sections ([205f910](https://github.com/angular-extensions/elements/commit/205f910))
+- **demo:** deploy demo on every commit (not just on tags) ([5b40b46](https://github.com/angular-extensions/elements/commit/5b40b46))
+- **demo:** getting started content, contribute route ([4e76187](https://github.com/angular-extensions/elements/commit/4e76187))
+- **demo:** how it works ([7c328a5](https://github.com/angular-extensions/elements/commit/7c328a5))
+- **lib:** add support for showing error message on element load error ([3fa7246](https://github.com/angular-extensions/elements/commit/3fa7246))
+
 ## [8.2.0](https://github.com/angular-extensions/elements/compare/v8.1.0...v8.2.0) (2019-07-18)
 
 ### Bug Fixes
