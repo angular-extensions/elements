@@ -8,7 +8,7 @@
     "test": "ng lint && npm run format:test && ng test --watch false --codeCoverage",
     "watch": "ng test",
     "e2e": "ng e2e",
-    "build": "ng build && ng build --prod --project elements-demo",
+    "build": "ng build  --project elements && ng build --prod",
     "ci": "npm run test && npm run build && cpx README.md dist/elements",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different",
