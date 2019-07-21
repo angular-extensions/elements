@@ -7,9 +7,9 @@
     component template.
   </p>
   <blockquote>
-    In case you are wondering about possible use cases of this approach please
-    check out <a routerLink="../../motivation">motivation</a>
-    page to learn more...
+    In case you are wondering about when this approach might be useful please
+    check out <a routerLink="../../use-cases">use cases</a> page to learn
+    more...
   </blockquote>
 
   <h2>Angular elements</h2>
@@ -75,7 +75,7 @@
   <p>
     Initial loading time can make huge impact on overall success of many kind of
     applications and represents the main reason for existence of this library
-    which enables us to <strong>lazy-load Angular elements</strong> with ease
+    which enables us to <strong>lazy load Angular elements</strong> with ease
     and highest possible granularity!
   </p>
 
@@ -86,15 +86,16 @@
   <p>
     Wouldn't it be better if we could use our elements in the same way as any
     other HTML element while postpone their loading from some backend until the
-    very latest possible time?
+    very last moment possible?
   </p>
   <p>
-    More so wouldn't it be great if this happened automatically without the need
-    to manually trigger some kind of loading and retrieving of bundle?
+    More so, wouldn't it be great if this happened automatically without the
+    need to manually trigger some kind of loading of the necessary bundle?
   </p>
 
   <blockquote class="large">
-    What if all this could be achieved by using simple structural directive
+    What if all these things could be achieved by using simple structural
+    directive
     <code>*axLazyElement</code>?
   </blockquote>
 
@@ -105,17 +106,19 @@
     will <strong>remove</strong>
     the element on which it was added from the DOM by default. This is very
     useful because we DO NOT want to render element before it was actually
-    loaded from the backend!
+    loaded from the backend! The directive will then trigger loading of the
+    bundle and the render element once the loading was finished.
   </p>
 
   <h2>Using standard Angular template binding</h2>
 
   <p>
-    Once our element is loaded we can use standard Angular template binding
-    syntax like
+    Another great thing about using this approach is that we can use standard
+    Angular template binding syntax like
     <code>[customerId]="customerId"</code> and
     <code>(customerDataChange)="handleCustomerDataChange($event)"</code>
-    to pass in data and react to events. It works just as expected!
+    to pass in data and react to events. It works just as expected even though
+    the element is lazy loaded!
   </p>
 
   <pre [highlight]="codeExampleComponentBinding"></pre>
@@ -123,7 +126,7 @@
   <h2>Seamless lazy loading</h2>
 
   <p>
-    As mentioned above, our goal is to lazy-load element to improve application
+    As mentioned above, our goal is to lazy load element to improve application
     startup time by decreasing size of javascript which has to be downloaded
     initially.
   </p>
@@ -150,8 +153,8 @@
   </p>
 
   <blockquote class="large">
-    The loading of element will be triggered only after we clicked the button
-    and rendered element for real in the component template
+    The loading of the element will be triggered only after we have clicked the
+    button and rendered it in the component template
   </blockquote>
 
   <p>
@@ -175,14 +178,15 @@
   <blockquote>
     This also means that if we used element in a component that is displayed
     straight from application startup, we would also trigger loading of the
-    element bundle so it will NOT be lazy in that case
+    element bundle immediately so it will <strong>NOT be lazy</strong> in that
+    case
   </blockquote>
 
   <h2>In-depth overview of loading mechanism</h2>
 
   <p>
     Loading starts only once we want to display an Angular component which
-    renders given element in it's template. After that the loading goes through
+    renders given element in its template. After that the loading goes through
     the following process
   </p>
 
@@ -193,20 +197,21 @@
       >) and display it in place of the element...
     </li>
     <li>Check if element was already loaded in the past</li>
-    <li>✅ remove loading template and render given element instead</li>
+    <li>✅ If yes, remove loading template and render given element instead</li>
     <li>
-      ⬇️ create a <code>&#60;script></code> tag with <code>src = url</code> and
-      handler for the <code>onload</code> and <code>onerror</code>
+      ⬇️ If no, create a <code>&#60;script></code> tag with
+      <code>src = url</code> and handler for the <code>onload</code> and
+      <code>onerror</code>
       events to notify directive when element was loaded or failed to load
     </li>
     <li>Append <code>&#60;script></code> to the document body</li>
     <li>Once loaded, notify directive about the outcome</li>
     <li>
-      ✅ remove loading template and render given element when loading was
+      ✅ Remove loading template and render given element when loading was
       successful
     </li>
     <li>
-      ❌ remove loading template and render error template (if provided) when
+      ❌ Remove loading template and render error template (if provided) when
       loading was not successful
     </li>
   </ol>

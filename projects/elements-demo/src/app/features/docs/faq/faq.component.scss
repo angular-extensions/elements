@@ -1,0 +1,16 @@
+h2 {
+  margin: 40px 0 10px 0;
+  font-weight: bold;
+}
+
+:host-context(.responsive-large) {
+  .wrapper {
+    width: 70%;
+  }
+}
+
+.mat-expanded {
+  p {
+    margin-top: 25px;
+  }
+}

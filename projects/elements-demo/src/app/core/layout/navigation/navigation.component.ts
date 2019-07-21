@@ -10,10 +10,6 @@ const NAVIGATION = [
     url: 'docs',
     children: [
       {
-        label: 'Motivation',
-        url: 'docs/motivation'
-      },
-      {
         label: 'Getting started',
         url: 'docs/getting-started'
       },
@@ -22,8 +18,16 @@ const NAVIGATION = [
         url: 'docs/how-it-works'
       },
       {
+        label: 'Use cases',
+        url: 'docs/use-cases'
+      },
+      {
         label: 'API',
         url: 'docs/api'
+      },
+      {
+        label: 'FAQ',
+        url: 'docs/faq'
       }
     ]
   },

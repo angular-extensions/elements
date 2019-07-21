@@ -6,18 +6,13 @@ import { DocsComponent } from './docs.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'motivation',
+    redirectTo: 'how-it-works',
     pathMatch: 'full'
   },
   {
     path: '',
     component: DocsComponent,
     children: [
-      {
-        path: 'motivation',
-        loadChildren: () =>
-          import('./motivation/motivation.module').then(m => m.MotivationModule)
-      },
       {
         path: 'getting-started',
         loadChildren: () =>
@@ -33,8 +28,17 @@ const routes: Routes = [
           )
       },
       {
+        path: 'use-cases',
+        loadChildren: () =>
+          import('./use-cases/use-cases.module').then(m => m.UseCasesModule)
+      },
+      {
         path: 'api',
         loadChildren: () => import('./api/api.module').then(m => m.ApiModule)
+      },
+      {
+        path: 'faq',
+        loadChildren: () => import('./faq/faq.module').then(m => m.FaqModule)
       }
     ]
   }
