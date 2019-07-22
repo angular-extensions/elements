@@ -8,10 +8,10 @@
   $background: map-get($theme, background);
 
   a {
-    color: mat-color($accent);
+    color: mat-color($primary);
 
     &:hover {
-      color: mat-color($accent, darker);
+      color: mat-color($primary, darker);
     }
   }
 

@@ -6,14 +6,26 @@
   <h2>Microfrontends style "sub-applications"</h2>
 
   <p>
-    Imagine building many standalone frontend applications which look exactly
-    the same but handle only single aspect of business requirements. A user will
-    seamlessly switch between apps using standard HTML hyperlinks without
-    noticing anything special. From users perspective it behaves as a single
-    application with lots of features.
+    Imagine a large enterprise organization building many standalone frontend
+    applications which look exactly the same but handle only single aspect of
+    business requirements. A user will seamlessly switch between apps using
+    standard HTML hyperlinks without noticing anything special. From users
+    perspective it behaves as a single application with lots of features.
   </p>
 
-  <svg viewBox="0 0 555 340"xmlns="http://www.w3.org/2000/svg">
+  <p>
+    Let's say many of these application will share some piece of functionality,
+    for example a "case widget" which will let employees know what they should
+    be working on.
+  </p>
+
+  <blockquote>
+    This kind of widget will be pretty isolated in terms of its model (data) and
+    its sharing with the rest of application. Application will most likely just
+    pass in some context and react to widget events...
+  </blockquote>
+
+  <svg viewBox="0 0 555 340" xmlns="http://www.w3.org/2000/svg">
     <g>
       <rect
         fill="none"
@@ -122,5 +134,236 @@
     </g>
   </svg>
 
+  <p>
+    In real life scenario, many of these applications will be developed by
+    independent teams and have independent release cycles. This means that if we
+    implement our widget as standard Angular library and released a new version
+    (for example 3.1.0) we would have to wait for new releases (and deployments)
+    of every consumer application before we could be sure that the our widget
+    lib made it fully to the production...
+  </p>
+
+  <svg viewBox="0 0 1540 320" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <g id="svg_1">
+        <rect
+          x="-1"
+          y="-1"
+          width="1542"
+          height="322"
+          id="canvas_background"
+          fill="none"
+        />
+        <g id="canvasGrid" display="none">
+          <rect
+            id="svg_2"
+            width="100%"
+            height="100%"
+            x="0"
+            y="0"
+            stroke-width="0"
+            fill="url(#gridpattern)"
+          />
+        </g>
+      </g>
+      <g id="svg_10">
+        <rect
+          fill="#cccccc"
+          stroke-width="2"
+          x="29.5"
+          y="21.0375"
+          width="483"
+          height="276"
+          id="svg_3"
+        />
+        <rect
+          fill="#ffffff"
+          stroke="null"
+          stroke-width="2"
+          stroke-opacity="null"
+          x="46.5"
+          y="38.0375"
+          width="449"
+          height="60"
+          id="svg_6"
+        />
+        <rect
+          fill="#ffffff"
+          stroke-width="2"
+          stroke-opacity="null"
+          x="47.5"
+          y="116.0375"
+          width="340.000019"
+          height="163.999991"
+          id="svg_7"
+          stroke="null"
+        />
+        <rect
+          fill="#ffffff"
+          stroke-width="9"
+          fill-opacity="null"
+          x="409.500002"
+          y="121.037495"
+          width="80.999998"
+          height="154.999995"
+          id="svg_8"
+          stroke="#ce2f2f"
+        />
+        <text
+          fill="#d32f2f"
+          stroke="null"
+          stroke-width="0"
+          stroke-opacity="null"
+          x="420"
+          y="201.0375"
+          id="svg_9"
+          font-size="15"
+          font-family="'Courier New', Courier, monospace"
+          text-anchor="start"
+          xml:space="preserve"
+          font-weight="bold"
+        >
+          3.1.0
+        </text>
+        <rect
+          fill="#cccccc"
+          stroke-width="2"
+          x="533.959262"
+          y="21.0375"
+          width="483"
+          height="276"
+          id="svg_11"
+        />
+        <rect
+          fill="#ffffff"
+          stroke="null"
+          stroke-width="2"
+          stroke-opacity="null"
+          x="550.959262"
+          y="38.0375"
+          width="449"
+          height="60"
+          id="svg_12"
+        />
+        <rect
+          fill="#ffffff"
+          stroke-width="2"
+          stroke-opacity="null"
+          x="551.959262"
+          y="116.0375"
+          width="340.000019"
+          height="163.999991"
+          id="svg_13"
+          stroke="null"
+        />
+        <rect
+          fill="#ffffff"
+          stroke-width="9"
+          fill-opacity="null"
+          x="913.959264"
+          y="121.037495"
+          width="80.999998"
+          height="154.999995"
+          id="svg_14"
+          stroke="#880e4f"
+        />
+        <rect
+          fill="#cccccc"
+          stroke-width="2"
+          x="1035.034418"
+          y="21.0375"
+          width="483"
+          height="276"
+          id="svg_16"
+        />
+        <rect
+          fill="#ffffff"
+          stroke="null"
+          stroke-width="2"
+          stroke-opacity="null"
+          x="1052.034418"
+          y="38.0375"
+          width="449"
+          height="60"
+          id="svg_17"
+        />
+        <rect
+          fill="#ffffff"
+          stroke-width="2"
+          stroke-opacity="null"
+          x="1053.034418"
+          y="116.0375"
+          width="340.000019"
+          height="163.999991"
+          id="svg_18"
+          stroke="null"
+        />
+        <rect
+          fill="#ffffff"
+          stroke-width="9"
+          fill-opacity="null"
+          x="1415.03442"
+          y="121.037495"
+          width="80.999998"
+          height="154.999995"
+          id="svg_19"
+          stroke="#ce2f2f"
+        />
+        <text
+          fill="#d32f2f"
+          stroke="null"
+          stroke-width="0"
+          stroke-opacity="null"
+          x="1425"
+          y="201.0375"
+          id="svg_20"
+          font-size="15"
+          font-family="'Courier New', Courier, monospace"
+          text-anchor="start"
+          xml:space="preserve"
+          font-weight="bold"
+        >
+          3.1.0
+        </text>
+        <text
+          font-weight="bold"
+          xml:space="preserve"
+          text-anchor="start"
+          font-family="'Courier New', Courier, monospace"
+          font-size="15"
+          id="svg_22"
+          y="204.509208"
+          x="922"
+          stroke-width="0"
+          stroke="#880e4f"
+          fill="#880e4f"
+        >
+          3.0.0
+        </text>
+        <path
+          stroke="null"
+          id="svg_25"
+          d="m971.193548,170.97478l-4.847966,-8.064448c-1.461644,-2.430603 -3.852363,-6.409695 -5.314016,-8.840768l-4.847513,-8.063958c-1.463095,-2.432029 -3.853812,-2.432029 -5.314971,0l-4.846532,8.063958c-1.461644,2.431074 -3.853819,6.411091 -5.314981,8.840768l-4.847025,8.064448c-1.461641,2.432948 -0.265302,4.42155 2.657497,4.42155l30.015113,0c2.925717,0 4.120575,-1.988603 2.660394,-4.42155l0.000001,0zm-16.282676,1.248439l-2.875314,0l0,-2.651602l2.875314,0l0,2.651602zm-0.138526,-4.605406l-2.595808,0l-0.25797,-11.345229l3.088729,0l-0.234949,11.345229l-0.000001,0z"
+          stroke-opacity="null"
+          stroke-width="2"
+          fill="#880e4f"
+        />
+      </g>
+    </g>
+  </svg>
+
+  <blockquote class="large">
+    Wouldn't it be great if we could deploy new version of our widget
+    independently from release cycle of consumer applications?
+  </blockquote>
+
   <h2>On-demand loading of a heavy 3rd party component</h2>
+
+  <blockquote class="large">
+    Did you use this library for a different use case not mentioned in this
+    section? Please, let us know and open an
+    <a href="" target="_blank">issue</a> or submit a
+    <a href="" target="_blank">PR</a>
+    to make this docs better for other users! 😉
+  </blockquote>
 </div>
