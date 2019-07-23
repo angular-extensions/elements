@@ -38,10 +38,6 @@ const NAVIGATION = [
       {
         label: 'Basic',
         url: 'examples/basic'
-      },
-      {
-        label: 'Lazy Loading',
-        url: 'examples/lazy'
       }
     ]
   },

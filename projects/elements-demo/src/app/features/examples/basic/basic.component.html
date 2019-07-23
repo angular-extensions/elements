@@ -1,30 +1,70 @@
-<h1>Basic</h1>
+<div class="wrapper">
+  <h1>Basic</h1>
 
-<div class="content">
-  <div class="implementation">
-    <ng-template #error>Loading failed...</ng-template>
-    <ng-template #loading>Loading...</ng-template>
-    <mwc-button
-      *axLazyElement="
-        'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
-        loadingTemplate: loading;
-        errorTemplate: error;
-        module: true
-      "
-      raised
-      (click)="increment()"
-    >
-      Increment
-    </mwc-button>
-
-    Counter: {{ counter }}
+  <h2>Plain directive</h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example1">
+      <button mat-flat-button color="accent" (click)="example1 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example1">
+      <mwc-icon
+        *axLazyElement="
+          'https://unpkg.com/@material/mwc-icon@0.6.0/mwc-icon.js?module';
+          module: true
+        "
+      >
+        favorite
+      </mwc-icon>
+    </div>
+    <div class="description">
+      <p>
+        The most simple example, all we need is to use element tag, for example
+        <code>&#60;mwc-icon></code> and add
+        <code>*axLazyElement</code> directive with the url pointing to the
+        element implementation.
+      </p>
+      <pre [highlight]="codeExample1"></pre>
+    </div>
   </div>
-  <div class="description">
-    <p>
-      The most simple example, all we need is to use element tag, for example
-      <code>&#60;mwc-button></code> and add
-      <code>*axLazyElement</code> directive with the url pointing to the element
-      implementation.
-    </p>
+
+  <h2>Use loading <code>&#60;ng-template></code></h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example2">
+      <button mat-flat-button color="accent" (click)="example2 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example2">
+      <ng-template #error>Loading failed...</ng-template>
+      <ng-template #loading>Loading...</ng-template>
+      <mwc-button
+        *axLazyElement="
+          'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
+          loadingTemplate: loading;
+          errorTemplate: error;
+          module: true
+        "
+        raised
+        (click)="increment()"
+      >
+        Increment
+      </mwc-button>
+      <p>Counter: {{ counter }}</p>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're loading
+        <code>&#60;mwc-button></code> using the
+        <code>*axLazyElement</code> directive but we're also adding
+        <code>&#60;ng-template #loading>Loading...&#60;ng-template></code> which
+        will display before the element was loaded (depending on your connection
+        speed)
+      </p>
+      <pre [highlight]="codeExample2"></pre>
+    </div>
   </div>
 </div>

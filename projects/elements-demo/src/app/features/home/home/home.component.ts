@@ -3,6 +3,33 @@ import { Observable } from 'rxjs';
 
 import { ResponsiveLayoutService } from '../../../core/layout/responsive-layout.service';
 
+@Component({
+  selector: 'demo-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
+})
+export class HomeComponent implements OnInit {
+  columnCount: Observable<number>;
+
+  features = FEATURES;
+  codeExampleComponent = CODE_EXAMPLE_COMPONENT;
+
+  constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
+
+  ngOnInit() {
+    this.columnCount = this.responsiveLayoutService.columnCount;
+  }
+}
+
+const CODE_EXAMPLE_COMPONENT = `@Component({
+  selector: 'your-org-feature',
+  template: '<some-element *axLazyElement="elementUrl"></some-element>'
+})
+export class FeatureComponent {
+  elementUrl = 'https://your-org.com/elements/some-element.js';
+}
+`;
+
 const FEATURES = [
   {
     title: 'Lightweight',
@@ -47,20 +74,3 @@ const FEATURES = [
     icon: 'category'
   }
 ];
-
-@Component({
-  selector: 'demo-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
-})
-export class HomeComponent implements OnInit {
-  columnCount: Observable<number>;
-
-  features = FEATURES;
-
-  constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
-
-  ngOnInit() {
-    this.columnCount = this.responsiveLayoutService.columnCount;
-  }
-}

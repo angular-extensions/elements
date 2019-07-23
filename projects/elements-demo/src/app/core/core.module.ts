@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HighlightModule } from 'ngx-highlightjs';
 import typescript from 'highlight.js/lib/languages/typescript';
+import xml from 'highlight.js/lib/languages/xml';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -10,7 +11,7 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 export function hljsLanguages() {
-  return [{ name: 'typescript', func: typescript }];
+  return [{ name: 'typescript', func: typescript }, { name: 'xml', func: xml }];
 }
 
 @NgModule({
