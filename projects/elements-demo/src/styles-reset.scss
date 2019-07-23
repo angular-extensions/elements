@@ -47,6 +47,15 @@ blockquote {
     border: 0;
     font-size: 2em;
     line-height: 1.6em;
-    padding: 10px 60px;
+    padding: 10px 80px;
+  }
+}
+
+.responsive {
+  blockquote {
+    &.large {
+      font-size: 1.6em;
+      padding: 10px 20px;
+    }
   }
 }

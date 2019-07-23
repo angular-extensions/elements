@@ -3,14 +3,20 @@ h2 {
   font-weight: bold;
 }
 
-:host-context(.responsive-large) {
-  .wrapper {
-    width: 70%;
+mat-panel-title {
+  span {
+    display: inline-block;
   }
 }
 
 .mat-expanded {
   p {
     margin-top: 25px;
+  }
+}
+
+:host-context(.responsive-large) {
+  .wrapper {
+    width: 70%;
   }
 }

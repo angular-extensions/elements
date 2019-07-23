@@ -4,7 +4,9 @@
   <mat-accordion>
     <mat-expansion-panel *ngFor="let item of faq">
       <mat-expansion-panel-header>
-        <mat-panel-title [innerHTML]="item.question"></mat-panel-title>
+        <mat-panel-title>
+          <span [innerHTML]="item.question"></span>
+        </mat-panel-title>
       </mat-expansion-panel-header>
       <p [innerHTML]="item.answer"></p>
     </mat-expansion-panel>

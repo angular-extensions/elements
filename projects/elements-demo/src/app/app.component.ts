@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   navOpened: Observable<boolean>;
   navToggled = new BehaviorSubject(false);
   isSmallOrSmaller: Observable<boolean>;
+  sidenavMode: Observable<string>;
 
   constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
 
@@ -45,6 +46,10 @@ export class AppComponent implements OnInit {
       this.navToggled
     ]).pipe(
       map(([isSmallScreen, navToggled]) => (!isSmallScreen ? true : navToggled))
+    );
+
+    this.sidenavMode = this.isSmallOrSmaller.pipe(
+      map(isSmallOrSmaller => (isSmallOrSmaller ? 'push' : 'side'))
     );
   }
 
