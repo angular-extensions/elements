@@ -1,9 +1,11 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HighlightModule } from 'ngx-highlightjs';
+import typescript from 'highlight.js/lib/languages/typescript';
 
 import { SharedModule } from '../../../shared/shared.module';
 
 import { BasicComponent } from './basic.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('BasicComponent', () => {
   let component: BasicComponent;
@@ -12,7 +14,12 @@ describe('BasicComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [SharedModule],
+      imports: [
+        HighlightModule.forRoot({
+          languages: () => [{ name: 'typescript', func: typescript }]
+        }),
+        SharedModule
+      ],
       declarations: [BasicComponent]
     }).compileComponents();
   }));
