@@ -15,6 +15,13 @@ mat-panel-title {
   }
 }
 
+:host-context(.responsive) {
+  mat-expansion-panel-header {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+}
+
 :host-context(.responsive-large) {
   .wrapper {
     width: 70%;
