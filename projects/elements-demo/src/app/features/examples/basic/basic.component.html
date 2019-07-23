@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <h2>Use loading <code>&#60;ng-template></code></h2>
+  <h2>Use loading <code>&#60;ng-template #loading></code></h2>
   <div class="content">
     <div class="implementation" *ngIf="!example2">
       <button mat-flat-button color="accent" (click)="example2 = true">
@@ -39,13 +39,11 @@
       </button>
     </div>
     <div class="implementation" *ngIf="example2">
-      <ng-template #error>Loading failed...</ng-template>
       <ng-template #loading>Loading...</ng-template>
       <mwc-button
         *axLazyElement="
           'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
           loadingTemplate: loading;
-          errorTemplate: error;
           module: true
         "
         raised
@@ -61,10 +59,46 @@
         <code>&#60;mwc-button></code> using the
         <code>*axLazyElement</code> directive but we're also adding
         <code>&#60;ng-template #loading>Loading...&#60;ng-template></code> which
-        will display before the element was loaded (depending on your connection
-        speed)
+        will be displayed before the element was loaded (depending on your
+        connection speed)
       </p>
       <pre [highlight]="codeExample2"></pre>
+    </div>
+  </div>
+
+  <h2>Use error <code>&#60;ng-template #error></code></h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example3">
+      <button mat-flat-button color="accent" (click)="example3 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example3">
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <mwc-button
+        *axLazyElement="
+          'https://unpkg.com/wrong-url.js?module';
+          loadingTemplate: loading;
+          errorTemplate: error;
+          module: true
+        "
+        raised
+      >
+        Submit
+      </mwc-button>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're loading
+        <code>&#60;mwc-button></code> using the
+        <code>*axLazyElement</code> directive but we're also adding
+        <code>&#60;ng-template #error>Loading failed...&#60;ng-template></code>
+        which will be displayed because the loading request will fail (wrong
+        url)
+      </p>
+      <pre [highlight]="codeExample3"></pre>
     </div>
   </div>
 </div>

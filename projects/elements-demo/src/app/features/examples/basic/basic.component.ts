@@ -9,6 +9,7 @@ export class BasicComponent implements OnInit {
   // example toggles
   example1 = false;
   example2 = false;
+  example3 = false;
 
   // example state
   counter = 0;
@@ -16,6 +17,7 @@ export class BasicComponent implements OnInit {
   // example code examples
   codeExample1 = CODE_EXAMPLE_1;
   codeExample2 = CODE_EXAMPLE_2;
+  codeExample3 = CODE_EXAMPLE_3;
 
   constructor() {}
 
@@ -36,4 +38,10 @@ const CODE_EXAMPLE_2 = `<!-- url = 'https://unpkg.com/@material/mwc-button@0.6.0
 <mwc-button *axLazyElement="url; loadingTemplate: loading; module: true"
             (click)="increment()">
   Increment
+</mwc-button>`;
+
+const CODE_EXAMPLE_3 = `<!-- url = 'https://unpkg.com/wrong-url.js?module' -->;
+<ng-template #error>Loading failed...</ng-template>
+<mwc-button *axLazyElement="url; errorTemplate: error; module: true">
+  Submit
 </mwc-button>`;
