@@ -1,7 +1,10 @@
 <div class="wrapper">
   <h1>Use cases</h1>
 
-  <p>Let's explore some of the use cases for this approach...</p>
+  <p>
+    Let's explore some of the use cases which can be solved using this
+    library...
+  </p>
 
   <h2>Microfrontends style "sub-applications"</h2>
 
@@ -364,10 +367,66 @@
     independently from release cycle of consumer applications?
   </blockquote>
 
+  <p>
+    This is exactly what is enabled by this library! The "sub-application"
+    element is released and deployed independently as a single file bundle which
+    is then <strong>referenced ONLY by the url</strong> in the consumer apps.
+  </p>
+
+  <p>
+    To make referencing easier, the bundle file name can always stay the same
+    (for example <code>some-element.js</code> without any hash) for every
+    version of the element. The cache busting is then handled with the help of
+    <code>etag</code> which is transparently calculated based on the file
+    content on the server. Learn more about
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag"
+      target="_blank"
+      >ETag</a
+    >
+    HTTP response headers.
+  </p>
+
+  <blockquote>
+    We could still employ query params (or even file name versioning) in case we
+    would like to have more granular control about which version of the element
+    will be downloaded by the consumer appto facilitate stuff like A/B testing.
+    Please note that this has to be implemented with corresponding support on
+    the server side.
+  </blockquote>
+
   <h2>On-demand loading of a heavy 3rd party component</h2>
 
+  <p>
+    Let's say we are building an Angular application and we are paying extra
+    attention to architecture of the features making them nicely isolated and
+    lazy loaded. The performance, maintainability and start up time of our
+    application is great!
+  </p>
+
+  <p>
+    Then comes in a new requirement to add possibility to inline edit every item
+    of a large list using a powerful (but also very heavy) rich text editor. As
+    a result the size and hence loading of that feature will suffer even though
+    the editor is only displayed as a result of user interaction and never from
+    the start.
+  </p>
+
   <blockquote class="large">
-    Did you use this library for a different use case not mentioned in this
+    Ability to seamlessly load element once it was rendered as a result of user
+    interaction is exactly what can be achieved using
+    <code>*axLazyElement</code> directive!
+  </blockquote>
+
+  <blockquote>
+    Another possible solution to this problem could be by implementing custom
+    component loader service using plain Angular. Unfortunately, currently (as
+    of version <code>8.1.0</code>) such an approach is only possible using
+    deprecated APIs and is pretty complex in itself...
+  </blockquote>
+
+  <blockquote class="large">
+    Are you thinking about some different use case not mentioned in this
     section? Please, let us know and open an
     <a href="" target="_blank">issue</a> or submit a
     <a href="" target="_blank">PR</a>

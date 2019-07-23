@@ -6,7 +6,7 @@ import { DocsComponent } from './docs.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'how-it-works',
+    redirectTo: 'getting-started',
     pathMatch: 'full'
   },
   {
