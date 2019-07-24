@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.4.1](https://github.com/angular-extensions/elements/compare/v8.4.0...v8.4.1) (2019-07-24)
+
+### Bug Fixes
+
+- **workspace:** add missing metadata ([1902a4f](https://github.com/angular-extensions/elements/commit/1902a4f))
+
 ## [8.4.0](https://github.com/angular-extensions/elements/compare/v8.3.0...v8.4.0) (2019-07-24)
 
 ### Bug Fixes
