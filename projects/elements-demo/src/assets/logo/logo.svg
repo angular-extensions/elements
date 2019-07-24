@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185.6 200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 185.6 210">
   <defs>
     <style>
-      .cls-1{fill: #f2f2f2;}
-      .cls-2{fill: #e6e6e6;}
+      .cls-1{fill: #ffffff; stroke: #eeeeee; stroke-width: 5; stroke-location: outside; stroke-linecap: square;}
+      .cls-2{fill: #eeeeee;}
       .cls-3{fill: #880e4f;}
       .cls-4{fill: #d32f2f;}
     </style>
