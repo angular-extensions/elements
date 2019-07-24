@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.4.0](https://github.com/angular-extensions/elements/compare/v8.3.0...v8.4.0) (2019-07-24)
+
+### Bug Fixes
+
+- **demo:** make svg reaponsive ([a154a4c](https://github.com/angular-extensions/elements/commit/a154a4c))
+- **demo:** svg text position ([331dfb9](https://github.com/angular-extensions/elements/commit/331dfb9))
+- **demo:** test imports ([123ba09](https://github.com/angular-extensions/elements/commit/123ba09))
+- **demo:** ui consistency, responsive fix ([a81cf09](https://github.com/angular-extensions/elements/commit/a81cf09))
+- **demo:** various responsive fixes ([99bbf86](https://github.com/angular-extensions/elements/commit/99bbf86))
+- **demo:** various responsive fixes ([53fa0a4](https://github.com/angular-extensions/elements/commit/53fa0a4))
+
+### Features
+
+- **demo:** add advanced property binding example ([6a07adb](https://github.com/angular-extensions/elements/commit/6a07adb))
+- **demo:** add examples content ([934063f](https://github.com/angular-extensions/elements/commit/934063f))
+- **demo:** add examples content, make it runnable ([abe3493](https://github.com/angular-extensions/elements/commit/abe3493))
+- **demo:** add faq section, adjust how it works ([58ee1ec](https://github.com/angular-extensions/elements/commit/58ee1ec))
+- **demo:** add more content ([ee1e712](https://github.com/angular-extensions/elements/commit/ee1e712))
+- **demo:** add more use cases content, fix default docs link ([40977e0](https://github.com/angular-extensions/elements/commit/40977e0))
+- **demo:** add use cases content ([98bed32](https://github.com/angular-extensions/elements/commit/98bed32))
+- **demo:** add use cases content ([e98e3f8](https://github.com/angular-extensions/elements/commit/e98e3f8))
+- **demo:** add use cases content ([c1dab60](https://github.com/angular-extensions/elements/commit/c1dab60))
+- **demo:** enhance how-it-works page content ([9aeabf1](https://github.com/angular-extensions/elements/commit/9aeabf1))
+
 ## [8.3.0](https://github.com/angular-extensions/elements/compare/v8.2.0...v8.3.0) (2019-07-20)
 
 ### Features
