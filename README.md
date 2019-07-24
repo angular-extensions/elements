@@ -58,3 +58,18 @@ export class FeatureComponent {
   elementUrl = 'https://your-org.com/elements/some-element.js';
 }
 ```
+
+## Supported Angular versions
+
+Library was tested with the following versions of Angular and is meant to be used
+with the corresponding major version (`"@angular/core"": "^8.0.0"` with `"@angular-extensions/elements": "^8.0.0"` ).
+
+- 7.x
+- 8.x
+
+## Become a contributor
+
+#### Missing a feature, found bug or typo in docs?
+
+Please, feel free to open an [issue](https://github.com/angular-extensions/elements/issues)
+or submit a [pull request](https://github.com/angular-extensions/elements/pulls) to make this project better for everyone! 🤗
