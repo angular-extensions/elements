@@ -7,5 +7,25 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "keywords": [
+    "angular",
+    "elements",
+    "web componentst",
+    "custom elements",
+    "lazy loading",
+    "microfrontends",
+    "components",
+    "web component"
+  ],
+  "author": "Tomas Trajan <@tomastrajan>",
+  "license": "MIT",
+  "homepage": "https://github.com/angular-extensions/elements#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular-extensions/elements.git"
+  },
+  "bugs": {
+    "url": "https://github.com/angular-extensions/elements/issues"
   }
 }

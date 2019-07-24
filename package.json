@@ -79,5 +79,25 @@
     "tsickle": "^0.35.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
+  },
+  "keywords": [
+    "angular",
+    "elements",
+    "web componentst",
+    "custom elements",
+    "lazy loading",
+    "microfrontends",
+    "components",
+    "web component"
+  ],
+  "author": "Tomas Trajan <@tomastrajan>",
+  "license": "MIT",
+  "homepage": "https://github.com/angular-extensions/elements#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular-extensions/elements.git"
+  },
+  "bugs": {
+    "url": "https://github.com/angular-extensions/elements/issues"
   }
 }
