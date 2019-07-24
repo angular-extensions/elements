@@ -101,4 +101,46 @@
       <pre [highlight]="codeExample3"></pre>
     </div>
   </div>
+
+  <h2>Advanced binding (objects instead of primitives)</h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example4">
+      <button mat-flat-button color="accent" (click)="example4 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example4">
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <ion-item
+        *axLazyElement="
+          'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
+      >
+        <ion-label>Pick a year&nbsp;</ion-label>
+        <ion-datetime
+          [displayFormat]="'YYYY'"
+          [pickerFormat]="'YYYY'"
+          [yearValues]="customYearValues"
+        >
+        </ion-datetime>
+      </ion-item>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're loading ionic! Ionic comes with all elements in
+        single bundle so we can use multiple ionic elements while using
+        <code>*axLazyElement</code> directive only on the outmost element.
+        Besides that in our Angular component we have defined
+        <code>customYearValues</code> array with the
+        <code>[2020, 2030, 2040]</code> values which are passed in the element
+        using standard Angular property binding
+        <code>[yearValues]="customYearValues"</code>.
+      </p>
+      <pre [highlight]="codeExample4"></pre>
+    </div>
+  </div>
 </div>
