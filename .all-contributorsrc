@@ -1,0 +1,38 @@
+{
+  "projectName": "elements",
+  "projectOwner": "angular-extensions",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "tomastrajan",
+      "name": "Tomas Trajan",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3764868?v=4",
+      "profile": "https://medium.com/@tomastrajan",
+      "contributions": [
+        "code",
+        "design",
+        "example",
+        "doc",
+        "ideas",
+        "infra",
+        "test"
+      ]
+    },
+    {
+      "login": "wmaurer",
+      "name": "Wayne Maurer",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2899448?v=4",
+      "profile": "http://www.lambda-it.ch",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    }
+  ]
+}

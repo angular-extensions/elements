@@ -12,7 +12,10 @@
     "ci": "npm run test && npm run build && cpx README.md dist/elements",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different",
-    "release": "standard-version -a && git push --follow-tags origin master"
+    "release": "standard-version -a && git push --follow-tags origin master",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate && node sync-contributors.js",
+    "contributors:check": "all-contributors check"
   },
   "standard-version": {
     "scripts": {
@@ -59,6 +62,7 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "all-contributors-cli": "~5.4.1",
     "codelyzer": "^5.0.0",
     "cpx": "^1.5.0",
     "husky": "^2.4.1",

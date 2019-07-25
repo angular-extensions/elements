@@ -42,4 +42,28 @@
       margin: 0 0 50px 0;
     }
   }
+
+  .contributors {
+    display: flex;
+    flex-wrap: wrap;
+
+    .contributor {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      height: 110px;
+      padding: 20px;
+
+      img {
+        height: 64px;
+        width: 64px;
+        border-radius: 50%;
+        margin: 0 0 10px 0;
+      }
+
+      span {
+        display: inline-block;
+      }
+    }
+  }
 }

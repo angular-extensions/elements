@@ -73,3 +73,10 @@ with the corresponding major version (`"@angular/core"": "^8.0.0"` with `"@angul
 
 Please, feel free to open an [issue](https://github.com/angular-extensions/elements/issues)
 or submit a [pull request](https://github.com/angular-extensions/elements/pulls) to make this project better for everyone! 🤗
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/3764868?v=4" width="100px;"/><br /><sub><b>Tomas Trajan</b></sub>](https://medium.com/@tomastrajan)<br />[💻](https://github.com/angular-extensions/elements/commits?author=tomastrajan "Code") [🎨](#design-tomastrajan "Design") [💡](#example-tomastrajan "Examples") [📖](https://github.com/angular-extensions/elements/commits?author=tomastrajan "Documentation") [🤔](#ideas-tomastrajan "Ideas, Planning, & Feedback") [🚇](#infra-tomastrajan "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/angular-extensions/elements/commits?author=tomastrajan "Tests") | [<img src="https://avatars2.githubusercontent.com/u/2899448?v=4" width="100px;"/><br /><sub><b>Wayne Maurer</b></sub>](http://www.lambda-it.ch)<br />[🐛](https://github.com/angular-extensions/elements/issues?q=author%3Awmaurer "Bug reports") [💻](https://github.com/angular-extensions/elements/commits?author=wmaurer "Code") |
+| :---: | :---: |
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
