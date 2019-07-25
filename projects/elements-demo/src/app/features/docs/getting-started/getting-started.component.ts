@@ -31,7 +31,7 @@ export class FeatureComponent {
 
 const CODE_EXAMPLE_MODULE = `import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LazyElementsModule } from '@angular-extension/elements';
+import { LazyElementsModule } from '@angular-extensions/elements';
 
 import { FeatureComponent } from './feature-component';
 
@@ -45,7 +45,7 @@ export class FeatureModule {}
 
 const CODE_EXAMPLE_APP_MODULE = `import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LazyElementsModule } from '@angular-extension/elements';
+import { LazyElementsModule } from '@angular-extensions/elements';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -58,7 +58,7 @@ export class AppModule {}
 
 const CODE_EXAMPLE_SHARED_MODULE = `import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LazyElementsModule } from '@angular-extension/elements';
+import { LazyElementsModule } from '@angular-extensions/elements';
 
 @NgModule({
   imports: [CommonModule, LazyElementsModule],
