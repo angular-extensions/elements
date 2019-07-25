@@ -21,8 +21,8 @@ by [@tomastrajan](https://twitter.com/tomastrajan)
 
 ## Quickstart
 
-1. Install `npm i @angular-extension/elements`
-2. Add `import { LazyElementsModule } from '@angular-extension/elements';`
+1. Install `npm i @angular-extensions/elements`
+2. Add `import { LazyElementsModule } from '@angular-extensions/elements';`
 3. Append `LazyElementsModule` to the `imports: []` of your `AppModule`
 4. Add new `schemas: []` property with `CUSTOM_ELEMENTS_SCHEMA` value to `@NgModule` decorator of your `AppModule`
 5. Use `*axLazyElement` directive on an element you wish to load and pass in the url of the element bundle
@@ -32,7 +32,7 @@ Example of module implementation...
 ```typescript
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LazyElementsModule } from '@angular-extension/elements';
+import { LazyElementsModule } from '@angular-extensions/elements';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
