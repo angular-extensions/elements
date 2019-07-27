@@ -11,7 +11,8 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatGridListModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { LazyElementsModule } from '../../../../elements/src/lib/lazy-elements/lazy-elements.module';
@@ -25,7 +26,8 @@ const ANGULAR_MATERIAL_MODULES = [
   MatToolbarModule,
   MatSidenavModule,
   MatGridListModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

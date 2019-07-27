@@ -2,8 +2,10 @@ import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { delay, map, tap } from 'rxjs/operators';
+import { SwUpdate } from '@angular/service-worker';
 
 import { ResponsiveLayoutService } from './core/layout/responsive-layout.service';
+import { DocupdateService } from './docupdate.service';
 
 @Component({
   selector: 'demo-root',
@@ -21,9 +23,17 @@ export class AppComponent implements OnInit {
   isSmallOrSmaller: Observable<boolean>;
   sidenavMode: Observable<string>;
 
-  constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
+  constructor(
+    private responsiveLayoutService: ResponsiveLayoutService,
+    private swUpdate: SwUpdate,
+    private docUpdateService: DocupdateService
+  ) {}
 
   ngOnInit() {
+    if (this.swUpdate.isEnabled) {
+      this.docUpdateService.checkUpdate();
+    }
+
     this.isSmallOrSmaller = combineLatest(
       this.responsiveLayoutService.isSmallOrSmaller,
       this.responsiveLayoutService.isLargeOrBigger
