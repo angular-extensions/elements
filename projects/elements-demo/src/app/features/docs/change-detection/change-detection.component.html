@@ -1,0 +1,50 @@
+<div class="wrapper">
+  <h1>Change detection</h1>
+  <p>
+    In this section we're going to curate and discuss various change detection
+    related issues and lessons learned when using Angular Elements.
+  </p>
+
+  <h2>
+    RxJs stream runs in a wrong (parent / outer) zone.js [Angular Elements]
+  </h2>
+  <h3>Description</h3>
+  <p>
+    This issue happens when using <code>@angular/element</code> inside of a
+    parent Angular application. The parent application and element will NOT run
+    in the same zone. This will lead to problems with change detection inside of
+    the element when the <code>rxjs</code> stream was triggered by the change of
+    the <code>@Input() prop</code> originating in the parent application.
+  </p>
+  <p>
+    The stream will run in parent zone (instead of element zone) so any async
+    operation (like backend request or using
+    <code>debounceTime()</code> operator) will not trigger change detection of
+    the element so the stream data will not be rendered...
+  </p>
+  <h3>Solution</h3>
+  <ol>
+    <li>
+      Do NOT use <code>zone.js</code> in your Angular element and trigger change
+      detection manually
+    </li>
+    <li>
+      Use single (parent) <code>NgZone</code> also for both the application and
+      the element.
+      <pre [highlight]="codeExampleShareNgZone"></pre>
+    </li>
+    <li>
+      Use <code>import 'zone.js/dist/zone-patch-rxjs';</code> in your Angular
+      element. This will fix it BUT if the parent application (or ANY other lib
+      used by the parent application) already has this import then the one in
+      the element will be ignored and hence not solving the problem.
+    </li>
+  </ol>
+  <p>
+    Check out detailed description of the
+    <a href="https://github.com/angular/angular/issues/31870" target="_blank"
+      >issue</a
+    >
+    and some of the proposed solutions...
+  </p>
+</div>

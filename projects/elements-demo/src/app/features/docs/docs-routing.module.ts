@@ -39,6 +39,13 @@ const routes: Routes = [
       {
         path: 'faq',
         loadChildren: () => import('./faq/faq.module').then(m => m.FaqModule)
+      },
+      {
+        path: 'change-detection',
+        loadChildren: () =>
+          import('./change-detection/change-detection.module').then(
+            m => m.ChangeDetectionModule
+          )
       }
     ]
   }

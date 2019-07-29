@@ -22,6 +22,10 @@ const NAVIGATION = [
         url: 'docs/use-cases'
       },
       {
+        label: 'Change detection',
+        url: 'docs/change-detection'
+      },
+      {
         label: 'API',
         url: 'docs/api'
       },
