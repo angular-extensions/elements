@@ -143,4 +143,37 @@
       <pre [highlight]="codeExample4"></pre>
     </div>
   </div>
+
+  <div class="content">
+    <div class="implementation" *ngIf="!example5">
+      <button mat-flat-button color="accent" (click)="example5 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example5">
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <deckgo-qrcode
+        *axLazyElement="
+          'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
+        content="https://angular-extensions.github.io/elements"
+        style="--deckgo-qrcode-size: 200px;"
+      >
+      </deckgo-qrcode>
+    </div>
+    <div class="description">
+      <p>
+        Cool things about the above Ionic example? Ionic is build with Stencil
+        and therefore, each Web Components developed and bundled with that
+        compiler, could also be load the exact same way as for example for the
+        following <code>&#60;deckgo-qrcode></code> component from the project
+        DeckDeckGo which generates and displays a QR-Code.
+      </p>
+      <pre [highlight]="codeExample5"></pre>
+    </div>
+  </div>
 </div>

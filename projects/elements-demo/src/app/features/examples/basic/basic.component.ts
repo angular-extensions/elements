@@ -11,6 +11,7 @@ export class BasicComponent implements OnInit {
   example2 = false;
   example3 = false;
   example4 = false;
+  example5 = false;
 
   // example state
   counter = 0;
@@ -21,6 +22,7 @@ export class BasicComponent implements OnInit {
   codeExample2 = CODE_EXAMPLE_2;
   codeExample3 = CODE_EXAMPLE_3;
   codeExample4 = CODE_EXAMPLE_4;
+  codeExample5 = CODE_EXAMPLE_5;
 
   constructor() {}
 
@@ -60,3 +62,7 @@ const CODE_EXAMPLE_4 = `<!-- url = 'https://unpkg.com/@ionic/core@4.6.2/dist/ion
   >
   </ion-datetime>
 </ion-item>`;
+
+const CODE_EXAMPLE_5 = `<!-- url = 'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js' -->;
+<deckgo-qrcode *axLazyElement="url" content="https://angular-extensions.github.io/elements" style="--deckgo-qrcode-size: 300px;">
+</deckgo-qrcode>`;
