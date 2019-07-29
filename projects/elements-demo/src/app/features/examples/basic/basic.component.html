@@ -131,16 +131,57 @@
     </div>
     <div class="description">
       <p>
-        In this example we're loading ionic! Ionic comes with all elements in
-        single bundle so we can use multiple ionic elements while using
-        <code>*axLazyElement</code> directive only on the outmost element.
-        Besides that in our Angular component we have defined
+        In this example we're loading
+        <a href="http://ionicframework.com" target="_blank">Ionic</a>! Ionic
+        comes with all elements in single bundle so we can use multiple ionic
+        elements while using <code>*axLazyElement</code> directive only on the
+        outmost element. Besides that in our Angular component we have defined
         <code>customYearValues</code> array with the
         <code>[2020, 2030, 2040]</code> values which are passed in the element
         using standard Angular property binding
         <code>[yearValues]="customYearValues"</code>.
       </p>
       <pre [highlight]="codeExample4"></pre>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="implementation" *ngIf="!example5">
+      <button mat-flat-button color="accent" (click)="example5 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example5">
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <deckgo-qrcode
+        *axLazyElement="
+          'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
+        content="https://angular-extensions.github.io/elements"
+        style="--deckgo-qrcode-size: 200px;"
+      >
+      </deckgo-qrcode>
+    </div>
+    <div class="description">
+      <p>
+        Cool things about the above Ionic example? Ionic is build with
+        <a href="https://stenciljs.com" target="_blank">Stencil</a> and
+        therefore, each Web Components developed and bundled with that compiler,
+        could also be load the exact same way as for example for the following
+        <code>&#60;deckgo-qrcode></code> component from the project
+        <a href="https://deckdeckgo.com" target="_blank">DeckDeckGo</a> which
+        generates and displays a QR-Code.
+      </p>
+      <p>
+        Note that in the same way as above, we could either pass the properties
+        to the element using fix values, as we do in this example, or of course
+        using standard Angular property binding.
+      </p>
+      <pre [highlight]="codeExample5"></pre>
     </div>
   </div>
 </div>
