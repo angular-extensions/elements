@@ -43,6 +43,16 @@
         "code",
         "platform"
       ]
+    },
+    {
+      "login": "peterpeterparker",
+      "name": "David Dal Busco",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16886711?v=4",
+      "profile": "https://twitter.com/daviddalbusco",
+      "contributions": [
+        "code",
+        "example"
+      ]
     }
   ]
 }
