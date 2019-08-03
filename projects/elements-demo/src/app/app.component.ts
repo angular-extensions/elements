@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { SwUpdate } from '@angular/service-worker';
+import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { delay, map, tap } from 'rxjs/operators';
-import { SwUpdate } from '@angular/service-worker';
 
 import { ResponsiveLayoutService } from './core/layout/responsive-layout.service';
-import { DocupdateService } from './docupdate.service';
+import { RefreshService } from './core/refresh.service';
 
 @Component({
   selector: 'demo-root',
@@ -26,12 +26,12 @@ export class AppComponent implements OnInit {
   constructor(
     private responsiveLayoutService: ResponsiveLayoutService,
     private swUpdate: SwUpdate,
-    private docUpdateService: DocupdateService
+    private refreshService: RefreshService
   ) {}
 
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
-      this.docUpdateService.checkUpdate();
+      this.refreshService.checkUpdate();
     }
 
     this.isSmallOrSmaller = combineLatest(
