@@ -46,7 +46,8 @@
   .cta {
     margin: 40px 0 0 0;
 
-    button {
+    button,
+    a {
       margin: 5px;
       padding: 5px 35px;
     }
@@ -98,7 +99,8 @@
 
 :host-context(.responsive) {
   .cta {
-    button {
+    button,
+    a {
       width: 100%;
     }
   }
