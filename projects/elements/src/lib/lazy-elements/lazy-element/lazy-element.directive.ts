@@ -6,6 +6,8 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
+import { validate as validateTag } from 'validate-element-name';
+
 import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
 
 const LOG_PREFIX = '@angular-extensions/elements';
@@ -18,6 +20,7 @@ export class LazyElementDirective implements OnInit {
   @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementModule') isModule: boolean; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementTag') tag: string; // tslint:disable-line:no-input-rename
 
   constructor(
     private vcr: ViewContainerRef,
@@ -26,8 +29,13 @@ export class LazyElementDirective implements OnInit {
   ) {}
 
   ngOnInit() {
-    const elementTag = (this.template as any)._def.element.template.nodes[0]
+    const elementTag = !!this.tag ? this.tag : (this.template as any)._def.element.template.nodes[0]
       .element.name;
+
+    const tagValidation = validateTag(elementTag);
+    if (!tagValidation.isValid) {
+      throw new Error(tagValidation.message);
+    }
 
     if (this.loadingTemplateRef) {
       this.vcr.createEmbeddedView(this.loadingTemplateRef);
