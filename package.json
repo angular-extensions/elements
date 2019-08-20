@@ -53,6 +53,7 @@
     "ngx-highlightjs": "^3.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
+    "validate-element-name": "^2.1.1",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
