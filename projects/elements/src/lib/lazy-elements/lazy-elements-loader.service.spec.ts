@@ -1,20 +1,29 @@
 import { TestBed } from '@angular/core/testing';
 
 import { LazyElementsLoaderService } from './lazy-elements-loader.service';
+import { LazyElementsModule } from './lazy-elements.module';
 
 describe('LazyElementsLoaderService', () => {
   let service: LazyElementsLoaderService;
   let appendChildSpy: jasmine.Spy;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        LazyElementsModule.forRoot([
+          { tag: 'ion-item', url: 'url' },
+          { tag: 'ion-item', url: 'url' }
+        ])
+      ]
+    });
 
     service = TestBed.get(LazyElementsLoaderService);
     appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
   });
 
-  it('is created', () => {
+  it('is created with config added using forRoot', () => {
     expect(service).toBeTruthy();
+    expect(service.configs.length).toEqual(1);
   });
 
   it('throws error if used without url', () => {

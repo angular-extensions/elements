@@ -6,6 +6,7 @@ import typescript from 'highlight.js/lib/languages/typescript';
 import { SharedModule } from '../../../shared/shared.module';
 
 import { BasicComponent } from './basic.component';
+import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
 describe('BasicComponent', () => {
   let component: BasicComponent;
@@ -18,7 +19,13 @@ describe('BasicComponent', () => {
         HighlightModule.forRoot({
           languages: () => [{ name: 'typescript', func: typescript }]
         }),
-        SharedModule
+        SharedModule,
+        LazyElementsModule.forRoot([
+          {
+            tag: 'ion-item',
+            url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js'
+          }
+        ])
       ],
       declarations: [BasicComponent]
     }).compileComponents();
