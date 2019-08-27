@@ -21,8 +21,10 @@ export class BasicComponent implements OnInit {
   codeExample1 = CODE_EXAMPLE_1;
   codeExample2 = CODE_EXAMPLE_2;
   codeExample3 = CODE_EXAMPLE_3;
-  codeExample4 = CODE_EXAMPLE_4;
-  codeExample5 = CODE_EXAMPLE_5;
+  codeExample4TS = CODE_EXAMPLE_4_TS;
+  codeExample4HTML = CODE_EXAMPLE_4_HTML;
+  codeExample5TS = CODE_EXAMPLE_5_TS;
+  codeExample5HTML = CODE_EXAMPLE_5_HTML;
 
   constructor() {}
 
@@ -51,9 +53,14 @@ const CODE_EXAMPLE_3 = `<!-- url = 'https://unpkg.com/wrong-url.js?module' -->;
   Submit
 </mwc-button>`;
 
-const CODE_EXAMPLE_4 = `<!-- url = 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js' -->;
-<!-- customYearValues = [2020, 2030, 2040] -->;
-<ion-item *axLazyElement="url">
+const CODE_EXAMPLE_4_TS = `// url = 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js';
+LazyElementsModule.forRoot([{
+  tag: 'ion-item',
+  url
+}])`;
+
+const CODE_EXAMPLE_4_HTML = `<!-- customYearValues = [2020, 2030, 2040] -->;
+<ion-item *axLazyElement>
   <ion-label>Pick a year</ion-label>
   <ion-datetime
     [displayFormat]="'YYYY'"
@@ -63,6 +70,11 @@ const CODE_EXAMPLE_4 = `<!-- url = 'https://unpkg.com/@ionic/core@4.6.2/dist/ion
   </ion-datetime>
 </ion-item>`;
 
-const CODE_EXAMPLE_5 = `<!-- url = 'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js' -->;
-<deckgo-qrcode *axLazyElement="url" content="https://angular-extensions.github.io/elements" style="--deckgo-qrcode-size: 300px;">
+const CODE_EXAMPLE_5_TS = `// url = 'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js';
+LazyElementsModule.forFeature([{
+  tag: 'deckgo-qrcode',
+  url,
+}])`;
+
+const CODE_EXAMPLE_5_HTML = `<deckgo-qrcode *axLazyElement content="https://angular-extensions.github.io/elements" style="--deckgo-qrcode-size: 300px;">
 </deckgo-qrcode>`;

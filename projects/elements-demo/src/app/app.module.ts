@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LazyElementsModule } from '../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -28,7 +29,13 @@ import { environment } from '../environments/environment';
     HomeModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
-    })
+    }),
+    LazyElementsModule.forRoot([
+      {
+        tag: 'ion-item',
+        url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js'
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

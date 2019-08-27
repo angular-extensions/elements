@@ -15,8 +15,6 @@ import {
   MatSnackBarModule
 } from '@angular/material';
 
-import { LazyElementsModule } from '../../../../elements/src/lib/lazy-elements/lazy-elements.module';
-
 const ANGULAR_MATERIAL_MODULES = [
   MatCardModule,
   MatIconModule,
@@ -32,8 +30,8 @@ const ANGULAR_MATERIAL_MODULES = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, LazyElementsModule, ...ANGULAR_MATERIAL_MODULES],
-  exports: [CommonModule, LazyElementsModule, ...ANGULAR_MATERIAL_MODULES]
+  imports: [CommonModule, ...ANGULAR_MATERIAL_MODULES],
+  exports: [CommonModule, ...ANGULAR_MATERIAL_MODULES]
 })
 export class SharedModule {
   constructor(
