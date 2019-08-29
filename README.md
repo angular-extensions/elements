@@ -18,6 +18,8 @@ by [@tomastrajan](https://twitter.com/tomastrajan)
 - [FAQ](https://angular-extensions.github.io/elements/#/docs/faq)
 - [API](https://angular-extensions.github.io/elements/#/docs/api)
 - [Examples](https://angular-extensions.github.io/elements/#/examples)
+- [Blog post](https://medium.com/@tomastrajan/the-best-way-to-lazy-load-angular-elements-97a51a5c2007)
+- [Meetup presentation (video)](https://www.youtube.com/watch?v=X__jkPGYRUs)
 
 ## Quickstart
 
