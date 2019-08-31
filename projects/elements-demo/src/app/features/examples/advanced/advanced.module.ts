@@ -10,12 +10,16 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import { AdvancedRoutingModule } from './advanced-routing.module';
 import { AdvancedComponent } from './advanced.component';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
+import { ErrorComponent } from '../../../shared/error/error.component';
 
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
       tag: 'ion-button',
-      url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js'
+      url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js',
+      loadingComponent: SpinnerComponent,
+      errorComponent: ErrorComponent
     },
     {
       tag: 'mwc-switch',
@@ -25,7 +29,8 @@ const options: LazyElementModuleOptions = {
     {
       tag: 'mwc-checkbox',
       url:
-        'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module'
+        'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module',
+      isModule: true
     }
   ]
 };

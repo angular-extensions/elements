@@ -15,6 +15,7 @@ export class AdvancedComponent implements OnInit {
   codeExample1module = CODE_EXAMPLE_1_MODULE;
   codeExample1html = CODE_EXAMPLE_1_HTML;
   codeExample2module = CODE_EXAMPLE_2_MODULE;
+  codeExample2coreModule = CODE_EXAMPLE_2_CORE_MODULE;
   codeExample2html = CODE_EXAMPLE_2_HTML;
   codeExample3module = CODE_EXAMPLE_3_MODULE;
   codeExample3html = CODE_EXAMPLE_3_HTML;
@@ -34,7 +35,12 @@ export class AdvancedComponent implements OnInit {
 const CODE_EXAMPLE_1_MODULE = `// pre-configured LazyElementsModule
 const options: LazyElementModuleOptions = {
   elementConfigs: [
-    { tag: 'ion-button', url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js' }
+    {
+      tag: 'ion-button',
+      url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js',
+      loadingComponent: SpinnerComponent,
+      errorComponent: ErrorComponent
+    }
   ]
 };
 
@@ -51,10 +57,13 @@ export class FeatureModule { }
 const CODE_EXAMPLE_1_HTML = `<!-- No need to specify url -->
 <ion-button *axLazyElement></ion-button>`;
 
-const CODE_EXAMPLE_2_MODULE = `// pre-configured LazyElementsModule
+const CODE_EXAMPLE_2_MODULE = `// pre-configured LazyElementsModule in FeatureModule
 const options: LazyElementModuleOptions = {
   elementConfigs: [
-    { tag: 'mwc-checkbox', url: 'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module' }
+    {
+      tag: 'mwc-checkbox',
+      url: 'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module'
+    }
   ]
 };
 
@@ -66,6 +75,22 @@ const options: LazyElementModuleOptions = {
   ]
 })
 export class FeatureModule { }
+`;
+
+const CODE_EXAMPLE_2_CORE_MODULE = `// pre-configured LazyElementsModule in CoreModule or AppModule
+const options: LazyElementModuleRootOptions = {
+  rootOptions: {
+    errorComponent: RootErrorComponent
+  }
+};
+
+@NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [
+    LazyElementsModule.forRoot(options),
+  ]
+})
+export class CoreModule { }
 `;
 
 const CODE_EXAMPLE_2_HTML = `<!-- We have to specify null; url to be able to pass in additional options -->

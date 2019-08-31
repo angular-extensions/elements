@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { RootErrorComponent } from './shared/root-error/root-error.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -25,7 +26,11 @@ import { environment } from '../environments/environment';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     }),
-    LazyElementsModule,
+    LazyElementsModule.forRoot({
+      rootOptions: {
+        errorComponent: RootErrorComponent
+      }
+    }),
 
     // local
     CoreModule,

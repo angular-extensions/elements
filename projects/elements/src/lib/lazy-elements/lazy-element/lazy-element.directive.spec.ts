@@ -1,7 +1,20 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LazyElementDirective } from './lazy-element.directive';
+import { LazyElementsModule } from '../lazy-elements.module';
+
+@Component({
+  template: `
+    <p class="loading">Spinner...</p>
+  `
+})
+class SpinnerTestComponent {}
+
+@NgModule({
+  declarations: [SpinnerTestComponent],
+  entryComponents: [SpinnerTestComponent]
+})
+class TestModule {}
 
 @Component({
   template: `
@@ -49,6 +62,9 @@ import { LazyElementDirective } from './lazy-element.directive';
         *axLazyElement="'http://elements.com/some-element-module'; module: true"
       ></some-element>
     </div>
+    <div *ngIf="useElementConfig">
+      <some-configured-element *axLazyElement></some-configured-element>
+    </div>
   `
 })
 class TestHostComponent {
@@ -57,6 +73,7 @@ class TestHostComponent {
   useLoadingTemplate = false;
   useErrorTemplate = false;
   useModule = false;
+  useElementConfig = false;
 }
 
 describe('LazyElementDirective', () => {
@@ -66,8 +83,20 @@ describe('LazyElementDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        TestModule,
+        LazyElementsModule.forRoot({
+          elementConfigs: [
+            {
+              tag: 'some-configured-element',
+              url: 'http://elements.com/some-configured-element-module',
+              loadingComponent: SpinnerTestComponent
+            }
+          ]
+        })
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [TestHostComponent, LazyElementDirective]
+      declarations: [TestHostComponent]
     }).compileComponents();
   }));
 
@@ -185,5 +214,12 @@ describe('LazyElementDirective', () => {
       'http://elements.com/some-element-module'
     );
     expect(appendChildSpy.calls.argsFor(1)[0].type).toBe('module');
+  });
+
+  it('uses elementConfig for the tag', () => {
+    testHostComponent.useElementConfig = true;
+    fixture.detectChanges();
+
+    expect(document.querySelector('.loading').textContent).toBe('Spinner...');
   });
 });
