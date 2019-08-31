@@ -3,7 +3,9 @@ import {
   Optional,
   Inject,
   ModuleWithProviders,
-  InjectionToken
+  InjectionToken,
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  Type
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -18,13 +20,17 @@ export const LAZY_ELEMENT_CONFIGS = new InjectionToken<ElementConfig[]>(
   'LAZY_ELEMENT_CONFIGS'
 );
 
+export const LAZY_ELEMENT_GLOBAL_OPTIONS = new InjectionToken<
+  LazyElementModuleGlobalOptions
+>('LAZY_ELEMENT_GLOBAL_OPTIONS');
+
 @NgModule({
   declarations: [LazyElementDirective, LazyElementDynamicDirective],
   imports: [CommonModule],
   exports: [LazyElementDirective, LazyElementDynamicDirective]
 })
 export class LazyElementsModule {
-  static forRoot(options: LazyElementModuleOptions): ModuleWithProviders {
+  static forRoot(options: LazyElementRootOptions): ModuleWithProviders {
     return {
       ngModule: LazyElementsModule,
       providers: [
@@ -32,6 +38,15 @@ export class LazyElementsModule {
           provide: LAZY_ELEMENT_CONFIGS,
           useValue:
             options && options.elementConfigs ? options.elementConfigs : [],
+          multi: true
+        },
+        {
+          provide: LAZY_ELEMENT_GLOBAL_OPTIONS,
+          useValue: options.globalOptions ? options.globalOptions : {}
+        },
+        {
+          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+          useValue: options,
           multi: true
         }
       ]
@@ -47,6 +62,11 @@ export class LazyElementsModule {
           useValue:
             options && options.elementConfigs ? options.elementConfigs : [],
           multi: true
+        },
+        {
+          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+          useValue: options && options.elementConfigs,
+          multi: true
         }
       ]
     };
@@ -56,16 +76,34 @@ export class LazyElementsModule {
     lazyElementsLoaderService: LazyElementsLoaderService,
     @Optional()
     @Inject(LAZY_ELEMENT_CONFIGS)
-    elementConfigsMultiProvider: ElementConfig[][]
+    elementConfigsMultiProvider: ElementConfig[][],
+    @Optional()
+    @Inject(LAZY_ELEMENT_GLOBAL_OPTIONS)
+    globalOptions: LazyElementModuleGlobalOptions
   ) {
     if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
       const lastAddedConfigs =
         elementConfigsMultiProvider[elementConfigsMultiProvider.length - 1];
       lazyElementsLoaderService.addConfigs(lastAddedConfigs);
     }
+
+    if (globalOptions) {
+      lazyElementsLoaderService.setGlobalOptions(globalOptions);
+    }
   }
 }
 
 export interface LazyElementModuleOptions {
   elementConfigs?: ElementConfig[];
+}
+
+export interface LazyElementRootOptions {
+  elementConfigs?: ElementConfig[];
+  globalOptions?: LazyElementModuleGlobalOptions;
+}
+
+export interface LazyElementModuleGlobalOptions {
+  loadingComponent?: Type<any>;
+  errorComponent?: Type<any>;
+  isModule?: boolean;
 }

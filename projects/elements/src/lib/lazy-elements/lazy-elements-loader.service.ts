@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
+import { LazyElementModuleGlobalOptions } from './lazy-elements.module';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
@@ -6,6 +7,8 @@ export interface ElementConfig {
   tag: string;
   url: string;
   isModule?: boolean;
+  loadingComponent?: Type<any>;
+  errorComponent?: Type<any>;
 }
 
 @Injectable({
@@ -14,14 +17,13 @@ export interface ElementConfig {
 export class LazyElementsLoaderService {
   registry: Map<string, Promise<void>> = new Map<string, Promise<void>>();
   configs: ElementConfig[] = [];
+  options: LazyElementModuleGlobalOptions = {};
 
   constructor() {}
 
   addConfigs(newConfigs: ElementConfig[]) {
     newConfigs.forEach(newConfig => {
-      const existingConfig = this.configs.find(
-        config => config.tag === newConfig.tag
-      );
+      const existingConfig = this.getElementConfig(newConfig.tag);
       if (existingConfig) {
         console.warn(
           `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`
@@ -32,8 +34,16 @@ export class LazyElementsLoaderService {
     });
   }
 
+  setGlobalOptions(options: LazyElementModuleGlobalOptions) {
+    this.options = options;
+  }
+
+  getElementConfig(tag: string): ElementConfig {
+    return this.configs.find(config => config.tag === tag);
+  }
+
   loadElement(url: string, tag: string, isModule?: boolean): Promise<void> {
-    const config = this.configs.find(c => c.tag === tag);
+    const config = this.getElementConfig(tag);
 
     if (!url) {
       if (!config) {
@@ -44,7 +54,9 @@ export class LazyElementsLoaderService {
 
     if (isModule === undefined) {
       isModule =
-        config && config.isModule !== undefined ? config.isModule : false;
+        config && config.isModule !== undefined
+          ? config.isModule
+          : this.options.isModule;
     }
 
     if (!tag) {

@@ -1,7 +1,27 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ComponentFactoryResolver,
+  ViewContainerRef,
+  NgModule
+} from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LazyElementDirective } from './lazy-element.directive';
+import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
+
+@Component({
+  template: `
+    <p class="loading">Spinner...</p>
+  `
+})
+class SpinnerComponent {}
+
+@NgModule({
+  declarations: [SpinnerComponent],
+  entryComponents: [SpinnerComponent]
+})
+class TestModule {}
 
 @Component({
   template: `
@@ -49,6 +69,9 @@ import { LazyElementDirective } from './lazy-element.directive';
         *axLazyElement="'http://elements.com/some-element-module'; module: true"
       ></some-element>
     </div>
+    <div *ngIf="useElementConfig">
+      <some-element *axLazyElement></some-element>
+    </div>
   `
 })
 class TestHostComponent {
@@ -57,6 +80,7 @@ class TestHostComponent {
   useLoadingTemplate = false;
   useErrorTemplate = false;
   useModule = false;
+  useElementConfig = false;
 }
 
 describe('LazyElementDirective', () => {
@@ -66,6 +90,7 @@ describe('LazyElementDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [TestModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [TestHostComponent, LazyElementDirective]
     }).compileComponents();
@@ -185,5 +210,19 @@ describe('LazyElementDirective', () => {
       'http://elements.com/some-element-module'
     );
     expect(appendChildSpy.calls.argsFor(1)[0].type).toBe('module');
+  });
+
+  it('uses elementConfig for the tag', () => {
+    const lazyElementsLoaderService = TestBed.get(LazyElementsLoaderService);
+    spyOn(lazyElementsLoaderService, 'getElementConfig').and.returnValue({
+      tag: 'some-element',
+      url: 'http://elements.com/some-element-module',
+      loadingComponent: SpinnerComponent
+    });
+
+    testHostComponent.useElementConfig = true;
+    fixture.detectChanges();
+
+    expect(document.querySelector('.loading').textContent).toBe('Spinner...');
   });
 });
