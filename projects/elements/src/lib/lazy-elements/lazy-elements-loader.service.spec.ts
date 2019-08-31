@@ -8,22 +8,14 @@ describe('LazyElementsLoaderService', () => {
   let appendChildSpy: jasmine.Spy;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        LazyElementsModule.forRoot([
-          { tag: 'ion-item', url: 'url' },
-          { tag: 'ion-item', url: 'url' }
-        ])
-      ]
-    });
+    TestBed.configureTestingModule({});
 
     service = TestBed.get(LazyElementsLoaderService);
     appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
   });
 
-  it('is created with config added using forRoot', () => {
+  it('is created', () => {
     expect(service).toBeTruthy();
-    expect(service.configs.length).toEqual(1);
   });
 
   it('throws error if used without url', () => {
@@ -130,5 +122,44 @@ describe('LazyElementsLoaderService', () => {
       'http://elements.com/some-element'
     );
     expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('module');
+  });
+});
+
+describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () => {
+  let service: LazyElementsLoaderService;
+  let appendChildSpy: jasmine.Spy;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        LazyElementsModule.forRoot({
+          elementConfigs: [
+            { tag: 'some-element', url: 'some-url' },
+            { tag: 'some-element', url: 'some-url' },
+            { tag: 'some-other-element', url: 'some-other-url' }
+          ]
+        })
+      ]
+    });
+
+    service = TestBed.get(LazyElementsLoaderService);
+    appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
+  });
+
+  it('is created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('it is preconfigured by the module config, tags can be added only once', () => {
+    expect(service).toBeTruthy();
+    expect(service.configs.length).toEqual(2);
+    expect(service.configs[0]).toEqual({
+      tag: 'some-element',
+      url: 'some-url'
+    });
+    expect(service.configs[1]).toEqual({
+      tag: 'some-other-element',
+      url: 'some-other-url'
+    });
   });
 });
