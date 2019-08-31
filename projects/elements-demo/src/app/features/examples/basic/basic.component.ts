@@ -13,16 +13,16 @@ export class BasicComponent implements OnInit {
   example4 = false;
   example5 = false;
 
-  // example state
-  counter = 0;
-  customYearValues = [2020, 2030, 2040];
-
   // example code examples
   codeExample1 = CODE_EXAMPLE_1;
   codeExample2 = CODE_EXAMPLE_2;
   codeExample3 = CODE_EXAMPLE_3;
   codeExample4 = CODE_EXAMPLE_4;
   codeExample5 = CODE_EXAMPLE_5;
+
+  // example state
+  counter = 0;
+  customYearValues = [2020, 2030, 2040];
 
   constructor() {}
 

@@ -5,13 +5,12 @@ import typescript from 'highlight.js/lib/languages/typescript';
 
 import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
+import { AdvancedComponent } from './advanced.component';
 import { SharedModule } from '../../../shared/shared.module';
 
-import { BasicComponent } from './basic.component';
-
-describe('BasicComponent', () => {
-  let component: BasicComponent;
-  let fixture: ComponentFixture<BasicComponent>;
+describe('AdvancedComponent', () => {
+  let component: AdvancedComponent;
+  let fixture: ComponentFixture<AdvancedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,12 +22,12 @@ describe('BasicComponent', () => {
         }),
         SharedModule
       ],
-      declarations: [BasicComponent]
+      declarations: [AdvancedComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BasicComponent);
+    fixture = TestBed.createComponent(AdvancedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

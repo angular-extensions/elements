@@ -42,6 +42,10 @@ const NAVIGATION = [
       {
         label: 'Basic',
         url: 'examples/basic'
+      },
+      {
+        label: 'Advanced',
+        url: 'examples/advanced'
       }
     ]
   },
