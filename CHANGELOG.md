@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.5.0](https://github.com/angular-extensions/elements/compare/v8.4.1...v8.5.0) (2019-08-31)
+
+### Bug Fixes
+
+- **demo:** access unpkg directly (ignore service worker) ([099a74d](https://github.com/angular-extensions/elements/commit/099a74d))
+- **demo:** only open refresh dialog if there was a new version ([88c2e22](https://github.com/angular-extensions/elements/commit/88c2e22))
+
+### Features
+
+- add Stencil example ([e7a7132](https://github.com/angular-extensions/elements/commit/e7a7132))
+- **demo:** add advanced examples section ([c841ce2](https://github.com/angular-extensions/elements/commit/c841ce2))
+- add references ([a617dde](https://github.com/angular-extensions/elements/commit/a617dde))
+- **demo:** add blog link ([35575a7](https://github.com/angular-extensions/elements/commit/35575a7))
+- **demo:** add change detection content ([b59149f](https://github.com/angular-extensions/elements/commit/b59149f))
+- **demo:** add contributor ([be5c732](https://github.com/angular-extensions/elements/commit/be5c732))
+- **demo:** add contributor ([e527d60](https://github.com/angular-extensions/elements/commit/e527d60))
+- **demo:** add notification for doc update ([4548c18](https://github.com/angular-extensions/elements/commit/4548c18))
+- **demo:** add PWA to docs ([fa44efe](https://github.com/angular-extensions/elements/commit/fa44efe))
+- **demo:** contributors ([51a33e3](https://github.com/angular-extensions/elements/commit/51a33e3))
+- **home:** add presentation link ([ff8d12b](https://github.com/angular-extensions/elements/commit/ff8d12b))
+- **module:** add forRoot and forChild to pass the elements config ([7f46db7](https://github.com/angular-extensions/elements/commit/7f46db7))
+
 ### [8.4.1](https://github.com/angular-extensions/elements/compare/v8.4.0...v8.4.1) (2019-07-24)
 
 ### Bug Fixes
