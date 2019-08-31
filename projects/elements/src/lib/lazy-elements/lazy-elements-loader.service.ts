@@ -16,15 +16,19 @@ export class LazyElementsLoaderService {
 
   constructor() {}
 
-  addConfig(config: ElementConfig) {
-    const existingConfig = this.configs.find(c => c.tag === config.tag);
-    if (existingConfig) {
-      console.warn(
-        `${LOG_PREFIX} - ElementConfig for tag '${config.tag}' was previously added, it cannot be added multiple times`
+  addConfigs(newConfigs: ElementConfig[]) {
+    newConfigs.forEach(newConfig => {
+      const existingConfig = this.configs.find(
+        config => config.tag === newConfig.tag
       );
-    } else {
-      this.configs.push(config);
-    }
+      if (existingConfig) {
+        console.warn(
+          `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`
+        );
+      } else {
+        this.configs.push(newConfig);
+      }
+    });
   }
 
   loadElement(

@@ -13,8 +13,8 @@ import {
   ElementConfig
 } from './lazy-elements-loader.service';
 
-export const ELEMENTS_CONFIG = new InjectionToken<ElementConfig[]>(
-  'ELEMENTS_CONFIG'
+export const LAZY_ELEMENT_CONFIGS = new InjectionToken<ElementConfig[]>(
+  'LAZY_ELEMENT_CONFIGS'
 );
 
 @NgModule({
@@ -23,26 +23,28 @@ export const ELEMENTS_CONFIG = new InjectionToken<ElementConfig[]>(
   exports: [LazyElementDirective]
 })
 export class LazyElementsModule {
-  static forRoot(config: ElementConfig[]): ModuleWithProviders {
+  static forRoot(options: LazyElementModuleOptions): ModuleWithProviders {
     return {
       ngModule: LazyElementsModule,
       providers: [
         {
-          provide: ELEMENTS_CONFIG,
-          useValue: config ? config : [],
+          provide: LAZY_ELEMENT_CONFIGS,
+          useValue:
+            options && options.elementConfigs ? options.elementConfigs : [],
           multi: true
         }
       ]
     };
   }
 
-  static forFeature(config: ElementConfig[]): ModuleWithProviders {
+  static forFeature(options: LazyElementModuleOptions): ModuleWithProviders {
     return {
       ngModule: LazyElementsModule,
       providers: [
         {
-          provide: ELEMENTS_CONFIG,
-          useValue: config ? config : [],
+          provide: LAZY_ELEMENT_CONFIGS,
+          useValue:
+            options && options.elementConfigs ? options.elementConfigs : [],
           multi: true
         }
       ]
@@ -51,12 +53,18 @@ export class LazyElementsModule {
 
   constructor(
     lazyElementsLoaderService: LazyElementsLoaderService,
-    @Optional() @Inject(ELEMENTS_CONFIG) configs = []
+    @Optional()
+    @Inject(LAZY_ELEMENT_CONFIGS)
+    elementConfigsMultiProvider: ElementConfig[][]
   ) {
-    if (configs.length) {
-      configs[configs.length - 1].forEach(config => {
-        lazyElementsLoaderService.addConfig(config);
-      });
+    if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
+      const lastAddedConfigs =
+        elementConfigsMultiProvider[elementConfigsMultiProvider.length - 1];
+      lazyElementsLoaderService.addConfigs(lastAddedConfigs);
     }
   }
+}
+
+export interface LazyElementModuleOptions {
+  elementConfigs?: ElementConfig[];
 }

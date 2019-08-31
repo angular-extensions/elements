@@ -114,7 +114,11 @@
       <ng-template #loading>Loading...</ng-template>
       <ng-template #error>Loading failed...</ng-template>
       <ion-item
-        *axLazyElement="null; loadingTemplate: loading; errorTemplate: error"
+        *axLazyElement="
+          'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
       >
         <ion-label>Pick a year&nbsp;</ion-label>
         <ion-datetime
@@ -137,13 +141,7 @@
         using standard Angular property binding
         <code>[yearValues]="customYearValues"</code>.
       </p>
-      <p>
-        Let's also define the url using <code>forRoot</code> of
-        <code>LazyElementsModule</code>
-        so that we do not have to declare url's in multiple places, as follows:
-      </p>
-      <pre [highlight]="codeExample4TS"></pre>
-      <pre [highlight]="codeExample4HTML"></pre>
+      <pre [highlight]="codeExample4"></pre>
     </div>
   </div>
 
@@ -158,7 +156,11 @@
       <ng-template #loading>Loading...</ng-template>
       <ng-template #error>Loading failed...</ng-template>
       <deckgo-qrcode
-        *axLazyElement="null; loadingTemplate: loading; errorTemplate: error"
+        *axLazyElement="
+          'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
         content="https://angular-extensions.github.io/elements"
         style="--deckgo-qrcode-size: 200px;"
       >
@@ -179,13 +181,7 @@
         to the element using fix values, as we do in this example, or of course
         using standard Angular property binding.
       </p>
-      <p>
-        Let's also define the url using <code>forFeature</code> of
-        <code>LazyElementsModule</code>
-        in the feature module, as follows:
-      </p>
-      <pre [highlight]="codeExample5TS"></pre>
-      <pre [highlight]="codeExample5HTML"></pre>
+      <pre [highlight]="codeExample5"></pre>
     </div>
   </div>
 </div>
