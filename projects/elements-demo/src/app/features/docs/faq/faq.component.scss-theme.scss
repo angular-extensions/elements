@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+
+@mixin demo-faq-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  demo-faq {
+    .mat-expanded {
+      mat-expansion-panel-header {
+        background-color: mat-color(
+          $background,
+          disabled-list-option
+        ) !important;
+      }
+    }
+  }
+}

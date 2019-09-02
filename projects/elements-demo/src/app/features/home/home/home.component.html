@@ -7,26 +7,78 @@
   ></mat-icon>
   <h1>ANGULAR EXTENSIONS ELEMENTS</h1>
   <h3>
-    The easiest way to lazy-load Angular Elements or any other web components in
-    your Angular application!
+    The easiest way to lazy load Angular Elements or any other web components
+    <br />
+    in your Angular application!
   </h3>
 </div>
 
-<h2>Get started</h2>
+<div class="cta">
+  <button mat-flat-button color="accent" routerLink="../docs/getting-started">
+    Get started
+  </button>
+  <button mat-flat-button color="primary" routerLink="../docs/how-it-works">
+    Learn more
+  </button>
+  <button mat-flat-button color="warn" routerLink="../examples">
+    Explore examples
+  </button>
+  <a
+    mat-stroked-button
+    href="https://medium.com/@tomastrajan/the-best-way-to-lazy-load-angular-elements-97a51a5c2007"
+    target="_blank"
+  >
+    Read blog post
+  </a>
+  <a
+    mat-stroked-button
+    href="https://www.youtube.com/watch?v=X__jkPGYRUs"
+    target="_blank"
+  >
+    Watch presentation
+  </a>
+</div>
+
+<h2>Quickstart</h2>
 <ol>
-  <li>Install <code>npm i @angular-extension/elements</code></li>
+  <li>
+    Install <code color="accent">npm i @angular-extensions/elements</code>
+  </li>
   <li>
     Add
-    <code
-      >import &#123; LazyElementsModule } from
-      '@angular-extension/elements';</code
-    >
+    <code>
+      import &#123; LazyElementsModule } from '@angular-extensions/elements';
+    </code>
   </li>
   <li>
-    And append <code>LazyElementsModule</code> to the
-    <code>imports: []</code> of your <code>AppModule</code>
+    Append <code>LazyElementsModule</code> to the <code>imports: []</code> of
+    your
+    <code>AppModule</code>
   </li>
   <li>
-    Use <code>*axLazyElement</code> directive on an element you wish to load
+    Add new <code>schemas: []</code> property with
+    <code>CUSTOM_ELEMENTS_SCHEMA</code> value to
+    <code>@NgModule</code> decorator of your
+    <code>AppModule</code>
+  </li>
+  <li>
+    Use <code>*axLazyElement</code> directive on an element you wish to load and
+    pass in the url of the element bundle
+    <pre [highlight]="codeExampleComponent"></pre>
   </li>
 </ol>
+
+<h2>Features</h2>
+<mat-grid-list [cols]="columnCount | async" rowHeight="150">
+  <mat-grid-tile *ngFor="let feature of features">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon color="primary">{{ feature.icon }}</mat-icon>
+        </div>
+        <mat-card-title>{{ feature.title }}</mat-card-title>
+        <mat-card-subtitle [innerHTML]="feature.subtitle"></mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

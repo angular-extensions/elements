@@ -3,10 +3,14 @@
   [navOpened]="navOpened | async"
 ></demo-toolbar>
 <mat-sidenav-container
-  [hasBackdrop]="isSmallScreen | async"
+  [hasBackdrop]="isSmallOrSmaller | async"
   (backdropClick)="onBackdropClick()"
 >
-  <mat-sidenav mode="side" [opened]="navOpened | async" disableClose>
+  <mat-sidenav
+    [mode]="sidenavMode | async"
+    [opened]="navOpened | async"
+    disableClose
+  >
     <demo-navigation></demo-navigation>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <button
     mat-icon-button
-    *ngIf="isSmallScreen | async"
+    *ngIf="isResponsiveLayout | async"
     class="menu"
     (click)="toggleMenu()"
   >
@@ -9,6 +9,8 @@
       navOpened ? 'close' : 'menu'
     }}</mat-icon>
   </button>
+
+  <span class="spacer-responsive"></span>
 
   <a mat-icon-button routerLink="home">
     <mat-icon
@@ -18,17 +20,21 @@
       aria-label="@angular-extensions/elements"
     ></mat-icon>
   </a>
-  <span class="project-name">@angular-extensions/elements</span>
+  <span class="project-name"
+    >{{
+      (isResponsiveLayout | async) ? '' : '@angular-extensions/'
+    }}elements</span
+  >
 
   <span class="spacer"></span>
-  <ng-container *ngIf="(isSmallScreen | async) === false">
+  <ng-container *ngIf="(isResponsiveLayout | async) === false">
     <button
       mat-flat-button
       routerLink="home"
       routerLinkActive="active"
       color="primary"
     >
-      Home
+      HOME
     </button>
     <button
       mat-flat-button
@@ -36,7 +42,7 @@
       routerLinkActive="active"
       color="primary"
     >
-      Docs
+      DOCS
     </button>
     <button
       mat-flat-button
@@ -44,7 +50,7 @@
       routerLinkActive="active"
       color="primary"
     >
-      Examples
+      EXAMPLES
     </button>
   </ng-container>
   <a
@@ -56,6 +62,13 @@
       svgIcon="github"
       aria-hidden="false"
       aria-label="GitHub"
+    ></mat-icon>
+  </a>
+  <a mat-icon-button href="https://twitter.com/tomastrajan" target="_blank">
+    <mat-icon
+      svgIcon="twitter"
+      aria-hidden="false"
+      aria-label="Twitter"
     ></mat-icon>
   </a>
 </mat-toolbar>

@@ -15,7 +15,7 @@ $elements-demo-primary: mat-palette($mat-red, 700, 600, 900);
 $elements-demo-accent: mat-palette($mat-pink, 900);
 
 // The warn palette is optional (defaults to red).
-$elements-demo-warn: mat-palette($mat-red);
+$elements-demo-warn: mat-palette($mat-deep-orange);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $elements-demo-theme: mat-light-theme(
@@ -29,6 +29,8 @@ $elements-demo-theme: mat-light-theme(
 @import './app/app.component.scss-theme';
 @import './app/core/layout/navigation/navigation.component.scss-theme';
 @import './app/core/layout/footer/footer.component.scss-theme';
+@import './app/features/docs/faq/faq.component.scss-theme';
+@import './app/features/docs/api/api.component.scss-theme';
 
 @mixin custom-components-theme($theme) {
   // include custom components themes
@@ -36,6 +38,8 @@ $elements-demo-theme: mat-light-theme(
   @include demo-root-component-theme($theme);
   @include demo-navigation-component-theme($theme);
   @include demo-footer-component-theme($theme);
+  @include demo-faq-component-theme($theme);
+  @include demo-api-component-theme($theme);
 }
 
 // Include theme styles for core and each component used in your app.

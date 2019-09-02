@@ -1,0 +1,29 @@
+h2 {
+  margin: 40px 0 10px 0;
+  font-weight: bold;
+}
+
+mat-panel-title {
+  span {
+    display: inline-block;
+  }
+}
+
+.mat-expanded {
+  p {
+    margin-top: 25px;
+  }
+}
+
+:host-context(.responsive) {
+  mat-expansion-panel-header {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+}
+
+:host-context(.responsive-large) {
+  .wrapper {
+    width: 70%;
+  }
+}

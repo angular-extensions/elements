@@ -11,6 +11,8 @@ import { HomeModule } from './features/home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,8 +22,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-
-    // the library module
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    }),
     LazyElementsModule,
 
     // local

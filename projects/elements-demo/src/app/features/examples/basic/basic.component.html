@@ -1,0 +1,187 @@
+<div class="wrapper">
+  <h1>Basic</h1>
+
+  <h2>Plain directive</h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example1">
+      <button mat-flat-button color="accent" (click)="example1 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example1">
+      <mwc-icon
+        *axLazyElement="
+          'https://unpkg.com/@material/mwc-icon@0.6.0/mwc-icon.js?module';
+          module: true
+        "
+      >
+        favorite
+      </mwc-icon>
+    </div>
+    <div class="description">
+      <p>
+        The most simple example, all we need is to use element tag, for example
+        <code>&#60;mwc-icon></code> and add
+        <code>*axLazyElement</code> directive with the url pointing to the
+        element implementation.
+      </p>
+      <pre [highlight]="codeExample1"></pre>
+    </div>
+  </div>
+
+  <h2>Use loading <code>&#60;ng-template #loading></code></h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example2">
+      <button mat-flat-button color="accent" (click)="example2 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example2">
+      <ng-template #loading>Loading...</ng-template>
+      <mwc-button
+        *axLazyElement="
+          'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
+          loadingTemplate: loading;
+          module: true
+        "
+        raised
+        (click)="increment()"
+      >
+        Increment
+      </mwc-button>
+      <p>Counter: {{ counter }}</p>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're loading
+        <code>&#60;mwc-button></code> using the
+        <code>*axLazyElement</code> directive but we're also adding
+        <code>&#60;ng-template #loading>Loading...&#60;ng-template></code> which
+        will be displayed before the element was loaded (depending on your
+        connection speed)
+      </p>
+      <pre [highlight]="codeExample2"></pre>
+    </div>
+  </div>
+
+  <h2>Use error <code>&#60;ng-template #error></code></h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example3">
+      <button mat-flat-button color="accent" (click)="example3 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example3">
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <mwc-button
+        *axLazyElement="
+          'https://unpkg.com/wrong-url.js?module';
+          loadingTemplate: loading;
+          errorTemplate: error;
+          module: true
+        "
+        raised
+      >
+        Submit
+      </mwc-button>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're loading
+        <code>&#60;mwc-button></code> using the
+        <code>*axLazyElement</code> directive but we're also adding
+        <code>&#60;ng-template #error>Loading failed...&#60;ng-template></code>
+        which will be displayed because the loading request will fail (wrong
+        url)
+      </p>
+      <pre [highlight]="codeExample3"></pre>
+    </div>
+  </div>
+
+  <h2>Advanced binding (objects instead of primitives)</h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example4">
+      <button mat-flat-button color="accent" (click)="example4 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example4">
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <ion-item
+        *axLazyElement="
+          'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
+      >
+        <ion-label>Pick a year&nbsp;</ion-label>
+        <ion-datetime
+          [displayFormat]="'YYYY'"
+          [pickerFormat]="'YYYY'"
+          [yearValues]="customYearValues"
+        >
+        </ion-datetime>
+      </ion-item>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're loading
+        <a href="http://ionicframework.com" target="_blank">Ionic</a>! Ionic
+        comes with all elements in single bundle so we can use multiple ionic
+        elements while using <code>*axLazyElement</code> directive only on the
+        outmost element. Besides that in our Angular component we have defined
+        <code>customYearValues</code> array with the
+        <code>[2020, 2030, 2040]</code> values which are passed in the element
+        using standard Angular property binding
+        <code>[yearValues]="customYearValues"</code>.
+      </p>
+      <pre [highlight]="codeExample4"></pre>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="implementation" *ngIf="!example5">
+      <button mat-flat-button color="accent" (click)="example5 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example5">
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <deckgo-qrcode
+        *axLazyElement="
+          'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js';
+          loadingTemplate: loading;
+          errorTemplate: error
+        "
+        content="https://angular-extensions.github.io/elements"
+        style="--deckgo-qrcode-size: 200px;"
+      >
+      </deckgo-qrcode>
+    </div>
+    <div class="description">
+      <p>
+        Cool things about the above Ionic example? Ionic is build with
+        <a href="https://stenciljs.com" target="_blank">Stencil</a> and
+        therefore, each Web Components developed and bundled with that compiler,
+        could also be load the exact same way as for example for the following
+        <code>&#60;deckgo-qrcode></code> component from the project
+        <a href="https://deckdeckgo.com" target="_blank">DeckDeckGo</a> which
+        generates and displays a QR-Code.
+      </p>
+      <p>
+        Note that in the same way as above, we could either pass the properties
+        to the element using fix values, as we do in this example, or of course
+        using standard Angular property binding.
+      </p>
+      <pre [highlight]="codeExample5"></pre>
+    </div>
+  </div>
+</div>

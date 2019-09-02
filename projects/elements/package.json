@@ -1,11 +1,31 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "keywords": [
+    "angular",
+    "elements",
+    "web componentst",
+    "custom elements",
+    "lazy loading",
+    "microfrontends",
+    "components",
+    "web component"
+  ],
+  "author": "Tomas Trajan <@tomastrajan>",
+  "license": "MIT",
+  "homepage": "https://github.com/angular-extensions/elements#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular-extensions/elements.git"
+  },
+  "bugs": {
+    "url": "https://github.com/angular-extensions/elements/issues"
   }
 }

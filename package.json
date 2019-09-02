@@ -1,6 +1,6 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -42,7 +42,10 @@
     "@angular/platform-browser": "^7.0.0",
     "@angular/platform-browser-dynamic": "^7.0.0",
     "@angular/router": "^7.0.0",
+    "@angular/service-worker": "^8.2.4",
     "core-js": "^2.0.0",
+    "highlight.js": "^9.15.10",
+    "ngx-highlightjs": "^3.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

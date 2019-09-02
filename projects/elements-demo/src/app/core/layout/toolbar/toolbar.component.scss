@@ -13,3 +13,15 @@ button {
 .menu {
   margin: 0 10px 0 0;
 }
+
+a {
+  &:hover {
+    color: #fff;
+  }
+}
+
+:host-context(.responsive) {
+  .spacer-responsive {
+    flex: 1 0 auto;
+  }
+}

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
+import { ResponsiveLayoutService } from '../responsive-layout.service';
 
 @Component({
   selector: 'demo-toolbar',
@@ -12,14 +12,12 @@ export class ToolbarComponent implements OnInit {
   @Input() navOpened: boolean;
   @Output() toggle = new EventEmitter<void>();
 
-  isSmallScreen: Observable<boolean>;
+  isResponsiveLayout: Observable<boolean>;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
 
   ngOnInit() {
-    this.isSmallScreen = this.breakpointObserver
-      .observe([Breakpoints.Small, Breakpoints.XSmall])
-      .pipe(map(result => result.matches));
+    this.isResponsiveLayout = this.responsiveLayoutService.isSmallOrSmaller;
   }
 
   toggleMenu() {

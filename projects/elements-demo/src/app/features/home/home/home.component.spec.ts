@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HighlightModule } from 'ngx-highlightjs';
+import typescript from 'highlight.js/lib/languages/typescript';
 
 import { SharedModule } from '../../../shared/shared.module';
 
@@ -11,7 +13,13 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, SharedModule],
+      imports: [
+        HighlightModule.forRoot({
+          languages: () => [{ name: 'typescript', func: typescript }]
+        }),
+        HttpClientTestingModule,
+        SharedModule
+      ],
       declarations: [HomeComponent]
     }).compileComponents();
   }));

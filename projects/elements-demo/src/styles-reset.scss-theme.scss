@@ -7,8 +7,31 @@
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
+  a {
+    color: mat-color($primary);
+
+    &:hover {
+      color: mat-color($primary, darker);
+    }
+  }
+
   code {
-    color: mat-color($accent, lighter-contrast);
-    background-color: mat-color($accent, lighter);
+    color: mat-color($foreground, text);
+    background-color: mat-color($background, unselected-chip);
+
+    &[color='primary'] {
+      color: mat-color($primary, default-contrast);
+      background-color: mat-color($primary);
+    }
+
+    &[color='accent'] {
+      color: mat-color($accent, default-contrast);
+      background-color: mat-color($accent);
+    }
+
+    &[color='warn'] {
+      color: mat-color($warn, default-contrast);
+      background-color: mat-color($warn);
+    }
   }
 }

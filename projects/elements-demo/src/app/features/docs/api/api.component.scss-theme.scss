@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+@mixin demo-api-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  demo-api {
+    th {
+      background-color: mat-color($background, app-bar);
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid mat-color($background, disabled-list-option);
+      border-right: 1px solid mat-color($background, disabled-list-option);
+    }
+  }
+}

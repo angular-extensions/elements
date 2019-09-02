@@ -2,22 +2,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
-  MatButtonModule,
+  MatCardModule,
   MatIconModule,
-  MatIconRegistry,
   MatListModule,
+  MatTreeModule,
+  MatIconRegistry,
+  MatButtonModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatTreeModule
+  MatGridListModule,
+  MatExpansionModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 const ANGULAR_MATERIAL_MODULES = [
-  MatListModule,
+  MatCardModule,
   MatIconModule,
+  MatListModule,
   MatTreeModule,
   MatButtonModule,
   MatToolbarModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatGridListModule,
+  MatExpansionModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

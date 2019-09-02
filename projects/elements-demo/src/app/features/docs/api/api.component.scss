@@ -1,0 +1,25 @@
+h2 {
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 10px 10px 0;
+}
+
+mat-card {
+  padding: 0;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td,
+  th {
+    text-align: left;
+    padding: 15px 20px;
+  }
+
+  pre {
+    opacity: 0.8;
+  }
+}

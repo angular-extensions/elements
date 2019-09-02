@@ -19,6 +19,13 @@ const routes: Routes = [
       import('./features/examples/examples.module').then(m => m.ExamplesModule)
   },
   {
+    path: 'contribute',
+    loadChildren: () =>
+      import('./features/contribute/contribute.module').then(
+        m => m.ContributeModule
+      )
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }

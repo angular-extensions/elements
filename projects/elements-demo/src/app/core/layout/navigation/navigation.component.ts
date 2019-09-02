@@ -14,8 +14,24 @@ const NAVIGATION = [
         url: 'docs/getting-started'
       },
       {
-        label: 'Mechanism',
-        url: 'docs/mechanism'
+        label: 'How it works',
+        url: 'docs/how-it-works'
+      },
+      {
+        label: 'Use cases',
+        url: 'docs/use-cases'
+      },
+      {
+        label: 'Change detection',
+        url: 'docs/change-detection'
+      },
+      {
+        label: 'API',
+        url: 'docs/api'
+      },
+      {
+        label: 'FAQ',
+        url: 'docs/faq'
       }
     ]
   },
@@ -25,13 +41,17 @@ const NAVIGATION = [
     children: [
       {
         label: 'Basic',
-        url: 'basic'
+        url: 'examples/basic'
       },
       {
-        label: 'Lazy Loading',
-        url: 'lazy'
+        label: 'Advanced',
+        url: 'examples/advanced'
       }
     ]
+  },
+  {
+    label: 'CONTRIBUTE',
+    url: 'contribute'
   }
 ];
 
