@@ -67,6 +67,7 @@ Library was tested with the following versions of Angular and is meant to be use
 with the corresponding major version (`"@angular/core"": "^8.0.0"` with `"@angular-extensions/elements": "^8.0.0"` ).
 
 - 7.x
+
 - 8.x
 
 ## Become a contributor
