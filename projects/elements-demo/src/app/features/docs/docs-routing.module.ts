@@ -46,6 +46,13 @@ const routes: Routes = [
           import('./change-detection/change-detection.module').then(
             m => m.ChangeDetectionModule
           )
+      },
+      {
+        path: 'configuration',
+        loadChildren: () =>
+          import('./configuration/configuration.module').then(
+            m => m.ConfigurationModule
+          )
       }
     ]
   }

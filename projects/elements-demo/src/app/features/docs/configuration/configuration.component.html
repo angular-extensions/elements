@@ -1,0 +1,82 @@
+<div class="wrapper">
+  <h1>Configuration</h1>
+
+  <blockquote class="large">
+    The library supports additional configuration which can improve developer
+    experience when using multiple elements (or same element multiple time).
+  </blockquote>
+
+  <h2>Pre-configuration with module</h2>
+  <p>
+    Let's imagine situation in which we want to use multiple instances of a
+    single element in the template of one of our feature components.
+  </p>
+  <blockquote>
+    Example of such an use case could be that we have a
+    <code>&#60;user-profile-element></code> and we want to display top 3 users
+    for a given month. We would need to pass url in all of the elements...
+  </blockquote>
+
+  <pre [highlight]="codeExampleInline"></pre>
+
+  <p>
+    This could be optimized by storing url once in the component variable but
+    still, component needs to be aware of the element url. This can lead to
+    further inconvenient situation when element url changes and we would have to
+    search for the url in te whole code base...
+  </p>
+
+  <p>
+    Compare this to the following solution where we pre-configure all of the
+    elements we will be using in our application with the help of the
+    <code>LazyElementsModule.forRoot(options)</code> (or
+    <code>.forFeature()</code>) static functions!
+  </p>
+
+  <pre [highlight]="codeExampleModule"></pre>
+
+  <p>
+    We're creating options of the <code>LazyElementModuleOptions</code> type and
+    passing in array of <code>ElementConfig</code> items. Every item specifies
+    element <code>tag</code> and <code>url</code>...
+  </p>
+
+  <p>
+    With this configuration in place, we can adjust original
+    <code>FeatureComponent</code> template to look like this...
+  </p>
+
+  <pre [highlight]="codeExamplePreConfigured"></pre>
+
+  <p>
+    As we can see, the component template got simple! There is less redundant
+    data and the configuration was centralized in the predictable place that is
+    easy to find and adjust when necessary!
+  </p>
+
+  <p>
+    Check out the <a routerLink="../../../examples/advanced">working demo</a> of
+    this approach!
+  </p>
+
+  <h2>Upcoming pre-configuration features</h2>
+
+  <p>
+    Currently we're working to enable pre-configuration of various other options
+    like:
+  </p>
+
+  <ul>
+    <li>Granular element pre-loading</li>
+    <li>Global and granular configuration of <code>loadingTemplate</code></li>
+    <li>Global and granular configuration of <code>errorTemplate</code></li>
+    <li>
+      Global and granular configuration of <code>module</code> (script type
+      module for ECMAScript modules)
+    </li>
+    <li>
+      Posibility to use loading and error components (not just
+      <code>&#60;ng-template></code>
+    </li>
+  </ul>
+</div>
