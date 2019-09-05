@@ -17,7 +17,7 @@ export class LazyElementDirective implements OnInit {
   @Input('axLazyElement') url: string;
   @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementModule') isModule: boolean; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
 
   constructor(
     private vcr: ViewContainerRef,

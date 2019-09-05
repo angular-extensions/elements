@@ -40,9 +40,10 @@
     </div>
     <div class="implementation" *ngIf="example2">
       <ng-template #loading>Loading...</ng-template>
-      <mwc-button
-        *axLazyElement="
-          'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
+      <div
+        *axLazyElementDynamic="
+          'mwc-button';
+          url: 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
           loadingTemplate: loading;
           module: true
         "
@@ -50,7 +51,7 @@
         (click)="increment()"
       >
         Increment
-      </mwc-button>
+      </div>
       <p>Counter: {{ counter }}</p>
     </div>
     <div class="description">

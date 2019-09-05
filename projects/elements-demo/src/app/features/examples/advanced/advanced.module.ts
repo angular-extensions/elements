@@ -18,6 +18,11 @@ const options: LazyElementModuleOptions = {
       url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js'
     },
     {
+      tag: 'mwc-switch',
+      url: 'https://unpkg.com/@material/mwc-switch@0.6.0/mwc-switch.js?module',
+      isModule: true
+    },
+    {
       tag: 'mwc-checkbox',
       url:
         'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module'
