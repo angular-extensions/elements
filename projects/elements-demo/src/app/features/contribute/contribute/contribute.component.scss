@@ -46,6 +46,7 @@
   .contributors {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     .contributor {
       display: inline-flex;

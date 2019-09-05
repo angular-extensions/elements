@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { LazyElementDirective } from './lazy-element/lazy-element.directive';
+import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element-dynamic.directive';
 import {
   LazyElementsLoaderService,
   ElementConfig
@@ -18,9 +19,9 @@ export const LAZY_ELEMENT_CONFIGS = new InjectionToken<ElementConfig[]>(
 );
 
 @NgModule({
-  declarations: [LazyElementDirective],
+  declarations: [LazyElementDirective, LazyElementDynamicDirective],
   imports: [CommonModule],
-  exports: [LazyElementDirective]
+  exports: [LazyElementDirective, LazyElementDynamicDirective]
 })
 export class LazyElementsModule {
   static forRoot(options: LazyElementModuleOptions): ModuleWithProviders {

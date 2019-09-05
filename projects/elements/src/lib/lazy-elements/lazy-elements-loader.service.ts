@@ -5,6 +5,7 @@ const LOG_PREFIX = '@angular-extensions/elements';
 export interface ElementConfig {
   tag: string;
   url: string;
+  isModule?: boolean;
 }
 
 @Injectable({
@@ -31,39 +32,40 @@ export class LazyElementsLoaderService {
     });
   }
 
-  loadElement(
-    url: string,
-    tag: string,
-    isModule: boolean = false
-  ): Promise<void> {
-    let elementUrl = url;
+  loadElement(url: string, tag: string, isModule?: boolean): Promise<void> {
+    const config = this.configs.find(c => c.tag === tag);
+
     if (!url) {
-      const config = this.configs.find(c => c.tag === tag);
       if (!config) {
         throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
       }
-      elementUrl = config.url;
+      url = config.url;
+    }
+
+    if (isModule === undefined) {
+      isModule =
+        config && config.isModule !== undefined ? config.isModule : false;
     }
 
     if (!tag) {
       throw new Error(
-        `${LOG_PREFIX} - tag for '${elementUrl}' not found, the *axLazyElement has to be used on HTML element`
+        `${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`
       );
     }
 
-    if (!this.hasElement(elementUrl)) {
-      const notifier = this.addElement(elementUrl);
+    if (!this.hasElement(url)) {
+      const notifier = this.addElement(url);
       const script = document.createElement('script') as HTMLScriptElement;
       if (isModule) {
         script.type = 'module';
       }
-      script.src = elementUrl;
+      script.src = url;
       script.onload = notifier.resolve;
       script.onerror = notifier.reject;
       document.body.appendChild(script);
     }
 
-    return this.registry.get(this.stripUrlProtocol(elementUrl));
+    return this.registry.get(this.stripUrlProtocol(url));
   }
 
   private addElement(url: string): Notifier {

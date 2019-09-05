@@ -18,7 +18,7 @@
         In this example we're pre-configuring
         <code>LazyElementsModule</code> with the element config. That way we
         don't have to specify url of the element in the
-        <code>*axLazyElementDirective</code>. The element will be lazy-loaded
+        <code>*axLazyElement</code> directive. The element will be lazy-loaded
         the same way as if we specified url directly.
       </p>
       <pre [highlight]="codeExample1html"></pre>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <h2>Elements configured in module with options</h2>
+  <h2>Elements configured in module with HTML inline options</h2>
   <div class="content">
     <div class="implementation" *ngIf="!example2">
       <button mat-flat-button color="accent" (click)="example2 = true">
@@ -51,6 +51,31 @@
       </p>
       <pre [highlight]="codeExample2html"></pre>
       <pre [highlight]="codeExample2module"></pre>
+    </div>
+  </div>
+
+  <h2>Elements configured in module with <code>isModule</code> option</h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example3">
+      <button mat-flat-button color="accent" (click)="example3 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example3">
+      <ng-template #loading>Loading...</ng-template>
+      <mwc-switch *axLazyElement="null; loadingTemplate: loading">
+        Click me</mwc-switch
+      >
+    </div>
+    <div class="description">
+      <p>
+        We can also pre-configure <code>isModule</code> flag by passing it to
+        the <code>LazyElementsModule</code>config. That way we don't have to
+        specify it in the template for module style elements!
+      </p>
+      <pre [highlight]="codeExample3html"></pre>
+      <pre [highlight]="codeExample3module"></pre>
     </div>
   </div>
 </div>

@@ -50,6 +50,10 @@ const NAVIGATION = [
       {
         label: 'Advanced',
         url: 'examples/advanced'
+      },
+      {
+        label: 'Dynamic',
+        url: 'examples/dynamic'
       }
     ]
   },

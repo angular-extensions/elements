@@ -7,6 +7,14 @@ h2 {
   font-weight: bold;
 }
 
+ul {
+  li {
+    &.done {
+      text-decoration: line-through;
+    }
+  }
+}
+
 :host-context(.responsive-large) {
   .wrapper {
     width: 70%;
