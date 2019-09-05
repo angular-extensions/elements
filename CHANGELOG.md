@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.6.0](https://github.com/angular-extensions/elements/compare/v8.5.0...v8.6.0) (2019-09-05)
+
+### Bug Fixes
+
+- **demo:** redeploy ([9abc126](https://github.com/angular-extensions/elements/commit/9abc126))
+
+### Features
+
+- **demo:** add docs configuration section ([81aad47](https://github.com/angular-extensions/elements/commit/81aad47))
+- **element:** add axLazyElementDynamic directive ([2442e60](https://github.com/angular-extensions/elements/commit/2442e60))
+
 ## [8.5.0](https://github.com/angular-extensions/elements/compare/v8.4.1...v8.5.0) (2019-08-31)
 
 ### Bug Fixes
