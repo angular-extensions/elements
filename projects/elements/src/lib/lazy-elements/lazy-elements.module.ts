@@ -75,9 +75,8 @@ export class LazyElementsModule {
     elementConfigsMultiProvider: ElementConfig[][]
   ) {
     if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
-      const lastAddedConfigs =
-        elementConfigsMultiProvider[elementConfigsMultiProvider.length - 1];
-      lazyElementsLoaderService.addConfigs(lastAddedConfigs);
+      const configs = [].concat.apply([], elementConfigsMultiProvider);
+      lazyElementsLoaderService.addConfigs(configs);
     }
   }
 }
