@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.7.0](https://github.com/angular-extensions/elements/compare/v8.6.0...v8.7.0) (2019-09-20)
+
+### Features
+
+- **demo:** add link to podcast discussing this library ([7cc361b](https://github.com/angular-extensions/elements/commit/7cc361b))
+- **demo/api:** document new configuration options ([f849602](https://github.com/angular-extensions/elements/commit/f849602))
+- **demo/docs:** update list of delivered vs upcoming features ([d3c2c6b](https://github.com/angular-extensions/elements/commit/d3c2c6b))
+- **demo/examples:** add examples showcasing new configuration options ([c8a1556](https://github.com/angular-extensions/elements/commit/c8a1556))
+- **module:** add additional configuration using forRoot and forFeature ([afdaec7](https://github.com/angular-extensions/elements/commit/afdaec7))
+
 ## [8.6.0](https://github.com/angular-extensions/elements/compare/v8.5.0...v8.6.0) (2019-09-05)
 
 ### Bug Fixes
