@@ -31,6 +31,12 @@ const options: LazyElementModuleOptions = {
       url:
         'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module',
       isModule: true
+    },
+    {
+      tag: 'mwc-fab',
+      url: 'https://unpkg.com/@material/mwc-fab@0.6.0/mwc-fab.js?module',
+      isModule: true,
+      loadingComponent: SpinnerComponent
     }
   ]
 };

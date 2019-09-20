@@ -1,7 +1,7 @@
 <div class="wrapper">
   <h1>Advanced</h1>
 
-  <h2>Elements configured in module</h2>
+  <h2>Elements configured in a feature module</h2>
   <div class="content">
     <div class="implementation" *ngIf="!example1">
       <button mat-flat-button color="accent" (click)="example1 = true">
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <h2>Elements configured in module with HTML inline options</h2>
+  <h2>Elements configured in a feature module with HTML inline options</h2>
   <div class="content">
     <div class="implementation" *ngIf="!example2">
       <button mat-flat-button color="accent" (click)="example2 = true">
@@ -51,11 +51,12 @@
       </p>
       <pre [highlight]="codeExample2html"></pre>
       <pre [highlight]="codeExample2module"></pre>
-      <pre [highlight]="codeExample2coreModule"></pre>
     </div>
   </div>
 
-  <h2>Elements configured in module with <code>isModule</code> option</h2>
+  <h2>
+    Elements configured in a feature module with <code>isModule</code> option
+  </h2>
   <div class="content">
     <div class="implementation" *ngIf="!example3">
       <button mat-flat-button color="accent" (click)="example3 = true">
@@ -77,6 +78,36 @@
       </p>
       <pre [highlight]="codeExample3html"></pre>
       <pre [highlight]="codeExample3module"></pre>
+    </div>
+  </div>
+
+  <h2>
+    Elements configured in <code>AppModule</code> or
+    <code>CoreModule</code> using <code>forRoot</code>
+  </h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example4">
+      <button mat-flat-button color="accent" (click)="example4 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example4">
+      <mwc-fab icon="code" *axLazyElement></mwc-fab>
+    </div>
+    <div class="description">
+      <p>
+        Some options can be pre-configured for the whole application using
+        <code>LazyElementsModule.forRoot()</code>. This is usually done in
+        <code>AppModule</code> or in the <code>CoreModule</code>. That way we
+        don't have to specify this options in the feature modules while still
+        preserving posibility to override them if necessary. The
+        <code>forRoot()</code> accepts also <code>elementConfigs</code> so they
+        can be pre-configured centrally removing the need to configure them in
+        feature modules or inline in the templates.
+      </p>
+      <pre [highlight]="codeExample4html"></pre>
+      <pre [highlight]="codeExample4coreModule"></pre>
     </div>
   </div>
 </div>
