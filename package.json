@@ -15,6 +15,7 @@
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different",
     "release": "standard-version -a && git push --follow-tags origin master",
+    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/elements-demo/stats-es2015.json",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate && node sync-contributors.js",
     "contributors:check": "all-contributors check"
@@ -89,7 +90,8 @@
     "ts-node": "~7.0.0",
     "tsickle": "^0.35.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "typescript": "~3.4.3",
+    "webpack-bundle-analyzer": "^3.5.0"
   },
   "keywords": [
     "angular",
