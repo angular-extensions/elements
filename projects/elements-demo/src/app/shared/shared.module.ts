@@ -14,6 +14,9 @@ import {
   MatExpansionModule,
   MatSnackBarModule
 } from '@angular/material';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ErrorComponent } from './error/error.component';
+import { RootErrorComponent } from './root-error/root-error.component';
 
 const ANGULAR_MATERIAL_MODULES = [
   MatCardModule,
@@ -29,9 +32,9 @@ const ANGULAR_MATERIAL_MODULES = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [SpinnerComponent, ErrorComponent, RootErrorComponent],
   imports: [CommonModule, ...ANGULAR_MATERIAL_MODULES],
-  exports: [CommonModule, ...ANGULAR_MATERIAL_MODULES]
+  exports: [CommonModule, ...ANGULAR_MATERIAL_MODULES, SpinnerComponent]
 })
 export class SharedModule {
   constructor(

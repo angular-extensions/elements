@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type, Optional, Inject } from '@angular/core';
+
+import { LazyElementRootOptions } from './lazy-elements.module';
+import { LAZY_ELEMENT_ROOT_OPTIONS } from './lazy-elements.tokens';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
@@ -6,6 +9,8 @@ export interface ElementConfig {
   tag: string;
   url: string;
   isModule?: boolean;
+  loadingComponent?: Type<any>;
+  errorComponent?: Type<any>;
 }
 
 @Injectable({
@@ -15,13 +20,19 @@ export class LazyElementsLoaderService {
   registry: Map<string, Promise<void>> = new Map<string, Promise<void>>();
   configs: ElementConfig[] = [];
 
-  constructor() {}
+  constructor(
+    @Optional()
+    @Inject(LAZY_ELEMENT_ROOT_OPTIONS)
+    public options: LazyElementRootOptions
+  ) {
+    if (!options) {
+      this.options = {};
+    }
+  }
 
   addConfigs(newConfigs: ElementConfig[]) {
     newConfigs.forEach(newConfig => {
-      const existingConfig = this.configs.find(
-        config => config.tag === newConfig.tag
-      );
+      const existingConfig = this.getElementConfig(newConfig.tag);
       if (existingConfig) {
         console.warn(
           `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`
@@ -32,8 +43,12 @@ export class LazyElementsLoaderService {
     });
   }
 
+  getElementConfig(tag: string): ElementConfig {
+    return this.configs.find(config => config.tag === tag);
+  }
+
   loadElement(url: string, tag: string, isModule?: boolean): Promise<void> {
-    const config = this.configs.find(c => c.tag === tag);
+    const config = this.getElementConfig(tag);
 
     if (!url) {
       if (!config) {
@@ -44,7 +59,9 @@ export class LazyElementsLoaderService {
 
     if (isModule === undefined) {
       isModule =
-        config && config.isModule !== undefined ? config.isModule : false;
+        config && config.isModule !== undefined
+          ? config.isModule
+          : this.options.isModule;
     }
 
     if (!tag) {
