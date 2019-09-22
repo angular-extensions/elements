@@ -4,7 +4,8 @@ import {
   Inject,
   ModuleWithProviders,
   ANALYZE_FOR_ENTRY_COMPONENTS,
-  Type
+  Type,
+  SkipSelf
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -16,8 +17,18 @@ import {
 } from './lazy-elements-loader.service';
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
-  LAZY_ELEMENT_CONFIGS
+  LAZY_ELEMENT_CONFIGS,
+  LAZY_ELEMENT_ROOT_GUARD
 } from './lazy-elements.tokens';
+
+export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
+  if (options) {
+    throw new TypeError(
+      `LazyElementsModule.forRoot() called twice. Feature modules should use ThemeModule.forFeature() instead.`
+    );
+  }
+  return 'guarded';
+}
 
 @NgModule({
   declarations: [LazyElementDirective, LazyElementDynamicDirective],
@@ -44,6 +55,11 @@ export class LazyElementsModule {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
           useValue: options,
           multi: true
+        },
+        {
+          provide: LAZY_ELEMENT_ROOT_GUARD,
+          useFactory: createLazyElementRootGuard,
+          deps: [[LAZY_ELEMENT_CONFIGS, new Optional(), new SkipSelf()]]
         }
       ]
     };
@@ -72,7 +88,10 @@ export class LazyElementsModule {
     lazyElementsLoaderService: LazyElementsLoaderService,
     @Optional()
     @Inject(LAZY_ELEMENT_CONFIGS)
-    elementConfigsMultiProvider: ElementConfig[][]
+    elementConfigsMultiProvider: ElementConfig[][],
+    @Optional()
+    @Inject(LAZY_ELEMENT_ROOT_GUARD)
+    guard: any
   ) {
     if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
       const lastAddedConfigs =
