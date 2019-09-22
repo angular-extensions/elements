@@ -24,7 +24,7 @@ import {
 export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
   if (options) {
     throw new TypeError(
-      `LazyElementsModule.forRoot() called twice. Feature modules should use ThemeModule.forFeature() instead.`
+      `LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.`
     );
   }
   return 'guarded';
