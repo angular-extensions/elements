@@ -110,4 +110,32 @@
       <pre [highlight]="codeExample4coreModule"></pre>
     </div>
   </div>
+
+  <h2>
+    Preloading
+  </h2>
+  <div class="content">
+    <div class="implementation">
+      <button mat-flat-button color="accent" (click)="preload()">
+        Preload
+      </button>
+      <button
+        class="additional-btn"
+        mat-flat-button
+        color="accent"
+        (click)="preloadFab()"
+      >
+        Preload Fab
+      </button>
+    </div>
+    <div class="description">
+      <p>
+        You can inject <code>LazyElementLoaderService</code> and call the
+        <code>preload</code> method to preload all the configured modules, or
+        specify the list of <code>tags</code> you want to preload.
+      </p>
+      <pre [highlight]="codeExample5html"></pre>
+      <pre [highlight]="codeExample5ts"></pre>
+    </div>
+  </div>
 </div>

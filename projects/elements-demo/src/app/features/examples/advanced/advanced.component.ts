@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LazyElementsLoaderService } from './../../../../../../elements/src/lib/lazy-elements/lazy-elements-loader.service';
 
 @Component({
   selector: 'demo-advanced',
@@ -21,16 +22,26 @@ export class AdvancedComponent implements OnInit {
   codeExample3html = CODE_EXAMPLE_3_HTML;
   codeExample4html = CODE_EXAMPLE_4_HTML;
   codeExample4coreModule = CODE_EXAMPLE_4_CORE_MODULE;
+  codeExample5html = CODE_EXAMPLE_5_HTML;
+  codeExample5ts = CODE_EXAMPLE_5_TS;
 
   // example state
   counter = 0;
 
-  constructor() {}
+  constructor(private lazyElementLoaderService: LazyElementsLoaderService) {}
 
   ngOnInit() {}
 
   increment() {
     this.counter++;
+  }
+
+  preload() {
+    this.lazyElementLoaderService.preload();
+  }
+
+  preloadFab() {
+    this.lazyElementLoaderService.preload(['mwc-fab']);
   }
 }
 
@@ -41,7 +52,8 @@ const options: LazyElementModuleOptions = {
       tag: 'ion-button',
       url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js',
       loadingComponent: SpinnerComponent,
-      errorComponent: ErrorComponent
+      errorComponent: ErrorComponent,
+      preload: true
     }
   ]
 };
@@ -131,4 +143,20 @@ const options: LazyElementModuleRootOptions = {
   ]
 })
 export class CoreModule { }
+`;
+
+const CODE_EXAMPLE_5_HTML = `<button (click)="preload()">Preload</button>`;
+
+const CODE_EXAMPLE_5_TS = `
+class PageComponent {
+  constructor(private lazyElementLoaderService: LazyElementLoaderService) {}
+
+  preload() {
+    this.lazyElementLoaderService.preload();
+  }
+
+  preloadFab() {
+    this.lazyElementLoaderService.preload(['mwc-fab']);
+  }
+}
 `;
