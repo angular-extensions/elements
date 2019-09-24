@@ -1,8 +1,9 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { LazyElementsModule } from './lazy-elements.module';
+import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+
+import { LazyElementsModule } from './lazy-elements.module';
 
 const config = {
   elementConfigs: [
@@ -73,5 +74,8 @@ describe('LazyElementsModule', () => {
       error = err;
     }
     expect(error).toBeDefined();
+    expect(error.message).toContain(
+      'LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.'
+    );
   }));
 });
