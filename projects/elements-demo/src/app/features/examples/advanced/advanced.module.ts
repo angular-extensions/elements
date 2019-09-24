@@ -19,7 +19,8 @@ const options: LazyElementModuleOptions = {
       tag: 'ion-button',
       url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js',
       loadingComponent: SpinnerComponent,
-      errorComponent: ErrorComponent
+      errorComponent: ErrorComponent,
+      preload: true
     },
     {
       tag: 'mwc-switch',

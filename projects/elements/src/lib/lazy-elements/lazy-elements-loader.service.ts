@@ -11,6 +11,7 @@ export interface ElementConfig {
   isModule?: boolean;
   loadingComponent?: Type<any>;
   errorComponent?: Type<any>;
+  preload?: boolean;
 }
 
 @Injectable({
@@ -39,12 +40,29 @@ export class LazyElementsLoaderService {
         );
       } else {
         this.configs.push(newConfig);
+        const shouldPreload =
+          newConfig.preload !== undefined
+            ? newConfig.preload
+            : this.options.preload;
+        if (shouldPreload) {
+          this.loadElement(newConfig.url, newConfig.tag, newConfig.isModule);
+        }
       }
     });
   }
 
   getElementConfig(tag: string): ElementConfig {
     return this.configs.find(config => config.tag === tag);
+  }
+
+  preload(tags?: string[]) {
+    let configs = this.configs;
+    if (tags) {
+      configs = this.configs.filter(config => tags.includes(config.tag));
+    }
+    configs.forEach(config =>
+      this.loadElement(config.url, config.tag, config.isModule)
+    );
   }
 
   loadElement(url: string, tag: string, isModule?: boolean): Promise<void> {

@@ -293,6 +293,17 @@ isModule: boolean;</pre
             >
           </td>
         </tr>
+        <tr>
+          <td><pre>preload: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the all the modules should be preloaded
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
       </tbody>
     </table>
   </mat-card>
@@ -404,6 +415,53 @@ isModule: boolean;</pre
             <code color="accent">Optional</code>&nbsp;<code color="accent"
               >Default: undefined</code
             >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>preload: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the element is preloaded.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>LazyElementsLoaderService</h2>
+  <code color="accent">Service</code>
+  <br />
+  <p>
+    A service used for loading the Angular element (or any other webcomponent)
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Method</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>preload(tags? : string[]): void</pre></td>
+          <td>
+            <p>
+              Preloads the specified tags which are preconfigured using
+              <code>forRoot</code> and <code>forFeature</code>. If
+              <code>tags</code> is <code>undefined|null</code> preload all the
+              configured tags. <br />
+              Parameters: <br />
+              tags <code color="accent">Optional</code>&nbsp;<code
+                color="accent"
+                >Default: undefined</code
+              ><br />
+              returns: <code color="accent">void</code>
+            </p>
           </td>
         </tr>
       </tbody>

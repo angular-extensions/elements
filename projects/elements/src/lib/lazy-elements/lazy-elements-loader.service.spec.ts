@@ -138,7 +138,8 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
             { tag: 'some-element', url: 'http://elements.com/some-url' },
             {
               tag: 'some-other-element',
-              url: 'http://elements.com/some-other-url'
+              url: 'http://elements.com/some-other-url',
+              preload: true
             },
             {
               tag: 'some-module-element',
@@ -167,7 +168,8 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     });
     expect(service.configs[1]).toEqual({
       tag: 'some-other-element',
-      url: 'http://elements.com/some-other-url'
+      url: 'http://elements.com/some-other-url',
+      preload: true
     });
     expect(service.configs[2]).toEqual({
       tag: 'some-module-element',
@@ -184,5 +186,15 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       'http://elements.com/some-module-url'
     );
     expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('module');
+  });
+
+  it('should preload all the configurations', () => {
+    service.preload();
+    expect(appendChildSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it('should preload only specified tags', () => {
+    service.preload(['some-element']);
+    expect(appendChildSpy).toHaveBeenCalledTimes(1);
   });
 });

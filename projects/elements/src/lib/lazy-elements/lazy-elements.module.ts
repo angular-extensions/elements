@@ -114,4 +114,5 @@ export interface LazyElementRootOptions {
   loadingComponent?: Type<any>;
   errorComponent?: Type<any>;
   isModule?: boolean;
+  preload?: boolean;
 }
