@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.8.0](https://github.com/angular-extensions/elements/compare/v8.7.0...v8.8.0) (2019-09-24)
+
+### Features
+
+- **demo/docs:** update docs ([f775cc3](https://github.com/angular-extensions/elements/commit/f775cc3))
+- **module:** add for root module guard implementation ([6af8667](https://github.com/angular-extensions/elements/commit/6af8667))
+- **module:** add lazy element root guard token ([bdb2449](https://github.com/angular-extensions/elements/commit/bdb2449))
+- **module:** fix error message ([a8e0e0d](https://github.com/angular-extensions/elements/commit/a8e0e0d))
+- **module:** test covering lazy element root guard token ([51ac949](https://github.com/angular-extensions/elements/commit/51ac949))
+- **service:** preloading capability ([f06b433](https://github.com/angular-extensions/elements/commit/f06b433))
+
 ## [8.7.0](https://github.com/angular-extensions/elements/compare/v8.6.0...v8.7.0) (2019-09-20)
 
 ### Features
