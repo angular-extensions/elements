@@ -43,18 +43,18 @@ export const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-butto
   <mwc-button outlined (click)="increment()">Increment</mwc-button>
 -->`;
 
-export const CODE_EXAMPLE_2_HTML = `<div *axLazyElementDynamic="'ion-button'" (click)="increment()">
+export const CODE_EXAMPLE_2_HTML = `<div *axLazyElementDynamic="'wired-button'" (click)="increment()">
   Increment
 </div>
 
 <!-- will be rendered as ...
-  <ion-button (click)="increment()">Increment</ion-button>
+  <wired-button (click)="increment()">Increment</wired-button>
 -->`;
 
 export const CODE_EXAMPLE_2_MODULE = `// pre-configured LazyElementsModule
 const options: LazyElementModuleOptions = {
   elementConfigs: [
-    { tag: 'ion-button', url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js' }
+    { tag: 'wired-button', url: 'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js' }
   ]
 };
 

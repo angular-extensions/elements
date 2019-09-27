@@ -20,6 +20,17 @@
       p {
         margin: 10px 0 0 0;
       }
+
+      .controls {
+        display: flex;
+        align-items: center;
+
+        .values {
+          display: inline-block;
+          width: 100px;
+          text-align: center;
+        }
+      }
     }
 
     .description {

@@ -16,8 +16,9 @@ import { ErrorComponent } from '../../../shared/error/error.component';
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
-      tag: 'ion-button',
-      url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js',
+      tag: 'wired-button',
+      url:
+        'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js',
       loadingComponent: SpinnerComponent,
       errorComponent: ErrorComponent,
       preload: true
@@ -47,6 +48,7 @@ const options: LazyElementModuleOptions = {
   declarations: [AdvancedComponent],
   imports: [
     HighlightModule,
+    LazyElementsModule.forFeature(options),
     LazyElementsModule.forFeature(options),
     SharedModule,
     AdvancedRoutingModule

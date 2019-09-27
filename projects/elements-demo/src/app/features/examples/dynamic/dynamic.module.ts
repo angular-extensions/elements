@@ -14,8 +14,9 @@ import { DynamicComponent } from './dynamic.component';
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
-      tag: 'ion-button',
-      url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js'
+      tag: 'wired-button',
+      url:
+        'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js'
     }
   ]
 };

@@ -49,8 +49,8 @@ const CODE_EXAMPLE_1_MODULE = `// pre-configured LazyElementsModule
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
-      tag: 'ion-button',
-      url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js',
+      tag: 'wired-button',
+      url: 'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js',
       loadingComponent: SpinnerComponent,
       errorComponent: ErrorComponent,
       preload: true
@@ -69,7 +69,7 @@ export class FeatureModule { }
 `;
 
 const CODE_EXAMPLE_1_HTML = `<!-- No need to specify url -->
-<ion-button *axLazyElement></ion-button>`;
+<wired-button *axLazyElement></wired-button>`;
 
 const CODE_EXAMPLE_2_MODULE = `// pre-configured LazyElementsModule in FeatureModule
 const options: LazyElementModuleOptions = {

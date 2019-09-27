@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSliderChange } from '@angular/material';
 
 @Component({
   selector: 'demo-basic',
@@ -11,18 +12,17 @@ export class BasicComponent implements OnInit {
   example2 = false;
   example3 = false;
   example4 = false;
-  example5 = false;
 
   // example code examples
   codeExample1 = CODE_EXAMPLE_1;
   codeExample2 = CODE_EXAMPLE_2;
   codeExample3 = CODE_EXAMPLE_3;
   codeExample4 = CODE_EXAMPLE_4;
-  codeExample5 = CODE_EXAMPLE_5;
 
   // example state
   counter = 0;
-  customYearValues = [2020, 2030, 2040];
+  xAxis = [-6.28, 6.28];
+  yAxis = [-1, 1];
 
   constructor() {}
 
@@ -30,6 +30,11 @@ export class BasicComponent implements OnInit {
 
   increment() {
     this.counter++;
+  }
+
+  onSliderChange(change: MatSliderChange) {
+    const { value } = change;
+    this.xAxis = [-value, value];
   }
 }
 
@@ -51,18 +56,8 @@ const CODE_EXAMPLE_3 = `<!-- url = 'https://unpkg.com/wrong-url.js?module' -->;
   Submit
 </mwc-button>`;
 
-const CODE_EXAMPLE_4 = `<!-- url = 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js' -->;
-<!-- customYearValues = [2020, 2030, 2040] -->;
-<ion-item *axLazyElement="url">
-  <ion-label>Pick a year</ion-label>
-  <ion-datetime
-    [displayFormat]="'YYYY'"
-    [pickerFormat]="'YYYY'"
-    [yearValues]="customYearValues"
-  >
-  </ion-datetime>
-</ion-item>`;
-
-const CODE_EXAMPLE_5 = `<!-- url = 'https://unpkg.com/@deckdeckgo/qrcode@1.0.0-alpha.9/dist/deckdeckgo-qrcode/deckdeckgo-qrcode.js' -->;
-<deckgo-qrcode *axLazyElement="url" content="https://angular-extensions.github.io/elements" style="--deckgo-qrcode-size: 300px;">
-</deckgo-qrcode>`;
+const CODE_EXAMPLE_4 = `<!-- https://unpkg.com/ink-components' -->;
+<!-- xAxis = [-6.28, 6.28] -->;
+<ink-chart *axLazyElement="url" [xlim]="xAxis">
+  <ink-chart-eqn eqn="Math.sin(x)"></ink-chart-eqn>
+</ink-chart>`;

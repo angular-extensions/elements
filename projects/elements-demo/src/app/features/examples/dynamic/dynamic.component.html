@@ -58,7 +58,7 @@
     <div class="implementation" *ngIf="example2">
       <ng-template #loading>Loading...</ng-template>
       <div
-        *axLazyElementDynamic="'ion-button'; loadingTemplate: loading"
+        *axLazyElementDynamic="'wired-button'; loadingTemplate: loading"
         (click)="increment2()"
       >
         Increment
@@ -72,7 +72,7 @@
         to specify url of the element in the template. Please notice that the
         original HTML element used in the template is <code>&#60;div></code> and
         we're specifying the desired tag as the first parameter of
-        <code>*axLazyElementDynamic='ion-button'</code>. Please, feel free to
+        <code>*axLazyElementDynamic='wired-button'</code>. Please, feel free to
         open your browsers dev tools to check resulting element tag!
       </p>
       <pre [highlight]="codeExample2html"></pre>
