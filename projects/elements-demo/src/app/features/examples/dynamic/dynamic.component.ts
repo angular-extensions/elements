@@ -33,19 +33,19 @@ export class DynamicComponent implements OnInit {
 }
 
 export const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module' -->;
-<div *axLazyElementDynamic="'mwc-button', url: url; module: true"
-     outlined
+<ax-lazy-element *axLazyElementDynamic="'mwc-button', url: url; module: true"
+     [outlined]="true"
      (click)="increment()">
   Increment
-</div>
+</ax-lazy-element>
 
 <!-- will be rendered as ...
   <mwc-button outlined (click)="increment()">Increment</mwc-button>
 -->`;
 
-export const CODE_EXAMPLE_2_HTML = `<div *axLazyElementDynamic="'wired-button'" (click)="increment()">
+export const CODE_EXAMPLE_2_HTML = `<ax-lazy-element *axLazyElementDynamic="'wired-button'" (click)="increment()">
   Increment
-</div>
+</ax-lazy-element>
 
 <!-- will be rendered as ...
   <wired-button (click)="increment()">Increment</wired-button>

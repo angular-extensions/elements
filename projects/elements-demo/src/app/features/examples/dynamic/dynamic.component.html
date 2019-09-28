@@ -19,18 +19,18 @@
     </div>
     <div class="implementation" *ngIf="example1">
       <ng-template #loading>Loading...</ng-template>
-      <div
+      <ax-lazy-element
         *axLazyElementDynamic="
           'mwc-button';
           url: 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
           loadingTemplate: loading;
           module: true
         "
-        outlined
+        [outlined]="true"
         (click)="increment1()"
       >
         Increment
-      </div>
+      </ax-lazy-element>
       <p>Counter: {{ counter1 }}</p>
     </div>
     <div class="description">
@@ -38,12 +38,20 @@
         In this example we're loading
         <code>&#60;mwc-button></code> using the
         <code>*axLazyElementDynamic</code> directive. Please notice that the
-        original HTML element used in the template is <code>&#60;div></code> and
-        we're specifying the desired tag as the first parameter of
+        original HTML element used in the template is
+        <code>&#60;ax-lazy-element></code> and we're specifying the desired tag
+        as the first parameter of
         <code>*axLazyElementDynamic='mwc-button'</code>. Please, feel free to
         open your browsers dev tools to check resulting element tag!
       </p>
       <pre [highlight]="codeExample1"></pre>
+      <p>
+        You might be asking why do we use <code>&#60;ax-lazy-element></code>.
+        This is not a real custom element and that's exactly the point. We can
+        provide any valid and unused custom element name. That way Angular won't
+        complain if we use custom property and event binding which would be the
+        case if we tried to bind <code>&#60;div [custom]="value"></code>...
+      </p>
     </div>
   </div>
 
@@ -57,12 +65,12 @@
     </div>
     <div class="implementation" *ngIf="example2">
       <ng-template #loading>Loading...</ng-template>
-      <div
+      <ax-lazy-element
         *axLazyElementDynamic="'wired-button'; loadingTemplate: loading"
         (click)="increment2()"
       >
         Increment
-      </div>
+      </ax-lazy-element>
       <p>Counter: {{ counter2 }}</p>
     </div>
     <div class="description">

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
 
 import {
@@ -22,6 +22,7 @@ const options: LazyElementModuleOptions = {
 };
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [DynamicComponent],
   imports: [
     HighlightModule,
