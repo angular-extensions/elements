@@ -29,6 +29,15 @@
     .description {
       flex: 1.5;
     }
+
+    .controls {
+      display: flex;
+      align-items: center;
+
+      span {
+        padding: 20px;
+      }
+    }
   }
 }
 

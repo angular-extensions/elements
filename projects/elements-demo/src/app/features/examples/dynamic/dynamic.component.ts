@@ -16,6 +16,7 @@ export class DynamicComponent implements OnInit {
   codeExample2html = CODE_EXAMPLE_2_HTML;
 
   // example state
+  buttonTypeIsOutlined = true;
   counter1 = 0;
   counter2 = 0;
 

@@ -14,7 +14,8 @@ import {
   MatExpansionModule,
   MatSnackBarModule,
   MatSliderModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatSlideToggleModule
 } from '@angular/material';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ErrorComponent } from './error/error.component';
@@ -32,7 +33,8 @@ const ANGULAR_MATERIAL_MODULES = [
   MatExpansionModule,
   MatSnackBarModule,
   MatSliderModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatSlideToggleModule
 ];
 
 @NgModule({

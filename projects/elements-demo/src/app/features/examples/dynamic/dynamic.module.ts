@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
+import { FormsModule } from '@angular/forms';
 
 import {
   LazyElementModuleOptions,
@@ -26,6 +27,7 @@ const options: LazyElementModuleOptions = {
   declarations: [DynamicComponent],
   imports: [
     HighlightModule,
+    FormsModule,
     LazyElementsModule.forFeature(options),
     SharedModule,
     DynamicRoutingModule

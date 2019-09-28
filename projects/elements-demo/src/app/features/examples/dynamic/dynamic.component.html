@@ -26,12 +26,18 @@
           loadingTemplate: loading;
           module: true
         "
-        [outlined]="true"
+        [outlined]="buttonTypeIsOutlined"
+        [raised]="!buttonTypeIsOutlined"
         (click)="increment1()"
       >
         Increment
       </ax-lazy-element>
       <p>Counter: {{ counter1 }}</p>
+      <div class="controls">
+        <span>Raised button</span>
+        <mat-slide-toggle [(ngModel)]="buttonTypeIsOutlined"></mat-slide-toggle>
+        <span>Outline button</span>
+      </div>
     </div>
     <div class="description">
       <p>
