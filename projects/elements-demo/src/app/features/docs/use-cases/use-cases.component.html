@@ -1,3 +1,12 @@
+<div class="quick-nav">
+  <h3>Quick navigation</h3>
+  <ul>
+    <li><a routerLink="." fragment="sub-applications">Sub-applications</a></li>
+    <li><a routerLink="." fragment="microfrontends">Microfrontends</a></li>
+    <li><a routerLink="." fragment="heavy-components">Heavy components</a></li>
+  </ul>
+</div>
+
 <div class="wrapper">
   <h1>Use cases</h1>
 
@@ -6,7 +15,7 @@
     library...
   </p>
 
-  <h2>Microfrontends style "sub-applications"</h2>
+  <h2 id="sub-applications">Microfrontends style "sub-applications"</h2>
 
   <p>
     Imagine a large enterprise organization building many standalone frontend
@@ -390,12 +399,189 @@
   <blockquote>
     We could still employ query params (or even file name versioning) in case we
     would like to have more granular control about which version of the element
-    will be downloaded by the consumer appto facilitate stuff like A/B testing.
+    will be downloaded by the consumer app to facilitate stuff like A/B testing.
     Please note that this has to be implemented with corresponding support on
     the server side.
   </blockquote>
 
-  <h2>On-demand loading of a heavy 3rd party component</h2>
+  <h2 id="microfrontends">Full microfrontends solutions</h2>
+
+  <p>
+    Let's say we want to build fully dynamic application. An application which
+    will be built from the individual blocks <strong>at runtime</strong> based
+    on some configuration. The configuration itself can be provided from the
+    start but can also be retrieved later, for example asynchronously (and
+    possibly multiple times) from a backend...
+  </p>
+
+  <blockquote>
+    The standard example of such an application is configurable dashboard where
+    users can create fully custom layouts based on what kind of information they
+    need using all the available widgets.
+  </blockquote>
+
+  <svg viewBox="0 0 540 320" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <title>Layer 1</title>
+      <rect
+        fill="#cccccc"
+        stroke-width="2"
+        x="29.5"
+        y="21.0375"
+        width="483"
+        height="276"
+        id="svg_3"
+      />
+      <rect
+        fill="#ffffff"
+        stroke="null"
+        stroke-width="2"
+        stroke-opacity="null"
+        x="46.5"
+        y="38.0375"
+        width="449"
+        height="60"
+        id="svg_6"
+      />
+      <rect
+        fill="#ffffff"
+        stroke-width="9"
+        fill-opacity="null"
+        x="409.500002"
+        y="121.037495"
+        width="80.999998"
+        height="154.999995"
+        id="svg_8"
+        stroke="#ce2f2f"
+      />
+      <text
+        fill="#d32f2f"
+        stroke="null"
+        stroke-width="0"
+        stroke-opacity="null"
+        x="408"
+        y="200"
+        id="svg_9"
+        font-size="15"
+        font-family="'Courier New', Courier, monospace"
+        text-anchor="start"
+        xml:space="preserve"
+        font-weight="bold"
+      >
+        element
+      </text>
+      <rect
+        stroke="#ce2f2f"
+        fill="#ffffff"
+        stroke-width="9"
+        fill-opacity="null"
+        x="50.706488"
+        y="42.690335"
+        width="440.357612"
+        height="50.73477"
+        id="svg_11"
+      />
+      <rect
+        fill="#ffffff"
+        stroke-width="9"
+        fill-opacity="null"
+        x="302.391181"
+        y="120.563562"
+        width="80.999998"
+        height="154.999995"
+        id="svg_12"
+        stroke="#ce2f2f"
+      />
+      <rect
+        stroke="#ce2f2f"
+        fill="#ffffff"
+        stroke-width="9"
+        fill-opacity="null"
+        x="51.680711"
+        y="120.089629"
+        width="227.919177"
+        height="154.999995"
+        id="svg_13"
+      />
+      <text
+        fill="#d32f2f"
+        stroke="null"
+        stroke-width="0"
+        stroke-opacity="null"
+        x="302"
+        y="200"
+        id="svg_14"
+        font-size="15"
+        font-family="'Courier New', Courier, monospace"
+        text-anchor="start"
+        xml:space="preserve"
+        font-weight="bold"
+      >
+        element
+      </text>
+      <text
+        fill="#d32f2f"
+        stroke="null"
+        stroke-width="0"
+        stroke-opacity="null"
+        x="126"
+        y="200"
+        id="svg_15"
+        font-size="15"
+        font-family="'Courier New', Courier, monospace"
+        text-anchor="start"
+        xml:space="preserve"
+        font-weight="bold"
+      >
+        element
+      </text>
+      <text
+        fill="#d32f2f"
+        stroke="null"
+        stroke-width="0"
+        stroke-opacity="null"
+        x="235"
+        y="73"
+        id="svg_16"
+        font-size="15"
+        font-family="'Courier New', Courier, monospace"
+        text-anchor="start"
+        xml:space="preserve"
+        font-weight="bold"
+      >
+        element
+      </text>
+    </g>
+  </svg>
+
+  <p>
+    While it is possible to implement this using
+    <strong>standard Angular approach</strong>, the resulting solution will most
+    likely be very complex and have <strong>severe limitations</strong> in terms
+    of used technologies and whole release / deployment lifecycle management.
+  </p>
+
+  <p>
+    On the other hand, using <code>*axLazyElementDynamic</code> directive
+    enables us to lazy load any web component to be used inside of out Angular
+    application <strong>without hard-coding of its tag name</strong>
+    inside of the consumer Angular component template.
+  </p>
+
+  <blockquote class="large">
+    Using <code>*axLazyElementDynamic</code> enables us to specify custom
+    element tag dynamically during runtime while still leveraging standard
+    Angular template property and event bindings!
+  </blockquote>
+
+  <p>
+    Check out the live demo of this approach in
+    <a routerLink="../../../examples/dynamic">Dynamic examples page</a> !
+  </p>
+
+  <h2 id="heavy-components">
+    On-demand loading of a heavy 3rd party component
+  </h2>
 
   <p>
     Let's say we are building an Angular application and we are paying extra

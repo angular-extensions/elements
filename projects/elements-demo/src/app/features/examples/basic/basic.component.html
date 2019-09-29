@@ -1,7 +1,21 @@
+<div class="quick-nav">
+  <h3>Quick navigation</h3>
+  <ul>
+    <li><a routerLink="." fragment="basic-usage">Basic usage</a></li>
+    <li><a routerLink="." fragment="loading-template">Loading template</a></li>
+    <li><a routerLink="." fragment="error-template">Error template</a></li>
+    <li>
+      <a routerLink="." fragment="advanced-angular-template-binding"
+        >Advanced Angular template bindings</a
+      >
+    </li>
+  </ul>
+</div>
+
 <div class="wrapper">
   <h1>Basic</h1>
 
-  <h2>Plain directive</h2>
+  <h2 id="basic-usage">Basic usage</h2>
   <div class="content">
     <div class="implementation" *ngIf="!example1">
       <button mat-flat-button color="accent" (click)="example1 = true">
@@ -30,7 +44,9 @@
     </div>
   </div>
 
-  <h2>Use loading <code>&#60;ng-template #loading></code></h2>
+  <h2 id="loading-template">
+    Use loading <code>&#60;ng-template #loading></code>
+  </h2>
   <div class="content">
     <div class="implementation" *ngIf="!example2">
       <button mat-flat-button color="accent" (click)="example2 = true">
@@ -67,7 +83,7 @@
     </div>
   </div>
 
-  <h2>Use error <code>&#60;ng-template #error></code></h2>
+  <h2 id="error-template">Use error <code>&#60;ng-template #error></code></h2>
   <div class="content">
     <div class="implementation" *ngIf="!example3">
       <button mat-flat-button color="accent" (click)="example3 = true">
@@ -103,7 +119,9 @@
     </div>
   </div>
 
-  <h2>Advanced binding (objects instead of primitives)</h2>
+  <h2 id="advanced-angular-template-binding">
+    Advanced binding (objects instead of primitives)
+  </h2>
   <div class="content">
     <div class="implementation" *ngIf="!example4">
       <button mat-flat-button color="accent" (click)="example4 = true">

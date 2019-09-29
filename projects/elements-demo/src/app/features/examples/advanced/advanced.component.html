@@ -1,7 +1,34 @@
+<div class="quick-nav">
+  <h3>Quick navigation</h3>
+  <ul>
+    <li>
+      <a routerLink="." fragment="feature-module-pre-configuration"
+        >Feature module pre-configuration</a
+      >
+    </li>
+    <li>
+      <a routerLink="." fragment="inline-options"
+        >Pre-configuration with inline options</a
+      >
+    </li>
+    <li>
+      <a routerLink="." fragment="is-module-option">The "isModule" option</a>
+    </li>
+    <li>
+      <a routerLink="." fragment="global-pre-configuration-with-for-root"
+        >Global pre-configuration with <code>forRoot()</code></a
+      >
+    </li>
+    <li><a routerLink="." fragment="preloading">Element pre-loading</a></li>
+  </ul>
+</div>
+
 <div class="wrapper">
   <h1>Advanced</h1>
 
-  <h2>Elements configured in a feature module</h2>
+  <h2 id="feature-module-pre-configuration">
+    Elements configured in a feature module
+  </h2>
   <div class="content">
     <div class="implementation" *ngIf="!example1">
       <button mat-flat-button color="accent" (click)="example1 = true">
@@ -26,7 +53,9 @@
     </div>
   </div>
 
-  <h2>Elements configured in a feature module with HTML inline options</h2>
+  <h2 id="inline-options">
+    Elements configured in a feature module with HTML inline options
+  </h2>
   <div class="content">
     <div class="implementation" *ngIf="!example2">
       <button mat-flat-button color="accent" (click)="example2 = true">
@@ -54,7 +83,7 @@
     </div>
   </div>
 
-  <h2>
+  <h2 id="is-module-option">
     Elements configured in a feature module with <code>isModule</code> option
   </h2>
   <div class="content">
@@ -81,7 +110,7 @@
     </div>
   </div>
 
-  <h2>
+  <h2 id="global-pre-configuration-with-for-root">
     Elements configured in <code>AppModule</code> or
     <code>CoreModule</code> using <code>forRoot</code>
   </h2>
@@ -111,22 +140,24 @@
     </div>
   </div>
 
-  <h2>
+  <h2 id="preloading">
     Preloading
   </h2>
   <div class="content">
     <div class="implementation">
-      <button mat-flat-button color="accent" (click)="preload()">
-        Preload
-      </button>
-      <button
-        class="additional-btn"
-        mat-flat-button
-        color="accent"
-        (click)="preloadFab()"
-      >
-        Preload Fab
-      </button>
+      <div>
+        <button mat-flat-button color="accent" (click)="preload()">
+          Preload everything</button
+        >&nbsp;
+        <button
+          class="additional-btn"
+          mat-flat-button
+          color="accent"
+          (click)="preloadFab()"
+        >
+          Preload "fab" only (the previous example)
+        </button>
+      </div>
     </div>
     <div class="description">
       <p>
@@ -134,7 +165,9 @@
         <code>preload</code> method to preload all the configured modules, or
         specify the list of <code>tags</code> you want to preload. You can try
         to refresh the page, preload elements and then try previous examples.
-        Notice how they show elements immediately because they were pre-loaded!
+        Notice how they show elements immediately (depending on the newtrowk
+        conditions ) because they were pre-loaded! Check out the dev tools
+        network tab to see it in action...
       </p>
       <pre [highlight]="codeExample5html"></pre>
       <pre [highlight]="codeExample5ts"></pre>

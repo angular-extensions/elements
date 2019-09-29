@@ -1,3 +1,17 @@
+<div class="quick-nav">
+  <h3>Quick navigation</h3>
+  <ul>
+    <li>
+      <a routerLink="." fragment="dynamic-element-tag">Dynamic element tag</a>
+    </li>
+    <li>
+      <a routerLink="." fragment="module-pre-configuration"
+        >Dynamic element tag with module pre-configuration</a
+      >
+    </li>
+  </ul>
+</div>
+
 <div class="wrapper">
   <h1>Dynamic</h1>
 
@@ -9,7 +23,7 @@
     dynamic and configurable microfrontend applications!
   </p>
 
-  <h2>Dynamic element tag</h2>
+  <h2 id="dynamic-element-tag">Dynamic element tag</h2>
   <div class="content">
     <div class="implementation" *ngIf="!example1">
       <button mat-flat-button color="accent" (click)="example1 = true">
@@ -61,7 +75,9 @@
     </div>
   </div>
 
-  <h2>Dynamic element tag with module configuration</h2>
+  <h2 id="module-pre-configuration">
+    Dynamic element tag with module pre-configuration
+  </h2>
   <div class="content">
     <div class="implementation" *ngIf="!example2">
       <button mat-flat-button color="accent" (click)="example2 = true">
