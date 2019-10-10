@@ -123,8 +123,16 @@
     <div class="implementation" *ngIf="example3">
       <div class="actions">
         <ng-container *ngFor="let c of dynamicConfigs">
+          <ng-template #loading
+            >Loading <{{ c.tag }}>...&nbsp;&nbsp;</ng-template
+          >
           <ax-lazy-element
-            *axLazyElementDynamic="c.tag; url: c.url; module: c.isModule"
+            *axLazyElementDynamic="
+              c.tag;
+              url: c.url;
+              module: c.isModule;
+              loadingTemplate: loading
+            "
             (click)="performAction(c.actionName)"
             raised
           >
