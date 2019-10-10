@@ -44,6 +44,7 @@
     "@angular/router": "^7.0.0",
     "@angular/service-worker": "^8.2.4",
     "core-js": "^2.0.0",
+    "hammerjs": "^2.0.8",
     "highlight.js": "^9.15.10",
     "ngx-highlightjs": "^3.0.3",
     "rxjs": "~6.4.0",
