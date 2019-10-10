@@ -55,6 +55,15 @@
       wired-button {
         padding: 10px 15px;
       }
+
+      .actions {
+        display: flex;
+        align-items: center;
+
+        > * {
+          margin: 10px;
+        }
+      }
     }
 
     .description {

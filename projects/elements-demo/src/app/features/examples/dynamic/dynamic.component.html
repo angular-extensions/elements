@@ -109,4 +109,41 @@
       <pre [highlight]="codeExample2module"></pre>
     </div>
   </div>
+
+  <h2 id="multiple-different-dynamic-elements">
+    Multiple different dynamic elements
+  </h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example3">
+      <button mat-flat-button color="accent" (click)="example3 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example3">
+      <div class="actions">
+        <ng-container *ngFor="let c of dynamicConfigs">
+          <ax-lazy-element
+            *axLazyElementDynamic="c.tag; url: c.url; module: c.isModule"
+            (click)="performAction(c.actionName)"
+            raised
+          >
+            {{ c.content }}
+          </ax-lazy-element>
+        </ng-container>
+      </div>
+      <p>Counter: {{ counter3 }}</p>
+    </div>
+    <div class="description">
+      <p>
+        The <code>*axLazyElementDynamic</code> directive works also with
+        <code>*ngFor</code>
+        directive to render fully dynamic configuration which could have been
+        retrieved from backend during the runtime in comparison to hard-coded
+        into the template during build time! Please, feel free to open your
+        browsers dev tools to check resulting element tags!
+      </p>
+      <pre [highlight]="codeExample3html"></pre>
+    </div>
+  </div>
 </div>

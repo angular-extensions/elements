@@ -42,9 +42,6 @@ export class LazyElementDynamicDirective implements OnInit {
       );
     }
 
-    const host = (this.template as any)._def.element.template.nodes[0].element;
-    host.name = this.tag;
-
     const elementConfig =
       this.elementsLoaderService.getElementConfig(this.tag) ||
       ({} as ElementConfig);
@@ -62,6 +59,9 @@ export class LazyElementDynamicDirective implements OnInit {
     this.elementsLoaderService
       .loadElement(this.url, this.tag, this.isModule)
       .then(() => {
+        const host = (this.template as any)._def.element.template.nodes[0]
+          .element;
+        host.name = this.tag;
         this.vcr.clear();
         this.vcr.createEmbeddedView(this.template);
       })
