@@ -20,6 +20,12 @@ a {
   }
 }
 
+iframe {
+  width: 160px;
+  height: 20px;
+  margin: 0 0 0 10px;
+}
+
 :host-context(.responsive) {
   .spacer-responsive {
     flex: 1 0 auto;

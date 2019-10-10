@@ -25,6 +25,13 @@
       (isResponsiveLayout | async) ? '' : '@angular-extensions/'
     }}elements</span
   >
+  <iframe
+    *ngIf="!(isResponsiveLayout | async)"
+    allowtransparency="true"
+    frameborder="0"
+    scrolling="no"
+    src="//platform.twitter.com/widgets/follow_button.html?screen_name=tomastrajan&show_screen_name=false"
+  ></iframe>
 
   <span class="spacer"></span>
   <ng-container *ngIf="(isResponsiveLayout | async) === false">

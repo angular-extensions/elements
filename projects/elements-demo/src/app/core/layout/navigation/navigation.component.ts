@@ -18,6 +18,10 @@ const NAVIGATION = [
         url: 'docs/how-it-works'
       },
       {
+        label: 'Configuration',
+        url: 'docs/configuration'
+      },
+      {
         label: 'Use cases',
         url: 'docs/use-cases'
       },
@@ -46,6 +50,10 @@ const NAVIGATION = [
       {
         label: 'Advanced',
         url: 'examples/advanced'
+      },
+      {
+        label: 'Dynamic',
+        url: 'examples/dynamic'
       }
     ]
   },

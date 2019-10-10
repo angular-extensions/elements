@@ -6,6 +6,7 @@
 
   .intro {
     text-align: center;
+    margin: 0 0 40px 0;
 
     &:before {
       font-family: Lato;
@@ -44,8 +45,6 @@
   }
 
   .cta {
-    margin: 40px 0 0 0;
-
     button,
     a {
       margin: 5px;

@@ -52,6 +52,7 @@ url: string;</pre
                   *axLazyElement="url">&#60;/some-element></code
                 >
               </li>
+              <code color="accent">Pre-configurable</code>
             </ul>
           </td>
         </tr>
@@ -130,6 +131,337 @@ isModule: boolean;</pre
             <code color="accent">Optional</code>&nbsp;<code color="accent"
               >Default: false</code
             >
+            <code color="accent">Pre-configurable</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>LazyElementModule</h2>
+  <code color="accent">Module</code>
+  <br />
+  <p>
+    An Angular module which exports <code>*axLazyElement</code> and
+    <code>*axLazyElementDynamic</code> directives so it has to be imported in
+    other Angular modules which want to use these directives in the templates of
+    their components. Module can be also pre-configured using
+    <code>forRoot()</code> and <code>forFeature()</code> static methods.
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Function</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>forRoot(options: LazyElementModuleRootOptions)</pre></td>
+          <td>
+            <p>
+              The <code>forRoot()</code> static method which accepts options of
+              <code>LazyElementModuleRootOptions</code> type <br /><code
+                color="accent"
+                >Optional</code
+              >
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><pre>forFeature(options: LazyElementModuleOptions)</pre></td>
+          <td>
+            <p>
+              The <code>forFeature()</code> static method which accepts options
+              of <code>LazyElementModuleOptions</code> type <br /><code
+                color="accent"
+                >Optional</code
+              >
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>LazyElementModuleRootOptions</h2>
+  <code color="accent">Interface</code>
+  <br />
+  <p>
+    Type of an option object that can be passed to static
+    <code>forRoot()</code> method of <code>LazyElementModule</code>.
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Property</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>elementConfigs: ElementConfig[]</pre></td>
+          <td>
+            <p>
+              Optional array of <code>ElementConfig</code>... <br />
+              <code color="accent">Optional</code>&nbsp;<code color="accent"
+                >Default: []</code
+              >
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><pre>rootOptions: LazyElementRootOptions</pre></td>
+          <td>
+            <p>
+              Optional object of <code>LazyElementRootOptions</code>... <br />
+              <code color="accent">Optional</code>&nbsp;<code color="accent"
+                >Default: &#123; }</code
+              >
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>LazyElementRootOptions</h2>
+  <code color="accent">Interface</code>
+  <br />
+  <p>
+    Type of an option object that can be passed as the
+    <code>rootOptions</code> of the
+    <code>LazyElementModuleRootOptions</code> into the
+    <code>forRoot()</code> method of <code>LazyElementModule</code>. These
+    options will be applied to every element loaded using
+    <code>*axLazyElement</code> or
+    <code>*axLazyElementDynamic</code> directives. These options can be
+    overridden by the element configuration in <code>forFeature()</code> and
+    lastly by the inline configuration of <code>*axLazyElement</code> directive.
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Property</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>loadingComponent: Type&#60;any></pre></td>
+          <td>
+            <p>
+              Component class to be displayed during element loading (similar to
+              <code>loadingTemplate</code> that can be specified inline in the
+              template, eg
+              <code>*axLazyElement="url; loadingTemplate: loading;"</code>)
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>errorComponent: Type&#60;any></pre></td>
+          <td>
+            <p>
+              Component class to be displayed after element loading failed
+              (similar to
+              <code>errorTemplate</code> that can be specified inline in the
+              template, eg
+              <code>*axLazyElement="url; errorTemplate: error;"</code>)
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>isModule: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the element is loaded as bundle (default)
+              or as module. This will influence the generated
+              <code>&#60;script></code> tag which will get
+              <code>type="module"</code> in case this flag was set to true.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>preload: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the all the modules should be preloaded
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>LazyElementModuleOptions</h2>
+  <code color="accent">Interface</code>
+  <br />
+  <p>
+    Type of an option object that can be passed to static
+    <code>forFeature()</code> method of <code>LazyElementModule</code>.
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Property</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>elementConfigs: ElementConfig[]</pre></td>
+          <td>
+            <p>
+              Optional array of <code>ElementConfig</code>... <br />
+              <code color="accent">Optional</code>&nbsp;<code color="accent"
+                >Default: []</code
+              >
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>ElementConfig</h2>
+  <code color="accent">Interface</code>
+  <br />
+  <p>
+    The element config used to pre-configure <code>LazyElementModule</code> so
+    that we do not have to specify url (and other supported options) inline
+    inside of the <code>*axLazyElement</code> and
+    <code>*axLazyElementDynamic</code> directives. The configs are matched to
+    particular elements by the tag. The elements are still loaded lazily even
+    though they are preconfigured in the module during application startup...
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Property</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>tag: string</pre></td>
+          <td>
+            <p>Tag of an element (eg: <code>some-element</code>)</p>
+          </td>
+        </tr>
+        <tr>
+          <td><pre>url: string</pre></td>
+          <td>
+            <p>
+              The url of an element bundle or ES module (eg:
+              <code>https://my-org.com/elements/some-element.js</code>)
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><pre>isModule: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the element is loaded as bundle (default)
+              or as module. This will influence the generated
+              <code>&#60;script></code> tag which will get
+              <code>type="module"</code> in case this flag was set to true.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>loadingComponent: Type&#60;any></pre></td>
+          <td>
+            <p>
+              Component class to be displayed during element loading (similar to
+              <code>loadingTemplate</code> that can be specified inline in the
+              template, eg
+              <code>*axLazyElement="url; loadingTemplate: loading;"</code>)
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>errorComponent: Type&#60;any></pre></td>
+          <td>
+            <p>
+              Component class to be displayed after element loading failed
+              (similar to
+              <code>errorTemplate</code> that can be specified inline in the
+              template, eg
+              <code>*axLazyElement="url; errorTemplate: error;"</code>)
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>preload: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the element is preloaded.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>LazyElementsLoaderService</h2>
+  <code color="accent">Service</code>
+  <br />
+  <p>
+    A service used for loading the Angular element (or any other webcomponent)
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Method</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>preload(tags? : string[]): void</pre></td>
+          <td>
+            <p>
+              Preloads the specified tags which are preconfigured using
+              <code>forRoot</code> and <code>forFeature</code>. If
+              <code>tags</code> is <code>undefined|null</code> preload all the
+              configured tags. <br />
+              Parameters: <br />
+              tags <code color="accent">Optional</code>&nbsp;<code
+                color="accent"
+                >Default: undefined</code
+              ><br />
+              returns: <code color="accent">void</code>
+            </p>
           </td>
         </tr>
       </tbody>

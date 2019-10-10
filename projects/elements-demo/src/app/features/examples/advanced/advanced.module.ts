@@ -10,17 +10,35 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import { AdvancedRoutingModule } from './advanced-routing.module';
 import { AdvancedComponent } from './advanced.component';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
+import { ErrorComponent } from '../../../shared/error/error.component';
 
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
-      tag: 'ion-button',
-      url: 'https://unpkg.com/@ionic/core@4.6.2/dist/ionic/ionic.js'
+      tag: 'wired-button',
+      url:
+        'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js',
+      loadingComponent: SpinnerComponent,
+      errorComponent: ErrorComponent,
+      preload: true
+    },
+    {
+      tag: 'mwc-switch',
+      url: 'https://unpkg.com/@material/mwc-switch@0.6.0/mwc-switch.js?module',
+      isModule: true
     },
     {
       tag: 'mwc-checkbox',
       url:
-        'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module'
+        'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module',
+      isModule: true
+    },
+    {
+      tag: 'mwc-fab',
+      url: 'https://unpkg.com/@material/mwc-fab@0.6.0/mwc-fab.js?module',
+      isModule: true,
+      loadingComponent: SpinnerComponent
     }
   ]
 };
@@ -30,6 +48,7 @@ const options: LazyElementModuleOptions = {
   declarations: [AdvancedComponent],
   imports: [
     HighlightModule,
+    LazyElementsModule.forFeature(options),
     LazyElementsModule.forFeature(options),
     SharedModule,
     AdvancedRoutingModule

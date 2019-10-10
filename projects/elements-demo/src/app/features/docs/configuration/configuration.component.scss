@@ -1,0 +1,22 @@
+ol {
+  margin: 0 0 20px 0;
+}
+
+h2 {
+  margin: 40px 0 10px 0;
+  font-weight: bold;
+}
+
+ul {
+  li {
+    &.done {
+      text-decoration: line-through;
+    }
+  }
+}
+
+:host-context(.responsive-large) {
+  .wrapper {
+    width: 70%;
+  }
+}

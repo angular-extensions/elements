@@ -22,6 +22,11 @@ const routes: Routes = [
         path: 'advanced',
         loadChildren: () =>
           import('./advanced/advanced.module').then(m => m.AdvancedModule)
+      },
+      {
+        path: 'dynamic',
+        loadChildren: () =>
+          import('./dynamic/dynamic.module').then(m => m.DynamicModule)
       }
     ]
   }

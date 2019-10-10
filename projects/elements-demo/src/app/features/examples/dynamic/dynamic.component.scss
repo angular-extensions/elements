@@ -52,20 +52,31 @@
         margin: 10px 0 0 0;
       }
 
-      .controls {
+      wired-button {
+        padding: 10px 15px;
+      }
+
+      .actions {
         display: flex;
         align-items: center;
 
-        .values {
-          display: inline-block;
-          width: 100px;
-          text-align: center;
+        > * {
+          margin: 10px;
         }
       }
     }
 
     .description {
       flex: 1.5;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+
+      span {
+        padding: 20px;
+      }
     }
   }
 }

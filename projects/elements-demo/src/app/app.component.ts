@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   @HostBinding('class')
   demoRootCssClass = '';
 
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
 
   navOpened: Observable<boolean>;
   navToggled = new BehaviorSubject(false);

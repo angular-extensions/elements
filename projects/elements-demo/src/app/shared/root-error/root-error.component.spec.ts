@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MechanismComponent } from './mechanism.component';
+import { RootErrorComponent } from './root-error.component';
 
-describe('MechanismComponent', () => {
-  let component: MechanismComponent;
-  let fixture: ComponentFixture<MechanismComponent>;
+describe('RootErrorComponent', () => {
+  let component: RootErrorComponent;
+  let fixture: ComponentFixture<RootErrorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MechanismComponent]
+      declarations: [RootErrorComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MechanismComponent);
+    fixture = TestBed.createComponent(RootErrorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

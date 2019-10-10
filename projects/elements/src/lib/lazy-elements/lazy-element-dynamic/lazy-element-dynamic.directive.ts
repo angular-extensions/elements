@@ -15,13 +15,18 @@ import {
 const LOG_PREFIX = '@angular-extensions/elements';
 
 @Directive({
-  selector: '[axLazyElement]'
+  selector: '[axLazyElementDynamic]'
 })
-export class LazyElementDirective implements OnInit {
-  @Input('axLazyElement') url: string;
-  @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
+export class LazyElementDynamicDirective implements OnInit {
+  @Input('axLazyElementDynamic') tag: string;
+  @Input('axLazyElementDynamicUrl') url: string; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementDynamicLoadingTemplate') loadingTemplateRef: TemplateRef<
+    any
+  >; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementDynamicErrorTemplate') errorTemplateRef: TemplateRef<
+    any
+  >; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementDynamicModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
 
   constructor(
     private vcr: ViewContainerRef,
@@ -31,11 +36,14 @@ export class LazyElementDirective implements OnInit {
   ) {}
 
   ngOnInit() {
-    const elementTag = (this.template as any)._def.element.template.nodes[0]
-      .element.name;
+    if (!this.tag || this.tag.length === 0 || !this.tag.includes('-')) {
+      throw new Error(
+        `${LOG_PREFIX} - Valid tag has to be specified when using *axLazyElementDynamic directive (use *axLazyElementDynamic="'some-tag'"), got: "${this.tag}"`
+      );
+    }
 
     const elementConfig =
-      this.elementsLoaderService.getElementConfig(elementTag) ||
+      this.elementsLoaderService.getElementConfig(this.tag) ||
       ({} as ElementConfig);
     const options = this.elementsLoaderService.options;
     const loadingComponent =
@@ -47,16 +55,20 @@ export class LazyElementDirective implements OnInit {
       const factory = this.cfr.resolveComponentFactory(loadingComponent);
       this.vcr.createComponent(factory);
     }
+
     this.elementsLoaderService
-      .loadElement(this.url, elementTag, this.isModule)
+      .loadElement(this.url, this.tag, this.isModule)
       .then(() => {
+        const host = (this.template as any)._def.element.template.nodes[0]
+          .element;
+        host.name = this.tag;
         this.vcr.clear();
         this.vcr.createEmbeddedView(this.template);
       })
       .catch(() => {
-        this.vcr.clear();
         const errorComponent =
           elementConfig.errorComponent || options.errorComponent;
+        this.vcr.clear();
         if (this.errorTemplateRef) {
           this.vcr.createEmbeddedView(this.errorTemplateRef);
         } else if (errorComponent) {
@@ -64,7 +76,7 @@ export class LazyElementDirective implements OnInit {
           this.vcr.createComponent(factory);
         } else {
           console.error(
-            `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
+            `${LOG_PREFIX} - Loading of element <${this.tag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElementDynamic="errorTemplate: error" to display customized error message in place of element`
           );
         }
       });

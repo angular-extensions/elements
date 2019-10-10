@@ -134,9 +134,18 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       imports: [
         LazyElementsModule.forRoot({
           elementConfigs: [
-            { tag: 'some-element', url: 'some-url' },
-            { tag: 'some-element', url: 'some-url' },
-            { tag: 'some-other-element', url: 'some-other-url' }
+            { tag: 'some-element', url: 'http://elements.com/some-url' },
+            { tag: 'some-element', url: 'http://elements.com/some-url' },
+            {
+              tag: 'some-other-element',
+              url: 'http://elements.com/some-other-url',
+              preload: true
+            },
+            {
+              tag: 'some-module-element',
+              url: 'http://elements.com/some-module-url',
+              isModule: true
+            }
           ]
         })
       ]
@@ -152,14 +161,40 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
 
   it('it is preconfigured by the module config, tags can be added only once', () => {
     expect(service).toBeTruthy();
-    expect(service.configs.length).toEqual(2);
+    expect(service.configs.length).toEqual(3);
     expect(service.configs[0]).toEqual({
       tag: 'some-element',
-      url: 'some-url'
+      url: 'http://elements.com/some-url'
     });
     expect(service.configs[1]).toEqual({
       tag: 'some-other-element',
-      url: 'some-other-url'
+      url: 'http://elements.com/some-other-url',
+      preload: true
     });
+    expect(service.configs[2]).toEqual({
+      tag: 'some-module-element',
+      url: 'http://elements.com/some-module-url',
+      isModule: true
+    });
+  });
+
+  it('adds a script tag with module type and correct url', () => {
+    service.loadElement(undefined, 'some-module-element', undefined);
+
+    expect(appendChildSpy).toHaveBeenCalledTimes(1);
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-module-url'
+    );
+    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('module');
+  });
+
+  it('should preload all the configurations', () => {
+    service.preload();
+    expect(appendChildSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it('should preload only specified tags', () => {
+    service.preload(['some-element']);
+    expect(appendChildSpy).toHaveBeenCalledTimes(1);
   });
 });

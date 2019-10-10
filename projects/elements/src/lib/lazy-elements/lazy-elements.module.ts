@@ -3,27 +3,41 @@ import {
   Optional,
   Inject,
   ModuleWithProviders,
-  InjectionToken
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  Type,
+  SkipSelf
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LazyElementDirective } from './lazy-element/lazy-element.directive';
+import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element-dynamic.directive';
 import {
-  LazyElementsLoaderService,
-  ElementConfig
+  ElementConfig,
+  LazyElementsLoaderService
 } from './lazy-elements-loader.service';
+import {
+  LAZY_ELEMENT_ROOT_OPTIONS,
+  LAZY_ELEMENT_CONFIGS,
+  LAZY_ELEMENT_ROOT_GUARD
+} from './lazy-elements.tokens';
 
-export const LAZY_ELEMENT_CONFIGS = new InjectionToken<ElementConfig[]>(
-  'LAZY_ELEMENT_CONFIGS'
-);
+export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
+  if (options) {
+    throw new TypeError(
+      `LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.`
+    );
+  }
+  return 'guarded';
+}
 
 @NgModule({
-  declarations: [LazyElementDirective],
+  declarations: [LazyElementDirective, LazyElementDynamicDirective],
   imports: [CommonModule],
-  exports: [LazyElementDirective]
+  exports: [LazyElementDirective, LazyElementDynamicDirective],
+  providers: []
 })
 export class LazyElementsModule {
-  static forRoot(options: LazyElementModuleOptions): ModuleWithProviders {
+  static forRoot(options: LazyElementModuleRootOptions): ModuleWithProviders {
     return {
       ngModule: LazyElementsModule,
       providers: [
@@ -32,6 +46,20 @@ export class LazyElementsModule {
           useValue:
             options && options.elementConfigs ? options.elementConfigs : [],
           multi: true
+        },
+        {
+          provide: LAZY_ELEMENT_ROOT_OPTIONS,
+          useValue: options.rootOptions ? options.rootOptions : {}
+        },
+        {
+          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+          useValue: options,
+          multi: true
+        },
+        {
+          provide: LAZY_ELEMENT_ROOT_GUARD,
+          useFactory: createLazyElementRootGuard,
+          deps: [[LAZY_ELEMENT_CONFIGS, new Optional(), new SkipSelf()]]
         }
       ]
     };
@@ -46,6 +74,11 @@ export class LazyElementsModule {
           useValue:
             options && options.elementConfigs ? options.elementConfigs : [],
           multi: true
+        },
+        {
+          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+          useValue: options && options.elementConfigs,
+          multi: true
         }
       ]
     };
@@ -55,7 +88,10 @@ export class LazyElementsModule {
     lazyElementsLoaderService: LazyElementsLoaderService,
     @Optional()
     @Inject(LAZY_ELEMENT_CONFIGS)
-    elementConfigsMultiProvider: ElementConfig[][]
+    elementConfigsMultiProvider: ElementConfig[][],
+    @Optional()
+    @Inject(LAZY_ELEMENT_ROOT_GUARD)
+    guard: any
   ) {
     if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
       const lastAddedConfigs =
@@ -67,4 +103,16 @@ export class LazyElementsModule {
 
 export interface LazyElementModuleOptions {
   elementConfigs?: ElementConfig[];
+}
+
+export interface LazyElementModuleRootOptions {
+  elementConfigs?: ElementConfig[];
+  rootOptions?: LazyElementRootOptions;
+}
+
+export interface LazyElementRootOptions {
+  loadingComponent?: Type<any>;
+  errorComponent?: Type<any>;
+  isModule?: boolean;
+  preload?: boolean;
 }

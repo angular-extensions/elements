@@ -1,0 +1,162 @@
+<div class="quick-nav">
+  <h3>Quick navigation</h3>
+  <ul>
+    <li>
+      <a routerLink="." fragment="dynamic-element-tag">Dynamic element tag</a>
+    </li>
+    <li>
+      <a routerLink="." fragment="module-pre-configuration"
+        >Dynamic element tag with module pre-configuration</a
+      >
+    </li>
+    <li>
+      <a routerLink="." fragment="multiple-different-dynamic-elements"
+        >Multiple different dynamic elements</a
+      >
+    </li>
+  </ul>
+</div>
+
+<div class="wrapper">
+  <h1>Dynamic</h1>
+
+  <p>
+    These example explain how to configure element tag dynamically using
+    <code>*axLazyElementDynamic</code> directive. This can be very useful if we
+    want to retrieve element configuration from somewhere else (for example a
+    backend or a json config file). Such a setup can enable us to develop fully
+    dynamic and configurable microfrontend applications!
+  </p>
+
+  <h2 id="dynamic-element-tag">Dynamic element tag</h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example1">
+      <button mat-flat-button color="accent" (click)="example1 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example1">
+      <ng-template #loading>Loading...</ng-template>
+      <ax-lazy-element
+        *axLazyElementDynamic="
+          'mwc-button';
+          url: 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
+          loadingTemplate: loading;
+          module: true
+        "
+        [outlined]="buttonTypeIsOutlined"
+        [raised]="!buttonTypeIsOutlined"
+        (click)="increment1()"
+      >
+        Increment
+      </ax-lazy-element>
+      <p>Counter: {{ counter1 }}</p>
+      <div class="controls">
+        <span>Raised button</span>
+        <mat-slide-toggle [(ngModel)]="buttonTypeIsOutlined"></mat-slide-toggle>
+        <span>Outline button</span>
+      </div>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're loading
+        <code>&#60;mwc-button></code> using the
+        <code>*axLazyElementDynamic</code> directive. Please notice that the
+        original HTML element used in the template is
+        <code>&#60;ax-lazy-element></code> and we're specifying the desired tag
+        as the first parameter of
+        <code>*axLazyElementDynamic='mwc-button'</code>. Please, feel free to
+        open your browsers dev tools to check resulting element tag!
+      </p>
+      <pre [highlight]="codeExample1"></pre>
+      <p>
+        You might be asking why do we use <code>&#60;ax-lazy-element></code>.
+        This is not a real custom element and that's exactly the point. We can
+        provide any valid and unused custom element name. That way Angular won't
+        complain if we use custom property and event binding which would be the
+        case if we tried to bind <code>&#60;div [custom]="value"></code>...
+      </p>
+    </div>
+  </div>
+
+  <h2 id="module-pre-configuration">
+    Dynamic element tag with module pre-configuration
+  </h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example2">
+      <button mat-flat-button color="accent" (click)="example2 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example2">
+      <ng-template #loading>Loading...</ng-template>
+      <ax-lazy-element
+        *axLazyElementDynamic="'wired-button'; loadingTemplate: loading"
+        (click)="increment2()"
+      >
+        Increment
+      </ax-lazy-element>
+      <p>Counter: {{ counter2 }}</p>
+    </div>
+    <div class="description">
+      <p>
+        The <code>*axLazyElementDynamic</code> directive works also with the
+        pre-configured <code>LazyElementsModule</code>. That way we don't have
+        to specify url of the element in the template. Please notice that the
+        original HTML element used in the template is <code>&#60;div></code> and
+        we're specifying the desired tag as the first parameter of
+        <code>*axLazyElementDynamic='wired-button'</code>. Please, feel free to
+        open your browsers dev tools to check resulting element tag!
+      </p>
+      <pre [highlight]="codeExample2html"></pre>
+      <pre [highlight]="codeExample2module"></pre>
+    </div>
+  </div>
+
+  <h2 id="multiple-different-dynamic-elements">
+    Multiple different dynamic elements
+  </h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example3">
+      <button mat-flat-button color="accent" (click)="example3 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example3">
+      <div class="actions">
+        <ng-container *ngFor="let c of dynamicConfigs">
+          <ng-template #loading
+            >Loading <{{ c.tag }}>...&nbsp;&nbsp;</ng-template
+          >
+          <ax-lazy-element
+            *axLazyElementDynamic="
+              c.tag;
+              url: c.url;
+              module: c.isModule;
+              loadingTemplate: loading
+            "
+            (click)="performAction(c.actionName)"
+            raised
+          >
+            {{ c.content }}
+          </ax-lazy-element>
+        </ng-container>
+      </div>
+      <p>Counter: {{ counter3 }}</p>
+    </div>
+    <div class="description">
+      <p>
+        The <code>*axLazyElementDynamic</code> directive works also with
+        <code>*ngFor</code>
+        directive to render fully dynamic configuration which could have been
+        retrieved from backend during the runtime in comparison to hard-coded
+        into the template during build time! Please, feel free to open your
+        browsers dev tools to check resulting element tags!
+      </p>
+      <pre [highlight]="codeExample3html"></pre>
+    </div>
+  </div>
+</div>
