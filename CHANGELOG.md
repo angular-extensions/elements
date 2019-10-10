@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.9.0](https://github.com/angular-extensions/elements/compare/v8.8.0...v8.9.0) (2019-10-10)
+
+### Bug Fixes
+
+- **demo:** add loading template for fully dynamic example ([12f09ba](https://github.com/angular-extensions/elements/commit/12f09ba))
+- **demo:** remove ionic (stencil) demos to fix Angular routing, fix [#14](https://github.com/angular-extensions/elements/issues/14) ([428e242](https://github.com/angular-extensions/elements/commit/428e242))
+- **dynamic:** multiple different tags from single element, fixes [#25](https://github.com/angular-extensions/elements/issues/25) ([51d576f](https://github.com/angular-extensions/elements/commit/51d576f))
+
+### Features
+
+- **demo:** add quick nav to major pages, add microfrontends use case ([fe89077](https://github.com/angular-extensions/elements/commit/fe89077))
+- **demo:** improve dynamic example docs ([49e211f](https://github.com/angular-extensions/elements/commit/49e211f))
+- **demo:** improve dynamic example docs ([c23b904](https://github.com/angular-extensions/elements/commit/c23b904))
+
 ## [8.8.0](https://github.com/angular-extensions/elements/compare/v8.7.0...v8.8.0) (2019-09-24)
 
 ### Features
