@@ -18,7 +18,9 @@ import {
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
   LAZY_ELEMENT_CONFIGS,
-  LAZY_ELEMENT_ROOT_GUARD
+  LAZY_ELEMENT_ROOT_GUARD,
+  LAZY_ELEMENT_MODULE_ROOT_OPTIONS,
+  LAZY_ELEMENT_MODULE_OPTIONS
 } from './lazy-elements.tokens';
 
 export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
@@ -30,6 +32,32 @@ export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
   return 'guarded';
 }
 
+// tslint:disable:unified-signatures
+// Switching to unified signatures breaks the typechecking
+export function elementConfigsFactory(
+  options: () => LazyElementModuleOptions | LazyElementModuleRootOptions
+): ElementConfig[];
+export function elementConfigsFactory(
+  options: LazyElementModuleOptions | LazyElementModuleRootOptions
+): ElementConfig[];
+export function elementConfigsFactory(options) {
+  const optionsObject = typeof options === 'function' ? options() : options;
+  return optionsObject && optionsObject.elementConfigs
+    ? optionsObject.elementConfigs
+    : [];
+}
+
+export function rootOptionsFactory(
+  options: () => LazyElementModuleRootOptions | LazyElementModuleRootOptions
+): LazyElementRootOptions;
+export function rootOptionsFactory(
+  options: LazyElementModuleRootOptions | LazyElementModuleRootOptions
+): LazyElementRootOptions;
+export function rootOptionsFactory(options) {
+  const optionsObject = typeof options === 'function' ? options() : options;
+  return (optionsObject && optionsObject.rootOptions) || {};
+}
+
 @NgModule({
   declarations: [LazyElementDirective, LazyElementDynamicDirective],
   imports: [CommonModule],
@@ -37,19 +65,28 @@ export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
   providers: []
 })
 export class LazyElementsModule {
-  static forRoot(options: LazyElementModuleRootOptions): ModuleWithProviders {
+  static forRoot(
+    options: () => LazyElementModuleRootOptions
+  ): ModuleWithProviders;
+  static forRoot(options: LazyElementModuleRootOptions): ModuleWithProviders;
+  static forRoot(options) {
     return {
       ngModule: LazyElementsModule,
       providers: [
         {
+          provide: LAZY_ELEMENT_MODULE_ROOT_OPTIONS,
+          useValue: options
+        },
+        {
           provide: LAZY_ELEMENT_CONFIGS,
-          useValue:
-            options && options.elementConfigs ? options.elementConfigs : [],
+          useFactory: elementConfigsFactory,
+          deps: [LAZY_ELEMENT_MODULE_ROOT_OPTIONS],
           multi: true
         },
         {
           provide: LAZY_ELEMENT_ROOT_OPTIONS,
-          useValue: options.rootOptions ? options.rootOptions : {}
+          useFactory: rootOptionsFactory,
+          deps: [LAZY_ELEMENT_MODULE_ROOT_OPTIONS]
         },
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -65,14 +102,22 @@ export class LazyElementsModule {
     };
   }
 
-  static forFeature(options: LazyElementModuleOptions): ModuleWithProviders {
+  static forFeature(
+    options: () => LazyElementModuleOptions
+  ): ModuleWithProviders;
+  static forFeature(options: LazyElementModuleOptions): ModuleWithProviders;
+  static forFeature(options) {
     return {
       ngModule: LazyElementsModule,
       providers: [
         {
+          provide: LAZY_ELEMENT_MODULE_OPTIONS,
+          useValue: options
+        },
+        {
           provide: LAZY_ELEMENT_CONFIGS,
-          useValue:
-            options && options.elementConfigs ? options.elementConfigs : [],
+          useFactory: elementConfigsFactory,
+          deps: [LAZY_ELEMENT_MODULE_OPTIONS],
           multi: true
         },
         {
@@ -83,6 +128,7 @@ export class LazyElementsModule {
       ]
     };
   }
+  // tslint:enable:unified-signatures
 
   constructor(
     lazyElementsLoaderService: LazyElementsLoaderService,
