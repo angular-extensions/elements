@@ -59,13 +59,19 @@ export class LazyElementDynamicDirective implements OnInit {
     this.elementsLoaderService
       .loadElement(this.url, this.tag, this.isModule)
       .then(() => {
-        const host = (this.template as any)._def.element.template.nodes[0]
-          .element;
-        host.name = this.tag;
+        if ((this.template as any)._declarationTContainer) {
+          // (this.template as any)._declarationTContainer.tagName = this.tag;
+          throw new Error(
+            'The *axLazyElementDynamic directive is currently does NOT support Angular Ivy, please use standard *axLazyElement directive instead!'
+          );
+        } else {
+          (this
+            .template as any)._def.element.template.nodes[0].element.name = this.tag;
+        }
         this.vcr.clear();
         this.vcr.createEmbeddedView(this.template);
       })
-      .catch(() => {
+      .catch(error => {
         const errorComponent =
           elementConfig.errorComponent || options.errorComponent;
         this.vcr.clear();
@@ -76,7 +82,8 @@ export class LazyElementDynamicDirective implements OnInit {
           this.vcr.createComponent(factory);
         } else {
           console.error(
-            `${LOG_PREFIX} - Loading of element <${this.tag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElementDynamic="errorTemplate: error" to display customized error message in place of element`
+            `${LOG_PREFIX} - Loading of element <${this.tag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElementDynamic="errorTemplate: error" to display customized error message in place of element\n\n`,
+            error
           );
         }
       });

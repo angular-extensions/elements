@@ -31,8 +31,10 @@ export class LazyElementDirective implements OnInit {
   ) {}
 
   ngOnInit() {
-    const elementTag = (this.template as any)._def.element.template.nodes[0]
-      .element.name;
+    const tpl = this.template as any;
+    const elementTag = tpl._declarationTContainer
+      ? tpl._declarationTContainer.tagName
+      : tpl._def.element.template.nodes[0].element.name;
 
     const elementConfig =
       this.elementsLoaderService.getElementConfig(elementTag) ||
