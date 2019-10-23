@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.10.0](https://github.com/angular-extensions/elements/compare/v8.9.1...v8.10.0) (2019-10-23)
+
+### Features
+
+- **ivy:** add partial IVY support for \*axLazyElement directive ([911286b](https://github.com/angular-extensions/elements/commit/911286b))
+
 ### [8.9.1](https://github.com/angular-extensions/elements/compare/v8.9.0...v8.9.1) (2019-10-10)
 
 ## [8.9.0](https://github.com/angular-extensions/elements/compare/v8.8.0...v8.9.0) (2019-10-10)
