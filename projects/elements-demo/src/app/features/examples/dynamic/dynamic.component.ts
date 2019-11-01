@@ -34,7 +34,7 @@ export class DynamicComponent implements OnInit {
     {
       tag: 'wired-button',
       url:
-        'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js',
+        'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
       content: 'Decrement',
       actionName: 'decrement'
     },
@@ -95,7 +95,7 @@ export const CODE_EXAMPLE_2_HTML = `<ax-lazy-element *axLazyElementDynamic="'wir
 export const CODE_EXAMPLE_2_MODULE = `// pre-configured LazyElementsModule
 const options: LazyElementModuleOptions = {
   elementConfigs: [
-    { tag: 'wired-button', url: 'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js' }
+    { tag: 'wired-button', url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js' }
   ]
 };
 
@@ -129,7 +129,7 @@ dynamicConfigs = [
   },
   {
     tag: 'wired-button',
-    url: 'https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.js',
+    url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
     content: 'Decrement',
     actionName: 'decrement'
   },
