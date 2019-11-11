@@ -1,7 +1,12 @@
-import { Injectable, Type, Optional, Inject } from '@angular/core';
+import { Inject, Injectable, Optional, Type } from '@angular/core';
 
 import { LazyElementRootOptions } from './lazy-elements.module';
 import { LAZY_ELEMENT_ROOT_OPTIONS } from './lazy-elements.tokens';
+import {
+  DefaultLazyElementsStateService,
+  LAZY_ELEMENTS_STATE,
+  LazyElementsStateService
+} from './lazy-elements-state.service';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
@@ -18,14 +23,19 @@ export interface ElementConfig {
   providedIn: 'root'
 })
 export class LazyElementsLoaderService {
-  registry: Map<string, Promise<void>> = new Map<string, Promise<void>>();
   configs: ElementConfig[] = [];
 
   constructor(
     @Optional()
+    @Inject(LAZY_ELEMENTS_STATE)
+    private readonly lazyElementsStateService: LazyElementsStateService,
+    @Optional()
     @Inject(LAZY_ELEMENT_ROOT_OPTIONS)
     public options: LazyElementRootOptions
   ) {
+    if (!this.lazyElementsStateService) {
+      this.lazyElementsStateService = new DefaultLazyElementsStateService();
+    }
     if (!options) {
       this.options = {};
     }
@@ -88,7 +98,7 @@ export class LazyElementsLoaderService {
       );
     }
 
-    if (!this.hasElement(url)) {
+    if (!this.lazyElementsStateService.hasElement(url)) {
       const notifier = this.addElement(url);
       const script = document.createElement('script') as HTMLScriptElement;
       if (isModule) {
@@ -100,24 +110,16 @@ export class LazyElementsLoaderService {
       document.body.appendChild(script);
     }
 
-    return this.registry.get(this.stripUrlProtocol(url));
+    return this.lazyElementsStateService.getElement(url);
   }
 
   private addElement(url: string): Notifier {
     let notifier: Notifier;
-    this.registry.set(
-      this.stripUrlProtocol(url),
+    this.lazyElementsStateService.setElement(
+      url,
       new Promise<void>((resolve, reject) => (notifier = { resolve, reject }))
     );
     return notifier;
-  }
-
-  private hasElement(url: string): boolean {
-    return this.registry.has(this.stripUrlProtocol(url));
-  }
-
-  private stripUrlProtocol(url: string): string {
-    return url.replace(/https?:\/\//, '');
   }
 }
 

@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { LazyElementsLoaderService } from './lazy-elements-loader.service';
 import { LazyElementsModule } from './lazy-elements.module';
+import { DefaultLazyElementsStateService } from './lazy-elements-state.service';
 
 describe('LazyElementsLoaderService', () => {
   let service: LazyElementsLoaderService;
@@ -16,6 +17,18 @@ describe('LazyElementsLoaderService', () => {
 
   it('is created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should no throw and use the default storage and options', () => {
+    let lazyLoaderService;
+    expect(() => {
+      lazyLoaderService = new LazyElementsLoaderService(null, null);
+    }).not.toThrow();
+    expect(
+      lazyLoaderService.lazyElementsStateService instanceof
+        DefaultLazyElementsStateService
+    ).toBe(true);
+    expect(lazyLoaderService.options).toEqual({});
   });
 
   it('throws error if used without url', () => {
