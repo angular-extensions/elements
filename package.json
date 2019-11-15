@@ -25,6 +25,11 @@
       "precommit": "node sync-versions.js && git add ."
     }
   },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -72,6 +77,7 @@
     "codelyzer": "^5.0.0",
     "compression": "^1.7.4",
     "cpx": "^1.5.0",
+    "cz-conventional-changelog": "^3.0.2",
     "express": "^4.17.1",
     "husky": "^2.4.1",
     "jasmine-core": "~3.4.0",
