@@ -74,6 +74,26 @@
         "example",
         "ideas"
       ]
+    },
+    {
+      "login": "ye3i",
+      "name": "ye3i",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5447242?v=4",
+      "profile": "https://github.com/ye3i",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "MagicCurlyHair",
+      "name": "Heorhi Shakanau",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/38192464?v=4",
+      "profile": "https://github.com/MagicCurlyHair",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ]
 }
