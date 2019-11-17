@@ -1,7 +1,11 @@
 import { Injectable, Type, Optional, Inject } from '@angular/core';
 
 import { LazyElementRootOptions } from './lazy-elements.module';
-import { LAZY_ELEMENT_ROOT_OPTIONS } from './lazy-elements.tokens';
+import {
+  LAZY_ELEMENT_ROOT_OPTIONS,
+  LAZY_ELEMENTS_REGISTRY,
+  LazyElementsRegistry
+} from './lazy-elements.tokens';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
@@ -18,10 +22,10 @@ export interface ElementConfig {
   providedIn: 'root'
 })
 export class LazyElementsLoaderService {
-  registry: Map<string, Promise<void>> = new Map<string, Promise<void>>();
   configs: ElementConfig[] = [];
 
   constructor(
+    @Inject(LAZY_ELEMENTS_REGISTRY) private registry: LazyElementsRegistry,
     @Optional()
     @Inject(LAZY_ELEMENT_ROOT_OPTIONS)
     public options: LazyElementRootOptions
