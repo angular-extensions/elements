@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.11.0](https://github.com/angular-extensions/elements/compare/v8.10.0...v8.11.0) (2019-11-18)
+
+### Bug Fixes
+
+- **demo:** fix wired-elements version to 1.0.0 which comes with bundle ([c901154](https://github.com/angular-extensions/elements/commit/c901154))
+
+### Features
+
+- add setup for commitizen cli tool ([f706eb0](https://github.com/angular-extensions/elements/commit/f706eb0))
+- **lib:** enable overriding of the elements registry, fixes [#9](https://github.com/angular-extensions/elements/issues/9) ([e11a112](https://github.com/angular-extensions/elements/commit/e11a112))
+
 ## [8.10.0](https://github.com/angular-extensions/elements/compare/v8.9.1...v8.10.0) (2019-10-23)
 
 ### Features
