@@ -14,3 +14,17 @@ export const LAZY_ELEMENT_ROOT_OPTIONS = new InjectionToken<
 export const LAZY_ELEMENT_ROOT_GUARD = new InjectionToken<void>(
   'LAZY_ELEMENT_ROOT_GUARD'
 );
+
+export const LAZY_ELEMENTS_REGISTRY = new InjectionToken<LazyElementsRegistry>(
+  'Lazu elements registry',
+  {
+    providedIn: 'root',
+    factory: () => new Map<string, Promise<void>>()
+  }
+);
+
+export interface LazyElementsRegistry {
+  get: (url: string) => Promise<void>;
+  set: (url: string, notifier: Promise<void>) => void;
+  has: (url: string) => boolean;
+}
