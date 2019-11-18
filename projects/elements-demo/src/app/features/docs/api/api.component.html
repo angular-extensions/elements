@@ -468,3 +468,97 @@ isModule: boolean;</pre
     </table>
   </mat-card>
 </section>
+
+<section>
+  <h2>LAZY_ELEMENTS_REGISTRY</h2>
+  <code color="accent">Token</code>
+  <br />
+  <p>
+    A token used to override default lazy elements registry which is used to
+    prevent multiple downloads of the same element Javascript bundle...
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Value</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <pre>
+&#123;
+  provide: LAZY_ELEMENTS_REGISTRY,
+  useClass: YourRegistryImplementation
+}</pre
+            >
+          </td>
+          <td>
+            <p>
+              Overrides default lazy elements registry implementation which can
+              be useful when using library in the multiple apps (or elements) on
+              a single page to prevent multiple downloads of the same element
+              Javascript bundle. The new implementation has to implement
+              <code>LazyElementsRegistry</code>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>LazyElementsRegistry</h2>
+  <code color="accent">Interface</code>
+  <br />
+  <p>
+    An interface which has to be implemented by custom lazy elements registry.
+    The default lazy element registry used by the library out of the box is
+    <code>Map&lt;string, Promise&lt;void></code>
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Property</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <pre>get: (url: string) => Promise&lt;void></pre>
+          </td>
+          <td>
+            <p>
+              Retrieve loading state (<code>Promise</code>) of an element bundle
+              identified by the <code>url</code>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>set: (url: string, notifier: Promise&lt;void>) => void</pre>
+          </td>
+          <td>
+            <p>
+              Store loading state (<code>Promise</code>) of an element bundle
+              identified by the <code>url</code>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>has: (url: string) => boolean</pre>
+          </td>
+          <td>
+            <p>
+              Check if registry already contains loading state
+              (<code>Promise</code>) of an element bundle identified by the
+              <code>url</code>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
