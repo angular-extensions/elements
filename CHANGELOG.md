@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.11.1](https://github.com/angular-extensions/elements/compare/v8.11.0...v8.11.1) (2019-11-25)
+
+### Bug Fixes
+
+- **element:** fix change detection for OnPush components ([bbd60c4](https://github.com/angular-extensions/elements/commit/bbd60c4))
+
 ## [8.11.0](https://github.com/angular-extensions/elements/compare/v8.10.0...v8.11.0) (2019-11-18)
 
 ### Bug Fixes
