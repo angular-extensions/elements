@@ -4,7 +4,8 @@ import {
   OnInit,
   TemplateRef,
   ViewContainerRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import {
@@ -27,7 +28,8 @@ export class LazyElementDirective implements OnInit {
     private vcr: ViewContainerRef,
     private template: TemplateRef<any>,
     private elementsLoaderService: LazyElementsLoaderService,
-    private cfr: ComponentFactoryResolver
+    private cfr: ComponentFactoryResolver,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -54,6 +56,7 @@ export class LazyElementDirective implements OnInit {
       .then(() => {
         this.vcr.clear();
         this.vcr.createEmbeddedView(this.template);
+        this.cdr.markForCheck();
       })
       .catch(() => {
         this.vcr.clear();
@@ -61,9 +64,11 @@ export class LazyElementDirective implements OnInit {
           elementConfig.errorComponent || options.errorComponent;
         if (this.errorTemplateRef) {
           this.vcr.createEmbeddedView(this.errorTemplateRef);
+          this.cdr.markForCheck();
         } else if (errorComponent) {
           const factory = this.cfr.resolveComponentFactory(errorComponent);
           this.vcr.createComponent(factory);
+          this.cdr.markForCheck();
         } else {
           console.error(
             `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
