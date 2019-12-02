@@ -1,6 +1,6 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "7.3.0-v6",
+  "version": "6.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
