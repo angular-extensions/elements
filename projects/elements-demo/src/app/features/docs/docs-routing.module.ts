@@ -15,44 +15,33 @@ const routes: Routes = [
     children: [
       {
         path: 'getting-started',
-        loadChildren: () =>
-          import('./getting-started/getting-started.module').then(
-            m => m.GettingStartedModule
-          )
+        loadChildren:
+          './getting-started/getting-started.module#GettingStartedModule'
       },
       {
         path: 'how-it-works',
-        loadChildren: () =>
-          import('./how-it-works/how-it-works.module').then(
-            m => m.HowItWorksModule
-          )
+        loadChildren: './how-it-works/how-it-works.module#HowItWorksModule'
       },
       {
         path: 'use-cases',
-        loadChildren: () =>
-          import('./use-cases/use-cases.module').then(m => m.UseCasesModule)
+        loadChildren: './use-cases/use-cases.module#UseCasesModule'
       },
       {
         path: 'api',
-        loadChildren: () => import('./api/api.module').then(m => m.ApiModule)
+        loadChildren: './api/api.module#ApiModule'
       },
       {
         path: 'faq',
-        loadChildren: () => import('./faq/faq.module').then(m => m.FaqModule)
+        loadChildren: './faq/faq.module#FaqModule'
       },
       {
         path: 'change-detection',
-        loadChildren: () =>
-          import('./change-detection/change-detection.module').then(
-            m => m.ChangeDetectionModule
-          )
+        loadChildren:
+          './change-detection/change-detection.module#ChangeDetectionModule'
       },
       {
         path: 'configuration',
-        loadChildren: () =>
-          import('./configuration/configuration.module').then(
-            m => m.ConfigurationModule
-          )
+        loadChildren: './configuration/configuration.module#ConfigurationModule'
       }
     ]
   }

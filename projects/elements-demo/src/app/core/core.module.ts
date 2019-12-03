@@ -11,7 +11,10 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 export function hljsLanguages() {
-  return [{ name: 'typescript', func: typescript }, { name: 'xml', func: xml }];
+  return [
+    { name: 'typescript', func: typescript },
+    { name: 'xml', func: xml }
+  ];
 }
 
 @NgModule({

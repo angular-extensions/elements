@@ -15,18 +15,15 @@ const routes: Routes = [
     children: [
       {
         path: 'basic',
-        loadChildren: () =>
-          import('./basic/basic.module').then(m => m.BasicModule)
+        loadChildren: './basic/basic.module#BasicModule'
       },
       {
         path: 'advanced',
-        loadChildren: () =>
-          import('./advanced/advanced.module').then(m => m.AdvancedModule)
+        loadChildren: './advanced/advanced.module#AdvancedModule'
       },
       {
         path: 'dynamic',
-        loadChildren: () =>
-          import('./dynamic/dynamic.module').then(m => m.DynamicModule)
+        loadChildren: './dynamic/dynamic.module#DynamicModule'
       }
     ]
   }

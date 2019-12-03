@@ -31,9 +31,3 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-  - provider: pages
-    name: tomastrajan
-    email: tomas.trajan@gmail.com
-    local_dir: dist/elements-demo
-    skip_cleanup: true
-    github_token: $GH_TOKEN

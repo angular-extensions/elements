@@ -10,20 +10,15 @@ const routes: Routes = [
   },
   {
     path: 'docs',
-    loadChildren: () =>
-      import('./features/docs/docs.module').then(m => m.DocsModule)
+    loadChildren: './features/docs/docs.module#DocsModule'
   },
   {
     path: 'examples',
-    loadChildren: () =>
-      import('./features/examples/examples.module').then(m => m.ExamplesModule)
+    loadChildren: './features/examples/examples.module#ExamplesModule'
   },
   {
     path: 'contribute',
-    loadChildren: () =>
-      import('./features/contribute/contribute.module').then(
-        m => m.ContributeModule
-      )
+    loadChildren: './features/contribute/contribute.module#ContributeModule'
   },
   {
     path: '**',

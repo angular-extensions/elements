@@ -84,9 +84,7 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "projects/elements-demo/ngsw-config.json"
+              ]
             }
           }
         },
