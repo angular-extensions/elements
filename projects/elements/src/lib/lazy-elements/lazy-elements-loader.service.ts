@@ -73,7 +73,7 @@ export class LazyElementsLoaderService {
     const config = this.getElementConfig(tag);
 
     if (!url) {
-      if (!config) {
+      if (!config || !config.url) {
         throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
       }
       url = config.url;
