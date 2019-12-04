@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.11.2](https://github.com/angular-extensions/elements/compare/v8.11.1...v8.11.2) (2019-12-04)
+
+### Bug Fixes
+
+- **service:** proper error if used without url from config ([56f5d15](https://github.com/angular-extensions/elements/commit/56f5d15))
+
 ### [8.11.1](https://github.com/angular-extensions/elements/compare/v8.11.0...v8.11.1) (2019-11-25)
 
 ### Bug Fixes
