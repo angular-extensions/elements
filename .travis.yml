@@ -1,4 +1,5 @@
 language: node_js
+version: 1.0
 node_js:
   - '12'
 sudo: required
@@ -26,6 +27,7 @@ after_deploy:
   - cd ../../
 deploy:
   - provider: npm
+    edge: true
     email: tomas.trajan@gmail.com
     api_key: $NPM_TOKEN
     skip_cleanup: true
