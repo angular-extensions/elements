@@ -10,7 +10,9 @@ describe('LazyElementsLoaderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
-    service = TestBed.get(LazyElementsLoaderService);
+    service = TestBed.inject<LazyElementsLoaderService>(
+      LazyElementsLoaderService
+    );
     appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
   });
 
@@ -151,7 +153,9 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       ]
     });
 
-    service = TestBed.get(LazyElementsLoaderService);
+    service = TestBed.inject<LazyElementsLoaderService>(
+      LazyElementsLoaderService
+    );
     appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
   });
 

@@ -72,7 +72,7 @@ describe('LazyElementDirectiveDynamic', () => {
     );
   });
 
-  it('throws error if calledwith invalid tag', () => {
+  it('throws error if called with invalid tag', () => {
     expect(() => {
       testHostComponent.useWithInvalidTag = true;
       fixture.detectChanges();

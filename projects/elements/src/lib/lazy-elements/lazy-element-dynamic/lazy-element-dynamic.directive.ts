@@ -5,8 +5,11 @@ import {
   TemplateRef,
   ViewContainerRef,
   ComponentFactoryResolver,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Renderer2,
+  Inject
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 import {
   LazyElementsLoaderService,
@@ -15,6 +18,7 @@ import {
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
+/** @dynamic */
 @Directive({
   selector: '[axLazyElementDynamic]'
 })
@@ -30,11 +34,13 @@ export class LazyElementDynamicDirective implements OnInit {
   @Input('axLazyElementDynamicModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
     private vcr: ViewContainerRef,
-    private template: TemplateRef<any>,
-    private elementsLoaderService: LazyElementsLoaderService,
     private cfr: ComponentFactoryResolver,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private template: TemplateRef<any>,
+    private elementsLoaderService: LazyElementsLoaderService
   ) {}
 
   ngOnInit() {
@@ -61,17 +67,16 @@ export class LazyElementDynamicDirective implements OnInit {
     this.elementsLoaderService
       .loadElement(this.url, this.tag, this.isModule)
       .then(() => {
-        if ((this.template as any)._declarationTContainer) {
-          // (this.template as any)._declarationTContainer.tagName = this.tag;
-          throw new Error(
-            'The *axLazyElementDynamic directive is currently does NOT support Angular Ivy, please use standard *axLazyElement directive instead!'
-          );
-        } else {
-          (this
-            .template as any)._def.element.template.nodes[0].element.name = this.tag;
-        }
         this.vcr.clear();
+        const originalCreateElement = this.renderer.createElement;
+        this.renderer.createElement = (name: string, namespace: string) => {
+          if (name === 'ax-lazy-element') {
+            name = this.tag;
+          }
+          return this.document.createElement(name);
+        };
         this.vcr.createEmbeddedView(this.template);
+        this.renderer.createElement = originalCreateElement;
         this.cdr.markForCheck();
       })
       .catch(error => {

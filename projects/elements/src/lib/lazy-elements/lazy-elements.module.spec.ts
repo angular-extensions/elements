@@ -50,7 +50,7 @@ describe('LazyElementsModule', () => {
         ])
       ]
     });
-    router = TestBed.get(Router);
+    router = TestBed.inject<Router>(Router);
     router.initialNavigation();
   });
 

@@ -3,7 +3,6 @@ import {
   Optional,
   Inject,
   ModuleWithProviders,
-  ANALYZE_FOR_ENTRY_COMPONENTS,
   Type,
   SkipSelf
 } from '@angular/core';
@@ -23,7 +22,12 @@ import {
   LazyElementsRegistry
 } from './lazy-elements.tokens';
 
-export { LAZY_ELEMENTS_REGISTRY, LazyElementsRegistry };
+export {
+  LAZY_ELEMENTS_REGISTRY,
+  LazyElementsRegistry,
+  LazyElementDirective,
+  LazyElementDynamicDirective
+};
 
 export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
   if (options) {
@@ -56,11 +60,6 @@ export class LazyElementsModule {
           useValue: options.rootOptions ? options.rootOptions : {}
         },
         {
-          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: options,
-          multi: true
-        },
-        {
           provide: LAZY_ELEMENT_ROOT_GUARD,
           useFactory: createLazyElementRootGuard,
           deps: [[LAZY_ELEMENT_CONFIGS, new Optional(), new SkipSelf()]]
@@ -77,11 +76,6 @@ export class LazyElementsModule {
           provide: LAZY_ELEMENT_CONFIGS,
           useValue:
             options && options.elementConfigs ? options.elementConfigs : [],
-          multi: true
-        },
-        {
-          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: options && options.elementConfigs,
           multi: true
         }
       ]
