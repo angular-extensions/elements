@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://github.com/angular-extensions/elements/compare/v8.11.2...v9.0.0) (2020-02-08)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** use Angular 9 and enable IVY by default
+
+### Features
+
+- **contributors:** improve layout (for NPM) ([bcc0029](https://github.com/angular-extensions/elements/commit/bcc0029c7e137a4eeb1d209baf122a499fc20adf))
+- **demo:** adjust demo ([fdfa3d4](https://github.com/angular-extensions/elements/commit/fdfa3d41a5af6aa3ac0d17d3c0726eac186d65be))
+- **lib:** bump versions to Angular 9 ([41d5604](https://github.com/angular-extensions/elements/commit/41d56045ab2f96e08caf3e1c124cb8c331191a90))
+- **lib:** distribute lib as ViewEngine (not IVY, official recommendations) ([c3bef51](https://github.com/angular-extensions/elements/commit/c3bef5111e04f6f69b32d0b1f4b36bb5262b742a))
+- **lib:** enable dynamic lazy element tags for IVY ([fcd13c1](https://github.com/angular-extensions/elements/commit/fcd13c159518a0e185d011fa5688df036af00134))
+
 ### [8.11.2](https://github.com/angular-extensions/elements/compare/v8.11.1...v8.11.2) (2019-12-04)
 
 ### Bug Fixes
