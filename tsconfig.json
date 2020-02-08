@@ -11,22 +11,15 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "elements": [
-        "dist/elements",
-        "dist/elements"
-      ],
-      "elements/*": [
-        "dist/elements/*",
-        "dist/elements/*"
-      ]
+      "elements": ["dist/elements", "dist/elements"],
+      "elements/*": ["dist/elements/*", "dist/elements/*"]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

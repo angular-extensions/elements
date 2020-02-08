@@ -16,13 +16,7 @@ describe('BasicComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [
-        LazyElementsModule,
-        HighlightModule.forRoot({
-          languages: () => [{ name: 'typescript', func: typescript }]
-        }),
-        SharedModule
-      ],
+      imports: [LazyElementsModule, HighlightModule, SharedModule],
       declarations: [BasicComponent]
     }).compileComponents();
   }));

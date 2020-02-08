@@ -1,4 +1,4 @@
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { SwUpdate } from '@angular/service-worker';
 import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
@@ -34,10 +34,10 @@ export class AppComponent implements OnInit {
       this.refreshService.checkUpdate();
     }
 
-    this.isSmallOrSmaller = combineLatest(
+    this.isSmallOrSmaller = combineLatest([
       this.responsiveLayoutService.isSmallOrSmaller,
       this.responsiveLayoutService.isLargeOrBigger
-    ).pipe(
+    ]).pipe(
       delay(1),
       tap(([isSmall, isLarge]) => {
         this.demoRootCssClass = '';

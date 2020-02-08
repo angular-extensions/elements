@@ -13,13 +13,7 @@ describe('HowItWorksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HighlightModule.forRoot({
-          languages: () => [{ name: 'typescript', func: typescript }]
-        }),
-        RouterTestingModule,
-        SharedModule
-      ],
+      imports: [HighlightModule, RouterTestingModule, SharedModule],
       declarations: [HowItWorksComponent]
     }).compileComponents();
   }));

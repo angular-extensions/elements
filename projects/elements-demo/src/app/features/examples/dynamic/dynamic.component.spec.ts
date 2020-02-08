@@ -1,7 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HighlightModule } from 'ngx-highlightjs';
-import typescript from 'highlight.js/lib/languages/typescript';
 
 import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
@@ -15,13 +14,7 @@ describe('DynamicComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [
-        LazyElementsModule,
-        HighlightModule.forRoot({
-          languages: () => [{ name: 'typescript', func: typescript }]
-        }),
-        SharedModule
-      ],
+      imports: [LazyElementsModule, HighlightModule, SharedModule],
       declarations: [DynamicComponent]
     }).compileComponents();
   }));

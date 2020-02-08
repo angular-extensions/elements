@@ -12,12 +12,7 @@ describe('GettingStartedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HighlightModule.forRoot({
-          languages: () => [{ name: 'typescript', func: typescript }]
-        }),
-        SharedModule
-      ],
+      imports: [HighlightModule, SharedModule],
       declarations: [GettingStartedComponent]
     }).compileComponents();
   }));

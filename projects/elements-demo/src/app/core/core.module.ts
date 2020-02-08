@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HighlightModule } from 'ngx-highlightjs';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -11,7 +9,10 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 export function hljsLanguages() {
-  return [{ name: 'typescript', func: typescript }, { name: 'xml', func: xml }];
+  return {
+    typescript: () => import('highlight.js/lib/languages/typescript'),
+    xml: () => import('highlight.js/lib/languages/xml')
+  };
 }
 
 @NgModule({
@@ -19,12 +20,18 @@ export function hljsLanguages() {
   imports: [
     // vendor
     RouterModule,
-    HighlightModule.forRoot({
-      languages: hljsLanguages
-    }),
+    HighlightModule,
 
     // local
     SharedModule
+  ],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        languages: hljsLanguages()
+      }
+    }
   ],
   exports: [ToolbarComponent, NavigationComponent, FooterComponent]
 })
