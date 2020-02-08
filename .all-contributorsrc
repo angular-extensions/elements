@@ -6,7 +6,8 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 100,
+  "contributorsPerLine": 6,
+  "imageSize": 85,
   "commit": false,
   "contributors": [
     {
