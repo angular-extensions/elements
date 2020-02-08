@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.1](https://github.com/angular-extensions/elements/compare/v9.0.0...v9.0.1) (2020-02-08)
+
+### Bug Fixes
+
+- **build:** adjust Travis CI configuration ([a8a7b7a](https://github.com/angular-extensions/elements/commit/a8a7b7ab948eb69300be2cdc519381529cbf1f6f))
+
 ## [9.0.0](https://github.com/angular-extensions/elements/compare/v8.11.2...v9.0.0) (2020-02-08)
 
 ### ⚠ BREAKING CHANGES
