@@ -26,6 +26,10 @@ iframe {
   margin: 0 0 0 10px;
 }
 
+img {
+  margin: 0 0 0 10px;
+}
+
 :host-context(.responsive) {
   .spacer-responsive {
     flex: 1 0 auto;

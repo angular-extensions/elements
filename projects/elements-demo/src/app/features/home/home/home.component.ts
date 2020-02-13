@@ -23,10 +23,24 @@ export class HomeComponent implements OnInit {
 
 const CODE_EXAMPLE_COMPONENT = `@Component({
   selector: 'your-org-feature',
-  template: '<some-element *axLazyElement="elementUrl"></some-element>'
+  template: \`
+    <!-- will be lazy loaded and uses standard Angular template bindings -->
+    <some-element
+      *axLazyElement="elementUrl"
+      [data]="data"
+      (dataChange)="handleChange($event)"
+    >
+    </some-element>
+  \`
 })
 export class FeatureComponent {
   elementUrl = 'https://your-org.com/elements/some-element.js';
+
+  data: SomeData;
+
+  handleChange(change: Partial<SomeData>) {
+    // ...
+  }
 }
 `;
 
