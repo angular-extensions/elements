@@ -16,7 +16,7 @@ export const LAZY_ELEMENT_ROOT_GUARD = new InjectionToken<void>(
 );
 
 export const LAZY_ELEMENTS_REGISTRY = new InjectionToken<LazyElementsRegistry>(
-  'Lazu elements registry',
+  'LAZY_ELEMENTS_REGISTRY',
   {
     providedIn: 'root',
     factory: () => new Map<string, Promise<void>>()
