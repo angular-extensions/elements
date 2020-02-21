@@ -17,18 +17,8 @@ import {
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
   LAZY_ELEMENT_CONFIGS,
-  LAZY_ELEMENT_ROOT_GUARD,
-  LAZY_ELEMENTS_REGISTRY,
-  LazyElementsRegistry
+  LAZY_ELEMENT_ROOT_GUARD
 } from './lazy-elements.tokens';
-
-export {
-  LAZY_ELEMENTS_REGISTRY,
-  LazyElementsRegistry,
-  LazyElementDirective,
-  LazyElementsLoaderService,
-  LazyElementDynamicDirective
-};
 
 export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
   if (options) {
