@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.0](https://github.com/angular-extensions/elements/compare/v9.0.1...v9.1.0) (2020-02-21)
+
+### Features
+
+- **demo:** add new examples/testing page ([71ddb58](https://github.com/angular-extensions/elements/commit/71ddb58a331f6a224a07db251927cc5cb7a30c46))
+- **demo:** add testing to API description ([be5e1e8](https://github.com/angular-extensions/elements/commit/be5e1e8f3640832730ae4bf4724779720d0e9ae2))
+- **demo:** improve docs, add download badge ([8f0fe6c](https://github.com/angular-extensions/elements/commit/8f0fe6cedd7bc950d81db0b02859810076b8c2f1))
+- **elements:** add new LazyElementsTestingModule ([9926ae7](https://github.com/angular-extensions/elements/commit/9926ae71b18bdaeb67496797d9041ecd1f390284))
+
 ### [9.0.1](https://github.com/angular-extensions/elements/compare/v9.0.0...v9.0.1) (2020-02-08)
 
 ### Bug Fixes
