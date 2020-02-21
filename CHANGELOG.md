@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.1.2](https://github.com/angular-extensions/elements/compare/v9.1.1...v9.1.2) (2020-02-21)
+
+### Bug Fixes
+
+- **element:** remove barrel, improve ModuleWithProviders ([e00cf6b](https://github.com/angular-extensions/elements/commit/e00cf6bbffc8ab064553a3e9d59c2fb4fd0f35c0))
+
 ### [9.1.1](https://github.com/angular-extensions/elements/compare/v9.1.0...v9.1.1) (2020-02-21)
 
 ### Bug Fixes
