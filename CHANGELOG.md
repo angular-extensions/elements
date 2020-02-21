@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.1.3](https://github.com/angular-extensions/elements/compare/v9.1.2...v9.1.3) (2020-02-21)
+
+### Bug Fixes
+
+- **elements:** fix public api for apps without IVY ([cb201b0](https://github.com/angular-extensions/elements/commit/cb201b0413594142c6bf1630d467396fb86cf73f))
+
 ### [9.1.2](https://github.com/angular-extensions/elements/compare/v9.1.1...v9.1.2) (2020-02-21)
 
 ### Bug Fixes
