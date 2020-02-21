@@ -562,3 +562,51 @@ isModule: boolean;</pre
     </table>
   </mat-card>
 </section>
+
+<section>
+  <h2>LazyElementTestingModule</h2>
+  <code color="accent">Module</code>
+  <code>@angular-extensions/elements/testing</code>
+  <br />
+  <p>
+    The testing module is used in Angular unit-tests to help mock lazy-loaded
+    elements with mock components provided by the test. Check out how to use it
+    in the
+    <a routerLink="../../../examples/testing">testing example</a>.
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Declarable</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <pre>LazyElementTestingDirective <code>*axLazyElement</code></pre>
+          </td>
+          <td>
+            <p>
+              Overrides default behavior of <code>*axLazyElement</code> by
+              displaying element immediately without trying to lazy load it,
+              display loading or error...
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>LazyElementDynamicTestingDirective <code>*axLazyElementDynamic</code></pre>
+          </td>
+          <td>
+            <p>
+              Overrides default behavior of
+              <code>*axLazyElementDynamic</code> by displaying element
+              immediately without trying to lazy load it, display loading or
+              error...
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
