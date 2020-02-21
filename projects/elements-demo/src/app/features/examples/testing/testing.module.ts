@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
 
-import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements';
+import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
 import { SharedModule } from '../../../shared/shared.module';
 
