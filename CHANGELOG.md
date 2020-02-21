@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.1.1](https://github.com/angular-extensions/elements/compare/v9.1.0...v9.1.1) (2020-02-21)
+
+### Bug Fixes
+
+- **element:** export lazy loader service, allow programmatic preloading ([bb3fb9e](https://github.com/angular-extensions/elements/commit/bb3fb9ee27aaecd6258632cef64fd17414467a5a))
+
 ## [9.1.0](https://github.com/angular-extensions/elements/compare/v9.0.1...v9.1.0) (2020-02-21)
 
 ### Features
