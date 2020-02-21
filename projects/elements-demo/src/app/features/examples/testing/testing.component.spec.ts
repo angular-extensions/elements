@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HighlightModule } from 'ngx-highlightjs';
 
-import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements';
+import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
 import { SharedModule } from '../../../shared/shared.module';
 
