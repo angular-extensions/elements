@@ -1,0 +1,59 @@
+:host {
+  position: relative;
+}
+
+.quick-nav {
+  display: none;
+  position: fixed;
+  top: 105px;
+  left: 75%;
+  right: 0;
+  padding: 0 20px;
+
+  h3 {
+    font-size: 16px;
+    opacity: 0.5;
+  }
+
+  ul {
+    list-style-type: none;
+
+    a {
+      color: #000;
+
+      &:hover,
+      &:focus {
+        color: #d32f2f;
+      }
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 50px 0;
+
+    h3 {
+      font-weight: bold;
+    }
+
+    .description {
+      flex: 1.5;
+    }
+  }
+}
+
+:host-context(.responsive-large) {
+  .quick-nav {
+    display: block;
+  }
+
+  .wrapper {
+    width: 60%;
+  }
+}

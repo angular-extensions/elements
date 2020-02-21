@@ -27,6 +27,11 @@ const routes: Routes = [
         path: 'dynamic',
         loadChildren: () =>
           import('./dynamic/dynamic.module').then(m => m.DynamicModule)
+      },
+      {
+        path: 'testing',
+        loadChildren: () =>
+          import('./testing/testing.module').then(m => m.TestingModule)
       }
     ]
   }
