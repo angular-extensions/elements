@@ -26,6 +26,7 @@ export {
   LAZY_ELEMENTS_REGISTRY,
   LazyElementsRegistry,
   LazyElementDirective,
+  LazyElementsLoaderService,
   LazyElementDynamicDirective
 };
 
