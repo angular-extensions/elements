@@ -9,6 +9,13 @@ import {
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
+export type Hook = (tag: string) => Promise<void> | void;
+
+export interface HooksConfig {
+  beforeLoad?: Hook;
+  afterLoad?: Hook;
+}
+
 export interface ElementConfig {
   tag: string;
   url: string;
@@ -16,6 +23,7 @@ export interface ElementConfig {
   loadingComponent?: Type<any>;
   errorComponent?: Type<any>;
   preload?: boolean;
+  hooks?: HooksConfig;
 }
 
 @Injectable({
@@ -49,7 +57,12 @@ export class LazyElementsLoaderService {
             ? newConfig.preload
             : this.options.preload;
         if (shouldPreload) {
-          this.loadElement(newConfig.url, newConfig.tag, newConfig.isModule);
+          this.loadElement(
+            newConfig.url,
+            newConfig.tag,
+            newConfig.isModule,
+            newConfig.hooks
+          );
         }
       }
     });
@@ -65,11 +78,16 @@ export class LazyElementsLoaderService {
       configs = this.configs.filter(config => tags.includes(config.tag));
     }
     configs.forEach(config =>
-      this.loadElement(config.url, config.tag, config.isModule)
+      this.loadElement(config.url, config.tag, config.isModule, config.hooks)
     );
   }
 
-  loadElement(url: string, tag: string, isModule?: boolean): Promise<void> {
+  loadElement(
+    url: string,
+    tag: string,
+    isModule?: boolean,
+    hooksConfig?: HooksConfig
+  ): Promise<void> {
     const config = this.getElementConfig(tag);
 
     if (!url) {
@@ -99,9 +117,23 @@ export class LazyElementsLoaderService {
         script.type = 'module';
       }
       script.src = url;
-      script.onload = notifier.resolve;
+      script.onload = () => {
+        if (hooksConfig?.afterLoad) {
+          this.handleHook(hooksConfig.afterLoad, tag)
+            .then(notifier.resolve)
+            .catch(notifier.reject);
+        } else {
+          notifier.resolve();
+        }
+      };
       script.onerror = notifier.reject;
-      document.body.appendChild(script);
+      if (hooksConfig?.beforeLoad) {
+        this.handleHook(hooksConfig.beforeLoad, tag)
+          .then(() => document.body.appendChild(script))
+          .catch(notifier.reject);
+      } else {
+        document.body.appendChild(script);
+      }
     }
 
     return this.registry.get(this.stripUrlProtocol(url));
@@ -122,6 +154,23 @@ export class LazyElementsLoaderService {
 
   private stripUrlProtocol(url: string): string {
     return url.replace(/https?:\/\//, '');
+  }
+
+  private isPromise<T>(obj: T | Promise<T>): obj is Promise<T> {
+    return typeof (obj as any).then === 'function';
+  }
+
+  private handleHook(hook: Hook, tag: string): Promise<void> {
+    try {
+      const result = hook(tag);
+      if (this.isPromise(result)) {
+        return result;
+      } else {
+        return Promise.resolve();
+      }
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 }
 
