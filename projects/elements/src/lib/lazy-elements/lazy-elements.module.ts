@@ -12,7 +12,8 @@ import { LazyElementDirective } from './lazy-element/lazy-element.directive';
 import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element-dynamic.directive';
 import {
   ElementConfig,
-  LazyElementsLoaderService
+  LazyElementsLoaderService,
+  HooksConfig
 } from './lazy-elements-loader.service';
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
@@ -108,4 +109,5 @@ export interface LazyElementRootOptions {
   errorComponent?: Type<any>;
   isModule?: boolean;
   preload?: boolean;
+  hooks?: HooksConfig;
 }

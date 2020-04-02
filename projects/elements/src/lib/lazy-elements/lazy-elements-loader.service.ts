@@ -113,13 +113,17 @@ export class LazyElementsLoaderService {
     if (!this.hasElement(url)) {
       const notifier = this.addElement(url);
       const script = document.createElement('script') as HTMLScriptElement;
+      const beforeLoadHook =
+        hooksConfig?.beforeLoad ?? this.options?.hooks?.beforeLoad;
+      const afterLoadHook =
+        hooksConfig?.afterLoad ?? this.options?.hooks?.afterLoad;
       if (isModule) {
         script.type = 'module';
       }
       script.src = url;
       script.onload = () => {
-        if (hooksConfig?.afterLoad) {
-          this.handleHook(hooksConfig.afterLoad, tag)
+        if (afterLoadHook) {
+          this.handleHook(afterLoadHook, tag)
             .then(notifier.resolve)
             .catch(notifier.reject);
         } else {
@@ -127,8 +131,8 @@ export class LazyElementsLoaderService {
         }
       };
       script.onerror = notifier.reject;
-      if (hooksConfig?.beforeLoad) {
-        this.handleHook(hooksConfig.beforeLoad, tag)
+      if (beforeLoadHook) {
+        this.handleHook(beforeLoadHook, tag)
           .then(() => document.body.appendChild(script))
           .catch(notifier.reject);
       } else {
