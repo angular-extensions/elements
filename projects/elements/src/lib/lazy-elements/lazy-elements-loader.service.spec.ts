@@ -1,11 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LazyElementsLoaderService } from './lazy-elements-loader.service';
+import {
+  LazyElementsLoaderService,
+  HooksConfig
+} from './lazy-elements-loader.service';
 import { LazyElementsModule } from './lazy-elements.module';
 
 describe('LazyElementsLoaderService', () => {
   let service: LazyElementsLoaderService;
   let appendChildSpy: jasmine.Spy;
+  let shouldLoadSucceed: boolean;
+  let appendedScripts: Array<HTMLScriptElement>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -13,7 +18,21 @@ describe('LazyElementsLoaderService', () => {
     service = TestBed.inject<LazyElementsLoaderService>(
       LazyElementsLoaderService
     );
-    appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
+    appendedScripts = [];
+    shouldLoadSucceed = true;
+    appendChildSpy = spyOn(document.body, 'appendChild').and.callFake(
+      script => {
+        appendedScripts.push(script as any);
+        if (shouldLoadSucceed) {
+          Promise.resolve().then(() => script.dispatchEvent(new Event('load')));
+        } else {
+          Promise.resolve().then(() =>
+            script.dispatchEvent(new Event('error'))
+          );
+        }
+        return script;
+      }
+    );
   });
 
   it('is created', () => {
@@ -38,9 +57,7 @@ describe('LazyElementsLoaderService', () => {
     service.loadElement('http://elements.com/some-element', 'some-element');
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
+    expect(appendedScripts[0].src).toBe('http://elements.com/some-element');
   });
 
   it('adds a script tag only once for elements with same url', () => {
@@ -49,9 +66,7 @@ describe('LazyElementsLoaderService', () => {
     service.loadElement('http://elements.com/some-element', 'some-element');
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
+    expect(appendedScripts[0].src).toBe('http://elements.com/some-element');
   });
 
   it('adds multiple script tags if elements have different bundle url', () => {
@@ -62,10 +77,8 @@ describe('LazyElementsLoaderService', () => {
     );
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
-    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
+    expect(appendedScripts[0].src).toBe('http://elements.com/some-element');
+    expect(appendedScripts[1].src).toBe(
       'http://elements.com/some-other-element'
     );
   });
@@ -76,8 +89,6 @@ describe('LazyElementsLoaderService', () => {
       'some-element'
     );
 
-    appendChildSpy.calls.argsFor(0)[0].onload();
-
     promise.then(value => {
       expect(value).toBe(undefined);
       done();
@@ -85,31 +96,29 @@ describe('LazyElementsLoaderService', () => {
   });
 
   it('rejects promise once element bundle loading failed', done => {
+    shouldLoadSucceed = false;
+
     const promise = service.loadElement(
       'http://elements.com/some-element',
       'some-element'
     );
-
-    appendChildSpy.calls.argsFor(0)[0].onerror('404');
 
     promise
       .then(() => {
         fail('should reject promise instead');
       })
       .catch(error => {
-        expect(error).toBe('404');
-        done();
-      });
+        expect(error).toBeInstanceOf(Event);
+      })
+      .finally(done);
   });
 
   it('adds a script tag without module type', () => {
     service.loadElement('http://elements.com/some-element', 'some-element');
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
-    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('');
+    expect(appendedScripts[0].src).toBe('http://elements.com/some-element');
+    expect(appendedScripts[0].type).toBe('');
   });
 
   it('adds a script tag with module type', () => {
@@ -120,21 +129,84 @@ describe('LazyElementsLoaderService', () => {
     );
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
-    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('module');
+    expect(appendedScripts[0].src).toBe('http://elements.com/some-element');
+    expect(appendedScripts[0].type).toBe('module');
+  });
+
+  it('calls beforeLoad hook with name as argument before inserting tag into the DOM tree', done => {
+    let wasHookCalled = false;
+    service
+      .loadElement('http://elements.com/some-element', 'some-element', false, {
+        beforeLoad: tag => {
+          expect(tag).toBe('some-element');
+          expect(wasHookCalled).toBe(false);
+          expect(appendChildSpy).not.toHaveBeenCalled();
+          wasHookCalled = true;
+        }
+      })
+      .then(() => {
+        expect(wasHookCalled).toBe(true);
+        expect(appendChildSpy).toHaveBeenCalledTimes(1);
+        done();
+      });
+  });
+
+  it('calls afterLoad hook with name as argument after inserting tag into the DOM tree', done => {
+    let wasHookCalled = false;
+    service
+      .loadElement('http://elements.com/some-element', 'some-element', false, {
+        afterLoad: tag => {
+          expect(tag).toBe('some-element');
+          expect(wasHookCalled).toBe(false);
+          expect(appendChildSpy).toHaveBeenCalledTimes(1);
+          wasHookCalled = true;
+        }
+      })
+      .then(() => {
+        expect(wasHookCalled).toBe(true);
+        expect(appendChildSpy).toHaveBeenCalledTimes(1);
+        done();
+      });
+  });
+
+  it('waits for promise returned from the hook to resolve', done => {
+    let promiseResolved = false;
+    service
+      .loadElement('http://elements.com/some-element', 'some-element', false, {
+        beforeLoad: () =>
+          Promise.resolve().then(() => {
+            expect(appendChildSpy).not.toHaveBeenCalled();
+            promiseResolved = true;
+          })
+      })
+      .then(() => {
+        expect(promiseResolved).toBe(true);
+        done();
+      });
   });
 });
 
 describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () => {
   let service: LazyElementsLoaderService;
   let appendChildSpy: jasmine.Spy;
+  let shouldLoadSucceed: boolean;
+  let appendedScripts: Array<HTMLScriptElement>;
+  let afterLoadRootSpy: jasmine.Spy;
+  let afterLoadElementSpy: jasmine.Spy;
+  const rootHooks: HooksConfig = {
+    afterLoad: () => void 0
+  };
+  const elementHooks: HooksConfig = {
+    afterLoad: () => void 0
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         LazyElementsModule.forRoot({
+          rootOptions: {
+            hooks: rootHooks
+          },
           elementConfigs: [
             { tag: 'some-element', url: 'http://elements.com/some-url' },
             { tag: 'some-element', url: 'http://elements.com/some-url' },
@@ -156,7 +228,23 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     service = TestBed.inject<LazyElementsLoaderService>(
       LazyElementsLoaderService
     );
-    appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
+    appendedScripts = [];
+    shouldLoadSucceed = true;
+    afterLoadRootSpy = spyOn(rootHooks, 'afterLoad');
+    afterLoadElementSpy = spyOn(elementHooks, 'afterLoad');
+    appendChildSpy = spyOn(document.body, 'appendChild').and.callFake(
+      script => {
+        appendedScripts.push(script as any);
+        if (shouldLoadSucceed) {
+          Promise.resolve().then(() => script.dispatchEvent(new Event('load')));
+        } else {
+          Promise.resolve().then(() =>
+            script.dispatchEvent(new Event('error'))
+          );
+        }
+        return script;
+      }
+    );
   });
 
   it('is created', () => {
@@ -186,10 +274,8 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     service.loadElement(undefined, 'some-module-element', undefined);
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-module-url'
-    );
-    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('module');
+    expect(appendedScripts[0].src).toBe('http://elements.com/some-module-url');
+    expect(appendedScripts[0].type).toBe('module');
   });
 
   it('should preload all the configurations', () => {
@@ -200,5 +286,29 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
   it('should preload only specified tags', () => {
     service.preload(['some-element']);
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call root hook if hook in elementConfig was not provided', done => {
+    service
+      .loadElement('http://elements.com/element-with-hook', 'element-with-hook')
+      .then(() => {
+        expect(afterLoadRootSpy).toHaveBeenCalledTimes(1);
+        done();
+      });
+  });
+
+  it('should call provided hook instead of root one if configured via element config', done => {
+    service
+      .loadElement(
+        'http://elements.com/element-with-hook',
+        'element-with-hook',
+        false,
+        elementHooks
+      )
+      .then(() => {
+        expect(afterLoadRootSpy).not.toHaveBeenCalled();
+        expect(afterLoadElementSpy).toHaveBeenCalledTimes(1);
+        done();
+      });
   });
 });
