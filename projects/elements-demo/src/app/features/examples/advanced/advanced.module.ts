@@ -13,6 +13,13 @@ import { AdvancedComponent } from './advanced.component';
 import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 import { ErrorComponent } from '../../../shared/error/error.component';
 
+export function beforeLoadHook(tag: string): Promise<void> {
+  alert(
+    `Starting download of ${tag} web component! The download will be artificially postponed for 5 seconds.`
+  );
+  return new Promise(res => setTimeout(res, 5000));
+}
+
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
@@ -39,6 +46,14 @@ const options: LazyElementModuleOptions = {
       url: 'https://unpkg.com/@material/mwc-fab@0.6.0/mwc-fab.js?module',
       isModule: true,
       loadingComponent: SpinnerComponent
+    },
+    {
+      tag: 'mwc-slider',
+      url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
+      isModule: true,
+      hooks: {
+        beforeLoad: beforeLoadHook
+      }
     }
   ]
 };
