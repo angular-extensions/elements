@@ -114,9 +114,13 @@ export class LazyElementsLoaderService {
       const notifier = this.addElement(url);
       const script = document.createElement('script') as HTMLScriptElement;
       const beforeLoadHook =
-        hooksConfig?.beforeLoad ?? this.options?.hooks?.beforeLoad;
+        hooksConfig?.beforeLoad ??
+        config?.hooks?.beforeLoad ??
+        this.options?.hooks?.beforeLoad;
       const afterLoadHook =
-        hooksConfig?.afterLoad ?? this.options?.hooks?.afterLoad;
+        hooksConfig?.afterLoad ??
+        config?.hooks?.afterLoad ??
+        this.options?.hooks?.afterLoad;
       if (isModule) {
         script.type = 'module';
       }
@@ -161,7 +165,7 @@ export class LazyElementsLoaderService {
   }
 
   private isPromise<T>(obj: T | Promise<T>): obj is Promise<T> {
-    return typeof (obj as any).then === 'function';
+    return typeof (obj as any)?.then === 'function';
   }
 
   private handleHook(hook: Hook, tag: string): Promise<void> {
