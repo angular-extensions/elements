@@ -173,4 +173,30 @@
       <pre [highlight]="codeExample5ts"></pre>
     </div>
   </div>
+
+  <h2 id="hooks">
+    Hooks
+  </h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example6">
+      <button mat-flat-button color="accent" (click)="example6 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example6">
+      <mwc-slider *axLazyElement></mwc-slider>
+    </div>
+    <div class="description">
+      <p>
+        By providing hooks in <code>ElementConfig</code> or
+        <code>LazyElementRootOptions</code>
+        you can run custom logic after certain points in the element's
+        lifecycle. Clicking the run button below will trigger the download of
+        the custom element which has been configured with a hook.
+      </p>
+      <pre [highlight]="codeExample6html"></pre>
+      <pre [highlight]="codeExample6module"></pre>
+    </div>
+  </div>
 </div>

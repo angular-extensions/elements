@@ -304,6 +304,19 @@ isModule: boolean;</pre
             >
           </td>
         </tr>
+        <tr>
+          <td><pre>hooksConfig: HooksConfig</pre></td>
+          <td>
+            <p>
+              Global hooks configuration for all elements. Any loaded element
+              will run hooks configured here unless some of them were overriden
+              in <code>ElementConfig</code>.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
       </tbody>
     </table>
   </mat-card>
@@ -426,6 +439,99 @@ isModule: boolean;</pre
             <code color="accent">Optional</code>&nbsp;<code color="accent"
               >Default: undefined</code
             >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>hooks: HooksConfig</pre></td>
+          <td>
+            <p>
+              Hooks configuration for the element. Any hook specified here will
+              overwrite corresponding root hook for the element. See
+              <code>HooksConfig</code>.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>HooksConfig</h2>
+  <code color="accent">Interface</code>
+  <br />
+  <p>
+    Hooks for running custom logic as part of the element's lifecycle. See
+    <code>ElementConfig</code> and <code>LazyElementRootOptions</code>.
+  </p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Property</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>beforeLoad: Hook</pre></td>
+          <td>
+            <p>
+              This hook will run before the browser starts the element's
+              download. If the provided hook returns a <code>Promise</code> the
+              element's download will be postponed until the Promise is
+              resolved.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><pre>afterLoad: Hook</pre></td>
+          <td>
+            <p>
+              This hook will run after the element's download has been
+              completed. If the provided hook returns a <code>Promise</code> the
+              element's insertion into the corresponding Angular's view will be
+              postponed until the Promise is resolved.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</section>
+
+<section>
+  <h2>Hook</h2>
+  <code color="accent">Type</code>
+  <br />
+  <p>Hook that can be run as part of <code>HooksConfig</code>.</p>
+  <mat-card>
+    <table>
+      <thead>
+        <th>Value</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <pre>
+(tag: string) => Promise&lt;void&gt; &#x2758; &lt;void&gt;</pre
+            >
+          </td>
+          <td>
+            <p>
+              Provided function will be called at the appropriate time in the
+              element's lifecycle. If the function returns a
+              <code>Promise</code> the library will wait for its' resolution
+              before proceeding.
+            </p>
           </td>
         </tr>
       </tbody>

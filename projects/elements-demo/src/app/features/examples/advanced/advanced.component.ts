@@ -12,6 +12,7 @@ export class AdvancedComponent implements OnInit {
   example2 = false;
   example3 = false;
   example4 = false;
+  example6 = false;
 
   // example code examples
   codeExample1module = CODE_EXAMPLE_1_MODULE;
@@ -24,6 +25,8 @@ export class AdvancedComponent implements OnInit {
   codeExample4coreModule = CODE_EXAMPLE_4_CORE_MODULE;
   codeExample5html = CODE_EXAMPLE_5_HTML;
   codeExample5ts = CODE_EXAMPLE_5_TS;
+  codeExample6html = CODE_EXAMPLE_6_HTML;
+  codeExample6module = CODE_EXAMPLE_6_MODULE;
 
   // example state
   counter = 0;
@@ -160,3 +163,36 @@ class PageComponent {
   }
 }
 `;
+
+const CODE_EXAMPLE_6_MODULE = `// pre-configured LazyElementsModule
+export function beforeLoadHook(tag: string): Promise<void> {
+  alert(\`Starting download of \${tag} web component! The download will be artificially postponed for 5 seconds.\`);
+  return new Promise(res => setTimeout(res, 5000));
+}
+
+const options: LazyElementModuleOptions = {
+  elementConfigs: [
+    {
+      tag: 'mwc-slider',
+      url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
+      isModule: true,
+      hooks: {
+        beforeLoad: beforeLoadHook
+      }
+      loadingComponent: SpinnerComponent,
+      errorComponent: ErrorComponent
+    }
+  ]
+};
+
+@NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [FeatureComponent],
+  imports: [
+    LazyElementsModule.forFeature(options),
+  ]
+})
+export class FeatureModule { }
+`;
+
+const CODE_EXAMPLE_6_HTML = `<mwc-slider *axLazyElement></mwc-slider>`;

@@ -52,7 +52,7 @@ export class LazyElementDirective implements OnInit {
       this.vcr.createComponent(factory);
     }
     this.elementsLoaderService
-      .loadElement(this.url, elementTag, this.isModule)
+      .loadElement(this.url, elementTag, this.isModule, elementConfig?.hooks)
       .then(() => {
         this.vcr.clear();
         this.vcr.createEmbeddedView(this.template);
