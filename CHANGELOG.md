@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.2.0](https://github.com/angular-extensions/elements/compare/v9.1.3...v9.2.0) (2020-04-16)
+
+### Features
+
+- **elements:** pass hooks config to loader service ([f4c7752](https://github.com/angular-extensions/elements/commit/f4c7752c3922660a88d3ccafe67a9c70111fe9dc))
+- **service:** add hooks support ([a098173](https://github.com/angular-extensions/elements/commit/a0981733035b088614c0e4a0a755f981f3cb48ec))
+- **service:** add support for root level hooks ([720640a](https://github.com/angular-extensions/elements/commit/720640a41cefe1332276f5e32abb3111476e786e))
+
+### Bug Fixes
+
+- **service:** fix hooks failing to run ([3e2c261](https://github.com/angular-extensions/elements/commit/3e2c26112ad25d9b4c775f77238a24d22fbfc9d2))
+
 ### [9.1.3](https://github.com/angular-extensions/elements/compare/v9.1.2...v9.1.3) (2020-02-21)
 
 ### Bug Fixes
