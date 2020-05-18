@@ -66,6 +66,7 @@ export class LazyElementDynamicDirective implements OnInit {
 
     this.elementsLoaderService
       .loadElement(this.url, this.tag, this.isModule, elementConfig?.hooks)
+      .then(() => customElements.whenDefined(this.tag))
       .then(() => {
         this.vcr.clear();
         const originalCreateElement = this.renderer.createElement;
