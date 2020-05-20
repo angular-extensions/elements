@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file. See [standa
 
 - **elements:** fix binding issue ([2dcf755](https://github.com/angular-extensions/elements/commit/2dcf7551b62d6f28d749c95e89e93341bf8bf4c8))
 
+### ⚠ BREAKING CHANGES
+
+- **elements:** fix binding issue ([2dcf755](https://github.com/angular-extensions/elements/commit/2dcf7551b62d6f28d749c95e89e93341bf8bf4c8))
+
+The loader now waits for the element script to be parsed (`customElements.whenDefined(tag)`) before
+rendering the element to prevent race condition which sometimes could break Angular property binding on that element.
+
+This can in theory be breaking change but should not have any impact for intended use case.
+
+It could break in the following cases:
+
+1. The script doesn't actually contain a custom element and the library is used for downloading something else
+2. The script doesn't register a custom element and instead relies on the user to do this
+
+Many thanks to [MagicCurlyHair](https://github.com/MagicCurlyHair)
+
 ## [9.2.0](https://github.com/angular-extensions/elements/compare/v9.1.3...v9.2.0) (2020-04-16)
 
 ### Features
