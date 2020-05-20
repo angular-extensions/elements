@@ -1,9 +1,9 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "9.2.0",
+  "version": "10.0.0-alpha.1",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0"
+    "@angular/common": "9-10",
+    "@angular/core": "9-10"
   },
   "publishConfig": {
     "access": "public"
