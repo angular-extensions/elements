@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.3.0](https://github.com/angular-extensions/elements/compare/v9.2.0...v9.3.0) (2020-05-27)
+
+### Features
+
+- **lib:** public method to destroy embedded view ([68cc6b7](https://github.com/angular-extensions/elements/commit/68cc6b70ea04027269556f82900225af0ca498d2))
+
 ## [9.2.0](https://github.com/angular-extensions/elements/compare/v9.1.3...v9.2.0) (2020-04-16)
 
 ### Features
