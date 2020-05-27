@@ -5,7 +5,8 @@ import {
   TemplateRef,
   ViewContainerRef,
   ComponentFactoryResolver,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  EmbeddedViewRef
 } from '@angular/core';
 
 import {
@@ -23,6 +24,8 @@ export class LazyElementDirective implements OnInit {
   @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
+
+  private viewRef: EmbeddedViewRef<any> = null;
 
   constructor(
     private vcr: ViewContainerRef,
@@ -55,7 +58,7 @@ export class LazyElementDirective implements OnInit {
       .loadElement(this.url, elementTag, this.isModule, elementConfig?.hooks)
       .then(() => {
         this.vcr.clear();
-        this.vcr.createEmbeddedView(this.template);
+        this.viewRef = this.vcr.createEmbeddedView(this.template);
         this.cdr.markForCheck();
       })
       .catch(() => {
@@ -75,5 +78,13 @@ export class LazyElementDirective implements OnInit {
           );
         }
       });
+  }
+
+  destroyEmbeddedView() {
+    if (this.viewRef && !this.viewRef.destroyed) {
+      this.viewRef.detach();
+      this.viewRef.destroy();
+      this.viewRef = null;
+    }
   }
 }

@@ -7,7 +7,8 @@ import {
   ComponentFactoryResolver,
   ChangeDetectorRef,
   Renderer2,
-  Inject
+  Inject,
+  EmbeddedViewRef
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
@@ -32,6 +33,8 @@ export class LazyElementDynamicDirective implements OnInit {
     any
   >; // tslint:disable-line:no-input-rename
   @Input('axLazyElementDynamicModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
+
+  private viewRef: EmbeddedViewRef<any> = null;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -75,7 +78,7 @@ export class LazyElementDynamicDirective implements OnInit {
           }
           return this.document.createElement(name);
         };
-        this.vcr.createEmbeddedView(this.template);
+        this.viewRef = this.vcr.createEmbeddedView(this.template);
         this.renderer.createElement = originalCreateElement;
         this.cdr.markForCheck();
       })
@@ -97,5 +100,13 @@ export class LazyElementDynamicDirective implements OnInit {
           );
         }
       });
+  }
+
+  destroyEmbeddedView() {
+    if (this.viewRef && !this.viewRef.destroyed) {
+      this.viewRef.detach();
+      this.viewRef.destroy();
+      this.viewRef = null;
+    }
   }
 }
