@@ -21,13 +21,15 @@ import {
   LAZY_ELEMENT_ROOT_GUARD
 } from './lazy-elements.tokens';
 
-export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
-  if (options) {
+export function createLazyElementRootGuard(
+  rootOptions: LazyElementRootOptions
+) {
+  if (rootOptions) {
     throw new TypeError(
       `LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.`
     );
   }
-  return 'guarded';
+  return 'LazyElementsModule.forRoot() multiple execution guard';
 }
 
 @NgModule({
@@ -56,7 +58,7 @@ export class LazyElementsModule {
         {
           provide: LAZY_ELEMENT_ROOT_GUARD,
           useFactory: createLazyElementRootGuard,
-          deps: [[LAZY_ELEMENT_CONFIGS, new Optional(), new SkipSelf()]]
+          deps: [[LAZY_ELEMENT_ROOT_OPTIONS, new Optional(), new SkipSelf()]]
         }
       ]
     };
