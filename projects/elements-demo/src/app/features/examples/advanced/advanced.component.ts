@@ -13,6 +13,7 @@ export class AdvancedComponent implements OnInit {
   example3 = false;
   example4 = false;
   example6 = false;
+  example7 = false;
 
   // example code examples
   codeExample1module = CODE_EXAMPLE_1_MODULE;
@@ -27,9 +28,12 @@ export class AdvancedComponent implements OnInit {
   codeExample5ts = CODE_EXAMPLE_5_TS;
   codeExample6html = CODE_EXAMPLE_6_HTML;
   codeExample6module = CODE_EXAMPLE_6_MODULE;
+  codeExample7html = CODE_EXAMPLE_7_HTML;
+  codeExample7module = CODE_EXAMPLE_7_MODULE;
 
   // example state
   counter = 0;
+  flag = false;
 
   constructor(private lazyElementLoaderService: LazyElementsLoaderService) {}
 
@@ -37,6 +41,10 @@ export class AdvancedComponent implements OnInit {
 
   increment() {
     this.counter++;
+  }
+
+  toggle() {
+    this.flag = !this.flag;
   }
 
   preload() {
@@ -196,3 +204,36 @@ export class FeatureModule { }
 `;
 
 const CODE_EXAMPLE_6_HTML = `<mwc-slider *axLazyElement></mwc-slider>`;
+
+const CODE_EXAMPLE_7_HTML = `<!-- No need to specify url -->
+<wired-toggle *axLazyElement (change)="toggle()"></wired-toggle>`;
+
+const CODE_EXAMPLE_7_MODULE = `export function elementConfigsFactory(): ElementConfig[] {
+  // retrieve or construct configs (sync)
+  const configs = [
+    {
+      tag: 'wired-toggle',
+      url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js'
+    }
+  ]
+  return configs;
+};
+
+@NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [FeatureComponent],
+  imports: [
+    LazyElementsModule.forFeature({
+      // some other configs
+    }),
+  ],
+  providers: [
+    {
+      provide: LAZY_ELEMENT_CONFIGS,
+      useFactory: elementConfigsFactory,
+      multi: true
+    }
+  ]
+})
+export class FeatureModule { }
+`;

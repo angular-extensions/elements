@@ -7,6 +7,11 @@
       >
     </li>
     <li>
+      <a routerLink="." fragment="feature-module-dynamic-pre-configuration"
+        >Feature module dynamic pre-configuration</a
+      >
+    </li>
+    <li>
       <a routerLink="." fragment="inline-options"
         >Pre-configuration with inline options</a
       >
@@ -51,6 +56,32 @@
       </p>
       <pre [highlight]="codeExample1html"></pre>
       <pre [highlight]="codeExample1module"></pre>
+    </div>
+  </div>
+
+  <h2 id="feature-module-dynamic-pre-configuration">
+    Dynamic configuration resolved at runtime
+  </h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example7">
+      <button mat-flat-button color="accent" (click)="example7 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example7">
+      <wired-toggle *axLazyElement (change)="toggle()">Toggle me</wired-toggle>
+      <p>Value: {{ flag }}</p>
+    </div>
+    <div class="description">
+      <p>
+        In this example we're pre-configuring
+        <code>LazyElementsModule</code> with the element config that is provided
+        during runtime. We're using <code>LAZY_ELEMENT_CONFIGS</code> token as a
+        multi provider with a custom factory function.
+      </p>
+      <pre [highlight]="codeExample7html"></pre>
+      <pre [highlight]="codeExample7module"></pre>
     </div>
   </div>
 

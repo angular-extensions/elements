@@ -24,6 +24,7 @@ export interface ElementConfig {
   errorComponent?: Type<any>;
   preload?: boolean;
   hooks?: HooksConfig;
+  isAdded?: boolean;
 }
 
 @Injectable({
@@ -51,6 +52,7 @@ export class LazyElementsLoaderService {
           `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`
         );
       } else {
+        newConfig.isAdded = true;
         this.configs.push(newConfig);
         const shouldPreload =
           newConfig.preload !== undefined

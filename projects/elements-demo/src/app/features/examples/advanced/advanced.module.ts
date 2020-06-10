@@ -5,19 +5,33 @@ import {
   LazyElementModuleOptions,
   LazyElementsModule
 } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
+import { ElementConfig } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements-loader.service';
+import { LAZY_ELEMENT_CONFIGS } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.tokens';
 
 import { SharedModule } from '../../../shared/shared.module';
+import { ErrorComponent } from '../../../shared/error/error.component';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 
 import { AdvancedRoutingModule } from './advanced-routing.module';
 import { AdvancedComponent } from './advanced.component';
-import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
-import { ErrorComponent } from '../../../shared/error/error.component';
 
 export function beforeLoadHook(tag: string): Promise<void> {
   alert(
     `Starting download of ${tag} web component! The download will be artificially postponed for 5 seconds.`
   );
   return new Promise(res => setTimeout(res, 5000));
+}
+
+export function elementConfigsFactory(): ElementConfig[] {
+  return [
+    {
+      tag: 'wired-toggle',
+      url:
+        'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
+      loadingComponent: SpinnerComponent,
+      errorComponent: ErrorComponent
+    }
+  ];
 }
 
 const options: LazyElementModuleOptions = {
@@ -64,9 +78,15 @@ const options: LazyElementModuleOptions = {
   imports: [
     HighlightModule,
     LazyElementsModule.forFeature(options),
-    LazyElementsModule.forFeature(options),
     SharedModule,
     AdvancedRoutingModule
+  ],
+  providers: [
+    {
+      provide: LAZY_ELEMENT_CONFIGS,
+      useFactory: elementConfigsFactory,
+      multi: true
+    }
   ]
 })
 export class AdvancedModule {}

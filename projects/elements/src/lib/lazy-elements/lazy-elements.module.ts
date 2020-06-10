@@ -88,9 +88,9 @@ export class LazyElementsModule {
     guard: any
   ) {
     if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
-      const lastAddedConfigs =
-        elementConfigsMultiProvider[elementConfigsMultiProvider.length - 1];
-      lazyElementsLoaderService.addConfigs(lastAddedConfigs);
+      elementConfigsMultiProvider
+        .filter(configs => configs.some(config => !config.isAdded))
+        .forEach(configs => lazyElementsLoaderService.addConfigs(configs));
     }
   }
 }

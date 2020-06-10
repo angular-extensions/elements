@@ -256,17 +256,20 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     expect(service.configs.length).toEqual(3);
     expect(service.configs[0]).toEqual({
       tag: 'some-element',
-      url: 'http://elements.com/some-url'
+      url: 'http://elements.com/some-url',
+      isAdded: true
     });
     expect(service.configs[1]).toEqual({
       tag: 'some-other-element',
       url: 'http://elements.com/some-other-url',
-      preload: true
+      preload: true,
+      isAdded: true
     });
     expect(service.configs[2]).toEqual({
       tag: 'some-module-element',
       url: 'http://elements.com/some-module-url',
-      isModule: true
+      isModule: true,
+      isAdded: true
     });
   });
 
