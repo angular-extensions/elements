@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.4.0](https://github.com/angular-extensions/elements/compare/v9.3.0...v9.4.0) (2020-06-10)
+
+### Features
+
+- **element:** support / document dynamic module configuration, fix [#29](https://github.com/angular-extensions/elements/issues/29) ([d0a9842](https://github.com/angular-extensions/elements/commit/d0a9842a50b7bcf47f4aec1d2b641c17f263e622))
+
 ## [9.3.0](https://github.com/angular-extensions/elements/compare/v9.2.0...v9.3.0) (2020-05-27)
 
 ### Features
