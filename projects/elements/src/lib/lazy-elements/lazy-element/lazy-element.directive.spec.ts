@@ -80,6 +80,7 @@ describe('LazyElementDirective', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let appendChildSpy: jasmine.Spy;
+  let whenDefinedSpy: jasmine.Spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -104,6 +105,9 @@ describe('LazyElementDirective', () => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
     appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
+    whenDefinedSpy = spyOn(customElements, 'whenDefined').and.returnValue(
+      Promise.resolve()
+    );
     fixture.detectChanges();
   });
 
