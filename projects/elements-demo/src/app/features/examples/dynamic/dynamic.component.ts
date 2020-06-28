@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'demo-dynamic',
   templateUrl: './dynamic.component.html',
-  styleUrls: ['./dynamic.component.scss']
+  styleUrls: ['./dynamic.component.scss'],
 })
 export class DynamicComponent implements OnInit {
   // example toggles
@@ -29,21 +29,21 @@ export class DynamicComponent implements OnInit {
       url: 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module',
       isModule: true,
       content: 'Increment',
-      actionName: 'increment'
+      actionName: 'increment',
     },
     {
       tag: 'wired-button',
       url:
         'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
       content: 'Decrement',
-      actionName: 'decrement'
+      actionName: 'decrement',
     },
     {
       tag: 'mwc-icon',
       url: 'https://unpkg.com/@material/mwc-icon@0.6.0/mwc-icon.js?module',
       content: 'replay',
-      actionName: 'reset'
-    }
+      actionName: 'reset',
+    },
   ];
 
   constructor() {}

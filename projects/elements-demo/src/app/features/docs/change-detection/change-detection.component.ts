@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'demo-change-detection',
   templateUrl: './change-detection.component.html',
-  styleUrls: ['./change-detection.component.scss']
+  styleUrls: ['./change-detection.component.scss'],
 })
 export class ChangeDetectionComponent implements OnInit {
   codeExampleShareNgZone = CODE_EXAMPLE_SHARE_NG_ZONE;

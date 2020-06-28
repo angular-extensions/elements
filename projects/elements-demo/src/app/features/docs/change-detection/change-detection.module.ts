@@ -8,6 +8,6 @@ import { ChangeDetectionComponent } from './change-detection.component';
 
 @NgModule({
   declarations: [ChangeDetectionComponent],
-  imports: [HighlightModule, SharedModule, ChangeDetectionRoutingModule]
+  imports: [HighlightModule, SharedModule, ChangeDetectionRoutingModule],
 })
 export class ChangeDetectionModule {}

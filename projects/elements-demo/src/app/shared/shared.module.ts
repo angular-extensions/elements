@@ -32,13 +32,13 @@ const ANGULAR_MATERIAL_MODULES = [
   MatSnackBarModule,
   MatSliderModule,
   MatFormFieldModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
 ];
 
 @NgModule({
   declarations: [SpinnerComponent, ErrorComponent, RootErrorComponent],
   imports: [CommonModule, ...ANGULAR_MATERIAL_MODULES],
-  exports: [CommonModule, ...ANGULAR_MATERIAL_MODULES, SpinnerComponent]
+  exports: [CommonModule, ...ANGULAR_MATERIAL_MODULES, SpinnerComponent],
 })
 export class SharedModule {
   constructor(

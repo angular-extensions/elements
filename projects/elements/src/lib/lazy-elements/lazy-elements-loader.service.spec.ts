@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   LazyElementsLoaderService,
-  HooksConfig
+  HooksConfig,
 } from './lazy-elements-loader.service';
 import { LazyElementsModule } from './lazy-elements.module';
 
@@ -21,7 +21,7 @@ describe('LazyElementsLoaderService', () => {
     appendedScripts = [];
     shouldLoadSucceed = true;
     appendChildSpy = spyOn(document.body, 'appendChild').and.callFake(
-      script => {
+      (script) => {
         appendedScripts.push(script as any);
         if (shouldLoadSucceed) {
           Promise.resolve().then(() => script.dispatchEvent(new Event('load')));
@@ -83,19 +83,19 @@ describe('LazyElementsLoaderService', () => {
     );
   });
 
-  it('resolves promise once element bundle was loaded', done => {
+  it('resolves promise once element bundle was loaded', (done) => {
     const promise = service.loadElement(
       'http://elements.com/some-element',
       'some-element'
     );
 
-    promise.then(value => {
+    promise.then((value) => {
       expect(value).toBe(undefined);
       done();
     });
   });
 
-  it('rejects promise once element bundle loading failed', done => {
+  it('rejects promise once element bundle loading failed', (done) => {
     shouldLoadSucceed = false;
 
     const promise = service.loadElement(
@@ -107,7 +107,7 @@ describe('LazyElementsLoaderService', () => {
       .then(() => {
         fail('should reject promise instead');
       })
-      .catch(error => {
+      .catch((error) => {
         expect(error).toBeInstanceOf(Event);
       })
       .finally(done);
@@ -133,16 +133,16 @@ describe('LazyElementsLoaderService', () => {
     expect(appendedScripts[0].type).toBe('module');
   });
 
-  it('calls beforeLoad hook with name as argument before inserting tag into the DOM tree', done => {
+  it('calls beforeLoad hook with name as argument before inserting tag into the DOM tree', (done) => {
     let wasHookCalled = false;
     service
       .loadElement('http://elements.com/some-element', 'some-element', false, {
-        beforeLoad: tag => {
+        beforeLoad: (tag) => {
           expect(tag).toBe('some-element');
           expect(wasHookCalled).toBe(false);
           expect(appendChildSpy).not.toHaveBeenCalled();
           wasHookCalled = true;
-        }
+        },
       })
       .then(() => {
         expect(wasHookCalled).toBe(true);
@@ -151,16 +151,16 @@ describe('LazyElementsLoaderService', () => {
       });
   });
 
-  it('calls afterLoad hook with name as argument after inserting tag into the DOM tree', done => {
+  it('calls afterLoad hook with name as argument after inserting tag into the DOM tree', (done) => {
     let wasHookCalled = false;
     service
       .loadElement('http://elements.com/some-element', 'some-element', false, {
-        afterLoad: tag => {
+        afterLoad: (tag) => {
           expect(tag).toBe('some-element');
           expect(wasHookCalled).toBe(false);
           expect(appendChildSpy).toHaveBeenCalledTimes(1);
           wasHookCalled = true;
-        }
+        },
       })
       .then(() => {
         expect(wasHookCalled).toBe(true);
@@ -169,7 +169,7 @@ describe('LazyElementsLoaderService', () => {
       });
   });
 
-  it('waits for promise returned from the hook to resolve', done => {
+  it('waits for promise returned from the hook to resolve', (done) => {
     let promiseResolved = false;
     service
       .loadElement('http://elements.com/some-element', 'some-element', false, {
@@ -177,7 +177,7 @@ describe('LazyElementsLoaderService', () => {
           Promise.resolve().then(() => {
             expect(appendChildSpy).not.toHaveBeenCalled();
             promiseResolved = true;
-          })
+          }),
       })
       .then(() => {
         expect(promiseResolved).toBe(true);
@@ -194,10 +194,10 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
   let afterLoadRootSpy: jasmine.Spy;
   let afterLoadElementSpy: jasmine.Spy;
   const rootHooks: HooksConfig = {
-    afterLoad: () => void 0
+    afterLoad: () => void 0,
   };
   const elementHooks: HooksConfig = {
-    afterLoad: () => void 0
+    afterLoad: () => void 0,
   };
 
   beforeEach(() => {
@@ -205,7 +205,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       imports: [
         LazyElementsModule.forRoot({
           rootOptions: {
-            hooks: rootHooks
+            hooks: rootHooks,
           },
           elementConfigs: [
             { tag: 'some-element', url: 'http://elements.com/some-url' },
@@ -213,16 +213,16 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
             {
               tag: 'some-other-element',
               url: 'http://elements.com/some-other-url',
-              preload: true
+              preload: true,
             },
             {
               tag: 'some-module-element',
               url: 'http://elements.com/some-module-url',
-              isModule: true
-            }
-          ]
-        })
-      ]
+              isModule: true,
+            },
+          ],
+        }),
+      ],
     });
 
     service = TestBed.inject<LazyElementsLoaderService>(
@@ -233,7 +233,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     afterLoadRootSpy = spyOn(rootHooks, 'afterLoad');
     afterLoadElementSpy = spyOn(elementHooks, 'afterLoad');
     appendChildSpy = spyOn(document.body, 'appendChild').and.callFake(
-      script => {
+      (script) => {
         appendedScripts.push(script as any);
         if (shouldLoadSucceed) {
           Promise.resolve().then(() => script.dispatchEvent(new Event('load')));
@@ -257,19 +257,19 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     expect(service.configs[0]).toEqual({
       tag: 'some-element',
       url: 'http://elements.com/some-url',
-      isAdded: true
+      isAdded: true,
     });
     expect(service.configs[1]).toEqual({
       tag: 'some-other-element',
       url: 'http://elements.com/some-other-url',
       preload: true,
-      isAdded: true
+      isAdded: true,
     });
     expect(service.configs[2]).toEqual({
       tag: 'some-module-element',
       url: 'http://elements.com/some-module-url',
       isModule: true,
-      isAdded: true
+      isAdded: true,
     });
   });
 
@@ -291,7 +291,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('should call root hook if hook in elementConfig was not provided', done => {
+  it('should call root hook if hook in elementConfig was not provided', (done) => {
     service
       .loadElement('http://elements.com/element-with-hook', 'element-with-hook')
       .then(() => {
@@ -300,7 +300,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       });
   });
 
-  it('should call provided hook instead of root one if configured via element config', done => {
+  it('should call provided hook instead of root one if configured via element config', (done) => {
     service
       .loadElement(
         'http://elements.com/element-with-hook',

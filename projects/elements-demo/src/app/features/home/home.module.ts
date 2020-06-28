@@ -10,6 +10,6 @@ import { HomeComponent } from './home/home.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [HomeComponent],
   imports: [RouterModule, HighlightModule, SharedModule],
-  exports: [HomeComponent]
+  exports: [HomeComponent],
 })
 export class HomeModule {}

@@ -4,7 +4,7 @@ import { LazyElementRootOptions } from './lazy-elements.module';
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
   LAZY_ELEMENTS_REGISTRY,
-  LazyElementsRegistry
+  LazyElementsRegistry,
 } from './lazy-elements.tokens';
 
 const LOG_PREFIX = '@angular-extensions/elements';
@@ -28,7 +28,7 @@ export interface ElementConfig {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LazyElementsLoaderService {
   configs: ElementConfig[] = [];
@@ -45,7 +45,7 @@ export class LazyElementsLoaderService {
   }
 
   addConfigs(newConfigs: ElementConfig[]) {
-    newConfigs.forEach(newConfig => {
+    newConfigs.forEach((newConfig) => {
       const existingConfig = this.getElementConfig(newConfig.tag);
       if (existingConfig) {
         console.warn(
@@ -71,15 +71,15 @@ export class LazyElementsLoaderService {
   }
 
   getElementConfig(tag: string): ElementConfig {
-    return this.configs.find(config => config.tag === tag);
+    return this.configs.find((config) => config.tag === tag);
   }
 
   preload(tags?: string[]) {
     let configs = this.configs;
     if (tags) {
-      configs = this.configs.filter(config => tags.includes(config.tag));
+      configs = this.configs.filter((config) => tags.includes(config.tag));
     }
-    configs.forEach(config =>
+    configs.forEach((config) =>
       this.loadElement(config.url, config.tag, config.isModule, config.hooks)
     );
   }

@@ -15,7 +15,7 @@ import { TestingComponent } from './testing.component';
     HighlightModule,
     LazyElementsModule,
     SharedModule,
-    TestingRoutingModule
-  ]
+    TestingRoutingModule,
+  ],
 })
 export class TestingModule {}

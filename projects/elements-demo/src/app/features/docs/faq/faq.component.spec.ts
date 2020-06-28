@@ -12,7 +12,7 @@ describe('FaqComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SharedModule],
-      declarations: [FaqComponent]
+      declarations: [FaqComponent],
     }).compileComponents();
   }));
 

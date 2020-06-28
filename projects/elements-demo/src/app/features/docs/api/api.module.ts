@@ -7,6 +7,6 @@ import { ApiComponent } from './api.component';
 
 @NgModule({
   declarations: [ApiComponent],
-  imports: [SharedModule, ApiRoutingModule]
+  imports: [SharedModule, ApiRoutingModule],
 })
 export class ApiModule {}

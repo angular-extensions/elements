@@ -16,7 +16,7 @@ describe('TestingComponent', () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [LazyElementsModule, HighlightModule, SharedModule],
-      declarations: [TestingComponent]
+      declarations: [TestingComponent],
     }).compileComponents();
   }));
 

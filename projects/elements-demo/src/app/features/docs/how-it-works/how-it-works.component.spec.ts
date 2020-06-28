@@ -14,7 +14,7 @@ describe('HowItWorksComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HighlightModule, RouterTestingModule, SharedModule],
-      declarations: [HowItWorksComponent]
+      declarations: [HowItWorksComponent],
     }).compileComponents();
   }));
 

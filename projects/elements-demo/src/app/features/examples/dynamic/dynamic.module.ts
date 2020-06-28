@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import {
   LazyElementModuleOptions,
-  LazyElementsModule
+  LazyElementsModule,
 } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
 import { SharedModule } from '../../../shared/shared.module';
@@ -17,9 +17,9 @@ const options: LazyElementModuleOptions = {
     {
       tag: 'wired-button',
       url:
-        'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js'
-    }
-  ]
+        'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
+    },
+  ],
 };
 
 @NgModule({
@@ -30,7 +30,7 @@ const options: LazyElementModuleOptions = {
     FormsModule,
     LazyElementsModule.forFeature(options),
     SharedModule,
-    DynamicRoutingModule
-  ]
+    DynamicRoutingModule,
+  ],
 })
 export class DynamicModule {}

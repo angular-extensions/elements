@@ -12,7 +12,7 @@ describe('FooterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, SharedModule],
-      declarations: [FooterComponent]
+      declarations: [FooterComponent],
     }).compileComponents();
   }));
 

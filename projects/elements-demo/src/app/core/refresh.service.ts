@@ -4,7 +4,7 @@ import { SwUpdate } from '@angular/service-worker';
 import { take } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RefreshService {
   constructor(private swUpdate: SwUpdate, private snackbar: MatSnackBar) {}
@@ -16,7 +16,7 @@ export class RefreshService {
         'Reload page',
         {
           horizontalPosition: 'center',
-          verticalPosition: 'top'
+          verticalPosition: 'top',
         }
       );
       snack

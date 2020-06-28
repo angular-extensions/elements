@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 const NAVIGATION = [
   {
     label: 'HOME',
-    url: 'home'
+    url: 'home',
   },
   {
     label: 'DOCS',
@@ -11,33 +11,33 @@ const NAVIGATION = [
     children: [
       {
         label: 'Getting started',
-        url: 'docs/getting-started'
+        url: 'docs/getting-started',
       },
       {
         label: 'How it works',
-        url: 'docs/how-it-works'
+        url: 'docs/how-it-works',
       },
       {
         label: 'Configuration',
-        url: 'docs/configuration'
+        url: 'docs/configuration',
       },
       {
         label: 'Use cases',
-        url: 'docs/use-cases'
+        url: 'docs/use-cases',
       },
       {
         label: 'Change detection',
-        url: 'docs/change-detection'
+        url: 'docs/change-detection',
       },
       {
         label: 'API',
-        url: 'docs/api'
+        url: 'docs/api',
       },
       {
         label: 'FAQ',
-        url: 'docs/faq'
-      }
-    ]
+        url: 'docs/faq',
+      },
+    ],
   },
   {
     label: 'EXAMPLES',
@@ -45,32 +45,32 @@ const NAVIGATION = [
     children: [
       {
         label: 'Basic',
-        url: 'examples/basic'
+        url: 'examples/basic',
       },
       {
         label: 'Advanced',
-        url: 'examples/advanced'
+        url: 'examples/advanced',
       },
       {
         label: 'Dynamic',
-        url: 'examples/dynamic'
+        url: 'examples/dynamic',
       },
       {
         label: 'Testing',
-        url: 'examples/testing'
-      }
-    ]
+        url: 'examples/testing',
+      },
+    ],
   },
   {
     label: 'CONTRIBUTE',
-    url: 'contribute'
-  }
+    url: 'contribute',
+  },
 ];
 
 @Component({
   selector: 'demo-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
   navigation = NAVIGATION;

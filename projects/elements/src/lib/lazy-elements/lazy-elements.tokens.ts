@@ -19,7 +19,7 @@ export const LAZY_ELEMENTS_REGISTRY = new InjectionToken<LazyElementsRegistry>(
   'LAZY_ELEMENTS_REGISTRY',
   {
     providedIn: 'root',
-    factory: () => new Map<string, Promise<void>>()
+    factory: () => new Map<string, Promise<void>>(),
   }
 );
 

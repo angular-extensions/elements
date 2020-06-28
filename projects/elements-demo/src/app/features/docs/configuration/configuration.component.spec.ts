@@ -14,7 +14,7 @@ describe('ConfigurationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HighlightModule, RouterTestingModule, SharedModule],
-      declarations: [ConfigurationComponent]
+      declarations: [ConfigurationComponent],
     }).compileComponents();
   }));
 

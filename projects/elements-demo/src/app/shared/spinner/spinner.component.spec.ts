@@ -8,7 +8,7 @@ describe('SpinnerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SpinnerComponent]
+      declarations: [SpinnerComponent],
     }).compileComponents();
   }));
 

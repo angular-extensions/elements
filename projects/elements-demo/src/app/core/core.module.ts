@@ -11,7 +11,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 export function hljsLanguages() {
   return {
     typescript: () => import('highlight.js/lib/languages/typescript'),
-    xml: () => import('highlight.js/lib/languages/xml')
+    xml: () => import('highlight.js/lib/languages/xml'),
   };
 }
 
@@ -23,16 +23,16 @@ export function hljsLanguages() {
     HighlightModule,
 
     // local
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
-        languages: hljsLanguages()
-      }
-    }
+        languages: hljsLanguages(),
+      },
+    },
   ],
-  exports: [ToolbarComponent, NavigationComponent, FooterComponent]
+  exports: [ToolbarComponent, NavigationComponent, FooterComponent],
 })
 export class CoreModule {}

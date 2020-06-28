@@ -24,7 +24,7 @@ import { LazyElementDynamicDirective } from './lazy-element-dynamic.directive';
         "
       ></div>
     </div>
-  `
+  `,
 })
 class TestHostComponent {
   useWithoutTag = false;
@@ -39,7 +39,7 @@ describe('LazyElementDirectiveDynamic', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [TestHostComponent, LazyElementDynamicDirective]
+      declarations: [TestHostComponent, LazyElementDynamicDirective],
     }).compileComponents();
   }));
 

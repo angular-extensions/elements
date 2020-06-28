@@ -6,6 +6,6 @@ import { UseCasesComponent } from './use-cases.component';
 
 @NgModule({
   declarations: [UseCasesComponent],
-  imports: [CommonModule, UseCasesRoutingModule]
+  imports: [CommonModule, UseCasesRoutingModule],
 })
 export class UseCasesModule {}

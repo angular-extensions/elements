@@ -10,7 +10,7 @@ import { RefreshService } from './core/refresh.service';
 @Component({
   selector: 'demo-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   @HostBinding('class')
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
     this.isSmallOrSmaller = combineLatest([
       this.responsiveLayoutService.isSmallOrSmaller,
-      this.responsiveLayoutService.isLargeOrBigger
+      this.responsiveLayoutService.isLargeOrBigger,
     ]).pipe(
       delay(1),
       tap(([isSmall, isLarge]) => {
@@ -53,13 +53,13 @@ export class AppComponent implements OnInit {
 
     this.navOpened = combineLatest([
       this.isSmallOrSmaller,
-      this.navToggled
+      this.navToggled,
     ]).pipe(
       map(([isSmallScreen, navToggled]) => (!isSmallScreen ? true : navToggled))
     );
 
     this.sidenavMode = this.isSmallOrSmaller.pipe(
-      map(isSmallOrSmaller => (isSmallOrSmaller ? 'push' : 'side'))
+      map((isSmallOrSmaller) => (isSmallOrSmaller ? 'push' : 'side'))
     );
   }
 

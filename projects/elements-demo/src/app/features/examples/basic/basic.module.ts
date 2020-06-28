@@ -15,7 +15,7 @@ import { BasicComponent } from './basic.component';
     HighlightModule,
     LazyElementsModule,
     SharedModule,
-    BasicRoutingModule
-  ]
+    BasicRoutingModule,
+  ],
 })
 export class BasicModule {}

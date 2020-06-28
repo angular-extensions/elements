@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'basic',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -16,29 +16,29 @@ const routes: Routes = [
       {
         path: 'basic',
         loadChildren: () =>
-          import('./basic/basic.module').then(m => m.BasicModule)
+          import('./basic/basic.module').then((m) => m.BasicModule),
       },
       {
         path: 'advanced',
         loadChildren: () =>
-          import('./advanced/advanced.module').then(m => m.AdvancedModule)
+          import('./advanced/advanced.module').then((m) => m.AdvancedModule),
       },
       {
         path: 'dynamic',
         loadChildren: () =>
-          import('./dynamic/dynamic.module').then(m => m.DynamicModule)
+          import('./dynamic/dynamic.module').then((m) => m.DynamicModule),
       },
       {
         path: 'testing',
         loadChildren: () =>
-          import('./testing/testing.module').then(m => m.TestingModule)
-      }
-    ]
-  }
+          import('./testing/testing.module').then((m) => m.TestingModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ExamplesRoutingModule {}

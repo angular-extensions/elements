@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'getting-started',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -17,49 +17,49 @@ const routes: Routes = [
         path: 'getting-started',
         loadChildren: () =>
           import('./getting-started/getting-started.module').then(
-            m => m.GettingStartedModule
-          )
+            (m) => m.GettingStartedModule
+          ),
       },
       {
         path: 'how-it-works',
         loadChildren: () =>
           import('./how-it-works/how-it-works.module').then(
-            m => m.HowItWorksModule
-          )
+            (m) => m.HowItWorksModule
+          ),
       },
       {
         path: 'use-cases',
         loadChildren: () =>
-          import('./use-cases/use-cases.module').then(m => m.UseCasesModule)
+          import('./use-cases/use-cases.module').then((m) => m.UseCasesModule),
       },
       {
         path: 'api',
-        loadChildren: () => import('./api/api.module').then(m => m.ApiModule)
+        loadChildren: () => import('./api/api.module').then((m) => m.ApiModule),
       },
       {
         path: 'faq',
-        loadChildren: () => import('./faq/faq.module').then(m => m.FaqModule)
+        loadChildren: () => import('./faq/faq.module').then((m) => m.FaqModule),
       },
       {
         path: 'change-detection',
         loadChildren: () =>
           import('./change-detection/change-detection.module').then(
-            m => m.ChangeDetectionModule
-          )
+            (m) => m.ChangeDetectionModule
+          ),
       },
       {
         path: 'configuration',
         loadChildren: () =>
           import('./configuration/configuration.module').then(
-            m => m.ConfigurationModule
-          )
-      }
-    ]
-  }
+            (m) => m.ConfigurationModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class DocsRoutingModule {}

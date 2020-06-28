@@ -12,7 +12,7 @@ describe('ExamplesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, RouterTestingModule],
-      declarations: [ExamplesComponent]
+      declarations: [ExamplesComponent],
     }).compileComponents();
   }));
 

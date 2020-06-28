@@ -4,7 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ResponsiveLayoutService {
   // basic
@@ -22,25 +22,25 @@ export class ResponsiveLayoutService {
   constructor(private breakpointObserver: BreakpointObserver) {
     this.isXSmallScreen = this.breakpointObserver
       .observe([Breakpoints.XSmall])
-      .pipe(map(result => result.matches));
+      .pipe(map((result) => result.matches));
     this.isSmallScreen = this.breakpointObserver
       .observe([Breakpoints.Small])
-      .pipe(map(result => result.matches));
+      .pipe(map((result) => result.matches));
     this.isMediumScreen = this.breakpointObserver
       .observe([Breakpoints.Medium])
-      .pipe(map(result => result.matches));
+      .pipe(map((result) => result.matches));
     this.isLargeScreen = this.breakpointObserver
       .observe([Breakpoints.Large])
-      .pipe(map(result => result.matches));
+      .pipe(map((result) => result.matches));
     this.isXLargeScreen = this.breakpointObserver
       .observe([Breakpoints.XLarge])
-      .pipe(map(result => result.matches));
+      .pipe(map((result) => result.matches));
 
     this.columnCount = combineLatest([
       this.isXSmallScreen,
       this.isSmallScreen,
       this.isMediumScreen,
-      this.isLargeScreen
+      this.isLargeScreen,
     ]).pipe(
       map(([isXSmall, isSmall, isMedium, isLarge]) =>
         isXSmall ? 1 : isSmall ? 2 : isMedium ? 2 : isLarge ? 3 : 4
@@ -49,10 +49,10 @@ export class ResponsiveLayoutService {
 
     this.isSmallOrSmaller = this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
-      .pipe(map(result => result.matches));
+      .pipe(map((result) => result.matches));
 
     this.isLargeOrBigger = this.breakpointObserver
       .observe([Breakpoints.Large, Breakpoints.XLarge])
-      .pipe(map(result => result.matches));
+      .pipe(map((result) => result.matches));
   }
 }

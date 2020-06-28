@@ -4,7 +4,7 @@ import { MatSliderChange } from '@angular/material/slider';
 @Component({
   selector: 'demo-basic',
   templateUrl: './basic.component.html',
-  styleUrls: ['./basic.component.scss']
+  styleUrls: ['./basic.component.scss'],
 })
 export class BasicComponent implements OnInit {
   // example toggles

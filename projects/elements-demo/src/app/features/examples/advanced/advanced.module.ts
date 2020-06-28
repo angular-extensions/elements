@@ -3,7 +3,7 @@ import { HighlightModule } from 'ngx-highlightjs';
 
 import {
   LazyElementModuleOptions,
-  LazyElementsModule
+  LazyElementsModule,
 } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 import { ElementConfig } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements-loader.service';
 import { LAZY_ELEMENT_CONFIGS } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.tokens';
@@ -19,7 +19,7 @@ export function beforeLoadHook(tag: string): Promise<void> {
   alert(
     `Starting download of ${tag} web component! The download will be artificially postponed for 5 seconds.`
   );
-  return new Promise(res => setTimeout(res, 5000));
+  return new Promise((res) => setTimeout(res, 5000));
 }
 
 export function elementConfigsFactory(): ElementConfig[] {
@@ -29,8 +29,8 @@ export function elementConfigsFactory(): ElementConfig[] {
       url:
         'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
       loadingComponent: SpinnerComponent,
-      errorComponent: ErrorComponent
-    }
+      errorComponent: ErrorComponent,
+    },
   ];
 }
 
@@ -42,34 +42,34 @@ const options: LazyElementModuleOptions = {
         'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
       loadingComponent: SpinnerComponent,
       errorComponent: ErrorComponent,
-      preload: true
+      preload: true,
     },
     {
       tag: 'mwc-switch',
       url: 'https://unpkg.com/@material/mwc-switch@0.6.0/mwc-switch.js?module',
-      isModule: true
+      isModule: true,
     },
     {
       tag: 'mwc-checkbox',
       url:
         'https://unpkg.com/@material/mwc-checkbox@0.6.0/mwc-checkbox.js?module',
-      isModule: true
+      isModule: true,
     },
     {
       tag: 'mwc-fab',
       url: 'https://unpkg.com/@material/mwc-fab@0.6.0/mwc-fab.js?module',
       isModule: true,
-      loadingComponent: SpinnerComponent
+      loadingComponent: SpinnerComponent,
     },
     {
       tag: 'mwc-slider',
       url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
       isModule: true,
       hooks: {
-        beforeLoad: beforeLoadHook
-      }
-    }
-  ]
+        beforeLoad: beforeLoadHook,
+      },
+    },
+  ],
 };
 
 @NgModule({
@@ -79,14 +79,14 @@ const options: LazyElementModuleOptions = {
     HighlightModule,
     LazyElementsModule.forFeature(options),
     SharedModule,
-    AdvancedRoutingModule
+    AdvancedRoutingModule,
   ],
   providers: [
     {
       provide: LAZY_ELEMENT_CONFIGS,
       useFactory: elementConfigsFactory,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class AdvancedModule {}

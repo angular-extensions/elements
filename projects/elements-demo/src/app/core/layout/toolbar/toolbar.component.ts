@@ -6,7 +6,7 @@ import { ResponsiveLayoutService } from '../responsive-layout.service';
 @Component({
   selector: 'demo-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
   @Input() navOpened: boolean;

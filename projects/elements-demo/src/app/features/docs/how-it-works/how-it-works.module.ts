@@ -13,7 +13,7 @@ import { HowItWorksComponent } from './how-it-works.component';
     RouterModule,
     HighlightModule,
     SharedModule,
-    HowItWorksRoutingModule
-  ]
+    HowItWorksRoutingModule,
+  ],
 })
 export class HowItWorksModule {}

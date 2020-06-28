@@ -7,6 +7,6 @@ import { ContributeComponent } from './contribute/contribute.component';
 
 @NgModule({
   declarations: [ContributeComponent],
-  imports: [SharedModule, ContributeRoutingModule]
+  imports: [SharedModule, ContributeRoutingModule],
 })
 export class ContributeModule {}

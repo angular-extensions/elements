@@ -4,7 +4,7 @@ import { LazyElementsLoaderService } from './../../../../../../elements/src/lib/
 @Component({
   selector: 'demo-advanced',
   templateUrl: './advanced.component.html',
-  styleUrls: ['./advanced.component.scss']
+  styleUrls: ['./advanced.component.scss'],
 })
 export class AdvancedComponent implements OnInit {
   // example toggles

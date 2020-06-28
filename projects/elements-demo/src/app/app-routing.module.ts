@@ -6,29 +6,31 @@ import { HomeComponent } from './features/home/home/home.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'docs',
     loadChildren: () =>
-      import('./features/docs/docs.module').then(m => m.DocsModule)
+      import('./features/docs/docs.module').then((m) => m.DocsModule),
   },
   {
     path: 'examples',
     loadChildren: () =>
-      import('./features/examples/examples.module').then(m => m.ExamplesModule)
+      import('./features/examples/examples.module').then(
+        (m) => m.ExamplesModule
+      ),
   },
   {
     path: 'contribute',
     loadChildren: () =>
       import('./features/contribute/contribute.module').then(
-        m => m.ContributeModule
-      )
+        (m) => m.ContributeModule
+      ),
   },
   {
     path: '**',
-    redirectTo: 'home'
-  }
+    redirectTo: 'home',
+  },
 ];
 
 @NgModule({
@@ -38,9 +40,9 @@ const routes: Routes = [
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
       onSameUrlNavigation: 'reload',
-      scrollOffset: [0, 100]
-    })
+      scrollOffset: [0, 100],
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

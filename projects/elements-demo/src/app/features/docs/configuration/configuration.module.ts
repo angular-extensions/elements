@@ -13,7 +13,7 @@ import { ConfigurationComponent } from './configuration.component';
     CommonModule,
     HighlightModule,
     SharedModule,
-    ConfigurationRoutingModule
-  ]
+    ConfigurationRoutingModule,
+  ],
 })
 export class ConfigurationModule {}

@@ -12,7 +12,7 @@ describe('ContributeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, SharedModule],
-      declarations: [ContributeComponent]
+      declarations: [ContributeComponent],
     }).compileComponents();
   }));
 

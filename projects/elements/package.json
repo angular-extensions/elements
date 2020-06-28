@@ -2,8 +2,11 @@
   "name": "@angular-extensions/elements",
   "version": "10.0.0-alpha.1",
   "peerDependencies": {
-    "@angular/common": "9-10",
-    "@angular/core": "9-10"
+    "@angular/common": ">=10",
+    "@angular/core": ">=10"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"

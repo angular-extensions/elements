@@ -8,6 +8,6 @@ import { GettingStartedComponent } from './getting-started.component';
 
 @NgModule({
   declarations: [GettingStartedComponent],
-  imports: [HighlightModule, SharedModule, GettingStartedRoutingModule]
+  imports: [HighlightModule, SharedModule, GettingStartedRoutingModule],
 })
 export class GettingStartedModule {}

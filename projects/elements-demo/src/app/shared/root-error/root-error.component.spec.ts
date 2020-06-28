@@ -8,7 +8,7 @@ describe('RootErrorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RootErrorComponent]
+      declarations: [RootErrorComponent],
     }).compileComponents();
   }));
 

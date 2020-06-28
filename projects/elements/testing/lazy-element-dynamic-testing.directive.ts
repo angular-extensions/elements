@@ -2,11 +2,11 @@ import {
   Directive,
   OnInit,
   TemplateRef,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 
 @Directive({
-  selector: '[axLazyElementDynamic]'
+  selector: '[axLazyElementDynamic]',
 })
 export class LazyElementDynamicTestingDirective implements OnInit {
   constructor(

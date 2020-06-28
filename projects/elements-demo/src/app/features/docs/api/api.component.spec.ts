@@ -11,7 +11,7 @@ describe('ApiComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [ApiComponent]
+      declarations: [ApiComponent],
     }).compileComponents();
   }));
 

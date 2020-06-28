@@ -13,7 +13,7 @@ describe('ChangeDetectionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HighlightModule, SharedModule],
-      declarations: [ChangeDetectionComponent]
+      declarations: [ChangeDetectionComponent],
     }).compileComponents();
   }));
 

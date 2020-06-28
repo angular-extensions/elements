@@ -6,8 +6,8 @@ import { LazyElementDynamicTestingDirective } from './lazy-element-dynamic-testi
 @NgModule({
   declarations: [
     LazyElementTestingDirective,
-    LazyElementDynamicTestingDirective
+    LazyElementDynamicTestingDirective,
   ],
-  exports: [LazyElementTestingDirective, LazyElementDynamicTestingDirective]
+  exports: [LazyElementTestingDirective, LazyElementDynamicTestingDirective],
 })
 export class LazyElementsTestingModule {}

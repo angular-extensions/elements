@@ -12,7 +12,7 @@ describe('ToolbarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, SharedModule],
-      declarations: [ToolbarComponent]
+      declarations: [ToolbarComponent],
     }).compileComponents();
   }));
 

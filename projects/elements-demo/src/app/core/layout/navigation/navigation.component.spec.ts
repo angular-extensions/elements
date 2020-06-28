@@ -12,7 +12,7 @@ describe('NavigationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, SharedModule],
-      declarations: [NavigationComponent]
+      declarations: [NavigationComponent],
     }).compileComponents();
   }));
 

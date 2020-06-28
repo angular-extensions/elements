@@ -17,7 +17,7 @@ describe('BasicComponent', () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [LazyElementsModule, HighlightModule, SharedModule],
-      declarations: [BasicComponent]
+      declarations: [BasicComponent],
     }).compileComponents();
   }));
 

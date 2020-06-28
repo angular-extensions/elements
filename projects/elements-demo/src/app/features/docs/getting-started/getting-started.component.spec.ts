@@ -13,7 +13,7 @@ describe('GettingStartedComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HighlightModule, SharedModule],
-      declarations: [GettingStartedComponent]
+      declarations: [GettingStartedComponent],
     }).compileComponents();
   }));
 

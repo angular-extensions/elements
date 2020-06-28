@@ -4,7 +4,7 @@ import {
   Inject,
   ModuleWithProviders,
   Type,
-  SkipSelf
+  SkipSelf,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,12 +13,12 @@ import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element
 import {
   ElementConfig,
   LazyElementsLoaderService,
-  HooksConfig
+  HooksConfig,
 } from './lazy-elements-loader.service';
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
   LAZY_ELEMENT_CONFIGS,
-  LAZY_ELEMENT_ROOT_GUARD
+  LAZY_ELEMENT_ROOT_GUARD,
 } from './lazy-elements.tokens';
 
 export function createLazyElementRootGuard(
@@ -36,7 +36,7 @@ export function createLazyElementRootGuard(
   declarations: [LazyElementDirective, LazyElementDynamicDirective],
   imports: [CommonModule],
   exports: [LazyElementDirective, LazyElementDynamicDirective],
-  providers: []
+  providers: [],
 })
 export class LazyElementsModule {
   static forRoot(
@@ -49,18 +49,18 @@ export class LazyElementsModule {
           provide: LAZY_ELEMENT_CONFIGS,
           useValue:
             options && options.elementConfigs ? options.elementConfigs : [],
-          multi: true
+          multi: true,
         },
         {
           provide: LAZY_ELEMENT_ROOT_OPTIONS,
-          useValue: options.rootOptions ? options.rootOptions : {}
+          useValue: options.rootOptions ? options.rootOptions : {},
         },
         {
           provide: LAZY_ELEMENT_ROOT_GUARD,
           useFactory: createLazyElementRootGuard,
-          deps: [[LAZY_ELEMENT_ROOT_OPTIONS, new Optional(), new SkipSelf()]]
-        }
-      ]
+          deps: [[LAZY_ELEMENT_ROOT_OPTIONS, new Optional(), new SkipSelf()]],
+        },
+      ],
     };
   }
 
@@ -74,9 +74,9 @@ export class LazyElementsModule {
           provide: LAZY_ELEMENT_CONFIGS,
           useValue:
             options && options.elementConfigs ? options.elementConfigs : [],
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     };
   }
 
@@ -91,8 +91,8 @@ export class LazyElementsModule {
   ) {
     if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
       elementConfigsMultiProvider
-        .filter(configs => configs.some(config => !config.isAdded))
-        .forEach(configs => lazyElementsLoaderService.addConfigs(configs));
+        .filter((configs) => configs.some((config) => !config.isAdded))
+        .forEach((configs) => lazyElementsLoaderService.addConfigs(configs));
     }
   }
 }

@@ -11,23 +11,23 @@ const config = {
     { tag: 'some-element', url: 'http://elements.com/some-url' },
     {
       tag: 'some-other-element',
-      url: 'http://elements.com/some-other-url'
+      url: 'http://elements.com/some-other-url',
     },
     {
       tag: 'some-module-element',
       url: 'http://elements.com/some-module-url',
-      isModule: true
-    }
-  ]
+      isModule: true,
+    },
+  ],
 };
 
 @NgModule({
-  imports: [LazyElementsModule.forFeature({})]
+  imports: [LazyElementsModule.forFeature({})],
 })
 class ForFeatureModule {}
 
 @NgModule({
-  imports: [LazyElementsModule.forRoot({})]
+  imports: [LazyElementsModule.forRoot({})],
 })
 class ForRootModule {}
 
@@ -41,14 +41,14 @@ describe('LazyElementsModule', () => {
         RouterTestingModule.withRoutes([
           {
             path: 'feature',
-            loadChildren: () => ForFeatureModule
+            loadChildren: () => ForFeatureModule,
           },
           {
             path: 'root',
-            loadChildren: () => ForRootModule
-          }
-        ])
-      ]
+            loadChildren: () => ForRootModule,
+          },
+        ]),
+      ],
     });
     router = TestBed.inject<Router>(Router);
     router.initialNavigation();

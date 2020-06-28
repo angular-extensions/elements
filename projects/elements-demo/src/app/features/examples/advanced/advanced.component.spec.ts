@@ -16,7 +16,7 @@ describe('AdvancedComponent', () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [LazyElementsModule, HighlightModule, SharedModule],
-      declarations: [AdvancedComponent]
+      declarations: [AdvancedComponent],
     }).compileComponents();
   }));
 

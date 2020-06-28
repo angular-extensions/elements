@@ -4,15 +4,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LazyElementsModule } from '../lazy-elements.module';
 
 @Component({
-  template: `
-    <p class="loading">Spinner...</p>
-  `
+  template: ` <p class="loading">Spinner...</p> `,
 })
 class SpinnerTestComponent {}
 
 @NgModule({
   declarations: [SpinnerTestComponent],
-  entryComponents: [SpinnerTestComponent]
+  entryComponents: [SpinnerTestComponent],
 })
 class TestModule {}
 
@@ -65,7 +63,7 @@ class TestModule {}
     <div *ngIf="useElementConfig">
       <some-configured-element *axLazyElement></some-configured-element>
     </div>
-  `
+  `,
 })
 class TestHostComponent {
   addSameElement = false;
@@ -91,13 +89,13 @@ describe('LazyElementDirective', () => {
             {
               tag: 'some-configured-element',
               url: 'http://elements.com/some-configured-element-module',
-              loadingComponent: SpinnerTestComponent
-            }
-          ]
-        })
+              loadingComponent: SpinnerTestComponent,
+            },
+          ],
+        }),
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [TestHostComponent]
+      declarations: [TestHostComponent],
     }).compileComponents();
   }));
 
@@ -154,7 +152,7 @@ describe('LazyElementDirective', () => {
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
   });
 
-  it('removes loading template when element is loaded', done => {
+  it('removes loading template when element is loaded', (done) => {
     expect(document.querySelector('.loading')).toBe(null);
 
     testHostComponent.useLoadingTemplate = true;
@@ -172,7 +170,7 @@ describe('LazyElementDirective', () => {
     });
   });
 
-  it('renders error template loading of element failed', done => {
+  it('renders error template loading of element failed', (done) => {
     const consoleErrorSpy: jasmine.Spy = spyOn(console, 'error').and.stub();
     expect(document.querySelector('.loading')).toBe(null);
     expect(document.querySelector('.error')).toBe(null);

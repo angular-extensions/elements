@@ -7,6 +7,6 @@ import { ExamplesComponent } from './examples.component';
 
 @NgModule({
   declarations: [ExamplesComponent],
-  imports: [SharedModule, ExamplesRoutingModule]
+  imports: [SharedModule, ExamplesRoutingModule],
 })
 export class ExamplesModule {}

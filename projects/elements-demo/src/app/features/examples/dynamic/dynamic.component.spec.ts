@@ -15,7 +15,7 @@ describe('DynamicComponent', () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [LazyElementsModule, HighlightModule, SharedModule],
-      declarations: [DynamicComponent]
+      declarations: [DynamicComponent],
     }).compileComponents();
   }));
 

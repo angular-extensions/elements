@@ -24,21 +24,21 @@ import { RootErrorComponent } from './shared/root-error/root-error.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     LazyElementsModule.forRoot({
       rootOptions: {
-        errorComponent: RootErrorComponent
-      }
+        errorComponent: RootErrorComponent,
+      },
     }),
 
     // local
     CoreModule,
     SharedModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

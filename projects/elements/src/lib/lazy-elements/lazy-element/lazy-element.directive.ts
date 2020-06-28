@@ -6,18 +6,18 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   ChangeDetectorRef,
-  EmbeddedViewRef
+  EmbeddedViewRef,
 } from '@angular/core';
 
 import {
   LazyElementsLoaderService,
-  ElementConfig
+  ElementConfig,
 } from '../lazy-elements-loader.service';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
 @Directive({
-  selector: '[axLazyElement]'
+  selector: '[axLazyElement]',
 })
 export class LazyElementDirective implements OnInit {
   @Input('axLazyElement') url: string;

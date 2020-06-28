@@ -8,20 +8,20 @@ import {
   ChangeDetectorRef,
   Renderer2,
   Inject,
-  EmbeddedViewRef
+  EmbeddedViewRef,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import {
   LazyElementsLoaderService,
-  ElementConfig
+  ElementConfig,
 } from '../lazy-elements-loader.service';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
 /** @dynamic */
 @Directive({
-  selector: '[axLazyElementDynamic]'
+  selector: '[axLazyElementDynamic]',
 })
 export class LazyElementDynamicDirective implements OnInit {
   @Input('axLazyElementDynamic') tag: string;
@@ -83,7 +83,7 @@ export class LazyElementDynamicDirective implements OnInit {
         this.renderer.createElement = originalCreateElement;
         this.cdr.markForCheck();
       })
-      .catch(error => {
+      .catch((error) => {
         const errorComponent =
           elementConfig.errorComponent || options.errorComponent;
         this.vcr.clear();
