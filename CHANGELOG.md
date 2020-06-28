@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.0](https://github.com/angular-extensions/elements/compare/v9.4.0...v10.0.0) (2020-06-28)
+
+### Features
+
+- **workspace:** update to Angular 10, run migrations, prettier, closes [#56](https://github.com/angular-extensions/elements/issues/56) ([9f7ce5d](https://github.com/angular-extensions/elements/commit/9f7ce5d0ac275915ac5385f5cb5072b86ca75f23))
+
+### Bug Fixes
+
+- **element:** use LAZY_ELEMENT_ROOT_OPTIONS token for root guard ([769c598](https://github.com/angular-extensions/elements/commit/769c59847077cfbad08777f6758bc2bb8bb9306d))
+
+## [10.0.0-alpha.1](https://github.com/angular-extensions/elements/compare/v9.2.0...v10.0.0-alpha.1) (2020-05-20)
+
+### Bug Fixes
+
+- **elements:** fix binding issue ([2dcf755](https://github.com/angular-extensions/elements/commit/2dcf7551b62d6f28d749c95e89e93341bf8bf4c8))
+
 ## [10.0.0-alpha.1](https://github.com/angular-extensions/elements/compare/v9.2.0...v10.0.0-alpha.1) (2020-05-20)
 
 ### Bug Fixes

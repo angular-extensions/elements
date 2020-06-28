@@ -1,6 +1,6 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "10.0.0-alpha.1",
+  "version": "10.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
