@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.0.1](https://github.com/angular-extensions/elements/compare/v10.0.0...v10.0.1) (2020-06-28)
+
+### Bug Fixes
+
+- **workspace:** adjust build order to prevent IVY publish issues ([5c3705e](https://github.com/angular-extensions/elements/commit/5c3705e906c746f1d390a52666430be89f861f77))
+
 ## [10.0.0](https://github.com/angular-extensions/elements/compare/v9.4.0...v10.0.0) (2020-06-28)
 
 ### Features
