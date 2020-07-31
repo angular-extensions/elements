@@ -55,8 +55,8 @@
     "@angular/pwa": "^0.1000.0",
     "@angular/router": "^10.0.1",
     "@angular/service-worker": "^10.0.1",
-    "highlight.js": "^10.1.1",
-    "ngx-highlightjs": "^4.1.0-beta",
+    "highlight.js": "^9.0.0",
+    "ngx-highlightjs": "^4.1.1",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "^0.10.3"

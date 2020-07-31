@@ -8,13 +8,6 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
-export function hljsLanguages() {
-  return {
-    typescript: () => import('highlight.js/lib/languages/typescript'),
-    xml: () => import('highlight.js/lib/languages/xml'),
-  };
-}
-
 @NgModule({
   declarations: [ToolbarComponent, NavigationComponent, FooterComponent],
   imports: [
@@ -29,7 +22,11 @@ export function hljsLanguages() {
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
-        languages: hljsLanguages(),
+        coreLibraryLoader: () => import('highlight.js/lib/highlight'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          xml: () => import('highlight.js/lib/languages/xml'),
+        },
       },
     },
   ],
