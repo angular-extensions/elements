@@ -41,7 +41,9 @@ export function createLazyElementRootGuard(options: LazyElementModuleOptions) {
   providers: []
 })
 export class LazyElementsModule {
-  static forRoot(options: LazyElementModuleRootOptions): ModuleWithProviders {
+  static forRoot(
+    options: LazyElementModuleRootOptions
+  ): ModuleWithProviders<LazyElementsModule> {
     return {
       ngModule: LazyElementsModule,
       providers: [
@@ -69,7 +71,9 @@ export class LazyElementsModule {
     };
   }
 
-  static forFeature(options: LazyElementModuleOptions): ModuleWithProviders {
+  static forFeature(
+    options: LazyElementModuleOptions
+  ): ModuleWithProviders<LazyElementsModule> {
     return {
       ngModule: LazyElementsModule,
       providers: [
