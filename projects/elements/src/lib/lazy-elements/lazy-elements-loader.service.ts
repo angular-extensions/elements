@@ -122,7 +122,7 @@ export class LazyElementsLoaderService {
     }
 
     if (!url) {
-      if (!config || !config.url) {
+      if ((!config || !config.url) && !importMap) {
         throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
       } else if (importMap) {
         url = tag;

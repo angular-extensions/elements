@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HighlightModule } from 'ngx-highlightjs';
 import typescript from 'highlight.js/lib/languages/typescript';
 
@@ -10,12 +10,14 @@ describe('ChangeDetectionComponent', () => {
   let component: ChangeDetectionComponent;
   let fixture: ComponentFixture<ChangeDetectionComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HighlightModule, SharedModule],
-      declarations: [ChangeDetectionComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [HighlightModule, SharedModule],
+        declarations: [ChangeDetectionComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ChangeDetectionComponent);
