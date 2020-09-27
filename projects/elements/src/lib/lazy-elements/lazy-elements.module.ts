@@ -110,6 +110,7 @@ export interface LazyElementRootOptions {
   loadingComponent?: Type<any>;
   errorComponent?: Type<any>;
   isModule?: boolean;
+  importMap?: boolean;
   preload?: boolean;
   hooks?: HooksConfig;
 }
