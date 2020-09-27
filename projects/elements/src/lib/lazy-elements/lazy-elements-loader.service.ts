@@ -92,7 +92,7 @@ export class LazyElementsLoaderService {
     );
   }
 
-  loadElement(
+  async loadElement(
     url: string,
     tag: string,
     isModule?: boolean,

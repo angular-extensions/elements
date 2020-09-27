@@ -178,7 +178,7 @@
     </div>
   </div>
 
-  <h2 id="import-maps">Using import maps (SystemJS)</h2>
+  <h2 id="import-maps">Using import maps (SystemJS is required)</h2>
   <div class="content">
     <div class="implementation" *ngIf="!example5">
       <button mat-flat-button color="accent" (click)="example5 = true">
@@ -194,10 +194,23 @@
     </div>
     <div class="description">
       <p>
-        This example show how to use axLazyElement with Import Maps, for example
-        <code>&#60;mwc-switch></code> and add
-        <code>*axLazyElement</code> directive with the key stored in the import
-        map.
+        In this example we are using axLazyElement with Import Maps to load
+        <code>&#60;mwc-switch></code>. Any key can be used in the URL that is
+        mapped to a import map. For this feature to work properly a peer
+        dependency of having
+        <a href="https://github.com/systemjs/systemjs" target="_blank"
+          >SystemJS</a
+        >
+        globally loaded needs to be satisfied. For instance your index.html may
+        have the following code:
+      </p>
+      <pre [highlight]="codeExample5ImportMap"></pre>
+      <p>
+        So when adding <code>&#60;mwc-switch></code> with
+        <code>*axLazyElement </code> with the <code>importMap</code> flag set to
+        <code>true</code>
+        the directive will look for the key stored in the import map and load
+        the correct script.
       </p>
       <pre [highlight]="codeExample5"></pre>
     </div>

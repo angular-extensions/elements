@@ -20,6 +20,7 @@ export class BasicComponent implements OnInit {
   codeExample3 = CODE_EXAMPLE_3;
   codeExample4 = CODE_EXAMPLE_4;
   codeExample5 = CODE_EXAMPLE_5;
+  codeExample5ImportMap = CODE_EXAMPLE_5_IMPORT_MAP;
 
   // example state
   counter = 0;
@@ -65,4 +66,14 @@ const CODE_EXAMPLE_4 = `<!-- https://unpkg.com/ink-components' -->;
 </ink-chart>`;
 
 const CODE_EXAMPLE_5 = `<!-- url = 'https://unpkg.com/@material/mwc-switch@0.18.0//mwc-switch.js?module'; -->
-<mwc-switch checked *axLazyElement="; module: true; importMap: true"></mwc-switch>`;
+<mwc-switch checked *axLazyElement="'mwc-switch'; module: true; importMap: true"></mwc-switch>`;
+
+const CODE_EXAMPLE_5_IMPORT_MAP = `
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.6.1/system.min.js"></script>
+<script type="systemjs-importmap">
+  {
+    "imports": {
+      "mwc-switch": "https://unpkg.com/@material/mwc-switch@0.18.0/mwc-switch.js?module"
+    }
+  }
+</script>`;

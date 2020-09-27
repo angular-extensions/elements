@@ -82,6 +82,12 @@ const FEATURES = [
     icon: 'offline_bolt',
   },
   {
+    title: 'Flexible',
+    subtitle:
+      'Support cutting edge web APIs and standards like ES Modules and Import Maps!',
+    icon: 'code',
+  },
+  {
     title: 'Supports everything',
     subtitle:
       'Angular elements, web components, basically any custom element you can get your hands on...',
