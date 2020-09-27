@@ -26,6 +26,15 @@
     />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#1976d2" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.6.1/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.6.1/extras/dynamic-import-maps.min.js"></script>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "mwc-icon": "https://unpkg.com/@material/mwc-icon@0.18.0/mwc-icon.js?module"
+        }
+      }
+    </script>
   </head>
   <body class="mat-typography">
     <demo-root></demo-root>
