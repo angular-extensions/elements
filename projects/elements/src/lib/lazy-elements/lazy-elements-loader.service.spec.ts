@@ -136,14 +136,20 @@ describe('LazyElementsLoaderService', () => {
   it('calls beforeLoad hook with name as argument before inserting tag into the DOM tree', (done) => {
     let wasHookCalled = false;
     service
-      .loadElement('http://elements.com/some-element', 'some-element', false, {
-        beforeLoad: (tag) => {
-          expect(tag).toBe('some-element');
-          expect(wasHookCalled).toBe(false);
-          expect(appendChildSpy).not.toHaveBeenCalled();
-          wasHookCalled = true;
-        },
-      })
+      .loadElement(
+        'http://elements.com/some-element',
+        'some-element',
+        false,
+        false,
+        {
+          beforeLoad: (tag) => {
+            expect(tag).toBe('some-element');
+            expect(wasHookCalled).toBe(false);
+            expect(appendChildSpy).not.toHaveBeenCalled();
+            wasHookCalled = true;
+          },
+        }
+      )
       .then(() => {
         expect(wasHookCalled).toBe(true);
         expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -154,14 +160,20 @@ describe('LazyElementsLoaderService', () => {
   it('calls afterLoad hook with name as argument after inserting tag into the DOM tree', (done) => {
     let wasHookCalled = false;
     service
-      .loadElement('http://elements.com/some-element', 'some-element', false, {
-        afterLoad: (tag) => {
-          expect(tag).toBe('some-element');
-          expect(wasHookCalled).toBe(false);
-          expect(appendChildSpy).toHaveBeenCalledTimes(1);
-          wasHookCalled = true;
-        },
-      })
+      .loadElement(
+        'http://elements.com/some-element',
+        'some-element',
+        false,
+        false,
+        {
+          afterLoad: (tag) => {
+            expect(tag).toBe('some-element');
+            expect(wasHookCalled).toBe(false);
+            expect(appendChildSpy).toHaveBeenCalledTimes(1);
+            wasHookCalled = true;
+          },
+        }
+      )
       .then(() => {
         expect(wasHookCalled).toBe(true);
         expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -172,13 +184,19 @@ describe('LazyElementsLoaderService', () => {
   it('waits for promise returned from the hook to resolve', (done) => {
     let promiseResolved = false;
     service
-      .loadElement('http://elements.com/some-element', 'some-element', false, {
-        beforeLoad: () =>
-          Promise.resolve().then(() => {
-            expect(appendChildSpy).not.toHaveBeenCalled();
-            promiseResolved = true;
-          }),
-      })
+      .loadElement(
+        'http://elements.com/some-element',
+        'some-element',
+        false,
+        false,
+        {
+          beforeLoad: () =>
+            Promise.resolve().then(() => {
+              expect(appendChildSpy).not.toHaveBeenCalled();
+              promiseResolved = true;
+            }),
+        }
+      )
       .then(() => {
         expect(promiseResolved).toBe(true);
         done();
@@ -305,6 +323,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       .loadElement(
         'http://elements.com/element-with-hook',
         'element-with-hook',
+        false,
         false,
         elementHooks
       )
