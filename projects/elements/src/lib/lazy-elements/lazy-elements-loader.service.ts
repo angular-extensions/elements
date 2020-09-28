@@ -213,7 +213,7 @@ export class LazyElementsLoaderService {
       url = System.resolve(url);
     } else {
       throw new Error(
-        `${LOG_PREFIX} - SystemJS is not loaded and thus '${url}' can't be resolved, *axLazyElement depends on SystemJS for import map feature`
+        `${LOG_PREFIX} - importMap feature depends on SystemJS library to be globally loaded but none was found, thus '${url}' can't be resolved. You should either load SystemJS or remove the importMap flag.`
       );
     }
     return url;

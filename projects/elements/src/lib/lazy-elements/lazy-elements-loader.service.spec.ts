@@ -355,7 +355,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
             true
           )
         ).toBeRejectedWithError(
-          "@angular-extensions/elements - SystemJS is not loaded and thus 'element' can't be resolved, *axLazyElement depends on SystemJS for import map feature"
+          "@angular-extensions/elements - importMap feature depends on SystemJS library to be globally loaded but none was found, thus 'element' can't be resolved. You should either load SystemJS or remove the importMap flag."
         );
       })
     );
