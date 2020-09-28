@@ -362,7 +362,6 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
 
     it('should call has and resolve SystemJS methods', (done) => {
       (window as any).System = {
-        has: () => true,
         resolve: () => `http://elements.com/element-using-import-map`,
       };
       const System = (window as any).System;

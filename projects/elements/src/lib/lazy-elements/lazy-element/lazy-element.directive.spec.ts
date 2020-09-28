@@ -60,6 +60,11 @@ class TestModule {}
         *axLazyElement="'http://elements.com/some-element-module'; module: true"
       ></some-element>
     </div>
+    <div *ngIf="useImportMap">
+      <some-element
+        *axLazyElement="'some-element'; importMap: true"
+      ></some-element>
+    </div>
     <div *ngIf="useElementConfig">
       <some-configured-element *axLazyElement></some-configured-element>
     </div>
@@ -71,6 +76,7 @@ class TestHostComponent {
   useLoadingTemplate = false;
   useErrorTemplate = false;
   useModule = false;
+  useImportMap = false;
   useElementConfig = false;
 }
 
@@ -216,6 +222,27 @@ describe('LazyElementDirective', () => {
       'http://elements.com/some-element-module'
     );
     expect(appendChildSpy.calls.argsFor(1)[0].type).toBe('module');
+  });
+
+  it('uses import map when specified', () => {
+    fixture.detectChanges();
+
+    expect(appendChildSpy).toHaveBeenCalledTimes(1);
+    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('');
+
+    (window as any).System = {
+      resolve: () => `http://elements.com/element-using-import-map`,
+    };
+    testHostComponent.useImportMap = true;
+    fixture.detectChanges();
+
+    expect(appendChildSpy).toHaveBeenCalledTimes(2);
+    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
+      'http://elements.com/element-using-import-map'
+    );
   });
 
   it('uses elementConfig for the tag', () => {
