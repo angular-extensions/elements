@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.1.0](https://github.com/angular-extensions/elements/compare/v10.0.2...v10.1.0) (2020-09-28)
+
+### Features
+
+- **contributors:** add new contributor ([5112159](https://github.com/angular-extensions/elements/commit/5112159d6501bb767685806fb7fa8d5c31a9df22))
+- **service:** add support to use import maps ([3327496](https://github.com/angular-extensions/elements/commit/3327496818b20dcf829f2f47c184b1552508f94f))
+
 ### [10.0.2](https://github.com/angular-extensions/elements/compare/v10.0.1...v10.0.2) (2020-07-31)
 
 ### Bug Fixes
