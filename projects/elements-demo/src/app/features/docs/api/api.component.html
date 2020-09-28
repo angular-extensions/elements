@@ -134,6 +134,34 @@ isModule: boolean;</pre
             <code color="accent">Pre-configurable</code>
           </td>
         </tr>
+        <tr>
+          <td>
+            <pre>
+@Input('axLazyElementImportMap')
+importMap: boolean;</pre
+            >
+          </td>
+          <td>
+            <p>
+              Flag that specifies if the element url should be resolved using
+              import maps. If set to true an instance of
+              <a href="https://github.com/systemjs/systemjs" target="_blank"
+                >SystemJS</a
+              >
+              needs to exist in the application. <code>System.resolve</code> is
+              used in order to find the correct URL to load the bundle file
+              containing the element definition. The flag can be set using
+              <code
+                >&#60;some-element *axLazyElement="url; importMap:
+                true">&#60;/some-element></code
+              >
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: false</code
+            >
+            <code color="accent">Pre-configurable</code>
+          </td>
+        </tr>
       </tbody>
     </table>
   </mat-card>
@@ -316,6 +344,24 @@ isModule: boolean;</pre
           </td>
         </tr>
         <tr>
+          <td><pre>importMap: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the element url should be resolved using
+              import maps. If set to true an instance of
+              <a href="https://github.com/systemjs/systemjs" target="_blank"
+                >SystemJS</a
+              >
+              needs to exist in the application. <code>System.resolve</code> is
+              used in order to find the correct URL to load the bundle file
+              containing the element definition.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
           <td><pre>preload: boolean</pre></td>
           <td>
             <p>
@@ -424,6 +470,24 @@ isModule: boolean;</pre
           </td>
         </tr>
         <tr>
+          <td><pre>importMap: boolean</pre></td>
+          <td>
+            <p>
+              Flag that specifies if the element url should be resolved using
+              import maps. If set to true an instance of
+              <a href="https://github.com/systemjs/systemjs" target="_blank"
+                >SystemJS</a
+              >
+              needs to exist in the application. <code>System.resolve</code> is
+              used in order to find the correct URL to load the bundle file
+              containing the element definition.
+            </p>
+            <code color="accent">Optional</code>&nbsp;<code color="accent"
+              >Default: undefined</code
+            >
+          </td>
+        </tr>
+        <tr>
           <td><pre>loadingComponent: Type&#60;any></pre></td>
           <td>
             <p>
@@ -455,9 +519,7 @@ isModule: boolean;</pre
         <tr>
           <td><pre>preload: boolean</pre></td>
           <td>
-            <p>
-              Flag that specifies if the element is preloaded.
-            </p>
+            <p>Flag that specifies if the element is preloaded.</p>
             <code color="accent">Optional</code>&nbsp;<code color="accent"
               >Default: undefined</code
             >

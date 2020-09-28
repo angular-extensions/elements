@@ -26,7 +26,7 @@ export class DynamicComponent implements OnInit {
   dynamicConfigs = [
     {
       tag: 'mwc-button',
-      url: 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module',
+      url: 'https://unpkg.com/@material/mwc-button@0.18.0/mwc-button.js?module',
       isModule: true,
       content: 'Increment',
       actionName: 'increment',
@@ -40,7 +40,7 @@ export class DynamicComponent implements OnInit {
     },
     {
       tag: 'mwc-icon',
-      url: 'https://unpkg.com/@material/mwc-icon@0.6.0/mwc-icon.js?module',
+      url: 'https://unpkg.com/@material/mwc-icon@0.18.0/mwc-icon.js?module',
       content: 'replay',
       actionName: 'reset',
     },
@@ -73,7 +73,7 @@ export class DynamicComponent implements OnInit {
   }
 }
 
-export const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module' -->;
+export const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-button@0.18.0/mwc-button.js?module' -->;
 <ax-lazy-element *axLazyElementDynamic="'mwc-button', url: url; module: true"
      [outlined]="true"
      (click)="increment()">
@@ -122,7 +122,7 @@ export const CODE_EXAMPLE_3_HTML = `<ng-container *ngFor="let c of dynamicConfig
 dynamicConfigs = [
   {
     tag: 'mwc-button',
-    url: 'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module',
+    url: 'https://unpkg.com/@material/mwc-button@0.18.0/mwc-button.js?module',
     isModule: true,
     content: 'Increment',
     actionName: 'increment'
@@ -135,7 +135,7 @@ dynamicConfigs = [
   },
   {
     tag: 'mwc-icon',
-    url: 'https://unpkg.com/@material/mwc-icon@0.6.0/mwc-icon.js?module',
+    url: 'https://unpkg.com/@material/mwc-icon@0.18.0/mwc-icon.js?module',
     content: 'replay',
     actionName: 'reset'
   }

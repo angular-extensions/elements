@@ -24,6 +24,7 @@ export class LazyElementDirective implements OnInit {
   @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementImportMap') importMap: boolean | undefined; // tslint:disable-line:no-input-rename
 
   private viewRef: EmbeddedViewRef<any> = null;
 
@@ -55,7 +56,13 @@ export class LazyElementDirective implements OnInit {
       this.vcr.createComponent(factory);
     }
     this.elementsLoaderService
-      .loadElement(this.url, elementTag, this.isModule, elementConfig?.hooks)
+      .loadElement(
+        this.url,
+        elementTag,
+        this.isModule,
+        this.importMap,
+        elementConfig?.hooks
+      )
       .then(() => customElements.whenDefined(elementTag))
       .then(() => {
         this.vcr.clear();

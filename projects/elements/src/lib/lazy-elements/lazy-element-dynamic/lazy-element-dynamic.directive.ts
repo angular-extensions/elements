@@ -33,6 +33,7 @@ export class LazyElementDynamicDirective implements OnInit {
     any
   >; // tslint:disable-line:no-input-rename
   @Input('axLazyElementDynamicModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementDynamicImportMap') importMap: boolean | undefined; // tslint:disable-line:no-input-rename
 
   private viewRef: EmbeddedViewRef<any> = null;
 
@@ -68,7 +69,13 @@ export class LazyElementDynamicDirective implements OnInit {
     }
 
     this.elementsLoaderService
-      .loadElement(this.url, this.tag, this.isModule, elementConfig?.hooks)
+      .loadElement(
+        this.url,
+        this.tag,
+        this.isModule,
+        this.importMap,
+        elementConfig?.hooks
+      )
       .then(() => customElements.whenDefined(this.tag))
       .then(() => {
         this.vcr.clear();

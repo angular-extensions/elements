@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import {
   LazyElementsLoaderService,
@@ -39,19 +39,27 @@ describe('LazyElementsLoaderService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('throws error if used without url', () => {
-    expect(() => service.loadElement(undefined, 'some-element')).toThrowError(
-      '@angular-extensions/elements - url for <some-element> not found'
-    );
-  });
+  it(
+    'throws error if used without url',
+    waitForAsync(() => {
+      expectAsync(
+        service.loadElement(undefined, 'some-element')
+      ).toBeRejectedWithError(
+        '@angular-extensions/elements - url for <some-element> not found'
+      );
+    })
+  );
 
-  it('throws error if used without valid tag', () => {
-    expect(() =>
-      service.loadElement('http://elements.com/some-element', '')
-    ).toThrowError(
-      "@angular-extensions/elements - tag for 'http://elements.com/some-element' not found, the *axLazyElement has to be used on HTML element"
-    );
-  });
+  it(
+    'throws error if used without valid tag',
+    waitForAsync(() => {
+      expectAsync(
+        service.loadElement('http://elements.com/some-element', '')
+      ).toBeRejectedWithError(
+        "@angular-extensions/elements - tag for 'http://elements.com/some-element' not found, the *axLazyElement has to be used on HTML element"
+      );
+    })
+  );
 
   it('adds a script tag into dom to load element bundle', () => {
     service.loadElement('http://elements.com/some-element', 'some-element');
@@ -136,14 +144,20 @@ describe('LazyElementsLoaderService', () => {
   it('calls beforeLoad hook with name as argument before inserting tag into the DOM tree', (done) => {
     let wasHookCalled = false;
     service
-      .loadElement('http://elements.com/some-element', 'some-element', false, {
-        beforeLoad: (tag) => {
-          expect(tag).toBe('some-element');
-          expect(wasHookCalled).toBe(false);
-          expect(appendChildSpy).not.toHaveBeenCalled();
-          wasHookCalled = true;
-        },
-      })
+      .loadElement(
+        'http://elements.com/some-element',
+        'some-element',
+        false,
+        false,
+        {
+          beforeLoad: (tag) => {
+            expect(tag).toBe('some-element');
+            expect(wasHookCalled).toBe(false);
+            expect(appendChildSpy).not.toHaveBeenCalled();
+            wasHookCalled = true;
+          },
+        }
+      )
       .then(() => {
         expect(wasHookCalled).toBe(true);
         expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -154,14 +168,20 @@ describe('LazyElementsLoaderService', () => {
   it('calls afterLoad hook with name as argument after inserting tag into the DOM tree', (done) => {
     let wasHookCalled = false;
     service
-      .loadElement('http://elements.com/some-element', 'some-element', false, {
-        afterLoad: (tag) => {
-          expect(tag).toBe('some-element');
-          expect(wasHookCalled).toBe(false);
-          expect(appendChildSpy).toHaveBeenCalledTimes(1);
-          wasHookCalled = true;
-        },
-      })
+      .loadElement(
+        'http://elements.com/some-element',
+        'some-element',
+        false,
+        false,
+        {
+          afterLoad: (tag) => {
+            expect(tag).toBe('some-element');
+            expect(wasHookCalled).toBe(false);
+            expect(appendChildSpy).toHaveBeenCalledTimes(1);
+            wasHookCalled = true;
+          },
+        }
+      )
       .then(() => {
         expect(wasHookCalled).toBe(true);
         expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -172,13 +192,19 @@ describe('LazyElementsLoaderService', () => {
   it('waits for promise returned from the hook to resolve', (done) => {
     let promiseResolved = false;
     service
-      .loadElement('http://elements.com/some-element', 'some-element', false, {
-        beforeLoad: () =>
-          Promise.resolve().then(() => {
-            expect(appendChildSpy).not.toHaveBeenCalled();
-            promiseResolved = true;
-          }),
-      })
+      .loadElement(
+        'http://elements.com/some-element',
+        'some-element',
+        false,
+        false,
+        {
+          beforeLoad: () =>
+            Promise.resolve().then(() => {
+              expect(appendChildSpy).not.toHaveBeenCalled();
+              promiseResolved = true;
+            }),
+        }
+      )
       .then(() => {
         expect(promiseResolved).toBe(true);
         done();
@@ -306,6 +332,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
         'http://elements.com/element-with-hook',
         'element-with-hook',
         false,
+        false,
         elementHooks
       )
       .then(() => {
@@ -313,5 +340,39 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
         expect(afterLoadElementSpy).toHaveBeenCalledTimes(1);
         done();
       });
+  });
+
+  describe('Import Maps', () => {
+    it(
+      'throws error if SystemJS is not available',
+      waitForAsync(() => {
+        (window as any).System = null;
+        expectAsync(
+          service.loadElement(
+            'element',
+            'element-using-import-map',
+            false,
+            true
+          )
+        ).toBeRejectedWithError(
+          "@angular-extensions/elements - importMap feature depends on SystemJS library to be globally loaded but none was found, thus 'element' can't be resolved. You should either load SystemJS or remove the importMap flag."
+        );
+      })
+    );
+
+    it('should call has and resolve SystemJS methods', (done) => {
+      (window as any).System = {
+        resolve: () => `http://elements.com/element-using-import-map`,
+      };
+      const System = (window as any).System;
+      const resolveSpy = spyOn(System, 'resolve').and.callThrough();
+      service
+        .loadElement('element', 'element-using-import-map', false, true)
+        .then(() => {
+          expect(resolveSpy).toHaveBeenCalledTimes(1);
+          expect(resolveSpy).toHaveBeenCalledWith('element');
+          done();
+        });
+    });
   });
 });

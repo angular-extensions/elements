@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModule } from '../../../shared/shared.module';
@@ -9,12 +9,14 @@ describe('FaqComponent', () => {
   let component: FaqComponent;
   let fixture: ComponentFixture<FaqComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, SharedModule],
-      declarations: [FaqComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [NoopAnimationsModule, SharedModule],
+        declarations: [FaqComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FaqComponent);

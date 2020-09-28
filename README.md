@@ -40,7 +40,7 @@ import { LazyElementsModule } from '@angular-extensions/elements';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule, LazyElementsModule],
   declarations: [AppComponent, FeatureComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```
@@ -60,7 +60,7 @@ import { Component } from '@angular/core';
       (dataChange)="handleChange($event)"
     >
     </some-element>
-  `
+  `,
 })
 export class FeatureComponent {
   elementUrl = 'https://your-org.com/elements/some-element.js';
@@ -91,9 +91,25 @@ Please, feel free to open an [issue](https://github.com/angular-extensions/eleme
 or submit a [pull request](https://github.com/angular-extensions/elements/pulls) to make this project better for everyone! 🤗
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/3764868?v=4" width="85px;"/><br /><sub><b>Tomas Trajan</b></sub>](https://medium.com/@tomastrajan)<br />[💻](https://github.com/angular-extensions/elements/commits?author=tomastrajan "Code") [🎨](#design-tomastrajan "Design") [💡](#example-tomastrajan "Examples") [📖](https://github.com/angular-extensions/elements/commits?author=tomastrajan "Documentation") [🤔](#ideas-tomastrajan "Ideas, Planning, & Feedback") [🚇](#infra-tomastrajan "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/angular-extensions/elements/commits?author=tomastrajan "Tests") | [<img src="https://avatars2.githubusercontent.com/u/2899448?v=4" width="85px;"/><br /><sub><b>Wayne Maurer</b></sub>](http://www.lambda-it.ch)<br />[🐛](https://github.com/angular-extensions/elements/issues?q=author%3Awmaurer "Bug reports") [💻](https://github.com/angular-extensions/elements/commits?author=wmaurer "Code") | [<img src="https://avatars3.githubusercontent.com/u/11923975?v=4" width="85px;"/><br /><sub><b>Santosh Yadav</b></sub>](https://www.santoshyadav.dev)<br />[💻](https://github.com/angular-extensions/elements/commits?author=santoshyadav198613 "Code") [📦](#platform-santoshyadav198613 "Packaging/porting to new platform") | [<img src="https://avatars0.githubusercontent.com/u/16886711?v=4" width="85px;"/><br /><sub><b>David Dal Busco</b></sub>](https://twitter.com/daviddalbusco)<br />[💻](https://github.com/angular-extensions/elements/commits?author=peterpeterparker "Code") [💡](#example-peterpeterparker "Examples") | [<img src="https://avatars3.githubusercontent.com/u/2327532?v=4" width="85px;"/><br /><sub><b>Zama Khan Mohammed</b></sub>](https://www.linkedin.com/in/mohammedzamakhan)<br />[💻](https://github.com/angular-extensions/elements/commits?author=mohammedzamakhan "Code") [🤔](#ideas-mohammedzamakhan "Ideas, Planning, & Feedback") [⚠️](https://github.com/angular-extensions/elements/commits?author=mohammedzamakhan "Tests") | [<img src="https://avatars0.githubusercontent.com/u/11693938?v=4" width="85px;"/><br /><sub><b>Angel Fraga Parodi</b></sub>](https://github.com/angelfraga)<br />[💡](#example-angelfraga "Examples") [🤔](#ideas-angelfraga "Ideas, Planning, & Feedback") |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| [<img src="https://avatars1.githubusercontent.com/u/5447242?v=4" width="85px;"/><br /><sub><b>ye3i</b></sub>](https://github.com/ye3i)<br />[💻](https://github.com/angular-extensions/elements/commits?author=ye3i "Code") [🤔](#ideas-ye3i "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/38192464?v=4" width="85px;"/><br /><sub><b>Heorhi Shakanau</b></sub>](https://github.com/MagicCurlyHair)<br />[💻](https://github.com/angular-extensions/elements/commits?author=MagicCurlyHair "Code") [🤔](#ideas-MagicCurlyHair "Ideas, Planning, & Feedback") |
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://medium.com/@tomastrajan"><img src="https://avatars0.githubusercontent.com/u/3764868?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Tomas Trajan</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=tomastrajan" title="Code">💻</a> <a href="#design-tomastrajan" title="Design">🎨</a> <a href="#example-tomastrajan" title="Examples">💡</a> <a href="https://github.com/angular-extensions/elements/commits?author=tomastrajan" title="Documentation">📖</a> <a href="#ideas-tomastrajan" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-tomastrajan" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/angular-extensions/elements/commits?author=tomastrajan" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://www.lambda-it.ch"><img src="https://avatars2.githubusercontent.com/u/2899448?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Wayne Maurer</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/issues?q=author%3Awmaurer" title="Bug reports">🐛</a> <a href="https://github.com/angular-extensions/elements/commits?author=wmaurer" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.santoshyadav.dev"><img src="https://avatars3.githubusercontent.com/u/11923975?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Santosh Yadav</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=santoshyadav198613" title="Code">💻</a> <a href="#platform-santoshyadav198613" title="Packaging/porting to new platform">📦</a></td>
+    <td align="center"><a href="https://twitter.com/daviddalbusco"><img src="https://avatars0.githubusercontent.com/u/16886711?v=4?s=85" width="85px;" alt=""/><br /><sub><b>David Dal Busco</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=peterpeterparker" title="Code">💻</a> <a href="#example-peterpeterparker" title="Examples">💡</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/mohammedzamakhan"><img src="https://avatars3.githubusercontent.com/u/2327532?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Zama Khan Mohammed</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=mohammedzamakhan" title="Code">💻</a> <a href="#ideas-mohammedzamakhan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/angular-extensions/elements/commits?author=mohammedzamakhan" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/angelfraga"><img src="https://avatars0.githubusercontent.com/u/11693938?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Angel Fraga Parodi</b></sub></a><br /><a href="#example-angelfraga" title="Examples">💡</a> <a href="#ideas-angelfraga" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ye3i"><img src="https://avatars1.githubusercontent.com/u/5447242?v=4?s=85" width="85px;" alt=""/><br /><sub><b>ye3i</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=ye3i" title="Code">💻</a> <a href="#ideas-ye3i" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/MagicCurlyHair"><img src="https://avatars3.githubusercontent.com/u/38192464?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Heorhi Shakanau</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=MagicCurlyHair" title="Code">💻</a> <a href="#ideas-MagicCurlyHair" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://www.plets.me/"><img src="https://avatars3.githubusercontent.com/u/119980?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Felipe Plets</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=felipeplets" title="Code">💻</a> <a href="#design-felipeplets" title="Design">🎨</a> <a href="#example-felipeplets" title="Examples">💡</a> <a href="https://github.com/angular-extensions/elements/commits?author=felipeplets" title="Documentation">📖</a> <a href="#ideas-felipeplets" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/angular-extensions/elements/commits?author=felipeplets" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->

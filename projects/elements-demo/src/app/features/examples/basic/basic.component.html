@@ -26,7 +26,7 @@
     <div class="implementation" *ngIf="example1">
       <mwc-icon
         *axLazyElement="
-          'https://unpkg.com/@material/mwc-icon@0.6.0/mwc-icon.js?module';
+          'https://unpkg.com/@material/mwc-icon@0.18.0/mwc-icon.js?module';
           module: true
         "
       >
@@ -58,7 +58,7 @@
       <ng-template #loading>Loading...</ng-template>
       <mwc-button
         *axLazyElement="
-          'https://unpkg.com/@material/mwc-button@0.6.0/mwc-button.js?module';
+          'https://unpkg.com/@material/mwc-button@0.18.0/mwc-button.js?module';
           loadingTemplate: loading;
           module: true
         "
@@ -175,6 +175,44 @@
         <code>[xlim]="xAxis"</code>.
       </p>
       <pre [highlight]="codeExample4"></pre>
+    </div>
+  </div>
+
+  <h2 id="import-maps">Using import maps (SystemJS is required)</h2>
+  <div class="content">
+    <div class="implementation" *ngIf="!example5">
+      <button mat-flat-button color="accent" (click)="example5 = true">
+        <mat-icon>play_arrow</mat-icon>
+        Run
+      </button>
+    </div>
+    <div class="implementation" *ngIf="example5">
+      <mwc-switch
+        checked
+        *axLazyElement="'mwc-switch'; module: true; importMap: true"
+      ></mwc-switch>
+    </div>
+    <div class="description">
+      <p>
+        In this example we are using axLazyElement with Import Maps to load
+        <code>&#60;mwc-switch></code>. Any key can be used in the URL that is
+        mapped to a import map. For this feature to work properly a peer
+        dependency of having
+        <a href="https://github.com/systemjs/systemjs" target="_blank"
+          >SystemJS</a
+        >
+        globally loaded needs to be satisfied. For instance your index.html may
+        have the following code:
+      </p>
+      <pre [highlight]="codeExample5ImportMap"></pre>
+      <p>
+        So when adding <code>&#60;mwc-switch></code> with
+        <code>*axLazyElement </code> with the <code>importMap</code> flag set to
+        <code>true</code>
+        the directive will look for the key stored in the import map and load
+        the correct script.
+      </p>
+      <pre [highlight]="codeExample5"></pre>
     </div>
   </div>
 </div>

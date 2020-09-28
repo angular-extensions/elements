@@ -20,6 +20,7 @@ export interface ElementConfig {
   tag: string;
   url: string;
   isModule?: boolean;
+  importMap?: boolean;
   loadingComponent?: Type<any>;
   errorComponent?: Type<any>;
   preload?: boolean;
@@ -63,6 +64,7 @@ export class LazyElementsLoaderService {
             newConfig.url,
             newConfig.tag,
             newConfig.isModule,
+            newConfig.importMap,
             newConfig.hooks
           );
         }
@@ -80,24 +82,24 @@ export class LazyElementsLoaderService {
       configs = this.configs.filter((config) => tags.includes(config.tag));
     }
     configs.forEach((config) =>
-      this.loadElement(config.url, config.tag, config.isModule, config.hooks)
+      this.loadElement(
+        config.url,
+        config.tag,
+        config.isModule,
+        config.importMap,
+        config.hooks
+      )
     );
   }
 
-  loadElement(
+  async loadElement(
     url: string,
     tag: string,
     isModule?: boolean,
+    importMap?: boolean,
     hooksConfig?: HooksConfig
   ): Promise<void> {
     const config = this.getElementConfig(tag);
-
-    if (!url) {
-      if (!config || !config.url) {
-        throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
-      }
-      url = config.url;
-    }
 
     if (isModule === undefined) {
       isModule =
@@ -106,15 +108,32 @@ export class LazyElementsLoaderService {
           : this.options.isModule;
     }
 
+    if (importMap === undefined) {
+      importMap =
+        config && config.importMap !== undefined
+          ? config.importMap
+          : this.options.importMap;
+    }
+
     if (!tag) {
       throw new Error(
         `${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`
       );
     }
 
+    if (!url) {
+      if ((!config || !config.url) && !importMap) {
+        throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
+      } else if (importMap) {
+        url = tag;
+      } else {
+        url = config.url;
+      }
+    }
+
     if (!this.hasElement(url)) {
       const notifier = this.addElement(url);
-      const script = document.createElement('script') as HTMLScriptElement;
+
       const beforeLoadHook =
         hooksConfig?.beforeLoad ??
         config?.hooks?.beforeLoad ??
@@ -123,6 +142,12 @@ export class LazyElementsLoaderService {
         hooksConfig?.afterLoad ??
         config?.hooks?.afterLoad ??
         this.options?.hooks?.afterLoad;
+
+      if (importMap) {
+        url = this.resolveImportMap(url);
+      }
+
+      const script = document.createElement('script') as HTMLScriptElement;
       if (isModule) {
         script.type = 'module';
       }
@@ -145,7 +170,6 @@ export class LazyElementsLoaderService {
         document.body.appendChild(script);
       }
     }
-
     return this.registry.get(this.stripUrlProtocol(url));
   }
 
@@ -181,6 +205,18 @@ export class LazyElementsLoaderService {
     } catch (err) {
       return Promise.reject(err);
     }
+  }
+
+  private resolveImportMap(url: string) {
+    const System = (window as any).System;
+    if (System) {
+      url = System.resolve(url);
+    } else {
+      throw new Error(
+        `${LOG_PREFIX} - importMap feature depends on SystemJS library to be globally loaded but none was found, thus '${url}' can't be resolved. You should either load SystemJS or remove the importMap flag.`
+      );
+    }
+    return url;
   }
 }
 

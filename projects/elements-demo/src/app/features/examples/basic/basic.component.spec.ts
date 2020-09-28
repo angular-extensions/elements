@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HighlightModule } from 'ngx-highlightjs';
 import typescript from 'highlight.js/lib/languages/typescript';
 
@@ -13,13 +13,15 @@ describe('BasicComponent', () => {
   let component: BasicComponent;
   let fixture: ComponentFixture<BasicComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [LazyElementsModule, HighlightModule, SharedModule],
-      declarations: [BasicComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        imports: [LazyElementsModule, HighlightModule, SharedModule],
+        declarations: [BasicComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BasicComponent);

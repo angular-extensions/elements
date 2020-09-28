@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HighlightModule } from 'ngx-highlightjs';
 import typescript from 'highlight.js/lib/languages/typescript';
 
@@ -10,12 +10,14 @@ describe('GettingStartedComponent', () => {
   let component: GettingStartedComponent;
   let fixture: ComponentFixture<GettingStartedComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HighlightModule, SharedModule],
-      declarations: [GettingStartedComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [HighlightModule, SharedModule],
+        declarations: [GettingStartedComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GettingStartedComponent);

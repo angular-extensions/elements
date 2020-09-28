@@ -95,6 +95,21 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "felipeplets",
+      "name": "Felipe Plets",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/119980?v=4",
+      "profile": "http://www.plets.me/",
+      "contributions": [
+        "code",
+        "design",
+        "example",
+        "doc",
+        "ideas",
+        "test"
+      ]
     }
-  ]
+  ],
+  "commitConvention": "none"
 }
