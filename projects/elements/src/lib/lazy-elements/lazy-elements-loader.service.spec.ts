@@ -341,4 +341,39 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
         done();
       });
   });
+
+  describe('Import Maps', () => {
+    it(
+      'throws error if SystemJS is not available',
+      waitForAsync(() => {
+        (window as any).System = null;
+        expectAsync(
+          service.loadElement(
+            'element',
+            'element-using-import-map',
+            false,
+            true
+          )
+        ).toBeRejectedWithError(
+          "@angular-extensions/elements - SystemJS is not loaded and thus 'element' can't be resolved, *axLazyElement depends on SystemJS for import map feature"
+        );
+      })
+    );
+
+    it('should call has and resolve SystemJS methods', (done) => {
+      (window as any).System = {
+        has: () => true,
+        resolve: () => `http://elements.com/element-using-import-map`,
+      };
+      const System = (window as any).System;
+      const resolveSpy = spyOn(System, 'resolve').and.callThrough();
+      service
+        .loadElement('element', 'element-using-import-map', false, true)
+        .then(() => {
+          expect(resolveSpy).toHaveBeenCalledTimes(1);
+          expect(resolveSpy).toHaveBeenCalledWith('element');
+          done();
+        });
+    });
+  });
 });
