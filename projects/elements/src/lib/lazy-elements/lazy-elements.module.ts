@@ -1,10 +1,10 @@
 import {
-  NgModule,
-  Optional,
   Inject,
   ModuleWithProviders,
-  Type,
+  NgModule,
+  Optional,
   SkipSelf,
+  Type,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,13 +12,13 @@ import { LazyElementDirective } from './lazy-element/lazy-element.directive';
 import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element-dynamic.directive';
 import {
   ElementConfig,
-  LazyElementsLoaderService,
   HooksConfig,
+  LazyElementsLoaderService,
 } from './lazy-elements-loader.service';
 import {
-  LAZY_ELEMENT_ROOT_OPTIONS,
   LAZY_ELEMENT_CONFIGS,
   LAZY_ELEMENT_ROOT_GUARD,
+  LAZY_ELEMENT_ROOT_OPTIONS,
 } from './lazy-elements.tokens';
 
 export function createLazyElementRootGuard(

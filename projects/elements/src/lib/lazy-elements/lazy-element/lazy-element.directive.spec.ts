@@ -1,5 +1,11 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flushMicrotasks,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 
 import { LazyElementsModule } from '../lazy-elements.module';
 
@@ -86,24 +92,26 @@ describe('LazyElementDirective', () => {
   let appendChildSpy: jasmine.Spy;
   let whenDefinedSpy: jasmine.Spy;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        TestModule,
-        LazyElementsModule.forRoot({
-          elementConfigs: [
-            {
-              tag: 'some-configured-element',
-              url: 'http://elements.com/some-configured-element-module',
-              loadingComponent: SpinnerTestComponent,
-            },
-          ],
-        }),
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [TestHostComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          TestModule,
+          LazyElementsModule.forRoot({
+            elementConfigs: [
+              {
+                tag: 'some-configured-element',
+                url: 'http://elements.com/some-configured-element-module',
+                loadingComponent: SpinnerTestComponent,
+              },
+            ],
+          }),
+        ],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        declarations: [TestHostComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
@@ -224,7 +232,7 @@ describe('LazyElementDirective', () => {
     expect(appendChildSpy.calls.argsFor(1)[0].type).toBe('module');
   });
 
-  it('uses import map when specified', () => {
+  it('uses import map when specified', fakeAsync(() => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -234,16 +242,18 @@ describe('LazyElementDirective', () => {
     expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('');
 
     (window as any).System = {
+      prepareImport: () => null,
       resolve: () => `http://elements.com/element-using-import-map`,
     };
     testHostComponent.useImportMap = true;
     fixture.detectChanges();
+    flushMicrotasks();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
     expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
       'http://elements.com/element-using-import-map'
     );
-  });
+  }));
 
   it('uses elementConfig for the tag', () => {
     testHostComponent.useElementConfig = true;

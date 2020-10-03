@@ -1,8 +1,8 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import {
-  LazyElementsLoaderService,
   HooksConfig,
+  LazyElementsLoaderService,
 } from './lazy-elements-loader.service';
 import { LazyElementsModule } from './lazy-elements.module';
 
@@ -360,15 +360,18 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       })
     );
 
-    it('should call has and resolve SystemJS methods', (done) => {
+    it('should call SystemJS prepareImport hook and resolve method', (done) => {
       (window as any).System = {
+        prepareImport: () => null,
         resolve: () => `http://elements.com/element-using-import-map`,
       };
       const System = (window as any).System;
+      const prepareImportSpy = spyOn(System, 'prepareImport').and.callThrough();
       const resolveSpy = spyOn(System, 'resolve').and.callThrough();
       service
         .loadElement('element', 'element-using-import-map', false, true)
         .then(() => {
+          expect(prepareImportSpy).toHaveBeenCalledTimes(1);
           expect(resolveSpy).toHaveBeenCalledTimes(1);
           expect(resolveSpy).toHaveBeenCalledWith('element');
           done();
