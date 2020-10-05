@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.1.1](https://github.com/angular-extensions/elements/compare/v10.1.0...v10.1.1) (2020-10-05)
+
+### Bug Fixes
+
+- fix importMaps to work even when no System.import was called ([7f1298a](https://github.com/angular-extensions/elements/commit/7f1298a5ff8081abd4935a3a2f465c0a347fe070))
+
 ## [10.1.0](https://github.com/angular-extensions/elements/compare/v10.0.2...v10.1.0) (2020-09-28)
 
 ### Features
