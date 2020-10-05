@@ -1,4 +1,4 @@
-import { Injectable, Type, Optional, Inject } from '@angular/core';
+import { Inject, Injectable, Optional, Type } from '@angular/core';
 
 import { LazyElementRootOptions } from './lazy-elements.module';
 import {
@@ -100,20 +100,8 @@ export class LazyElementsLoaderService {
     hooksConfig?: HooksConfig
   ): Promise<void> {
     const config = this.getElementConfig(tag);
-
-    if (isModule === undefined) {
-      isModule =
-        config && config.isModule !== undefined
-          ? config.isModule
-          : this.options.isModule;
-    }
-
-    if (importMap === undefined) {
-      importMap =
-        config && config.importMap !== undefined
-          ? config.importMap
-          : this.options.importMap;
-    }
+    isModule ??= config?.isModule ?? this.options.isModule;
+    importMap ??= config?.importMap ?? this.options.importMap;
 
     if (!tag) {
       throw new Error(
@@ -122,7 +110,7 @@ export class LazyElementsLoaderService {
     }
 
     if (!url) {
-      if ((!config || !config.url) && !importMap) {
+      if (!config?.url && !importMap) {
         throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
       } else if (importMap) {
         url = tag;
@@ -144,7 +132,7 @@ export class LazyElementsLoaderService {
         this.options?.hooks?.afterLoad;
 
       if (importMap) {
-        url = this.resolveImportMap(url);
+        url = await this.resolveImportMap(url);
       }
 
       const script = document.createElement('script') as HTMLScriptElement;
@@ -190,26 +178,18 @@ export class LazyElementsLoaderService {
     return url.replace(/https?:\/\//, '');
   }
 
-  private isPromise<T>(obj: T | Promise<T>): obj is Promise<T> {
-    return typeof (obj as any)?.then === 'function';
-  }
-
   private handleHook(hook: Hook, tag: string): Promise<void> {
     try {
-      const result = hook(tag);
-      if (this.isPromise(result)) {
-        return result;
-      } else {
-        return Promise.resolve();
-      }
+      return Promise.resolve(hook(tag));
     } catch (err) {
       return Promise.reject(err);
     }
   }
 
-  private resolveImportMap(url: string) {
+  private async resolveImportMap(url: string) {
     const System = (window as any).System;
     if (System) {
+      await System.prepareImport();
       url = System.resolve(url);
     } else {
       throw new Error(

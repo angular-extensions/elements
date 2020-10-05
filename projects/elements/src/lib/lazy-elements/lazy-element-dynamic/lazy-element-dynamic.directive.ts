@@ -1,20 +1,20 @@
 import {
+  ChangeDetectorRef,
+  ComponentFactoryResolver,
   Directive,
+  EmbeddedViewRef,
+  Inject,
   Input,
   OnInit,
+  Renderer2,
   TemplateRef,
   ViewContainerRef,
-  ComponentFactoryResolver,
-  ChangeDetectorRef,
-  Renderer2,
-  Inject,
-  EmbeddedViewRef,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import {
-  LazyElementsLoaderService,
   ElementConfig,
+  LazyElementsLoaderService,
 } from '../lazy-elements-loader.service';
 
 const LOG_PREFIX = '@angular-extensions/elements';
