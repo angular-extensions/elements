@@ -39,7 +39,7 @@ export class LazyElementDirective implements OnInit {
   ngOnInit() {
     const tpl = this.template as any;
     const elementTag = tpl._declarationTContainer
-      ? tpl._declarationTContainer.tagName
+      ? tpl._declarationTContainer.tagName || tpl._declarationTContainer.value
       : tpl._def.element.template.nodes[0].element.name;
 
     const elementConfig =
@@ -69,7 +69,8 @@ export class LazyElementDirective implements OnInit {
         this.viewRef = this.vcr.createEmbeddedView(this.template);
         this.cdr.markForCheck();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(LOG_PREFIX, err);
         this.vcr.clear();
         const errorComponent =
           elementConfig.errorComponent || options.errorComponent;
