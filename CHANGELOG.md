@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0](https://github.com/angular-extensions/elements/compare/v10.1.1...v11.0.0) (2020-11-13)
+
+### ⚠ BREAKING CHANGES
+
+- **workspace:** Angular 11 support
+
+* template data-structure was adjusted in Angular 11
+
+### Features
+
+- **workspace:** upgrade to Angular 11 ([992e617](https://github.com/angular-extensions/elements/commit/992e6179f6e062cd621d9b9346c3b8cdd5555168))
+
 ### [10.1.1](https://github.com/angular-extensions/elements/compare/v10.1.0...v10.1.1) (2020-10-05)
 
 ### Bug Fixes
