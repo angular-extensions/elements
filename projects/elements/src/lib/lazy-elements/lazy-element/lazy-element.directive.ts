@@ -70,7 +70,6 @@ export class LazyElementDirective implements OnInit {
         this.cdr.markForCheck();
       })
       .catch((err) => {
-        console.error(LOG_PREFIX, err);
         this.vcr.clear();
         const errorComponent =
           elementConfig.errorComponent || options.errorComponent;
