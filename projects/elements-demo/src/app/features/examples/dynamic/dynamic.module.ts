@@ -16,8 +16,7 @@ const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
       tag: 'wired-button',
-      url:
-        'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
+      url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
     },
   ],
 };

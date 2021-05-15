@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin demo-faq-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -10,7 +10,7 @@
   demo-faq {
     .mat-expanded {
       mat-expansion-panel-header {
-        background-color: mat-color(
+        background-color: mat.get-color-from-palette(
           $background,
           disabled-list-option
         ) !important;

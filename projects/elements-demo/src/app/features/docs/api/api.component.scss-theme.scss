@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin demo-api-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -9,13 +9,15 @@
 
   demo-api {
     th {
-      background-color: mat-color($background, app-bar);
+      background-color: mat.get-color-from-palette($background, app-bar);
     }
 
     th,
     td {
-      border-bottom: 1px solid mat-color($background, disabled-list-option);
-      border-right: 1px solid mat-color($background, disabled-list-option);
+      border-bottom: 1px solid
+        mat.get-color-from-palette($background, disabled-list-option);
+      border-right: 1px solid
+        mat.get-color-from-palette($background, disabled-list-option);
     }
   }
 }

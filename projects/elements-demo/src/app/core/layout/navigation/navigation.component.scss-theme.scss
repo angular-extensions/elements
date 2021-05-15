@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin demo-navigation-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -9,7 +9,7 @@
 
   demo-navigation {
     .active {
-      color: mat-color($primary) !important;
+      color: mat.get-color-from-palette($primary) !important;
     }
   }
 }

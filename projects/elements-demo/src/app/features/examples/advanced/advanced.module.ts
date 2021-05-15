@@ -26,8 +26,7 @@ export function elementConfigsFactory(): ElementConfig[] {
   return [
     {
       tag: 'wired-toggle',
-      url:
-        'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
+      url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
       loadingComponent: SpinnerComponent,
       errorComponent: ErrorComponent,
     },
@@ -38,8 +37,7 @@ const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
       tag: 'wired-button',
-      url:
-        'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
+      url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
       loadingComponent: SpinnerComponent,
       errorComponent: ErrorComponent,
       preload: true,
@@ -51,8 +49,7 @@ const options: LazyElementModuleOptions = {
     },
     {
       tag: 'mwc-checkbox',
-      url:
-        'https://unpkg.com/@material/mwc-checkbox@0.18.0/mwc-checkbox.js?module',
+      url: 'https://unpkg.com/@material/mwc-checkbox@0.18.0/mwc-checkbox.js?module',
       isModule: true,
     },
     {

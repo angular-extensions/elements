@@ -1,4 +1,4 @@
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { SwUpdate } from '@angular/service-worker';
 import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   navOpened: Observable<boolean>;
   navToggled = new BehaviorSubject(false);
   isSmallOrSmaller: Observable<boolean>;
-  sidenavMode: Observable<string>;
+  sidenavMode: Observable<MatDrawerMode>;
 
   constructor(
     private responsiveLayoutService: ResponsiveLayoutService,

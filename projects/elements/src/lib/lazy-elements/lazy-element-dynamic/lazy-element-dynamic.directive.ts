@@ -26,12 +26,10 @@ const LOG_PREFIX = '@angular-extensions/elements';
 export class LazyElementDynamicDirective implements OnInit {
   @Input('axLazyElementDynamic') tag: string;
   @Input('axLazyElementDynamicUrl') url: string; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementDynamicLoadingTemplate') loadingTemplateRef: TemplateRef<
-    any
-  >; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementDynamicErrorTemplate') errorTemplateRef: TemplateRef<
-    any
-  >; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementDynamicLoadingTemplate')
+  loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementDynamicErrorTemplate')
+  errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
   @Input('axLazyElementDynamicModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
   @Input('axLazyElementDynamicImportMap') importMap: boolean | undefined; // tslint:disable-line:no-input-rename
 
