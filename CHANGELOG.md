@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.0.0](https://github.com/angular-extensions/elements/compare/v11.0.1...v12.0.0) (2021-05-18)
+
+### ⚠ BREAKING CHANGES
+
+- **workspace:** update to Angular 12
+- **workspace:** commit message was last from the original PR because of force pushing
+
+### Features
+
+- **workspace:** add missing contributors ([f3f469c](https://github.com/angular-extensions/elements/commit/f3f469cdece15869501bbe9c013a277cd3df1d58))
+- **workspace:** upgrade to Angular 12 ([ce9ecae](https://github.com/angular-extensions/elements/commit/ce9ecae18cbc7789afcc3689f4ca81c8b66d32af))
+
 ### [11.0.1](https://github.com/angular-extensions/elements/compare/v11.0.0...v11.0.1) (2020-11-13)
 
 ### Bug Fixes
