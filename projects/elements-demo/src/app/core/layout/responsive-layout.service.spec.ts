@@ -6,9 +6,8 @@ describe('ResponsiveLayoutService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ResponsiveLayoutService = TestBed.inject<
-      ResponsiveLayoutService
-    >(ResponsiveLayoutService);
+    const service: ResponsiveLayoutService =
+      TestBed.inject<ResponsiveLayoutService>(ResponsiveLayoutService);
     expect(service).toBeTruthy();
   });
 });

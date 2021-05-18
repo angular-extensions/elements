@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin demo-footer-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -8,17 +8,17 @@
   $background: map-get($theme, background);
 
   demo-footer {
-    color: mat-color($primary, lighter-contrast);
-    background-color: mat-color($primary, lighter);
+    color: mat.get-color-from-palette($primary, lighter-contrast);
+    background-color: mat.get-color-from-palette($primary, lighter);
 
     a {
       &:hover {
-        color: mat-color($primary, lighter-contrast);
+        color: mat.get-color-from-palette($primary, lighter-contrast);
       }
     }
 
     img {
-      border: 1px solid mat-color($foreground, text);
+      border: 1px solid mat.get-color-from-palette($foreground, text);
     }
   }
 }

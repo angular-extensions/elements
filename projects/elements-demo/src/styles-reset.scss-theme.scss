@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin styles-reset-theme($theme) {
   $primary: map-get($theme, primary);
@@ -8,30 +8,30 @@
   $background: map-get($theme, background);
 
   a {
-    color: mat-color($primary);
+    color: mat.get-color-from-palette($primary);
 
     &:hover {
-      color: mat-color($primary, darker);
+      color: mat.get-color-from-palette($primary, darker);
     }
   }
 
   code {
-    color: mat-color($foreground, text);
-    background-color: mat-color($background, unselected-chip);
+    color: mat.get-color-from-palette($foreground, text);
+    background-color: mat.get-color-from-palette($background, unselected-chip);
 
     &[color='primary'] {
-      color: mat-color($primary, default-contrast);
-      background-color: mat-color($primary);
+      color: mat.get-color-from-palette($primary, default-contrast);
+      background-color: mat.get-color-from-palette($primary);
     }
 
     &[color='accent'] {
-      color: mat-color($accent, default-contrast);
-      background-color: mat-color($accent);
+      color: mat.get-color-from-palette($accent, default-contrast);
+      background-color: mat.get-color-from-palette($accent);
     }
 
     &[color='warn'] {
-      color: mat-color($warn, default-contrast);
-      background-color: mat-color($warn);
+      color: mat.get-color-from-palette($warn, default-contrast);
+      background-color: mat.get-color-from-palette($warn);
     }
   }
 }
