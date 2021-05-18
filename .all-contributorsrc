@@ -109,6 +109,42 @@
         "ideas",
         "test"
       ]
+    },
+    {
+      "login": "jkubiszewski",
+      "name": "jkubiszewski",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5447242?v=4",
+      "profile": "https://github.com/jkubiszewski",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gshokanov",
+      "name": "Heorhi Shakanau",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38192464?v=4",
+      "profile": "https://github.com/gshokanov",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "NagornovAlex",
+      "name": "NagornovAlex",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3100132?v=4",
+      "profile": "https://github.com/NagornovAlex",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Nerrdii",
+      "name": "Joseph Davis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16785168?v=4",
+      "profile": "https://www.josephndavis.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "commitConvention": "none"
