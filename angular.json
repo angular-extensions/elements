@@ -142,26 +142,10 @@
           "options": {
             "tsConfig": [
               "projects/elements-demo/tsconfig.app.json",
-              "projects/elements-demo/tsconfig.spec.json",
-              "projects/elements-demo/e2e/tsconfig.json"
+              "projects/elements-demo/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/elements-demo/e2e/protractor.conf.js"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "elements-demo:serve:production"
-            },
-            "development": {
-              "devServerTarget": "elements-demo:serve:development"
-            }
-          },
-          "defaultConfiguration": "development"
         }
       }
     }
