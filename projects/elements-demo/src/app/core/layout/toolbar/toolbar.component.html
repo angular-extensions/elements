@@ -26,12 +26,12 @@
     }}elements</span
   >
   <img
-    *ngIf="!(isResponsiveLayout | async)"
+    *ngIf="(isResponsiveLayout | async) !== undefined"
     alt="downloads per month"
     src="https://img.shields.io/npm/dm/@angular-extensions/elements"
   />
   <iframe
-    *ngIf="!(isResponsiveLayout | async)"
+    *ngIf="(isResponsiveLayout | async) !== undefined"
     allowtransparency="true"
     frameborder="0"
     scrolling="no"

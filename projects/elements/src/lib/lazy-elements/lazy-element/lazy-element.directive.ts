@@ -21,10 +21,10 @@ const LOG_PREFIX = '@angular-extensions/elements';
 })
 export class LazyElementDirective implements OnInit {
   @Input('axLazyElement') url: string;
-  @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementModule') isModule: boolean | undefined; // tslint:disable-line:no-input-rename
-  @Input('axLazyElementImportMap') importMap: boolean | undefined; // tslint:disable-line:no-input-rename
+  @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementModule') isModule: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementImportMap') importMap: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
 
   private viewRef: EmbeddedViewRef<any> = null;
 
