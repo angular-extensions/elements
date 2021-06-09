@@ -4,10 +4,13 @@ import {
   Directive,
   EmbeddedViewRef,
   Input,
+  OnDestroy,
   OnInit,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
+import { from, Subscription } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 import {
   ElementConfig,
@@ -19,7 +22,7 @@ const LOG_PREFIX = '@angular-extensions/elements';
 @Directive({
   selector: '[axLazyElement]',
 })
-export class LazyElementDirective implements OnInit {
+export class LazyElementDirective implements OnInit, OnDestroy {
   @Input('axLazyElement') url: string;
   @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
@@ -27,6 +30,7 @@ export class LazyElementDirective implements OnInit {
   @Input('axLazyElementImportMap') importMap: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
 
   private viewRef: EmbeddedViewRef<any> = null;
+  private subscription = Subscription.EMPTY;
 
   constructor(
     private vcr: ViewContainerRef,
@@ -55,37 +59,47 @@ export class LazyElementDirective implements OnInit {
       const factory = this.cfr.resolveComponentFactory(loadingComponent);
       this.vcr.createComponent(factory);
     }
-    this.elementsLoaderService
-      .loadElement(
+
+    const loadElement$ = from(
+      this.elementsLoaderService.loadElement(
         this.url,
         elementTag,
         this.isModule,
         this.importMap,
         elementConfig?.hooks
       )
-      .then(() => customElements.whenDefined(elementTag))
-      .then(() => {
-        this.vcr.clear();
-        this.viewRef = this.vcr.createEmbeddedView(this.template);
-        this.cdr.markForCheck();
-      })
-      .catch((err) => {
-        this.vcr.clear();
-        const errorComponent =
-          elementConfig.errorComponent || options.errorComponent;
-        if (this.errorTemplateRef) {
-          this.vcr.createEmbeddedView(this.errorTemplateRef);
+    );
+
+    this.subscription = loadElement$
+      .pipe(mergeMap(() => customElements.whenDefined(elementTag)))
+      .subscribe({
+        next: () => {
+          this.vcr.clear();
+          this.viewRef = this.vcr.createEmbeddedView(this.template);
           this.cdr.markForCheck();
-        } else if (errorComponent) {
-          const factory = this.cfr.resolveComponentFactory(errorComponent);
-          this.vcr.createComponent(factory);
-          this.cdr.markForCheck();
-        } else {
-          console.error(
-            `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
-          );
-        }
+        },
+        error: () => {
+          this.vcr.clear();
+          const errorComponent =
+            elementConfig.errorComponent || options.errorComponent;
+          if (this.errorTemplateRef) {
+            this.vcr.createEmbeddedView(this.errorTemplateRef);
+            this.cdr.markForCheck();
+          } else if (errorComponent) {
+            const factory = this.cfr.resolveComponentFactory(errorComponent);
+            this.vcr.createComponent(factory);
+            this.cdr.markForCheck();
+          } else {
+            console.error(
+              `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
+            );
+          }
+        },
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   destroyEmbeddedView() {
