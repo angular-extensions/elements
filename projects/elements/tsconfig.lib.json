@@ -6,6 +6,7 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
+    "stripInternal": true,
     "types": [],
     "lib": ["dom", "es2018"]
   },
