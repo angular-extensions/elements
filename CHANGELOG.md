@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.1.0](https://github.com/angular-extensions/elements/compare/v12.0.0...v12.1.0) (2021-06-09)
+
+### Features
+
+- **workspace:** migrating from TSLint to ESLint ([3db76a6](https://github.com/angular-extensions/elements/commit/3db76a65acbbe28888b0eecf8ad624adcf58e38c))
+
+### Bug Fixes
+
+- do not keep capturing `this` when the directive gets destroyed ([40b7385](https://github.com/angular-extensions/elements/commit/40b73855ed16bf9ce338a63248541fc2017bc8a1))
+- **workspace:** remove deprecated protractor ([2f21b78](https://github.com/angular-extensions/elements/commit/2f21b7888e93ad0e91290b3a595e01adc011c616))
+
 ## [12.0.0](https://github.com/angular-extensions/elements/compare/v11.0.1...v12.0.0) (2021-05-18)
 
 ### ⚠ BREAKING CHANGES
