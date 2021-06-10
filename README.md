@@ -112,6 +112,7 @@ or submit a [pull request](https://github.com/angular-extensions/elements/pulls)
   </tr>
   <tr>
     <td align="center"><a href="https://www.josephndavis.com/"><img src="https://avatars.githubusercontent.com/u/16785168?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Joseph Davis</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=Nerrdii" title="Code">💻</a></td>
+    <td align="center"><a href="https://medium.com/@overthesanity"><img src="https://avatars.githubusercontent.com/u/7337691?v=4?s=85" width="85px;" alt=""/><br /><sub><b>Artur Androsovych</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=arturovt" title="Code">💻</a></td>
   </tr>
 </table>
 
