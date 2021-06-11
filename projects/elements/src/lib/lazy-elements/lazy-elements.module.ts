@@ -21,10 +21,12 @@ import {
   LAZY_ELEMENT_ROOT_OPTIONS,
 } from './lazy-elements.tokens';
 
+import './ng-dev-mode';
+
 export function createLazyElementRootGuard(
   rootOptions: LazyElementRootOptions
 ) {
-  if (rootOptions) {
+  if (ngDevMode && rootOptions) {
     throw new TypeError(
       `LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.`
     );

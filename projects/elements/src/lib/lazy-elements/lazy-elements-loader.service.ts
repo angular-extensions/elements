@@ -49,9 +49,10 @@ export class LazyElementsLoaderService {
     newConfigs.forEach((newConfig) => {
       const existingConfig = this.getElementConfig(newConfig.tag);
       if (existingConfig) {
-        console.warn(
-          `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`
-        );
+        ngDevMode &&
+          console.warn(
+            `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`
+          );
       } else {
         newConfig.isAdded = true;
         this.configs.push(newConfig);
@@ -103,14 +104,14 @@ export class LazyElementsLoaderService {
     isModule ??= config?.isModule ?? this.options.isModule;
     importMap ??= config?.importMap ?? this.options.importMap;
 
-    if (!tag) {
+    if (ngDevMode && !tag) {
       throw new Error(
         `${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`
       );
     }
 
     if (!url) {
-      if (!config?.url && !importMap) {
+      if (ngDevMode && !config?.url && !importMap) {
         throw new Error(`${LOG_PREFIX} - url for <${tag}> not found`);
       } else if (importMap) {
         url = tag;
@@ -191,7 +192,7 @@ export class LazyElementsLoaderService {
     if (System) {
       await System.prepareImport();
       url = System.resolve(url);
-    } else {
+    } else if (ngDevMode) {
       throw new Error(
         `${LOG_PREFIX} - importMap feature depends on SystemJS library to be globally loaded but none was found, thus '${url}' can't be resolved. You should either load SystemJS or remove the importMap flag.`
       );

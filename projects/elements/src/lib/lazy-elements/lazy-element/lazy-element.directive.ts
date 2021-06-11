@@ -89,7 +89,7 @@ export class LazyElementDirective implements OnInit, OnDestroy {
             const factory = this.cfr.resolveComponentFactory(errorComponent);
             this.vcr.createComponent(factory);
             this.cdr.markForCheck();
-          } else {
+          } else if (ngDevMode) {
             console.error(
               `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
             );
