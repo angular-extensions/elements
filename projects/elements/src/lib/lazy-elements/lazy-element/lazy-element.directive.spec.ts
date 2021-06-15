@@ -92,6 +92,10 @@ describe('LazyElementDirective', () => {
   let appendChildSpy: jasmine.Spy;
   let whenDefinedSpy: jasmine.Spy;
 
+  function getScript(): HTMLScriptElement {
+    return appendChildSpy.calls.argsFor(0)[0];
+  }
+
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
@@ -129,9 +133,7 @@ describe('LazyElementDirective', () => {
 
   it('adds a script tag into dom to load element bundle', () => {
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
+    expect(getScript().src).toBe('http://elements.com/some-element');
   });
 
   it('adds a script tag only once for elements with same url', () => {
@@ -139,9 +141,7 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
+    expect(getScript().src).toBe('http://elements.com/some-element');
   });
 
   it('adds multiple script tags if elements have different bundle url', () => {
@@ -149,9 +149,7 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
+    expect(getScript().src).toBe('http://elements.com/some-element');
     expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
       'http://elements.com/some-other-element'
     );
@@ -166,7 +164,7 @@ describe('LazyElementDirective', () => {
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
   });
 
-  it('removes loading template when element is loaded', (done) => {
+  it('removes loading template when element is loaded', async () => {
     expect(document.querySelector('.loading')).toBe(null);
 
     testHostComponent.useLoadingTemplate = true;
@@ -174,17 +172,15 @@ describe('LazyElementDirective', () => {
 
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
 
-    appendChildSpy.calls.argsFor(0)[0].onload();
+    getScript().dispatchEvent(new Event('load'));
 
+    await fixture.whenStable();
     fixture.detectChanges();
 
-    setTimeout(() => {
-      expect(document.querySelector('.loading')).toBe(null);
-      done();
-    });
+    expect(document.querySelector('.loading')).toBe(null);
   });
 
-  it('renders error template loading of element failed', (done) => {
+  it('renders error template loading of element failed', async () => {
     const consoleErrorSpy: jasmine.Spy = spyOn(console, 'error').and.stub();
     expect(document.querySelector('.loading')).toBe(null);
     expect(document.querySelector('.error')).toBe(null);
@@ -195,32 +191,28 @@ describe('LazyElementDirective', () => {
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
     expect(document.querySelector('.error')).toBe(null);
 
-    appendChildSpy.calls.argsFor(0)[0].onerror('404');
+    getScript().dispatchEvent(new ErrorEvent('error'));
 
+    await fixture.whenStable();
     fixture.detectChanges();
 
-    setTimeout(() => {
-      expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(
-        '@angular-extensions/elements - Loading of element <some-element> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element'
-      );
-      expect(document.querySelector('.loading')).toBe(null);
-      expect(document.querySelector('.error').textContent).toBe(
-        'Loading failed...'
-      );
-      consoleErrorSpy.and.callThrough();
-      done();
-    });
+    expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      '@angular-extensions/elements - Loading of element <some-element> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element'
+    );
+    expect(document.querySelector('.loading')).toBe(null);
+    expect(document.querySelector('.error').textContent).toBe(
+      'Loading failed...'
+    );
+    consoleErrorSpy.and.callThrough();
   });
 
   it('uses type module on script tag when specified', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
-    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('');
+    expect(getScript().src).toBe('http://elements.com/some-element');
+    expect(getScript().type).toBe('');
 
     testHostComponent.useModule = true;
     fixture.detectChanges();
@@ -236,10 +228,8 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
-      'http://elements.com/some-element'
-    );
-    expect(appendChildSpy.calls.argsFor(0)[0].type).toBe('');
+    expect(getScript().src).toBe('http://elements.com/some-element');
+    expect(getScript().type).toBe('');
 
     (window as any).System = {
       prepareImport: () => null,
