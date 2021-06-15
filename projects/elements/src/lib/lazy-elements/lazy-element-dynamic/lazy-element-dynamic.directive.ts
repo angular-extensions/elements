@@ -7,11 +7,12 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { from, Subscription } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
@@ -22,7 +23,6 @@ import {
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
-/** @dynamic */
 @Directive({
   selector: '[axLazyElementDynamic]',
 })
@@ -40,6 +40,7 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
   private subscription = Subscription.EMPTY;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: string,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private vcr: ViewContainerRef,
@@ -50,6 +51,14 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // There's no sense to execute the below logic on the Node.js side since the JavaScript
+    // will not be loaded on the server-side (Angular will only append the script to body).
+    // The `loadElement` promise will never be resolved, since it gets resolved when the `load` event is emitted.
+    // `customElements` are also undefined on the Node.js side; thus, it will always render the error template.
+    if (isPlatformServer(this.platformId)) {
+      return;
+    }
+
     if (ngDevMode) {
       if (!this.tag || this.tag.length === 0 || !this.tag.includes('-')) {
         throw new Error(

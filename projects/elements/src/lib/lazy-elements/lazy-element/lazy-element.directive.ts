@@ -3,12 +3,15 @@ import {
   ComponentFactoryResolver,
   Directive,
   EmbeddedViewRef,
+  Inject,
   Input,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { from, Subscription } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
@@ -33,6 +36,7 @@ export class LazyElementDirective implements OnInit, OnDestroy {
   private subscription = Subscription.EMPTY;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: string,
     private vcr: ViewContainerRef,
     private template: TemplateRef<any>,
     private elementsLoaderService: LazyElementsLoaderService,
@@ -41,6 +45,14 @@ export class LazyElementDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // There's no sense to execute the below logic on the Node.js side since the JavaScript
+    // will not be loaded on the server-side (Angular will only append the script to body).
+    // The `loadElement` promise will never be resolved, since it gets resolved when the `load` event is emitted.
+    // `customElements` are also undefined on the Node.js side; thus, it will always render the error template.
+    if (isPlatformServer(this.platformId)) {
+      return;
+    }
+
     const tpl = this.template as any;
     const elementTag = tpl._declarationTContainer
       ? tpl._declarationTContainer.tagName || tpl._declarationTContainer.value
