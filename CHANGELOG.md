@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.1.2](https://github.com/angular-extensions/elements/compare/v12.1.1...v12.1.2) (2021-06-15)
+
+### Bug Fixes
+
+- make server-side compatible ([a8b6a2d](https://github.com/angular-extensions/elements/commit/a8b6a2d274ce8a8958a13c35102dd128c1f4784c))
+
 ### [12.1.1](https://github.com/angular-extensions/elements/compare/v12.1.0...v12.1.1) (2021-06-11)
 
 ## [12.1.0](https://github.com/angular-extensions/elements/compare/v12.0.0...v12.1.0) (2021-06-09)
