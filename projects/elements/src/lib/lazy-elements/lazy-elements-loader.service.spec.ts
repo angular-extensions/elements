@@ -1,3 +1,4 @@
+import { ErrorHandler } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import {
@@ -376,6 +377,26 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
           expect(resolveSpy).toHaveBeenCalledWith('element');
           done();
         });
+    });
+  });
+
+  describe('ErrorHandler', () => {
+    it('should be possible to handle the error thrown during the script loading', (done) => {
+      shouldLoadSucceed = false;
+
+      const errorHandler = TestBed.inject(ErrorHandler);
+      const handleErrorSpy = spyOn(errorHandler, 'handleError');
+
+      const promise = service.loadElement(
+        'http://elements.com/some-element',
+        'some-element'
+      );
+
+      promise
+        .catch(() => {
+          expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+        })
+        .finally(done);
     });
   });
 });
