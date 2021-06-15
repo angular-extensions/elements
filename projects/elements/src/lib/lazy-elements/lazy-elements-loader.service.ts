@@ -141,7 +141,7 @@ export class LazyElementsLoaderService {
         script.type = 'module';
       }
       script.src = url;
-      script.onload = () => {
+      const onLoad = () => {
         if (afterLoadHook) {
           this.handleHook(afterLoadHook, tag)
             .then(notifier.resolve)
@@ -149,8 +149,21 @@ export class LazyElementsLoaderService {
         } else {
           notifier.resolve();
         }
+
+        cleanup();
       };
-      script.onerror = notifier.reject;
+      const onError = (error: ErrorEvent) => {
+        notifier.reject(error);
+        cleanup();
+      };
+      // The `load` and `error` event listeners capture `this`. That's why they have to be removed manually.
+      // Otherwise, the `LazyElementsLoaderService` is not going to be GC'd.
+      function cleanup() {
+        script.removeEventListener('load', onLoad);
+        script.removeEventListener('error', onError);
+      }
+      script.addEventListener('load', onLoad);
+      script.addEventListener('error', onError);
       if (beforeLoadHook) {
         this.handleHook(beforeLoadHook, tag)
           .then(() => document.body.appendChild(script))
