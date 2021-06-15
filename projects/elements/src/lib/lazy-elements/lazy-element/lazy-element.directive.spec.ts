@@ -196,7 +196,6 @@ describe('LazyElementDirective', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       '@angular-extensions/elements - Loading of element <some-element> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element'
     );

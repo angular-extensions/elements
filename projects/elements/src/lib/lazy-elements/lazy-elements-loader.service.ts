@@ -1,4 +1,10 @@
-import { Inject, Injectable, Optional, Type } from '@angular/core';
+import {
+  ErrorHandler,
+  Inject,
+  Injectable,
+  Optional,
+  Type,
+} from '@angular/core';
 
 import { LazyElementRootOptions } from './lazy-elements.module';
 import {
@@ -35,6 +41,7 @@ export class LazyElementsLoaderService {
   configs: ElementConfig[] = [];
 
   constructor(
+    private errorHandler: ErrorHandler,
     @Inject(LAZY_ELEMENTS_REGISTRY) private registry: LazyElementsRegistry,
     @Optional()
     @Inject(LAZY_ELEMENT_ROOT_OPTIONS)
@@ -155,6 +162,10 @@ export class LazyElementsLoaderService {
       const onError = (error: ErrorEvent) => {
         notifier.reject(error);
         cleanup();
+        // Caretaker note: don't put it before the `reject` and `cleanup` since the user may have some
+        // custom error handler that will re-throw the error through `throw error`. Hence the code won't
+        // be executed, and the promise won't be rejected.
+        this.errorHandler.handleError(error);
       };
       // The `load` and `error` event listeners capture `this`. That's why they have to be removed manually.
       // Otherwise, the `LazyElementsLoaderService` is not going to be GC'd.
