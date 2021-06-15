@@ -26,6 +26,15 @@
       ]
     },
     {
+      "login": "arturovt",
+      "name": "Artur Androsovych",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7337691?v=4",
+      "profile": "https://medium.com/@overthesanity",
+      "contributions": [
+        "code", "bug"
+      ]
+    },
+    {
       "login": "wmaurer",
       "name": "Wayne Maurer",
       "avatar_url": "https://avatars2.githubusercontent.com/u/2899448?v=4",
@@ -142,15 +151,6 @@
       "name": "Joseph Davis",
       "avatar_url": "https://avatars.githubusercontent.com/u/16785168?v=4",
       "profile": "https://www.josephndavis.com/",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "arturovt",
-      "name": "Artur Androsovych",
-      "avatar_url": "https://avatars.githubusercontent.com/u/7337691?v=4",
-      "profile": "https://medium.com/@overthesanity",
       "contributions": [
         "code"
       ]
