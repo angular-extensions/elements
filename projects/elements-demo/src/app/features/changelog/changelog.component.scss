@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  overflow: hidden;
+
+  h3 {
+    opacity: 0.5;
+  }
+
+  markdown {
+    ::ng-deep {
+      h2 {
+        a {
+          font-size: 32px;
+        }
+        margin: 100px 0 5px 0;
+      }
+      h3 {
+        margin: 15px 0 5px 0;
+        font-weight: bold;
+
+        a {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

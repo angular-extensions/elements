@@ -65,6 +65,10 @@ const NAVIGATION = [
     label: 'CONTRIBUTE',
     url: 'contribute',
   },
+  {
+    label: 'CHANGELOG',
+    url: 'changelog',
+  },
 ];
 
 @Component({

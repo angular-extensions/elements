@@ -50,6 +50,10 @@ export class SharedModule {
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/github.svg')
     );
     this.matIconRegistry.addSvgIcon(
+      'npm',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/npm.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
       'twitter',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
         'assets/logo/twitter.svg'

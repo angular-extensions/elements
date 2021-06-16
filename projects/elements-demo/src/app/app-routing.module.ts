@@ -28,6 +28,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'changelog',
+    loadChildren: () =>
+      import('./features/changelog/changelog.module').then(
+        (m) => m.ChangelogModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
