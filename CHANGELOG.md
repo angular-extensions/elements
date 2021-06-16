@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.3.0](https://github.com/angular-extensions/elements/compare/v12.2.0...v12.3.0) (2021-06-16)
+
+### Features
+
+- **demo:** add changelog ([57bce4e](https://github.com/angular-extensions/elements/commit/57bce4ea4a5943b8e084ec6447d104b9ae93b769))
+
 ## [12.2.0](https://github.com/angular-extensions/elements/compare/v12.1.2...v12.2.0) (2021-06-16)
 
 ### Features
