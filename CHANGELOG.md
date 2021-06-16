@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.2.0](https://github.com/angular-extensions/elements/compare/v12.1.2...v12.2.0) (2021-06-16)
+
+### Features
+
+- pass script loading error to the `ErrorHandler` ([9999545](https://github.com/angular-extensions/elements/commit/99995454422ca9ef2b1b6758983cc979ad8dff9e))
+
+### Bug Fixes
+
+- release resources when the script is loaded ([4b82679](https://github.com/angular-extensions/elements/commit/4b82679e380f96ceb1785eda9ca392ad452ad2e8))
+
 ### [12.1.2](https://github.com/angular-extensions/elements/compare/v12.1.1...v12.1.2) (2021-06-15)
 
 ### Bug Fixes
