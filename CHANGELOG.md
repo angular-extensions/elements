@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.4.2](https://github.com/angular-extensions/elements/compare/v12.4.1...v12.4.2) (2021-06-17)
+
+### Bug Fixes
+
+- **demo:** add social graph preview image ([4757c49](https://github.com/angular-extensions/elements/commit/4757c49217be93375485ed83fc9ad3edd692dc3d))
+
 ### [12.4.1](https://github.com/angular-extensions/elements/compare/v12.4.0...v12.4.1) (2021-06-17)
 
 ## [12.4.0](https://github.com/angular-extensions/elements/compare/v12.3.0...v12.4.0) (2021-06-17)
