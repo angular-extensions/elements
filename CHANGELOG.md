@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.4.0](https://github.com/angular-extensions/elements/compare/v12.3.0...v12.4.0) (2021-06-17)
+
+### Features
+
+- **demo:** add social graph tags ([5937df3](https://github.com/angular-extensions/elements/commit/5937df3785780499735307356cde2800b797e548))
+
 ## [12.3.0](https://github.com/angular-extensions/elements/compare/v12.2.0...v12.3.0) (2021-06-16)
 
 ### Features
