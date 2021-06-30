@@ -5,9 +5,11 @@ import {
   EmbeddedViewRef,
   Inject,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
+  SimpleChanges,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
@@ -31,12 +33,8 @@ const LOG_PREFIX = '@angular-extensions/elements';
 @Directive({
   selector: '[axLazyElement]',
 })
-export class LazyElementDirective implements OnInit, OnDestroy {
-  @Input('axLazyElement')
-  set url(url: string) {
-    this.url$.next(url);
-  }
-
+export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
+  @Input('axLazyElement') url: string;
   @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementModule') isModule: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
@@ -54,6 +52,12 @@ export class LazyElementDirective implements OnInit, OnDestroy {
     private cfr: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.url) {
+      this.url$.next(this.url);
+    }
+  }
 
   ngOnInit() {
     // There's no sense to execute the below logic on the Node.js side since the JavaScript
