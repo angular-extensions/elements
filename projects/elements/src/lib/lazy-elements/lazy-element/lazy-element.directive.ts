@@ -5,15 +5,23 @@ import {
   EmbeddedViewRef,
   Inject,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
+  SimpleChanges,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
-import { from, Subscription } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import {
+  animationFrameScheduler,
+  BehaviorSubject,
+  EMPTY,
+  from,
+  Subscription,
+} from 'rxjs';
+import { catchError, debounceTime, mergeMap, switchMap } from 'rxjs/operators';
 
 import {
   ElementConfig,
@@ -25,7 +33,7 @@ const LOG_PREFIX = '@angular-extensions/elements';
 @Directive({
   selector: '[axLazyElement]',
 })
-export class LazyElementDirective implements OnInit, OnDestroy {
+export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
   @Input('axLazyElement') url: string;
   @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
@@ -34,6 +42,7 @@ export class LazyElementDirective implements OnInit, OnDestroy {
 
   private viewRef: EmbeddedViewRef<any> = null;
   private subscription = Subscription.EMPTY;
+  private url$ = new BehaviorSubject<string | null>(null);
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
@@ -44,6 +53,12 @@ export class LazyElementDirective implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef
   ) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.url) {
+      this.url$.next(this.url);
+    }
+  }
+
   ngOnInit() {
     // There's no sense to execute the below logic on the Node.js side since the JavaScript
     // will not be loaded on the server-side (Angular will only append the script to body).
@@ -53,61 +68,7 @@ export class LazyElementDirective implements OnInit, OnDestroy {
       return;
     }
 
-    const tpl = this.template as any;
-    const elementTag = tpl._declarationTContainer
-      ? tpl._declarationTContainer.tagName || tpl._declarationTContainer.value
-      : tpl._def.element.template.nodes[0].element.name;
-
-    const elementConfig =
-      this.elementsLoaderService.getElementConfig(elementTag) ||
-      ({} as ElementConfig);
-    const options = this.elementsLoaderService.options;
-    const loadingComponent =
-      elementConfig.loadingComponent || options.loadingComponent;
-
-    if (this.loadingTemplateRef) {
-      this.vcr.createEmbeddedView(this.loadingTemplateRef);
-    } else if (loadingComponent) {
-      const factory = this.cfr.resolveComponentFactory(loadingComponent);
-      this.vcr.createComponent(factory);
-    }
-
-    const loadElement$ = from(
-      this.elementsLoaderService.loadElement(
-        this.url,
-        elementTag,
-        this.isModule,
-        this.importMap,
-        elementConfig?.hooks
-      )
-    );
-
-    this.subscription = loadElement$
-      .pipe(mergeMap(() => customElements.whenDefined(elementTag)))
-      .subscribe({
-        next: () => {
-          this.vcr.clear();
-          this.viewRef = this.vcr.createEmbeddedView(this.template);
-          this.cdr.markForCheck();
-        },
-        error: () => {
-          this.vcr.clear();
-          const errorComponent =
-            elementConfig.errorComponent || options.errorComponent;
-          if (this.errorTemplateRef) {
-            this.vcr.createEmbeddedView(this.errorTemplateRef);
-            this.cdr.markForCheck();
-          } else if (errorComponent) {
-            const factory = this.cfr.resolveComponentFactory(errorComponent);
-            this.vcr.createComponent(factory);
-            this.cdr.markForCheck();
-          } else if (ngDevMode) {
-            console.error(
-              `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
-            );
-          }
-        },
-      });
+    this.setupUrlListener();
   }
 
   ngOnDestroy(): void {
@@ -120,5 +81,73 @@ export class LazyElementDirective implements OnInit, OnDestroy {
       this.viewRef.destroy();
       this.viewRef = null;
     }
+  }
+
+  private setupUrlListener(): void {
+    const tpl = this.template as any;
+    const elementTag = tpl._declarationTContainer
+      ? tpl._declarationTContainer.tagName || tpl._declarationTContainer.value
+      : tpl._def.element.template.nodes[0].element.name;
+
+    const elementConfig =
+      this.elementsLoaderService.getElementConfig(elementTag) ||
+      ({} as ElementConfig);
+    const options = this.elementsLoaderService.options;
+    const loadingComponent =
+      elementConfig.loadingComponent || options.loadingComponent;
+
+    this.subscription = this.url$
+      .pipe(
+        // This is used to coalesce changes since the `url$` subject might emit multiple values initially, e.g.
+        // `null` (initial value) and the url itself (when the `url` binding is provided).
+        // The `animationFrameScheduler` is used to prevent the frame drop.
+        debounceTime(0, animationFrameScheduler),
+        switchMap((url) => {
+          if (this.loadingTemplateRef) {
+            this.vcr.createEmbeddedView(this.loadingTemplateRef);
+          } else if (loadingComponent) {
+            const factory = this.cfr.resolveComponentFactory(loadingComponent);
+            this.vcr.createComponent(factory);
+          }
+
+          return from(
+            this.elementsLoaderService.loadElement(
+              url,
+              elementTag,
+              this.isModule,
+              this.importMap,
+              elementConfig?.hooks
+            )
+          ).pipe(
+            catchError(() => {
+              this.vcr.clear();
+              const errorComponent =
+                elementConfig.errorComponent || options.errorComponent;
+              if (this.errorTemplateRef) {
+                this.vcr.createEmbeddedView(this.errorTemplateRef);
+                this.cdr.markForCheck();
+              } else if (errorComponent) {
+                const factory =
+                  this.cfr.resolveComponentFactory(errorComponent);
+                this.vcr.createComponent(factory);
+                this.cdr.markForCheck();
+              } else if (ngDevMode) {
+                console.error(
+                  `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
+                );
+              }
+              return EMPTY;
+            })
+          );
+        }),
+        mergeMap(() => customElements.whenDefined(elementTag))
+      )
+      .subscribe({
+        next: () => {
+          this.vcr.clear();
+          this.viewRef = this.vcr.createEmbeddedView(this.template);
+          this.cdr.markForCheck();
+        },
+      });
   }
 }
