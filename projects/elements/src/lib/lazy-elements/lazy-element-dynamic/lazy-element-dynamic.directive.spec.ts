@@ -34,7 +34,7 @@ class TestHostComponent {
 describe('LazyElementDirectiveDynamic', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let appendChildSpy: jasmine.Spy;
+  let appendChildSpy: jest.SpyInstance;
 
   beforeEach(
     waitForAsync(() => {
@@ -48,8 +48,12 @@ describe('LazyElementDirectiveDynamic', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
-    appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
+    appendChildSpy = jest.spyOn(document.body, 'appendChild');
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    appendChildSpy.mockRestore();
   });
 
   it('should create', () => {
@@ -58,7 +62,7 @@ describe('LazyElementDirectiveDynamic', () => {
 
   it('adds a script tag into dom to load element bundle', () => {
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(appendChildSpy.calls.argsFor(0)[0].src).toBe(
+    expect(appendChildSpy.mock.calls[0][0].src).toBe(
       'http://elements.com/some-element'
     );
   });

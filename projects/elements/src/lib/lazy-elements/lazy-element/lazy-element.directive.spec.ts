@@ -89,11 +89,15 @@ class TestHostComponent {
 describe('LazyElementDirective', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let appendChildSpy: jasmine.Spy;
-  let whenDefinedSpy: jasmine.Spy;
+  let appendChildSpy: jest.SpyInstance;
+  let whenDefinedSpy: jest.SpyInstance;
 
-  function getScript(): HTMLScriptElement {
-    return appendChildSpy.calls.argsFor(0)[0];
+  function getAppendChildFirstScript(): HTMLScriptElement {
+    return appendChildSpy.mock.calls[0][0];
+  }
+
+  function getAppendChildSecondScript(): HTMLScriptElement {
+    return appendChildSpy.mock.calls[1][0];
   }
 
   beforeEach(
@@ -120,11 +124,16 @@ describe('LazyElementDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
-    appendChildSpy = spyOn(document.body, 'appendChild').and.stub();
-    whenDefinedSpy = spyOn(customElements, 'whenDefined').and.returnValue(
-      Promise.resolve()
-    );
+    appendChildSpy = jest.spyOn(document.body, 'appendChild');
+    whenDefinedSpy = jest
+      .spyOn(customElements, 'whenDefined')
+      .mockReturnValue(Promise.resolve());
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    appendChildSpy.mockRestore();
+    whenDefinedSpy.mockRestore();
   });
 
   it('should create', () => {
@@ -133,7 +142,9 @@ describe('LazyElementDirective', () => {
 
   it('adds a script tag into dom to load element bundle', () => {
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(getScript().src).toBe('http://elements.com/some-element');
+    expect(getAppendChildFirstScript().src).toBe(
+      'http://elements.com/some-element'
+    );
   });
 
   it('adds a script tag only once for elements with same url', () => {
@@ -141,7 +152,9 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(getScript().src).toBe('http://elements.com/some-element');
+    expect(getAppendChildFirstScript().src).toBe(
+      'http://elements.com/some-element'
+    );
   });
 
   it('adds multiple script tags if elements have different bundle url', () => {
@@ -149,8 +162,10 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
-    expect(getScript().src).toBe('http://elements.com/some-element');
-    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
+    expect(getAppendChildFirstScript().src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(getAppendChildSecondScript().src).toBe(
       'http://elements.com/some-other-element'
     );
   });
@@ -172,7 +187,7 @@ describe('LazyElementDirective', () => {
 
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
 
-    getScript().dispatchEvent(new Event('load'));
+    getAppendChildFirstScript().dispatchEvent(new Event('load'));
 
     await fixture.whenStable();
     fixture.detectChanges();
@@ -181,7 +196,7 @@ describe('LazyElementDirective', () => {
   });
 
   it('renders error template loading of element failed', async () => {
-    const consoleErrorSpy: jasmine.Spy = spyOn(console, 'error').and.stub();
+    const consoleErrorSpy = jest.spyOn(console, 'error');
     expect(document.querySelector('.loading')).toBe(null);
     expect(document.querySelector('.error')).toBe(null);
 
@@ -191,7 +206,7 @@ describe('LazyElementDirective', () => {
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
     expect(document.querySelector('.error')).toBe(null);
 
-    getScript().dispatchEvent(new ErrorEvent('error'));
+    getAppendChildFirstScript().dispatchEvent(new ErrorEvent('error'));
 
     await fixture.whenStable();
     fixture.detectChanges();
@@ -203,32 +218,36 @@ describe('LazyElementDirective', () => {
     expect(document.querySelector('.error').textContent).toBe(
       'Loading failed...'
     );
-    consoleErrorSpy.and.callThrough();
+    consoleErrorSpy.mockRestore();
   });
 
   it('uses type module on script tag when specified', () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(getScript().src).toBe('http://elements.com/some-element');
-    expect(getScript().type).toBe('');
+    expect(getAppendChildFirstScript().src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(getAppendChildFirstScript().type).toBe('');
 
     testHostComponent.useModule = true;
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
-    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
+    expect(getAppendChildSecondScript().src).toBe(
       'http://elements.com/some-element-module'
     );
-    expect(appendChildSpy.calls.argsFor(1)[0].type).toBe('module');
+    expect(getAppendChildSecondScript().type).toBe('module');
   });
 
-  it('uses import map when specified', fakeAsync(() => {
+  it('uses import map when specified', async () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
-    expect(getScript().src).toBe('http://elements.com/some-element');
-    expect(getScript().type).toBe('');
+    expect(getAppendChildFirstScript().src).toBe(
+      'http://elements.com/some-element'
+    );
+    expect(getAppendChildFirstScript().type).toBe('');
 
     (window as any).System = {
       prepareImport: () => null,
@@ -236,13 +255,13 @@ describe('LazyElementDirective', () => {
     };
     testHostComponent.useImportMap = true;
     fixture.detectChanges();
-    flushMicrotasks();
+    await fixture.whenStable();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
-    expect(appendChildSpy.calls.argsFor(1)[0].src).toBe(
+    expect(getAppendChildSecondScript().src).toBe(
       'http://elements.com/element-using-import-map'
     );
-  }));
+  });
 
   it('uses elementConfig for the tag', () => {
     testHostComponent.useElementConfig = true;
