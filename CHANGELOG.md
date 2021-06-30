@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.5.0](https://github.com/angular-extensions/elements/compare/v12.4.2...v12.5.0) (2021-06-30)
+
+### Features
+
+- handle url changes for the `axLazyElement` directive ([0677f82](https://github.com/angular-extensions/elements/commit/0677f82d1f84fca3e622f50af2f7928902c95726))
+- switch to `ngOnChanges` ([de86e11](https://github.com/angular-extensions/elements/commit/de86e11717898aa54e31dc1e74ed1c0ed88a6a57))
+
 ### [12.4.2](https://github.com/angular-extensions/elements/compare/v12.4.1...v12.4.2) (2021-06-17)
 
 ### Bug Fixes
