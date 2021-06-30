@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { LazyElementsModule } from './lazy-elements.module';
 
@@ -54,28 +54,26 @@ describe('LazyElementsModule', () => {
     router.initialNavigation();
   });
 
-  it('For feature can be call twice', fakeAsync(() => {
-    let error;
+  it('forFeature() can be called twice', async () => {
+    let caughtError: Error | null = null;
     try {
-      router.navigate(['/feature']);
-      tick();
-    } catch (err) {
-      error = err;
+      await router.navigate(['/feature']);
+    } catch (error) {
+      caughtError = error;
     }
-    expect(error).toBeUndefined();
-  }));
+    expect(caughtError).toBeNull();
+  });
 
-  it('For root can not be call twice', fakeAsync(() => {
-    let error;
+  it('forRoot() cannot be called twice', async () => {
+    let caughtError: Error | null = null;
     try {
-      router.navigate(['/root']);
-      tick();
-    } catch (err) {
-      error = err;
+      await router.navigate(['/root']);
+    } catch (error) {
+      caughtError = error;
     }
-    expect(error).toBeDefined();
-    expect(error.message).toContain(
+    expect(caughtError).toBeDefined();
+    expect(caughtError.message).toContain(
       'LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.'
     );
-  }));
+  });
 });
