@@ -1,0 +1,131 @@
+{
+  "configVersion": 1,
+  "timestamp": 1625152530634,
+  "index": "/elements/index.html",
+  "assetGroups": [
+    {
+      "name": "@angular-extensions/elements",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/elements/205.08d732a422a29f55b0d2.js",
+        "/elements/214.739a0e42fd8a608dadf7.js",
+        "/elements/225.36e880377fe87634055d.js",
+        "/elements/277.c2a9ae1a07c6b607be56.js",
+        "/elements/385.8bc0da4e2cc17caf2fde.js",
+        "/elements/433.e8eb7cdc32cd482c60dc.js",
+        "/elements/438.dd64a8533b75af9851e5.js",
+        "/elements/467.6bc11267a521c1359717.js",
+        "/elements/529.ca068ec844df7f741063.js",
+        "/elements/546.c8a6ac8e3ea541fedcbc.js",
+        "/elements/594.5ed2a65408ebe38e2fd0.js",
+        "/elements/728.b6da1bf2e1eab761d0e1.js",
+        "/elements/856.b06422ce58adb39ec7a8.js",
+        "/elements/874.0a2bb6ded774e17bf2bb.js",
+        "/elements/896.c946c7e1b51f60139357.js",
+        "/elements/904.c8f7f714271c5422a6b0.js",
+        "/elements/914.d0ce28b7e2fdfa86b79d.js",
+        "/elements/942.fbbff020d712676ebedf.js",
+        "/elements/common.48b3209770a04ddc739a.js",
+        "/elements/favicon.ico",
+        "/elements/index.html",
+        "/elements/main.e452adbd9df34184450d.js",
+        "/elements/polyfills.70e96405f623e7498949.js",
+        "/elements/runtime.09d87d7af5e3bd77d193.js",
+        "/elements/styles.557b85225844388b32e8.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/elements/assets/icons/icon-128x128.png",
+        "/elements/assets/icons/icon-144x144.png",
+        "/elements/assets/icons/icon-152x152.png",
+        "/elements/assets/icons/icon-192x192.png",
+        "/elements/assets/icons/icon-384x384.png",
+        "/elements/assets/icons/icon-512x512.png",
+        "/elements/assets/icons/icon-72x72.png",
+        "/elements/assets/icons/icon-96x96.png",
+        "/elements/assets/logo/github.svg",
+        "/elements/assets/logo/logo.png",
+        "/elements/assets/logo/logo.svg",
+        "/elements/assets/logo/npm.svg",
+        "/elements/assets/logo/twitter.svg",
+        "/elements/assets/social-preview.png",
+        "/elements/assets/tomastrajan.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/elements/205.08d732a422a29f55b0d2.js": "53ec97bc039eaa7b4ea720786f77d5b9c4bea989",
+    "/elements/214.739a0e42fd8a608dadf7.js": "1a58c3557930ef1389a65620313f4dc208dd507d",
+    "/elements/225.36e880377fe87634055d.js": "b2c1510f29479f196548a125e3c8f95fd8402a8b",
+    "/elements/277.c2a9ae1a07c6b607be56.js": "48f70598b6202ad71580d20757455957a5f78557",
+    "/elements/385.8bc0da4e2cc17caf2fde.js": "05fc80fa6e445594db31556bf507978545486616",
+    "/elements/433.e8eb7cdc32cd482c60dc.js": "6974d225820c77dc0073ffdc3526765d68bfe5fd",
+    "/elements/438.dd64a8533b75af9851e5.js": "1a9b4d0d93bafc0bef137c48515a7d96e49c8d64",
+    "/elements/467.6bc11267a521c1359717.js": "848e4b8f5ae229890e15d52cb2ba1bdb8e3f2f0b",
+    "/elements/529.ca068ec844df7f741063.js": "21aa33b49cc7f528a447f0d6f89c7502db536aa4",
+    "/elements/546.c8a6ac8e3ea541fedcbc.js": "f2dc1dfe41441db85da25ef29d8ce66c359a17b6",
+    "/elements/594.5ed2a65408ebe38e2fd0.js": "fed8081045035fcfcbaf5c8590d89b6b27096fd0",
+    "/elements/728.b6da1bf2e1eab761d0e1.js": "2e1505757bbd2acf18832fdbe89f2f6b2755ba7a",
+    "/elements/856.b06422ce58adb39ec7a8.js": "658fdf4eeb1cc6d07546d24761a88b58373e6612",
+    "/elements/874.0a2bb6ded774e17bf2bb.js": "2dc87c9dbf4dece8ba55303933c9ce9a63ac8bf4",
+    "/elements/896.c946c7e1b51f60139357.js": "dc550fc9e6c2bfa935a8f3e84e9efe0e1e49826e",
+    "/elements/904.c8f7f714271c5422a6b0.js": "9ce48b12ac03393d4c3660fda91dd5ba5e846c62",
+    "/elements/914.d0ce28b7e2fdfa86b79d.js": "1563200ec20dbf0da8e186778d14bd62ec9fe1e2",
+    "/elements/942.fbbff020d712676ebedf.js": "46c512e4bc136fde4ffbcec4381469fb32607139",
+    "/elements/assets/icons/icon-128x128.png": "bb4c16ecdaf39eed9392f004d47690c6ca74a0ec",
+    "/elements/assets/icons/icon-144x144.png": "5e239a5f4a1baf09ecc26ab67b1661d606a312b2",
+    "/elements/assets/icons/icon-152x152.png": "d006afa46e441ae9aecedc44499afe54522147be",
+    "/elements/assets/icons/icon-192x192.png": "75dad1a5c614cfc6310de05f1f5552fc5956395c",
+    "/elements/assets/icons/icon-384x384.png": "93236fcff3aebee64a2a304572fe8ddfd0a358b8",
+    "/elements/assets/icons/icon-512x512.png": "4a63a95594b9df4a309df895feb80c9faad6ecac",
+    "/elements/assets/icons/icon-72x72.png": "98d1f700cee5fd6ac7e45c5e923c29a0b9298b9c",
+    "/elements/assets/icons/icon-96x96.png": "66daddebff01ed53ae0125358774fac84bbbca6d",
+    "/elements/assets/logo/github.svg": "8b032d9d804587c18e6f5b0cbf25629d5097f6cf",
+    "/elements/assets/logo/logo.png": "4c01cf51ac3d4972c09e4ca34965c5a0531ea69f",
+    "/elements/assets/logo/logo.svg": "2202e270d20c6683dac48db8ca46aff3a33d9ba9",
+    "/elements/assets/logo/npm.svg": "7247742a1f130aa7d4bbc0cff0643d04ca450570",
+    "/elements/assets/logo/twitter.svg": "165ec9568b6be0931333417a723b7c4dfabbd7fe",
+    "/elements/assets/social-preview.png": "3d8cf5e84d0f8cadde88484381062aa37b745b5a",
+    "/elements/assets/tomastrajan.png": "0ff17fab2999628e40209cd3359276dd86fbd992",
+    "/elements/common.48b3209770a04ddc739a.js": "bdf46d161719e59268c58c7aed5070c145847e24",
+    "/elements/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/elements/index.html": "4694259e7d9608070099dd11db2a5fecadf180a7",
+    "/elements/main.e452adbd9df34184450d.js": "2d42a6c08dcb529bfe91d4f715b0806fe3e5cb22",
+    "/elements/polyfills.70e96405f623e7498949.js": "4b8a40c86e5bdf4d016bb403e4d63fcdc28325f4",
+    "/elements/runtime.09d87d7af5e3bd77d193.js": "252cf71735550ef61457eddd94c986802c88700e",
+    "/elements/styles.557b85225844388b32e8.css": "97c57bdbf9a5c2c60cd351c8177aa23fae275421"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
