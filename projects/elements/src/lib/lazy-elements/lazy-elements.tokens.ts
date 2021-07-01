@@ -22,8 +22,8 @@ export const LAZY_ELEMENTS_REGISTRY = new InjectionToken<LazyElementsRegistry>(
   }
 );
 
-export interface LazyElementsRegistry {
-  get: (url: string) => Promise<void>;
-  set: (url: string, notifier: Promise<void>) => void;
+export interface LazyElementsRegistry extends Map<string, Promise<void>> {
+  get: (url: string) => Promise<void> | undefined;
+  set: (url: string, notifier: Promise<void>) => this;
   has: (url: string) => boolean;
 }

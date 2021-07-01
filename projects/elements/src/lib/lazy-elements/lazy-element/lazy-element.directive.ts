@@ -34,13 +34,15 @@ const LOG_PREFIX = '@angular-extensions/elements';
   selector: '[axLazyElement]',
 })
 export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
-  @Input('axLazyElement') url: string;
-  @Input('axLazyElementLoadingTemplate') loadingTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementErrorTemplate') errorTemplateRef: TemplateRef<any>; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementModule') isModule: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementImportMap') importMap: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElement') url: string | null = null;
+  @Input('axLazyElementLoadingTemplate') // eslint-disable-line @angular-eslint/no-input-rename
+  loadingTemplateRef: TemplateRef<any> | null = null;
+  @Input('axLazyElementErrorTemplate') // eslint-disable-line @angular-eslint/no-input-rename
+  errorTemplateRef: TemplateRef<any> | null = null;
+  @Input('axLazyElementModule') isModule = false; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
 
-  private viewRef: EmbeddedViewRef<any> = null;
+  private viewRef: EmbeddedViewRef<any> | null = null;
   private subscription = Subscription.EMPTY;
   private url$ = new BehaviorSubject<string | null>(null);
 

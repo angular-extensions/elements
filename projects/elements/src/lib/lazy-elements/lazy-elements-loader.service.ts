@@ -80,7 +80,7 @@ export class LazyElementsLoaderService {
     });
   }
 
-  getElementConfig(tag: string): ElementConfig {
+  getElementConfig(tag: string): ElementConfig | undefined {
     return this.configs.find((config) => config.tag === tag);
   }
 
@@ -101,7 +101,7 @@ export class LazyElementsLoaderService {
   }
 
   async loadElement(
-    url: string,
+    url: string | null,
     tag: string,
     isModule?: boolean,
     importMap?: boolean,
@@ -123,7 +123,7 @@ export class LazyElementsLoaderService {
       } else if (importMap) {
         url = tag;
       } else {
-        url = config.url;
+        url = config!.url;
       }
     }
 
@@ -192,7 +192,7 @@ export class LazyElementsLoaderService {
       this.stripUrlProtocol(url),
       new Promise<void>((resolve, reject) => (notifier = { resolve, reject }))
     );
-    return notifier;
+    return notifier!;
   }
 
   private hasElement(url: string): boolean {
