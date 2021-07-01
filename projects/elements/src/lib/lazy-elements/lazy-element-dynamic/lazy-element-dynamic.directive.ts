@@ -27,16 +27,16 @@ const LOG_PREFIX = '@angular-extensions/elements';
   selector: '[axLazyElementDynamic]',
 })
 export class LazyElementDynamicDirective implements OnInit, OnDestroy {
-  @Input('axLazyElementDynamic') tag: string;
-  @Input('axLazyElementDynamicUrl') url: string; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementDynamic') tag: string | null = null;
+  @Input('axLazyElementDynamicUrl') url: string | null = null; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementDynamicLoadingTemplate') // eslint-disable-line @angular-eslint/no-input-rename
-  loadingTemplateRef: TemplateRef<any>;
+  loadingTemplateRef: TemplateRef<any> | null = null;
   @Input('axLazyElementDynamicErrorTemplate') // eslint-disable-line @angular-eslint/no-input-rename
-  errorTemplateRef: TemplateRef<any>;
-  @Input('axLazyElementDynamicModule') isModule: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementDynamicImportMap') importMap: boolean | undefined; // eslint-disable-line @angular-eslint/no-input-rename
+  errorTemplateRef: TemplateRef<any> | null = null;
+  @Input('axLazyElementDynamicModule') isModule = false; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementDynamicImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
 
-  private viewRef: EmbeddedViewRef<any> = null;
+  private viewRef: EmbeddedViewRef<any> | null = null;
   private subscription = Subscription.EMPTY;
 
   constructor(
@@ -67,9 +67,10 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
       }
     }
 
+    const tag = this.tag!;
+
     const elementConfig =
-      this.elementsLoaderService.getElementConfig(this.tag) ||
-      ({} as ElementConfig);
+      this.elementsLoaderService.getElementConfig(tag) || ({} as ElementConfig);
     const options = this.elementsLoaderService.options;
     const loadingComponent =
       elementConfig.loadingComponent || options.loadingComponent;
@@ -84,7 +85,7 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
     const loadElement$ = from(
       this.elementsLoaderService.loadElement(
         this.url,
-        this.tag,
+        tag,
         this.isModule,
         this.importMap,
         elementConfig?.hooks
@@ -92,14 +93,14 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
     );
 
     this.subscription = loadElement$
-      .pipe(mergeMap(() => customElements.whenDefined(this.tag)))
+      .pipe(mergeMap(() => customElements.whenDefined(tag)))
       .subscribe({
         next: () => {
           this.vcr.clear();
           const originalCreateElement = this.renderer.createElement;
           this.renderer.createElement = (name: string, namespace: string) => {
             if (name === 'ax-lazy-element') {
-              name = this.tag;
+              name = tag;
             }
             return this.document.createElement(name);
           };
