@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.6.0](https://github.com/angular-extensions/elements/compare/v12.5.0...v12.6.0) (2021-07-20)
+
+### Features
+
+- **demo:** fixed navigation ([6bd24ce](https://github.com/angular-extensions/elements/commit/6bd24ceb1e391b1d9c32d829141eff79ba604ec6))
+
+### Bug Fixes
+
+- **demo:** fixed navigation scrolling on small screens ([56385b2](https://github.com/angular-extensions/elements/commit/56385b2811bc861b33ca892aab5bb0e7cc6ed6af))
+
 ## [12.5.0](https://github.com/angular-extensions/elements/compare/v12.4.2...v12.5.0) (2021-06-30)
 
 ### Features
