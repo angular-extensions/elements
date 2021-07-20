@@ -120,3 +120,17 @@ or submit a [pull request](https://github.com/angular-extensions/elements/pulls)
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## Sponsors
+
+> Are you currently working in an enterprise environment with many applications and found yourself thinking you could provide so much more value only if you had better overview to plan, track progress and just get things done?
+
+Try _[Omniboard](https://omniboard.dev), the best tool for lead software engineers and architects_
+that helps them to get an overview to drive change by querying and tracking all their code bases!
+
+The free plan let's you get a full overview of all your projects with your first dashboard, tracking up to 3 different things!
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=uDnNE9FuLwc" target="_blank">
+    <img src="https://app.omniboard.dev/assets/videos/omniboard-getting-started.png" 
+              alt="Omniboard.dev - getting started in less than 5 minutes" width="100%" />
+</a>

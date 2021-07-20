@@ -6,10 +6,16 @@ import { SharedModule } from '../shared/shared.module';
 
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+import { SponsorComponent } from './sponsor/sponsor.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
-  declarations: [ToolbarComponent, NavigationComponent, FooterComponent],
+  declarations: [
+    ToolbarComponent,
+    NavigationComponent,
+    SponsorComponent,
+    FooterComponent,
+  ],
   imports: [
     // vendor
     RouterModule,
@@ -30,6 +36,11 @@ import { FooterComponent } from './layout/footer/footer.component';
       },
     },
   ],
-  exports: [ToolbarComponent, NavigationComponent, FooterComponent],
+  exports: [
+    ToolbarComponent,
+    NavigationComponent,
+    SponsorComponent,
+    FooterComponent,
+  ],
 })
 export class CoreModule {}

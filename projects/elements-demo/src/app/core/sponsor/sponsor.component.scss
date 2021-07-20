@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  padding: 40px;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+blockquote {
+  font-size: 24px;
+  line-height: 48px;
+  margin: 40px 100px;
+  font-style: normal;
+}
+
+.wrapper {
+  display: flex;
+  > * {
+    width: 50%;
+    padding: 20px;
+  }
+  video {
+    border-radius: 10px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .main {
+      font-size: 18px;
+    }
+  }
+}
+
+:host-context(.responsive) {
+  blockquote {
+    font-size: 16px;
+    line-height: 32px;
+    margin: 0 0 20px 0;
+  }
+
+  .wrapper {
+    flex-direction: column;
+    > * {
+      width: 100%;
+    }
+  }
+}
