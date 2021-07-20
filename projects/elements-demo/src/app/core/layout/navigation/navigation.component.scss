@@ -10,6 +10,9 @@ mat-nav-list {
   padding-top: 0;
   position: fixed;
   top: 64px;
+  max-height: calc(100% - 64px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 a[mat-list-item] {
@@ -32,5 +35,6 @@ a[mat-list-item] {
 :host-context(.responsive) {
   mat-nav-list {
     top: 56px;
+    max-height: calc(100% - 56px);
   }
 }
