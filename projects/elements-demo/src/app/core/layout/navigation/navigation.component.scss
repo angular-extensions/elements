@@ -1,5 +1,15 @@
+:host {
+  position: relative;
+}
+
+.spacer {
+  min-width: 250px;
+}
+
 mat-nav-list {
   padding-top: 0;
+  position: fixed;
+  top: 64px;
 }
 
 a[mat-list-item] {
@@ -16,5 +26,11 @@ a[mat-list-item] {
   img {
     height: 35px;
     margin: 0 0 0 30px;
+  }
+}
+
+:host-context(.responsive) {
+  mat-nav-list {
+    top: 56px;
   }
 }
