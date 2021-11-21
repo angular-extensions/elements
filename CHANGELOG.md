@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0](https://github.com/angular-extensions/elements/compare/v12.6.0...v13.0.0) (2021-11-21)
+
+### ⚠ BREAKING CHANGES
+
+- **workspace:** Angular 13 support, IVY partial compilation
+
+### Features
+
+- **workspace:** upgrade to Angular 13 ([53f264c](https://github.com/angular-extensions/elements/commit/53f264c3ce788e4254869d860b4140aa9514c563))
+
 ## [12.6.0](https://github.com/angular-extensions/elements/compare/v12.5.0...v12.6.0) (2021-07-20)
 
 ### Features
