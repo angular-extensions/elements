@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HighlightModule } from 'ngx-highlightjs';
-import typescript from 'highlight.js/lib/languages/typescript';
 
 import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
+import { HIGHLIGHT_JS_PROVIDER } from '../../../core/higlightjs/highlightjs.config';
 import { SharedModule } from '../../../shared/shared.module';
 
 import { BasicComponent } from './basic.component';
@@ -16,9 +16,10 @@ describe('BasicComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        declarations: [BasicComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         imports: [LazyElementsModule, HighlightModule, SharedModule],
-        declarations: [BasicComponent],
+        providers: [HIGHLIGHT_JS_PROVIDER],
       }).compileComponents();
     })
   );

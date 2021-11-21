@@ -8,6 +8,7 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { SponsorComponent } from './sponsor/sponsor.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HIGHLIGHT_JS_PROVIDER } from './higlightjs/highlightjs.config';
 
 @NgModule({
   declarations: [
@@ -24,18 +25,7 @@ import { FooterComponent } from './layout/footer/footer.component';
     // local
     SharedModule,
   ],
-  providers: [
-    {
-      provide: HIGHLIGHT_OPTIONS,
-      useValue: {
-        coreLibraryLoader: () => import('highlight.js/lib/core'),
-        languages: {
-          typescript: () => import('highlight.js/lib/languages/typescript'),
-          xml: () => import('highlight.js/lib/languages/xml'),
-        },
-      },
-    },
-  ],
+  providers: [HIGHLIGHT_JS_PROVIDER],
   exports: [
     ToolbarComponent,
     NavigationComponent,

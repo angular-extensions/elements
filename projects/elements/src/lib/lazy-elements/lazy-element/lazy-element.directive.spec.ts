@@ -129,7 +129,9 @@ describe('LazyElementDirective', () => {
     appendChildSpy = jest.spyOn(document.body, 'appendChild');
     whenDefinedSpy = jest
       .spyOn(customElements, 'whenDefined')
-      .mockReturnValue(Promise.resolve());
+      .mockReturnValue(
+        Promise.resolve(class DummyElement extends HTMLElement {})
+      );
     requestAnimationFrameSpy = jest
       .spyOn(window, 'requestAnimationFrame')
       .mockImplementation((callback) => {

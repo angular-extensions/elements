@@ -4,8 +4,10 @@ import { HighlightModule } from 'ngx-highlightjs';
 
 import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
-import { DynamicComponent } from './dynamic.component';
+import { HIGHLIGHT_JS_PROVIDER } from '../../../core/higlightjs/highlightjs.config';
 import { SharedModule } from '../../../shared/shared.module';
+
+import { DynamicComponent } from './dynamic.component';
 
 describe('DynamicComponent', () => {
   let component: DynamicComponent;
@@ -14,9 +16,10 @@ describe('DynamicComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        declarations: [DynamicComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         imports: [LazyElementsModule, HighlightModule, SharedModule],
-        declarations: [DynamicComponent],
+        providers: [HIGHLIGHT_JS_PROVIDER],
       }).compileComponents();
     })
   );

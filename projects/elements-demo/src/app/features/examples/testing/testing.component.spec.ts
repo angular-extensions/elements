@@ -5,6 +5,7 @@ import { HighlightModule } from 'ngx-highlightjs';
 import { LazyElementsModule } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
 
 import { SharedModule } from '../../../shared/shared.module';
+import { HIGHLIGHT_JS_PROVIDER } from '../../../core/higlightjs/highlightjs.config';
 
 import { TestingComponent } from './testing.component';
 
@@ -15,9 +16,10 @@ describe('TestingComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        declarations: [TestingComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         imports: [LazyElementsModule, HighlightModule, SharedModule],
-        declarations: [TestingComponent],
+        providers: [HIGHLIGHT_JS_PROVIDER],
       }).compileComponents();
     })
   );

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HighlightModule } from 'ngx-highlightjs';
-import typescript from 'highlight.js/lib/languages/typescript';
 
 import { SharedModule } from '../../../shared/shared.module';
+import { HIGHLIGHT_JS_PROVIDER } from '../../../core/higlightjs/highlightjs.config';
 
 import { HomeComponent } from './home.component';
 
@@ -16,6 +16,7 @@ describe('HomeComponent', () => {
       TestBed.configureTestingModule({
         imports: [HighlightModule, HttpClientTestingModule, SharedModule],
         declarations: [HomeComponent],
+        providers: [HIGHLIGHT_JS_PROVIDER],
       }).compileComponents();
     })
   );
