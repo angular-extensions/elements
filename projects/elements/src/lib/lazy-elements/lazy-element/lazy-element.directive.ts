@@ -42,7 +42,7 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
   loadingTemplateRef: TemplateRef<any> | null = null;
   @Input('axLazyElementErrorTemplate') // eslint-disable-line @angular-eslint/no-input-rename
   errorTemplateRef: TemplateRef<any> | null = null;
-  @Input('axLazyElementModule') isModule = false; // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementModule') isModule?: boolean; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
 
   private viewRef: EmbeddedViewRef<any> | null = null;
