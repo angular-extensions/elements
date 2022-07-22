@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.1.0](https://github.com/angular-extensions/elements/compare/v14.0.0...v14.1.0) (2022-07-22)
+
+### Features
+
+- **lib:** upgrade to RxJs 7.5.x ([7c6656a](https://github.com/angular-extensions/elements/commit/7c6656a238a4c046b109a8edf5bfdafacb0338a6))
+
 ## [14.0.0](https://github.com/angular-extensions/elements/compare/v13.0.0...v14.0.0) (2022-07-22)
 
 ### ⚠ BREAKING CHANGES
