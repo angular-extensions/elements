@@ -1,8 +1,14 @@
 import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { SwUpdate } from '@angular/service-worker';
 import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  delay,
+  map,
+  tap,
+} from 'rxjs';
 
 import { ResponsiveLayoutService } from './core/layout/responsive-layout.service';
 import { RefreshService } from './core/refresh.service';

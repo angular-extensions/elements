@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate } from '@angular/service-worker';
-import { take } from 'rxjs/operators';
+import { take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

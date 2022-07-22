@@ -20,8 +20,11 @@ import {
   EMPTY,
   from,
   Subscription,
+  catchError,
+  debounceTime,
+  mergeMap,
+  switchMap,
 } from 'rxjs';
-import { catchError, debounceTime, mergeMap, switchMap } from 'rxjs/operators';
 
 import {
   ElementConfig,

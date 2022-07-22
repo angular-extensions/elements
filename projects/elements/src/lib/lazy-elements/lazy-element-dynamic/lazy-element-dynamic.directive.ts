@@ -13,8 +13,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
-import { from, Subscription } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { from, Subscription, mergeMap } from 'rxjs';
 
 import {
   ElementConfig,

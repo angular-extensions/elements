@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LazyElementsModule } from '../lazy-elements.module';
 import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
@@ -92,7 +92,6 @@ describe('LazyElementDirective', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let appendChildSpy: jest.SpyInstance;
   let whenDefinedSpy: jest.SpyInstance;
-  let requestAnimationFrameSpy: jest.SpyInstance;
 
   function getAppendChildFirstScript(): HTMLScriptElement {
     return appendChildSpy.mock.calls[0][0];
@@ -102,8 +101,8 @@ describe('LazyElementDirective', () => {
     return appendChildSpy.mock.calls[1][0];
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         TestModule,
         LazyElementsModule.forRoot({
@@ -119,9 +118,9 @@ describe('LazyElementDirective', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [TestHostComponent],
     }).compileComponents();
-  }));
+  });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
     appendChildSpy = jest.spyOn(document.body, 'appendChild');
@@ -130,20 +129,13 @@ describe('LazyElementDirective', () => {
       .mockReturnValue(
         Promise.resolve(class DummyElement extends HTMLElement {})
       );
-    requestAnimationFrameSpy = jest
-      .spyOn(window, 'requestAnimationFrame')
-      .mockImplementation((callback) => {
-        const time = 0;
-        callback(time);
-        return time;
-      });
     fixture.detectChanges();
+    await fixture.whenRenderingDone();
   });
 
   afterEach(() => {
     appendChildSpy.mockRestore();
     whenDefinedSpy.mockRestore();
-    requestAnimationFrameSpy.mockRestore();
   });
 
   it('should create', () => {
@@ -167,9 +159,11 @@ describe('LazyElementDirective', () => {
     );
   });
 
-  it('adds multiple script tags if elements have different bundle url', () => {
+  it('adds multiple script tags if elements have different bundle url', async () => {
     testHostComponent.addOtherElement = true;
     fixture.detectChanges();
+
+    await fixture.whenStable();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
     expect(getAppendChildFirstScript().src).toBe(
@@ -180,11 +174,12 @@ describe('LazyElementDirective', () => {
     );
   });
 
-  it('renders loading template', () => {
+  it('renders loading template', async () => {
     expect(document.querySelector('.loading')).toBe(null);
 
     testHostComponent.useLoadingTemplate = true;
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
   });
@@ -194,6 +189,7 @@ describe('LazyElementDirective', () => {
 
     testHostComponent.useLoadingTemplate = true;
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
 
@@ -212,6 +208,7 @@ describe('LazyElementDirective', () => {
 
     testHostComponent.useErrorTemplate = true;
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(document.querySelector('.loading').textContent).toBe('Loading...');
     expect(document.querySelector('.error')).toBe(null);
@@ -231,7 +228,7 @@ describe('LazyElementDirective', () => {
     consoleErrorSpy.mockRestore();
   });
 
-  it('uses type module on script tag when specified', () => {
+  it('uses type module on script tag when specified', async () => {
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -242,6 +239,7 @@ describe('LazyElementDirective', () => {
 
     testHostComponent.useModule = true;
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
     expect(getAppendChildSecondScript().src).toBe(
@@ -273,14 +271,15 @@ describe('LazyElementDirective', () => {
     );
   });
 
-  it('uses elementConfig for the tag', () => {
+  it('uses elementConfig for the tag', async () => {
     testHostComponent.useElementConfig = true;
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(document.querySelector('.loading').textContent).toBe('Spinner...');
   });
 
-  it('should load another element when the `url` binding changes', () => {
+  it('should load another element when the `url` binding changes', async () => {
     // Arrange
     const elementsLoaderService = TestBed.inject(LazyElementsLoaderService);
     const loadElementSpy = jest.spyOn(elementsLoaderService, 'loadElement');
@@ -290,10 +289,12 @@ describe('LazyElementDirective', () => {
     testHostComponent.url =
       'http://elements.com/some-configured-element-module';
     fixture.detectChanges();
+    await fixture.whenStable();
 
     testHostComponent.url =
       'http://elements.com/some-configured-element-module-es2015';
     fixture.detectChanges();
+    await fixture.whenStable();
 
     // Assert
     expect(loadElementSpy).toHaveBeenCalledTimes(2);
