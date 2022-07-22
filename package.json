@@ -8,7 +8,7 @@
     "lint": "ng lint",
     "test": "ng lint && npm run format:test && ng test --collect-coverage --silent --run-in-band",
     "watch": "ng test --watch",
-    "build": "ng build && ng build elements",
+    "build": "ng build elements-demo && ng build elements",
     "postbuild": "replace \"onFetch.*\\{\" \"onFetch(event) { if (event.request.url.indexOf('unpkg.com') > -1) { return; }\" ./dist/elements-demo/ngsw-worker.js",
     "ci": "npm run test && npm run build && cpx README.md dist/elements",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
