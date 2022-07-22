@@ -1,7 +1,7 @@
 language: node_js
 version: 1.0
 node_js:
-  - '12'
+  - '16'
 sudo: required
 dist: trusty
 addons:
