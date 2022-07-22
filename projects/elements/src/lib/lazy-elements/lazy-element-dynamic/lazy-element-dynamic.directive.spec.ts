@@ -36,14 +36,12 @@ describe('LazyElementDirectiveDynamic', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let appendChildSpy: jest.SpyInstance;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        declarations: [TestHostComponent, LazyElementDynamicDirective],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [TestHostComponent, LazyElementDynamicDirective],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);

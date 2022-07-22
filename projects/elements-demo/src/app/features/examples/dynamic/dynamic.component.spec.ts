@@ -13,16 +13,14 @@ describe('DynamicComponent', () => {
   let component: DynamicComponent;
   let fixture: ComponentFixture<DynamicComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [DynamicComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        imports: [LazyElementsModule, HighlightModule, SharedModule],
-        providers: [HIGHLIGHT_JS_PROVIDER],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [DynamicComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [LazyElementsModule, HighlightModule, SharedModule],
+      providers: [HIGHLIGHT_JS_PROVIDER],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DynamicComponent);

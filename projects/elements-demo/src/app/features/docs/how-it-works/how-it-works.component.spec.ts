@@ -11,15 +11,13 @@ describe('HowItWorksComponent', () => {
   let component: HowItWorksComponent;
   let fixture: ComponentFixture<HowItWorksComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [HighlightModule, RouterTestingModule, SharedModule],
-        declarations: [HowItWorksComponent],
-        providers: [HIGHLIGHT_JS_PROVIDER],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [HighlightModule, RouterTestingModule, SharedModule],
+      declarations: [HowItWorksComponent],
+      providers: [HIGHLIGHT_JS_PROVIDER],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HowItWorksComponent);

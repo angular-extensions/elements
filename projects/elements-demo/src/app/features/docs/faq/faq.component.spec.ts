@@ -9,14 +9,12 @@ describe('FaqComponent', () => {
   let component: FaqComponent;
   let fixture: ComponentFixture<FaqComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule, SharedModule],
-        declarations: [FaqComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule, SharedModule],
+      declarations: [FaqComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FaqComponent);

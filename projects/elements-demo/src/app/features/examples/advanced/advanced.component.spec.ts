@@ -13,16 +13,14 @@ describe('AdvancedComponent', () => {
   let component: AdvancedComponent;
   let fixture: ComponentFixture<AdvancedComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [AdvancedComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        imports: [LazyElementsModule, HighlightModule, SharedModule],
-        providers: [HIGHLIGHT_JS_PROVIDER],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [AdvancedComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [LazyElementsModule, HighlightModule, SharedModule],
+      providers: [HIGHLIGHT_JS_PROVIDER],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdvancedComponent);

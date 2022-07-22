@@ -6,13 +6,11 @@ describe('RootErrorComponent', () => {
   let component: RootErrorComponent;
   let fixture: ComponentFixture<RootErrorComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [RootErrorComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [RootErrorComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RootErrorComponent);

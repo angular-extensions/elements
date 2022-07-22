@@ -11,15 +11,13 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [HighlightModule, HttpClientTestingModule, SharedModule],
-        declarations: [HomeComponent],
-        providers: [HIGHLIGHT_JS_PROVIDER],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [HighlightModule, HttpClientTestingModule, SharedModule],
+      declarations: [HomeComponent],
+      providers: [HIGHLIGHT_JS_PROVIDER],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);

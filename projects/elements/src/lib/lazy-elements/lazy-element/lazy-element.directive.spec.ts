@@ -102,26 +102,24 @@ describe('LazyElementDirective', () => {
     return appendChildSpy.mock.calls[1][0];
   }
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          TestModule,
-          LazyElementsModule.forRoot({
-            elementConfigs: [
-              {
-                tag: 'some-configured-element',
-                url: 'http://elements.com/some-configured-element-module',
-                loadingComponent: SpinnerTestComponent,
-              },
-            ],
-          }),
-        ],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        declarations: [TestHostComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        TestModule,
+        LazyElementsModule.forRoot({
+          elementConfigs: [
+            {
+              tag: 'some-configured-element',
+              url: 'http://elements.com/some-configured-element-module',
+              loadingComponent: SpinnerTestComponent,
+            },
+          ],
+        }),
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [TestHostComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);

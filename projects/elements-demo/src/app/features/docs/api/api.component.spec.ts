@@ -8,14 +8,12 @@ describe('ApiComponent', () => {
   let component: ApiComponent;
   let fixture: ComponentFixture<ApiComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SharedModule],
-        declarations: [ApiComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SharedModule],
+      declarations: [ApiComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ApiComponent);

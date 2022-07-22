@@ -10,15 +10,13 @@ describe('ChangeDetectionComponent', () => {
   let component: ChangeDetectionComponent;
   let fixture: ComponentFixture<ChangeDetectionComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [HighlightModule, SharedModule],
-        declarations: [ChangeDetectionComponent],
-        providers: [HIGHLIGHT_JS_PROVIDER],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [HighlightModule, SharedModule],
+      declarations: [ChangeDetectionComponent],
+      providers: [HIGHLIGHT_JS_PROVIDER],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ChangeDetectionComponent);

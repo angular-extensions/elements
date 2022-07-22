@@ -9,14 +9,12 @@ describe('ExamplesComponent', () => {
   let component: ExamplesComponent;
   let fixture: ComponentFixture<ExamplesComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SharedModule, RouterTestingModule],
-        declarations: [ExamplesComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SharedModule, RouterTestingModule],
+      declarations: [ExamplesComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ExamplesComponent);

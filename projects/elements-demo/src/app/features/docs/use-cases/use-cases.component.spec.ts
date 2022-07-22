@@ -6,13 +6,11 @@ describe('UseCasesComponent', () => {
   let component: UseCasesComponent;
   let fixture: ComponentFixture<UseCasesComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [UseCasesComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [UseCasesComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UseCasesComponent);

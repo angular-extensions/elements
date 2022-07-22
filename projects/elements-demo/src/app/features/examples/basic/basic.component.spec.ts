@@ -13,16 +13,14 @@ describe('BasicComponent', () => {
   let component: BasicComponent;
   let fixture: ComponentFixture<BasicComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [BasicComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        imports: [LazyElementsModule, HighlightModule, SharedModule],
-        providers: [HIGHLIGHT_JS_PROVIDER],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [BasicComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [LazyElementsModule, HighlightModule, SharedModule],
+      providers: [HIGHLIGHT_JS_PROVIDER],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BasicComponent);

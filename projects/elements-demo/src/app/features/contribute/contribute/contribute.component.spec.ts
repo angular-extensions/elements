@@ -9,14 +9,12 @@ describe('ContributeComponent', () => {
   let component: ContributeComponent;
   let fixture: ComponentFixture<ContributeComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule, SharedModule],
-        declarations: [ContributeComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, SharedModule],
+      declarations: [ContributeComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContributeComponent);

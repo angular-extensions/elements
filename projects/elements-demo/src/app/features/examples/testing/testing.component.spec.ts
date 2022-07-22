@@ -13,16 +13,14 @@ describe('TestingComponent', () => {
   let component: TestingComponent;
   let fixture: ComponentFixture<TestingComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [TestingComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        imports: [LazyElementsModule, HighlightModule, SharedModule],
-        providers: [HIGHLIGHT_JS_PROVIDER],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestingComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [LazyElementsModule, HighlightModule, SharedModule],
+      providers: [HIGHLIGHT_JS_PROVIDER],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestingComponent);
