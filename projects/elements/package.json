@@ -1,9 +1,9 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "14.1.0",
+  "version": "15.1.2",
   "peerDependencies": {
-    "@angular/common": ">=14",
-    "@angular/core": ">=14",
+    "@angular/common": ">=15",
+    "@angular/core": ">=15",
     "rxjs": ">=7.5.0"
   },
   "dependencies": {
