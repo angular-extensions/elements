@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.1.4](https://github.com/angular-extensions/elements/compare/v15.1.3...v15.1.4) (2023-02-06)
+
+### Bug Fixes
+
+- make it possible to define elements as modules using an ElementConfig ([943b812](https://github.com/angular-extensions/elements/commit/943b8128021c128b0cf4f9f3806663f80aabe534))
+
 ### [15.1.3](https://github.com/angular-extensions/elements/compare/v15.1.2...v15.1.3) (2023-02-06)
 
 ### Bug Fixes
