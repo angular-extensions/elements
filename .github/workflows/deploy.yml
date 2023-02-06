@@ -41,4 +41,4 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
           check-version: true
-          package: /dist/elements/package.json
+          package: dist/elements/package.json
