@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.1.0](https://github.com/angular-extensions/elements/compare/v15.0.0...v15.1.0) (2023-02-06)
+
+### Features
+
+- **lib:** jest ESM, sub-entries, github actions ([67c1241](https://github.com/angular-extensions/elements/commit/67c1241c6af1fd5256389d76b88202c7aaa9c69c))
+
 ## [15.0.0](https://github.com/angular-extensions/elements/compare/v14.1.0...v15.0.0) (2023-02-06)
 
 ### ⚠ BREAKING CHANGES
