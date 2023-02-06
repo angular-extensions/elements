@@ -61,6 +61,9 @@ class TestModule {}
       <some-element
         *axLazyElement="'http://elements.com/some-element-module'; module: true"
       ></some-element>
+      <some-configured-module-element
+        *axLazyElement
+      ></some-configured-module-element>
     </div>
     <div *ngIf="useImportMap">
       <some-element
@@ -94,6 +97,10 @@ describe('LazyElementDirective', () => {
   let appendChildSpy: jest.MockInstance<any, any>;
   let whenDefinedSpy: jest.MockInstance<any, any>;
 
+  function appendedScriptElements(): HTMLScriptElement[] {
+    return appendChildSpy.mock.calls.map((args) => args[0]);
+  }
+
   function getAppendChildFirstScript(): HTMLScriptElement {
     return appendChildSpy.mock.calls[0][0];
   }
@@ -112,6 +119,12 @@ describe('LazyElementDirective', () => {
               tag: 'some-configured-element',
               url: 'http://elements.com/some-configured-element-module',
               loadingComponent: SpinnerTestComponent,
+            },
+            {
+              tag: 'some-configured-module-element',
+              url: 'http://elements.com/some-configured-element-module',
+              loadingComponent: SpinnerTestComponent,
+              isModule: true,
             },
           ],
         }),
@@ -242,11 +255,12 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(appendChildSpy).toHaveBeenCalledTimes(2);
-    expect(getAppendChildSecondScript().src).toBe(
-      'http://elements.com/some-element-module'
-    );
-    expect(getAppendChildSecondScript().type).toBe('module');
+    expect(appendChildSpy).toHaveBeenCalledTimes(3);
+    expect(appendedScriptElements().map((script) => script.type)).toEqual([
+      '',
+      'module',
+      'module',
+    ]);
   });
 
   it('uses import map when specified', async () => {
