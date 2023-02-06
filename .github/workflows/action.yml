@@ -36,7 +36,7 @@ jobs:
           folder: dist/elements-demo
 
       - name: Publish to NPM
-        if: success() && startsWith(github.ref, 'refs/tags/v')
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
