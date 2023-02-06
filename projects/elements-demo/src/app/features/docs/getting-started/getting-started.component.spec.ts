@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { HighlightModule } from 'ngx-highlightjs';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 import { SharedModule } from '../../../shared/shared.module';
-import { HIGHLIGHT_JS_PROVIDER } from '../../../core/higlightjs/highlightjs.config';
 
 import { GettingStartedComponent } from './getting-started.component';
+import { MockHighlightDirective } from '../../../testing/mock-highlight.directive';
 
 describe('GettingStartedComponent', () => {
   let component: GettingStartedComponent;
@@ -12,9 +12,9 @@ describe('GettingStartedComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [HighlightModule, SharedModule],
+      imports: [MockHighlightDirective, SharedModule],
       declarations: [GettingStartedComponent],
-      providers: [HIGHLIGHT_JS_PROVIDER],
+      providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));
 

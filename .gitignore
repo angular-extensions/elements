@@ -42,7 +42,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-.cache
+.jest-cache
 
 # System Files
 .DS_Store

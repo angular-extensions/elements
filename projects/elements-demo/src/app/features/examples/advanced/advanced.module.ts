@@ -4,9 +4,9 @@ import { HighlightModule } from 'ngx-highlightjs';
 import {
   LazyElementModuleOptions,
   LazyElementsModule,
-} from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
-import { ElementConfig } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements-loader.service';
-import { LAZY_ELEMENT_CONFIGS } from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.tokens';
+  ElementConfig,
+  LAZY_ELEMENT_CONFIGS,
+} from '@angular-extensions/elements';
 
 import { SharedModule } from '../../../shared/shared.module';
 import { ErrorComponent } from '../../../shared/error/error.component';

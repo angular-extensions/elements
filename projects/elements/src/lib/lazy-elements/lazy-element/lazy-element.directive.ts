@@ -26,10 +26,8 @@ import {
   switchMap,
 } from 'rxjs';
 
-import {
-  ElementConfig,
-  LazyElementsLoaderService,
-} from '../lazy-elements-loader.service';
+import { ElementConfig } from '../lazy-elements.interface';
+import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 

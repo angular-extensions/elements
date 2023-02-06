@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { HighlightModule } from 'ngx-highlightjs';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 import { SharedModule } from '../../../shared/shared.module';
-import { HIGHLIGHT_JS_PROVIDER } from '../../../core/higlightjs/highlightjs.config';
+import { MockHighlightDirective } from '../../../testing/mock-highlight.directive';
 
 import { HomeComponent } from './home.component';
 
@@ -13,9 +13,9 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [HighlightModule, HttpClientTestingModule, SharedModule],
+      imports: [MockHighlightDirective, HttpClientTestingModule, SharedModule],
       declarations: [HomeComponent],
-      providers: [HIGHLIGHT_JS_PROVIDER],
+      providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));
 

@@ -4,22 +4,23 @@ import {
   NgModule,
   Optional,
   SkipSelf,
-  Type,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LazyElementDirective } from './lazy-element/lazy-element.directive';
-import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element-dynamic.directive';
 import {
   ElementConfig,
-  HooksConfig,
-  LazyElementsLoaderService,
-} from './lazy-elements-loader.service';
+  LazyElementModuleOptions,
+  LazyElementModuleRootOptions,
+  LazyElementRootOptions,
+} from './lazy-elements.interface';
 import {
   LAZY_ELEMENT_CONFIGS,
   LAZY_ELEMENT_ROOT_GUARD,
   LAZY_ELEMENT_ROOT_OPTIONS,
 } from './lazy-elements.tokens';
+import { LazyElementDirective } from './lazy-element/lazy-element.directive';
+import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element-dynamic.directive';
+import { LazyElementsLoaderService } from './lazy-elements-loader.service';
 
 import './ng-dev-mode';
 
@@ -38,7 +39,6 @@ export function createLazyElementRootGuard(
   declarations: [LazyElementDirective, LazyElementDynamicDirective],
   imports: [CommonModule],
   exports: [LazyElementDirective, LazyElementDynamicDirective],
-  providers: [],
 })
 export class LazyElementsModule {
   static forRoot(
@@ -97,22 +97,4 @@ export class LazyElementsModule {
         .forEach((configs) => lazyElementsLoaderService.addConfigs(configs));
     }
   }
-}
-
-export interface LazyElementModuleOptions {
-  elementConfigs?: ElementConfig[];
-}
-
-export interface LazyElementModuleRootOptions {
-  elementConfigs?: ElementConfig[];
-  rootOptions?: LazyElementRootOptions;
-}
-
-export interface LazyElementRootOptions {
-  loadingComponent?: Type<any>;
-  errorComponent?: Type<any>;
-  isModule?: boolean;
-  importMap?: boolean;
-  preload?: boolean;
-  hooks?: HooksConfig;
 }

@@ -1,11 +1,10 @@
+import { jest } from '@jest/globals';
 import { ErrorHandler } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import {
-  HooksConfig,
-  LazyElementsLoaderService,
-} from './lazy-elements-loader.service';
+import { HooksConfig } from './lazy-elements.interface';
 import { LazyElementsModule } from './lazy-elements.module';
+import { LazyElementsLoaderService } from './lazy-elements-loader.service';
 
 describe('LazyElementsLoaderService', () => {
   let service: LazyElementsLoaderService;
@@ -16,9 +15,7 @@ describe('LazyElementsLoaderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
-    service = TestBed.inject<LazyElementsLoaderService>(
-      LazyElementsLoaderService
-    );
+    service = TestBed.inject(LazyElementsLoaderService);
     appendedScripts = [];
     shouldLoadSucceed = true;
     appendChildSpy = jest
@@ -33,7 +30,7 @@ describe('LazyElementsLoaderService', () => {
           );
         }
         return script;
-      });
+      }) as any;
   });
 
   afterEach(() => {
@@ -221,10 +218,10 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
 
   beforeEach(() => {
     rootHooks = {
-      afterLoad: jest.fn(),
+      afterLoad: jest.fn() as any,
     };
     elementHooks = {
-      afterLoad: jest.fn(),
+      afterLoad: jest.fn() as any,
     };
 
     TestBed.configureTestingModule({
@@ -268,7 +265,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
           );
         }
         return script;
-      });
+      }) as any;
   });
 
   afterEach(() => {

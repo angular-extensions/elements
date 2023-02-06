@@ -1,7 +1,10 @@
 import { InjectionToken } from '@angular/core';
 
-import { ElementConfig } from './lazy-elements-loader.service';
-import { LazyElementRootOptions } from './lazy-elements.module';
+import {
+  ElementConfig,
+  LazyElementRootOptions,
+  LazyElementsRegistry,
+} from './lazy-elements.interface';
 
 export const LAZY_ELEMENT_CONFIGS = new InjectionToken<ElementConfig[]>(
   'LAZY_ELEMENT_CONFIGS'
@@ -21,9 +24,3 @@ export const LAZY_ELEMENTS_REGISTRY = new InjectionToken<LazyElementsRegistry>(
     factory: () => new Map<string, Promise<void>>(),
   }
 );
-
-export interface LazyElementsRegistry extends Map<string, Promise<void>> {
-  get: (url: string) => Promise<void> | undefined;
-  set: (url: string, notifier: Promise<void>) => this;
-  has: (url: string) => boolean;
-}

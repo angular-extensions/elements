@@ -28,9 +28,15 @@ $elements-demo-warn: mat.define-palette(mat.$deep-orange-palette);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $elements-demo-theme: mat.define-light-theme(
-  $elements-demo-primary,
-  $elements-demo-accent,
-  $elements-demo-warn
+  (
+    color: (
+      primary: $elements-demo-primary,
+      accent: $elements-demo-accent,
+      warn: $elements-demo-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
 );
 
 // custom theme imports

@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -34,7 +35,7 @@ class TestHostComponent {
 describe('LazyElementDirectiveDynamic', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let appendChildSpy: jest.SpyInstance;
+  let appendChildSpy: jest.SpyInstance<any>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -46,7 +47,7 @@ describe('LazyElementDirectiveDynamic', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
-    appendChildSpy = jest.spyOn(document.body, 'appendChild');
+    appendChildSpy = jest.spyOn(document.body, 'appendChild') as any;
     fixture.detectChanges();
   });
 

@@ -7,8 +7,7 @@
       "parserOptions": {
         "project": [
           "projects/elements-demo/tsconfig.app.json",
-          "projects/elements-demo/tsconfig.spec.json",
-          "projects/elements-demo/e2e/tsconfig.json"
+          "projects/elements-demo/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

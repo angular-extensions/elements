@@ -2,12 +2,9 @@
   "name": "@angular-extensions/elements",
   "version": "15.0.0",
   "peerDependencies": {
-    "@angular/common": ">=14",
-    "@angular/core": ">=14",
+    "@angular/common": ">=15",
+    "@angular/core": ">=15",
     "rxjs": ">=7.5.0"
-  },
-  "dependencies": {
-    "tslib": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"

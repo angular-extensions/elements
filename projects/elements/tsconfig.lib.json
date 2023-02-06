@@ -1,13 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "strict": true,
+    "outDir": "../../out-tsc/lib",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "stripInternal": true,
+    "stripInternal": false,
     "types": [],
     "lib": ["dom", "es2018"]
   },
-  "exclude": ["src/test.ts", "**/*.spec.ts"]
+  "exclude": ["jest.setup.ts", "**/*.spec.ts"]
 }

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { HighlightModule } from 'ngx-highlightjs';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 import { SharedModule } from '../../../shared/shared.module';
-import { HIGHLIGHT_JS_PROVIDER } from '../../../core/higlightjs/highlightjs.config';
+import { MockHighlightDirective } from '../../../testing/mock-highlight.directive';
 
 import { ChangeDetectionComponent } from './change-detection.component';
 
@@ -12,9 +12,9 @@ describe('ChangeDetectionComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [HighlightModule, SharedModule],
+      imports: [MockHighlightDirective, SharedModule],
       declarations: [ChangeDetectionComponent],
-      providers: [HIGHLIGHT_JS_PROVIDER],
+      providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));
 

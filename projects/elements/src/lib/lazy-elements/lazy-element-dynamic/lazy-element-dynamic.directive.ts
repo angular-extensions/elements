@@ -15,10 +15,8 @@ import {
 import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { from, Subscription, mergeMap } from 'rxjs';
 
-import {
-  ElementConfig,
-  LazyElementsLoaderService,
-} from '../lazy-elements-loader.service';
+import { ElementConfig } from '../lazy-elements.interface';
+import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 

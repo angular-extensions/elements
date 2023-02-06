@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 import { SharedModule } from '../../shared/shared.module';
 
@@ -13,6 +14,7 @@ describe('ExamplesComponent', () => {
     TestBed.configureTestingModule({
       imports: [SharedModule, RouterTestingModule],
       declarations: [ExamplesComponent],
+      providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));
 

@@ -24,9 +24,6 @@
           },
           "defaultConfiguration": "production"
         },
-        "test": {
-          "builder": "@angular-builders/jest:run"
-        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
@@ -113,9 +110,6 @@
           "options": {
             "browserTarget": "elements-demo:build"
           }
-        },
-        "test": {
-          "builder": "@angular-builders/jest:run"
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",

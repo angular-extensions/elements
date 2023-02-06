@@ -76,12 +76,16 @@ export class FeatureComponent {
 ## Supported Angular versions
 
 Library was tested with the following versions of Angular and is meant to be used
-with the corresponding major version (`"@angular/core"": "^9.0.0"` with `"@angular-extensions/elements": "^9.0.0"` ).
+with the corresponding major version (`"@angular/core"": "^15.0.0"` with `"@angular-extensions/elements": "^15.0.0"` ).
 
 - 9.x (full IVY support, using renderers so careful with SSR)
 - 8.x (partial IVY support, `axLazyElement` works but `axLazyElementDynamic` does NOT work with IVY)
 - 7.x
 - 6.x (eg `npm i @angular-extensions/elements@^6.0.0`)
+
+## Internal dep graph
+
+![Internal dep graph](https://raw.githubusercontent.com/angular-extensions/elements/master/dep-graph.png)
 
 ## Become a contributor
 

@@ -1,37 +1,24 @@
-import {
-  ErrorHandler,
-  Inject,
-  Injectable,
-  Optional,
-  Type,
-} from '@angular/core';
+import { ErrorHandler, Inject, Injectable, Optional } from '@angular/core';
 
-import { LazyElementRootOptions } from './lazy-elements.module';
+import type {
+  Hook,
+  ElementConfig,
+  HooksConfig,
+  LazyElementRootOptions,
+  LazyElementsRegistry,
+} from './lazy-elements.interface';
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
   LAZY_ELEMENTS_REGISTRY,
-  LazyElementsRegistry,
 } from './lazy-elements.tokens';
+
+import './ng-dev-mode';
 
 const LOG_PREFIX = '@angular-extensions/elements';
 
-export type Hook = (tag: string) => Promise<void> | void;
-
-export interface HooksConfig {
-  beforeLoad?: Hook;
-  afterLoad?: Hook;
-}
-
-export interface ElementConfig {
-  tag: string;
-  url: string;
-  isModule?: boolean;
-  importMap?: boolean;
-  loadingComponent?: Type<any>;
-  errorComponent?: Type<any>;
-  preload?: boolean;
-  hooks?: HooksConfig;
-  isAdded?: boolean;
+interface Notifier {
+  resolve: () => void;
+  reject: (error: any) => void;
 }
 
 @Injectable({
@@ -223,9 +210,4 @@ export class LazyElementsLoaderService {
     }
     return url;
   }
-}
-
-interface Notifier {
-  resolve: () => void;
-  reject: (error: any) => void;
 }

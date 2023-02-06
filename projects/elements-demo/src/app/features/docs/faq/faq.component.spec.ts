@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 import { SharedModule } from '../../../shared/shared.module';
 
@@ -13,6 +14,7 @@ describe('FaqComponent', () => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SharedModule],
       declarations: [FaqComponent],
+      providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));
 

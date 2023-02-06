@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -90,8 +91,8 @@ class TestHostComponent {
 describe('LazyElementDirective', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let appendChildSpy: jest.SpyInstance;
-  let whenDefinedSpy: jest.SpyInstance;
+  let appendChildSpy: jest.MockInstance<any, any>;
+  let whenDefinedSpy: jest.MockInstance<any, any>;
 
   function getAppendChildFirstScript(): HTMLScriptElement {
     return appendChildSpy.mock.calls[0][0];
@@ -123,12 +124,12 @@ describe('LazyElementDirective', () => {
   beforeEach(async () => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
-    appendChildSpy = jest.spyOn(document.body, 'appendChild');
+    appendChildSpy = jest.spyOn(document.body, 'appendChild') as any;
     whenDefinedSpy = jest
       .spyOn(customElements, 'whenDefined')
       .mockReturnValue(
         Promise.resolve(class DummyElement extends HTMLElement {})
-      );
+      ) as any;
     fixture.detectChanges();
     await fixture.whenRenderingDone();
   });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyElementsLoaderService } from './../../../../../../elements/src/lib/lazy-elements/lazy-elements-loader.service';
+import { LazyElementsLoaderService } from '@angular-extensions/elements';
 
 @Component({
   selector: 'demo-advanced',

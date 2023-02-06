@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import {
   LazyElementModuleOptions,
   LazyElementsModule,
-} from '../../../../../../elements/src/lib/lazy-elements/lazy-elements.module';
+} from '@angular-extensions/elements';
 
 import { SharedModule } from '../../../shared/shared.module';
 
