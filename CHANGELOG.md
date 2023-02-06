@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.0.0](https://github.com/angular-extensions/elements/compare/v14.1.0...v15.0.0) (2023-02-06)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** upgrade to Angular 15
+
+### Features
+
+- **lib:** upgrade to Angular 15 ([e2ee1bc](https://github.com/angular-extensions/elements/commit/e2ee1bc2faaef649dcbfe0c9c7c4b3a060148642))
+
 ## [14.1.0](https://github.com/angular-extensions/elements/compare/v14.0.0...v14.1.0) (2022-07-22)
 
 ### Features
