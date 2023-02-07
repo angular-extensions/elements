@@ -1,4 +1,11 @@
-import { ErrorHandler, Inject, Injectable, Optional, OnDestroy, HostListener } from '@angular/core';
+import {
+  ErrorHandler,
+  Inject,
+  Injectable,
+  Optional,
+  OnDestroy,
+  HostListener,
+} from '@angular/core';
 
 import type {
   Hook,
@@ -162,10 +169,10 @@ export class LazyElementsLoaderService implements OnDestroy {
         script.removeEventListener('error', onError);
       }
       script.addEventListener('load', onLoad, {
-        signal: LazyElementsLoaderService.controller?.signal
+        signal: LazyElementsLoaderService.controller?.signal,
       } as AddEventListenerOptions);
       script.addEventListener('error', onError, {
-        signal: LazyElementsLoaderService.controller?.signal
+        signal: LazyElementsLoaderService.controller?.signal,
       } as AddEventListenerOptions);
       if (beforeLoadHook) {
         this.handleHook(beforeLoadHook, tag)

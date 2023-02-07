@@ -31,7 +31,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/7337691?v=4",
       "profile": "https://medium.com/@overthesanity",
       "contributions": [
-        "code", "bug"
+        "code",
+        "bug"
       ]
     },
     {
@@ -151,6 +152,33 @@
       "name": "Joseph Davis",
       "avatar_url": "https://avatars.githubusercontent.com/u/16785168?v=4",
       "profile": "https://www.josephndavis.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Arooba-git",
+      "name": "Arooba Shahoor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56495631?v=4",
+      "profile": "https://github.com/Arooba-git",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "twixthehero",
+      "name": "Maximilian Wright",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1883172?v=4",
+      "profile": "https://github.com/twixthehero",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "apokralipsa",
+      "name": "Jakub Stawiarski",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7910183?v=4",
+      "profile": "https://github.com/apokralipsa",
       "contributions": [
         "code"
       ]
