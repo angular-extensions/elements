@@ -1,4 +1,4 @@
-import { ErrorHandler, Inject, Injectable, Optional } from '@angular/core';
+import { ErrorHandler, Inject, Injectable, Optional, OnDestroy, HostListener } from '@angular/core';
 
 import type {
   Hook,
@@ -24,7 +24,8 @@ interface Notifier {
 @Injectable({
   providedIn: 'root',
 })
-export class LazyElementsLoaderService {
+export class LazyElementsLoaderService implements OnDestroy {
+  static controller: any = new AbortController();
   configs: ElementConfig[] = [];
 
   constructor(
@@ -160,8 +161,12 @@ export class LazyElementsLoaderService {
         script.removeEventListener('load', onLoad);
         script.removeEventListener('error', onError);
       }
-      script.addEventListener('load', onLoad);
-      script.addEventListener('error', onError);
+      script.addEventListener('load', onLoad, {
+        signal: LazyElementsLoaderService.controller?.signal
+      } as AddEventListenerOptions);
+      script.addEventListener('error', onError, {
+        signal: LazyElementsLoaderService.controller?.signal
+      } as AddEventListenerOptions);
       if (beforeLoadHook) {
         this.handleHook(beforeLoadHook, tag)
           .then(() => document.body.appendChild(script))
@@ -209,5 +214,11 @@ export class LazyElementsLoaderService {
       );
     }
     return url;
+  }
+
+  @HostListener('unloaded')
+  public ngOnDestroy(): void {
+    LazyElementsLoaderService.controller?.abort();
+    LazyElementsLoaderService.controller = null;
   }
 }
