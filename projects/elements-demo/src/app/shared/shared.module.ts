@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
@@ -41,10 +41,10 @@ const ANGULAR_MATERIAL_MODULES = [
   exports: [CommonModule, ...ANGULAR_MATERIAL_MODULES, SpinnerComponent],
 })
 export class SharedModule {
-  constructor(
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
-  ) {
+  private readonly matIconRegistry = inject(MatIconRegistry);
+  private readonly domSanitizer = inject(DomSanitizer);
+
+  constructor() {
     this.matIconRegistry.addSvgIcon(
       'github',
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/github.svg')

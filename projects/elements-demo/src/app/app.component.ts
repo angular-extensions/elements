@@ -1,6 +1,12 @@
 import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { SwUpdate } from '@angular/service-worker';
-import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  HostBinding,
+  inject,
+} from '@angular/core';
 import {
   BehaviorSubject,
   combineLatest,
@@ -29,11 +35,9 @@ export class AppComponent implements OnInit {
   isSmallOrSmaller: Observable<boolean>;
   sidenavMode: Observable<MatDrawerMode>;
 
-  constructor(
-    private responsiveLayoutService: ResponsiveLayoutService,
-    private swUpdate: SwUpdate,
-    private refreshService: RefreshService
-  ) {}
+  private readonly responsiveLayoutService = inject(ResponsiveLayoutService);
+  private readonly swUpdate = inject(SwUpdate);
+  private readonly refreshService = inject(RefreshService);
 
   ngOnInit() {
     if (this.swUpdate.isEnabled) {

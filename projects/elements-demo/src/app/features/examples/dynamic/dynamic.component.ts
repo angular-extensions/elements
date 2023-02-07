@@ -45,8 +45,6 @@ export class DynamicComponent implements OnInit {
     },
   ];
 
-  constructor() {}
-
   ngOnInit() {}
 
   increment1() {

@@ -9,8 +9,6 @@ export class TestingComponent implements OnInit {
   codeExampleComponent = CODE_EXAMPLE_COMPONENT;
   codeExampleTest = CODE_EXAMPLE_TEST;
 
-  constructor() {}
-
   ngOnInit(): void {}
 }
 

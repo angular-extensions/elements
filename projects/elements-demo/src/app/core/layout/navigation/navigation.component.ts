@@ -79,7 +79,5 @@ const NAVIGATION = [
 export class NavigationComponent implements OnInit {
   navigation = NAVIGATION;
 
-  constructor() {}
-
   ngOnInit() {}
 }

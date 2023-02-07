@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { combineLatest, Observable, map } from 'rxjs';
 
@@ -18,7 +18,9 @@ export class ResponsiveLayoutService {
   isSmallOrSmaller: Observable<boolean>;
   isLargeOrBigger: Observable<boolean>;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  private readonly breakpointObserver = inject(BreakpointObserver);
+
+  constructor() {
     this.isXSmallScreen = this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .pipe(map((result) => result.matches));

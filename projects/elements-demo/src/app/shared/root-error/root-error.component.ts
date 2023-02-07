@@ -6,7 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./root-error.component.scss'],
 })
 export class RootErrorComponent implements OnInit {
-  constructor() {}
-
   ngOnInit() {}
 }

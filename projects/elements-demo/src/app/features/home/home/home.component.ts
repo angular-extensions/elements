@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ResponsiveLayoutService } from '../../../core/layout/responsive-layout.service';
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   features = FEATURES;
   codeExampleComponent = CODE_EXAMPLE_COMPONENT;
 
-  constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
+  private readonly responsiveLayoutService = inject(ResponsiveLayoutService);
 
   ngOnInit() {
     this.columnCount = this.responsiveLayoutService.columnCount;

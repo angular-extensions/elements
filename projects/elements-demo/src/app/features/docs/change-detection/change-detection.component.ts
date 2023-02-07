@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class ChangeDetectionComponent implements OnInit {
   codeExampleShareNgZone = CODE_EXAMPLE_SHARE_NG_ZONE;
 
-  constructor() {}
-
   ngOnInit() {}
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { LazyElementsLoaderService } from '@angular-extensions/elements';
 
 @Component({
@@ -35,7 +35,7 @@ export class AdvancedComponent implements OnInit {
   counter = 0;
   flag = false;
 
-  constructor(private lazyElementLoaderService: LazyElementsLoaderService) {}
+  private readonly lazyElementLoaderService = inject(LazyElementsLoaderService);
 
   ngOnInit() {}
 

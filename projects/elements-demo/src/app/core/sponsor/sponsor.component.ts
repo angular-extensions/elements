@@ -6,7 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sponsor.component.scss'],
 })
 export class SponsorComponent implements OnInit {
-  constructor() {}
-
   ngOnInit(): void {}
 }
