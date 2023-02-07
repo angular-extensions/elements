@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.2.0](https://github.com/angular-extensions/elements/compare/v15.1.4...v15.2.0) (2023-02-07)
+
+### Features
+
+- **demo:** add contributors ([2ccbfe5](https://github.com/angular-extensions/elements/commit/2ccbfe54608d7d56b65c12cf39152f4bcfeb7220))
+
+### Bug Fixes
+
+- **demo:** features icon size, podcast link ([e541329](https://github.com/angular-extensions/elements/commit/e54132956fe112f0ab98dd7db22a342ca65a6d11))
+
 ### [15.1.4](https://github.com/angular-extensions/elements/compare/v15.1.3...v15.1.4) (2023-02-06)
 
 ### Bug Fixes
