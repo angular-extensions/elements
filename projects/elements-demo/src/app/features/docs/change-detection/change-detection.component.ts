@@ -13,7 +13,9 @@ export class ChangeDetectionComponent implements OnInit {
 
 export const CODE_EXAMPLE_SHARE_NG_ZONE = `// in parent app (app.module.ts)
 export class AppModule {
-  constructor(private ngZone: NgZone) {
+  private ngZone = inject(NgZone);
+
+  constructor() {
     (window as any).ngZone = this.ngZone // store ngZone reference on the window object
   }
 }

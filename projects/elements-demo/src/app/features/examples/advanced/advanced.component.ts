@@ -160,7 +160,7 @@ const CODE_EXAMPLE_5_HTML = `<button (click)="preload()">Preload</button>`;
 
 const CODE_EXAMPLE_5_TS = `
 class PageComponent {
-  constructor(private lazyElementLoaderService: LazyElementLoaderService) {}
+  private lazyElementLoaderService = inject(LazyElementLoaderService);
 
   preload() {
     this.lazyElementLoaderService.preload();
