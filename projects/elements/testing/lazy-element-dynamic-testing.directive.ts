@@ -1,5 +1,6 @@
 import {
   Directive,
+  inject,
   OnInit,
   TemplateRef,
   ViewContainerRef,
@@ -9,10 +10,8 @@ import {
   selector: '[axLazyElementDynamic]',
 })
 export class LazyElementDynamicTestingDirective implements OnInit {
-  constructor(
-    private vcr: ViewContainerRef,
-    private template: TemplateRef<any>
-  ) {}
+  private readonly vcr = inject(ViewContainerRef);
+  private readonly template = inject(TemplateRef<any>);
 
   ngOnInit() {
     this.vcr.createEmbeddedView(this.template);
