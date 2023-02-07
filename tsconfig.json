@@ -19,7 +19,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "useDefineForClassFields": false,
     "paths": {
       "@angular-extensions/elements/*": ["projects/elements/*"],
       "@angular-extensions/elements": ["projects/elements/src/public-api.ts"]
