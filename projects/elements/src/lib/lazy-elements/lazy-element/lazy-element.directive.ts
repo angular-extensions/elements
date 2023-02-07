@@ -3,7 +3,7 @@ import {
   ComponentFactoryResolver,
   Directive,
   EmbeddedViewRef,
-  Inject,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -47,14 +47,12 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
   private subscription = Subscription.EMPTY;
   private url$ = new BehaviorSubject<string | null>(null);
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: string,
-    private vcr: ViewContainerRef,
-    private template: TemplateRef<any>,
-    private elementsLoaderService: LazyElementsLoaderService,
-    private cfr: ComponentFactoryResolver,
-    private cdr: ChangeDetectorRef
-  ) {}
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly vcr = inject(ViewContainerRef);
+  private readonly template = inject(TemplateRef<any>);
+  private readonly elementsLoaderService = inject(LazyElementsLoaderService);
+  private readonly cfr = inject(ComponentFactoryResolver);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.url) {
