@@ -3,7 +3,7 @@ import {
   ComponentFactoryResolver,
   Directive,
   EmbeddedViewRef,
-  Inject,
+  inject,
   Input,
   OnDestroy,
   OnInit,
@@ -36,16 +36,14 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
   private viewRef: EmbeddedViewRef<any> | null = null;
   private subscription = Subscription.EMPTY;
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: string,
-    @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2,
-    private vcr: ViewContainerRef,
-    private cfr: ComponentFactoryResolver,
-    private cdr: ChangeDetectorRef,
-    private template: TemplateRef<any>,
-    private elementsLoaderService: LazyElementsLoaderService
-  ) {}
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly document = inject(DOCUMENT);
+  private readonly renderer = inject(Renderer2);
+  private readonly vcr = inject(ViewContainerRef);
+  private readonly cfr = inject(ComponentFactoryResolver);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly template = inject(TemplateRef<any>);
+  private readonly elementsLoaderService = inject(LazyElementsLoaderService);
 
   ngOnInit() {
     // There's no sense to execute the below logic on the Node.js side since the JavaScript

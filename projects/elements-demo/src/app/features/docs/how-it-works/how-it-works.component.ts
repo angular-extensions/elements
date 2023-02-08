@@ -10,8 +10,6 @@ export class HowItWorksComponent implements OnInit {
   codeExampleComponentBinding = CODE_EXAMPLE_COMPONENT_BINDING;
   codeExampleComponentLazy = CODE_EXAMPLE_COMPONENT_LAZY;
 
-  constructor() {}
-
   ngOnInit() {}
 }
 

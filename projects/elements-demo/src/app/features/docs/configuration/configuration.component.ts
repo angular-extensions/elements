@@ -10,8 +10,6 @@ export class ConfigurationComponent implements OnInit {
   codeExampleModule = CODE_EXAMPLE_MODULE;
   codeExamplePreConfigured = CODE_EXAMPLE_PRE_CONFIGURED;
 
-  constructor() {}
-
   ngOnInit() {}
 }
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { SwUpdate } from '@angular/service-worker';
 import { take } from 'rxjs';
@@ -7,7 +7,8 @@ import { take } from 'rxjs';
   providedIn: 'root',
 })
 export class RefreshService {
-  constructor(private swUpdate: SwUpdate, private snackbar: MatSnackBar) {}
+  private readonly swUpdate = inject(SwUpdate);
+  private readonly snackbar = inject(MatSnackBar);
 
   checkUpdate() {
     this.swUpdate.available.pipe(take(1)).subscribe(() => {

@@ -1,18 +1,15 @@
 import {
   ErrorHandler,
-  Inject,
   Injectable,
-  Optional,
   OnDestroy,
   HostListener,
+  inject,
 } from '@angular/core';
 
 import type {
   Hook,
   ElementConfig,
   HooksConfig,
-  LazyElementRootOptions,
-  LazyElementsRegistry,
 } from './lazy-elements.interface';
 import {
   LAZY_ELEMENT_ROOT_OPTIONS,
@@ -35,17 +32,10 @@ export class LazyElementsLoaderService implements OnDestroy {
   static controller: any = new AbortController();
   configs: ElementConfig[] = [];
 
-  constructor(
-    private errorHandler: ErrorHandler,
-    @Inject(LAZY_ELEMENTS_REGISTRY) private registry: LazyElementsRegistry,
-    @Optional()
-    @Inject(LAZY_ELEMENT_ROOT_OPTIONS)
-    public options: LazyElementRootOptions
-  ) {
-    if (!options) {
-      this.options = {};
-    }
-  }
+  private readonly errorHandler = inject(ErrorHandler);
+  private readonly registry = inject(LAZY_ELEMENTS_REGISTRY);
+  public readonly options =
+    inject(LAZY_ELEMENT_ROOT_OPTIONS, { optional: true }) ?? {};
 
   addConfigs(newConfigs: ElementConfig[]) {
     newConfigs.forEach((newConfig) => {

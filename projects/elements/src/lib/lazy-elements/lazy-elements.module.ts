@@ -1,5 +1,5 @@
 import {
-  Inject,
+  inject,
   ModuleWithProviders,
   NgModule,
   Optional,
@@ -82,19 +82,23 @@ export class LazyElementsModule {
     };
   }
 
-  constructor(
-    lazyElementsLoaderService: LazyElementsLoaderService,
-    @Optional()
-    @Inject(LAZY_ELEMENT_CONFIGS)
-    elementConfigsMultiProvider: ElementConfig[][],
-    @Optional()
-    @Inject(LAZY_ELEMENT_ROOT_GUARD)
-    guard: any
-  ) {
-    if (elementConfigsMultiProvider && elementConfigsMultiProvider.length) {
-      elementConfigsMultiProvider
+  readonly lazyElementsLoaderService = inject(LazyElementsLoaderService);
+  readonly elementConfigsMultiProvider = inject<ElementConfig[][]>(
+    LAZY_ELEMENT_CONFIGS,
+    { optional: true }
+  );
+  readonly guard = inject(LAZY_ELEMENT_ROOT_GUARD, { optional: true });
+
+  constructor() {
+    if (
+      this.elementConfigsMultiProvider &&
+      this.elementConfigsMultiProvider.length
+    ) {
+      this.elementConfigsMultiProvider
         .filter((configs) => configs.some((config) => !config.isAdded))
-        .forEach((configs) => lazyElementsLoaderService.addConfigs(configs));
+        .forEach((configs) =>
+          this.lazyElementsLoaderService.addConfigs(configs)
+        );
     }
   }
 }

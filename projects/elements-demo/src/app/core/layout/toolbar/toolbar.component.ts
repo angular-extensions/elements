@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ResponsiveLayoutService } from '../responsive-layout.service';
@@ -14,7 +21,7 @@ export class ToolbarComponent implements OnInit {
 
   isResponsiveLayout: Observable<boolean>;
 
-  constructor(private responsiveLayoutService: ResponsiveLayoutService) {}
+  private readonly responsiveLayoutService = inject(ResponsiveLayoutService);
 
   ngOnInit() {
     this.isResponsiveLayout = this.responsiveLayoutService.isSmallOrSmaller;

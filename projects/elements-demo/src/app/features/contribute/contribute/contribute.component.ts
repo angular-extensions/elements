@@ -6,7 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contribute.component.scss'],
 })
 export class ContributeComponent implements OnInit {
-  constructor() {}
-
   ngOnInit() {}
 }

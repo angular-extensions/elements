@@ -27,8 +27,6 @@ export class BasicComponent implements OnInit {
   xAxis = [-6.28, 6.28];
   yAxis = [-1, 1];
 
-  constructor() {}
-
   ngOnInit() {}
 
   increment() {

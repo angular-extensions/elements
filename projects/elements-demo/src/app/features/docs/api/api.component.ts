@@ -6,7 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./api.component.scss'],
 })
 export class ApiComponent implements OnInit {
-  constructor() {}
-
   ngOnInit() {}
 }

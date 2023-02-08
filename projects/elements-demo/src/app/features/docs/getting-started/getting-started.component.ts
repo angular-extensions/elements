@@ -11,8 +11,6 @@ export class GettingStartedComponent implements OnInit {
   codeExampleAppModule = CODE_EXAMPLE_APP_MODULE;
   codeExampleSharedModule = CODE_EXAMPLE_SHARED_MODULE;
 
-  constructor() {}
-
   ngOnInit() {}
 }
 
