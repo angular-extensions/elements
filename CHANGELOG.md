@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.3.0](https://github.com/angular-extensions/elements/compare/v15.2.0...v15.3.0) (2023-02-08)
+
+### Features
+
+- adjust samples ([4032ce7](https://github.com/angular-extensions/elements/commit/4032ce7bf752ae1c33721ec7a7765d423fce2c1d))
+- remove useDefineForClassFields ([a69ca9e](https://github.com/angular-extensions/elements/commit/a69ca9e0a406f70ae1ed435cac290bc091bfaf63))
+- use inject in demo ([4bf5bad](https://github.com/angular-extensions/elements/commit/4bf5bad7522195204656bf9dfe81fe4ae438f822))
+- use inject in lib directives and service ([0755f9d](https://github.com/angular-extensions/elements/commit/0755f9d57c172c3f9babde5030d356e038f7c9b5))
+- use inject in module ([daf077c](https://github.com/angular-extensions/elements/commit/daf077cb893737cd23bec7689646723fc412e2b2))
+- use inject in testing class ([cb18dc9](https://github.com/angular-extensions/elements/commit/cb18dc98b7b0d21119e6e1ef427c01e24323d89d))
+
 ## [15.2.0](https://github.com/angular-extensions/elements/compare/v15.1.4...v15.2.0) (2023-02-07)
 
 ### Features
