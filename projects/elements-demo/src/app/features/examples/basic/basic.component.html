@@ -138,11 +138,16 @@
           class="example-margin"
           max="10"
           min="1"
-          value="6.28"
           step="0.5"
           thumbLabel
-          (input)="onSliderChange($event)"
+          #ngSlider
         >
+          <input
+            matSliderThumb
+            (input)="onSliderChange(ngSliderThumb.value)"
+            #ngSliderThumb="matSliderThumb"
+            value="6.28"
+          />
         </mat-slider>
       </div>
       <ng-template #loading>Loading...</ng-template>

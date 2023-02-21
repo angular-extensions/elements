@@ -7,10 +7,10 @@
       routerLinkActive="active"
       #rla="routerLinkActive"
     >
-      {{ nav.label }}
       <mat-icon matListIcon>{{
         nav.children && rla.isActive ? 'expand_more' : 'chevron_right'
       }}</mat-icon>
+      {{ nav.label }}
     </a>
     <ng-container *ngIf="nav.children && rla.isActive">
       <a
