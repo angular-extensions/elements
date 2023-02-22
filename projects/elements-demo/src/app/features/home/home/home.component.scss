@@ -72,18 +72,21 @@
 
     mat-grid-tile {
       mat-card {
-        width: calc(100% - 50px);
-        height: calc(100% - 50px);
+        width: calc(100% - 4px);
+
+        mat-card-header {
+          padding: 16px;
+        }
 
         mat-card-title {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          margin-bottom: 10px;
         }
 
         mat-card-subtitle {
           height: 80px;
-          width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
         }

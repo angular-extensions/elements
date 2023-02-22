@@ -1,6 +1,5 @@
 import {
   ChangeDetectorRef,
-  ComponentFactoryResolver,
   Directive,
   EmbeddedViewRef,
   inject,
@@ -51,7 +50,6 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
   private readonly vcr = inject(ViewContainerRef);
   private readonly template = inject(TemplateRef<any>);
   private readonly elementsLoaderService = inject(LazyElementsLoaderService);
-  private readonly cfr = inject(ComponentFactoryResolver);
   private readonly cdr = inject(ChangeDetectorRef);
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -107,8 +105,7 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
           if (this.loadingTemplateRef) {
             this.vcr.createEmbeddedView(this.loadingTemplateRef);
           } else if (loadingComponent) {
-            const factory = this.cfr.resolveComponentFactory(loadingComponent);
-            this.vcr.createComponent(factory);
+            this.vcr.createComponent(loadingComponent);
           }
 
           return from(
@@ -128,9 +125,7 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
                 this.vcr.createEmbeddedView(this.errorTemplateRef);
                 this.cdr.markForCheck();
               } else if (errorComponent) {
-                const factory =
-                  this.cfr.resolveComponentFactory(errorComponent);
-                this.vcr.createComponent(factory);
+                this.vcr.createComponent(errorComponent);
                 this.cdr.markForCheck();
               } else if (ngDevMode) {
                 console.error(

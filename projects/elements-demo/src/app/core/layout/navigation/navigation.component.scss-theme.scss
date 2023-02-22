@@ -11,5 +11,14 @@
     .active {
       color: mat.get-color-from-palette($primary) !important;
     }
+
+    .mat-mdc-list-item-unscoped-content {
+      display: flex;
+      align-items: center;
+
+      mat-icon {
+        padding: 8px;
+      }
+    }
   }
 }
