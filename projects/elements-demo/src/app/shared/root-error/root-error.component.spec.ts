@@ -9,7 +9,7 @@ describe('RootErrorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [RootErrorComponent],
+      imports: [RootErrorComponent],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));

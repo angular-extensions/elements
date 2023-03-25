@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-configuration',
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss'],
+  standalone: true,
+  imports: [RouterLink, HighlightModule],
 })
 export class ConfigurationComponent implements OnInit {
   codeExampleInline = CODE_EXAMPLE_INLINE;

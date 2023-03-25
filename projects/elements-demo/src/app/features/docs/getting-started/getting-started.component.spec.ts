@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
-
-import { SharedModule } from '../../../shared/shared.module';
+import { HighlightModule } from 'ngx-highlightjs';
 
 import { GettingStartedComponent } from './getting-started.component';
 import { MockHighlightDirective } from '../../../testing/mock-highlight.directive';
@@ -12,10 +11,14 @@ describe('GettingStartedComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MockHighlightDirective, SharedModule],
-      declarations: [GettingStartedComponent],
+      imports: [GettingStartedComponent],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
-    }).compileComponents();
+    })
+      .overrideComponent(GettingStartedComponent, {
+        remove: { imports: [HighlightModule] },
+        add: { imports: [MockHighlightDirective] },
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

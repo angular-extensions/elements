@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-how-it-works',
   templateUrl: './how-it-works.component.html',
   styleUrls: ['./how-it-works.component.scss'],
+  standalone: true,
+  imports: [RouterLink, HighlightModule],
 })
 export class HowItWorksComponent implements OnInit {
   codeExampleComponent = CODE_EXAMPLE_COMPONENT;

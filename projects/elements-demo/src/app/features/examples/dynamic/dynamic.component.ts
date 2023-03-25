@@ -1,9 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { NgForOf, NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { LazyElementsModule } from '@angular-extensions/elements';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-dynamic',
   templateUrl: './dynamic.component.html',
   styleUrls: ['./dynamic.component.scss'],
+  standalone: true,
+  imports: [
+    NgIf,
+    NgForOf,
+    RouterLink,
+    MatIconModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    FormsModule,
+    LazyElementsModule,
+    HighlightModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DynamicComponent implements OnInit {
   // example toggles

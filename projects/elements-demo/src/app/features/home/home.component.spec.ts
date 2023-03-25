@@ -1,25 +1,29 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { HighlightModule } from 'ngx-highlightjs';
 
-import { LazyElementsModule } from '@angular-extensions/elements';
+import { MockHighlightDirective } from '../../testing/mock-highlight.directive';
 
-import { AdvancedComponent } from './advanced.component';
-import { MockHighlightDirective } from '../../../testing/mock-highlight.directive';
+import { HomeComponent } from './home.component';
 
-describe('AdvancedComponent', () => {
-  let component: AdvancedComponent;
-  let fixture: ComponentFixture<AdvancedComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [LazyElementsModule, RouterTestingModule, AdvancedComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        MatIconTestingModule,
+        HomeComponent,
+      ],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     })
-      .overrideComponent(AdvancedComponent, {
+      .overrideComponent(HomeComponent, {
         remove: { imports: [HighlightModule] },
         add: { imports: [MockHighlightDirective] },
       })
@@ -27,7 +31,7 @@ describe('AdvancedComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdvancedComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

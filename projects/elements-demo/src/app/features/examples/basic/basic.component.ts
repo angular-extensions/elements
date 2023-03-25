@@ -1,9 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { JsonPipe, NgIf } from '@angular/common';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LazyElementsModule } from '@angular-extensions/elements';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-basic',
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
+  standalone: true,
+  imports: [
+    NgIf,
+    JsonPipe,
+    RouterLink,
+    MatIconModule,
+    MatButtonModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    HighlightModule,
+    LazyElementsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BasicComponent implements OnInit {
   // example toggles

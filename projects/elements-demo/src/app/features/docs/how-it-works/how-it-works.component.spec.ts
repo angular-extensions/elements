@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
+import { HighlightModule } from 'ngx-highlightjs';
 
-import { SharedModule } from '../../../shared/shared.module';
 import { MockHighlightDirective } from '../../../testing/mock-highlight.directive';
 
 import { HowItWorksComponent } from './how-it-works.component';
@@ -13,10 +13,14 @@ describe('HowItWorksComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MockHighlightDirective, RouterTestingModule, SharedModule],
-      declarations: [HowItWorksComponent],
+      imports: [RouterTestingModule, HowItWorksComponent],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
-    }).compileComponents();
+    })
+      .overrideComponent(HowItWorksComponent, {
+        remove: { imports: [HighlightModule] },
+        add: { imports: [MockHighlightDirective] },
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

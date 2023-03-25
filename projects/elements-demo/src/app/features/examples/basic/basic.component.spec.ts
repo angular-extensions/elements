@@ -1,10 +1,11 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HighlightModule } from 'ngx-highlightjs';
 
 import { LazyElementsModule } from '@angular-extensions/elements';
 
-import { SharedModule } from '../../../shared/shared.module';
 import { MockHighlightDirective } from '../../../testing/mock-highlight.directive';
 
 import { BasicComponent } from './basic.component';
@@ -15,11 +16,15 @@ describe('BasicComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [BasicComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [LazyElementsModule, MockHighlightDirective, SharedModule],
+      imports: [LazyElementsModule, RouterTestingModule, BasicComponent],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
-    }).compileComponents();
+    })
+      .overrideComponent(BasicComponent, {
+        remove: { imports: [HighlightModule] },
+        add: { imports: [MockHighlightDirective] },
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

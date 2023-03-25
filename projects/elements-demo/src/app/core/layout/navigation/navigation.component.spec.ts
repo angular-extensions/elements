@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
-import { SharedModule } from '../../../shared/shared.module';
-
 import { NavigationComponent } from './navigation.component';
 
 describe('NavigationComponent', () => {
@@ -12,8 +10,7 @@ describe('NavigationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, SharedModule],
-      declarations: [NavigationComponent],
+      imports: [RouterTestingModule, NavigationComponent],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));

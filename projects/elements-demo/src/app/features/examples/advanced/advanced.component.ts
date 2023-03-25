@@ -1,10 +1,33 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { LazyElementsLoaderService } from '@angular-extensions/elements';
+import {
+  Component,
+  OnInit,
+  inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
+import { NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import {
+  LazyElementsLoaderService,
+  LazyElementsModule,
+} from '@angular-extensions/elements';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-advanced',
   templateUrl: './advanced.component.html',
   styleUrls: ['./advanced.component.scss'],
+  standalone: true,
+  imports: [
+    NgIf,
+    RouterLink,
+    MatIconModule,
+    MatButtonModule,
+    HighlightModule,
+    LazyElementsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdvancedComponent implements OnInit {
   // example toggles

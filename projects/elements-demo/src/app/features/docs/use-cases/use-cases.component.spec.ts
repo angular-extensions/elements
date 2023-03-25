@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { UseCasesComponent } from './use-cases.component';
 
@@ -9,7 +10,7 @@ describe('UseCasesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [UseCasesComponent],
+      imports: [UseCasesComponent, RouterTestingModule],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));
