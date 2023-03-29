@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacySliderChange as MatSliderChange } from '@angular/material/legacy-slider';
 
 @Component({
   selector: 'demo-basic',
@@ -33,8 +32,7 @@ export class BasicComponent implements OnInit {
     this.counter++;
   }
 
-  onSliderChange(change: MatSliderChange) {
-    const { value } = change;
+  onSliderChange(value: number) {
     this.xAxis = [-value, value];
   }
 }

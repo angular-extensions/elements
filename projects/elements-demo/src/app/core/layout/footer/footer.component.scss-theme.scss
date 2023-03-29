@@ -17,6 +17,13 @@
       }
     }
 
+    .mdc-button__label {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+      color: mat.get-color-from-palette($primary, lighter-contrast);
+    }
+
     img {
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     }

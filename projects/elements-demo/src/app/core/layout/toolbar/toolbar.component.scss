@@ -15,6 +15,15 @@ button {
 }
 
 a {
+  &.logo {
+    padding: 0;
+
+    ::ng-deep svg {
+      transform: scale(2);
+      vertical-align: -webkit-baseline-middle;
+    }
+  }
+
   &:hover {
     color: #fff;
   }
