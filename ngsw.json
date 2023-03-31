@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1680252685232,
+  "timestamp": 1680252993879,
   "index": "/elements/index.html",
   "assetGroups": [
     {
@@ -34,7 +34,7 @@
         "/elements/main.57ef1970884a8717.js",
         "/elements/polyfills.6e0a138a41528769.js",
         "/elements/runtime.27b8636856f2af66.js",
-        "/elements/styles.b49b1495f37ae3c9.css"
+        "/elements/styles.21a30a18390e37eb.css"
       ],
       "patterns": []
     },
@@ -103,11 +103,11 @@
     "/elements/assets/social-preview.png": "3d8cf5e84d0f8cadde88484381062aa37b745b5a",
     "/elements/assets/tomastrajan.webp": "1f7f5cb0099ef60ca85d4d2605abf990e0f67bf8",
     "/elements/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/elements/index.html": "93a32fbfa72f937e9ea73a23978a0aecb8c5f8bb",
+    "/elements/index.html": "79c95b864fd60ccce9b9695c523f75c9289f3f8d",
     "/elements/main.57ef1970884a8717.js": "1e3116347bbf6f68d5cfa6e55b5cfab5b07d44db",
     "/elements/polyfills.6e0a138a41528769.js": "751af33b9528eb4c307e2c84f7c50cc0f08dadad",
     "/elements/runtime.27b8636856f2af66.js": "aac2a394f8950066c212d45f2fd7e1be76766c29",
-    "/elements/styles.b49b1495f37ae3c9.css": "617a1225dd64a71f8923dbafc9eca8b38e3bed6e"
+    "/elements/styles.21a30a18390e37eb.css": "f663d7c79fa26f1f25717af0974f2da879ee6305"
   },
   "navigationUrls": [
     {
