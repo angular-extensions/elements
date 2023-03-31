@@ -191,6 +191,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "volvachev",
+      "name": "Egor Volvachev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34657605?v=4",
+      "profile": "https://github.com/volvachev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "commitConvention": "none"
