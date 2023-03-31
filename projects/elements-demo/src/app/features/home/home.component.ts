@@ -1,12 +1,30 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { AsyncPipe, NgForOf } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { Observable } from 'rxjs';
+import { HighlightModule } from 'ngx-highlightjs';
 
-import { ResponsiveLayoutService } from '../../../core/layout/responsive-layout.service';
+import { ResponsiveLayoutService } from '../../core/layout/responsive-layout.service';
 
 @Component({
   selector: 'demo-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [
+    RouterLink,
+    AsyncPipe,
+    NgForOf,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatGridListModule,
+    HighlightModule,
+  ],
 })
 export class HomeComponent implements OnInit {
   columnCount: Observable<number>;

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-getting-started',
   templateUrl: './getting-started.component.html',
   styleUrls: ['./getting-started.component.scss'],
+  standalone: true,
+  imports: [HighlightModule],
 })
 export class GettingStartedComponent implements OnInit {
   codeExampleComponent = CODE_EXAMPLE_COMPONENT;

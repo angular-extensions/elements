@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'demo-root-error',
   templateUrl: './root-error.component.html',
   styleUrls: ['./root-error.component.scss'],
+  standalone: true,
 })
 export class RootErrorComponent implements OnInit {
   ngOnInit() {}

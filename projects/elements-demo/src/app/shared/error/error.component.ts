@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'demo-error',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss'],
+  standalone: true,
 })
 export class ErrorComponent implements OnInit {
   ngOnInit() {}

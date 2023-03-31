@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 import { environment } from '../../../../environments/environment';
 
@@ -6,6 +7,8 @@ import { environment } from '../../../../environments/environment';
   selector: 'demo-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  standalone: true,
+  imports: [MatButtonModule],
 })
 export class FooterComponent {
   year = new Date().getFullYear();

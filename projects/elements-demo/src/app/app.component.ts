@@ -1,4 +1,3 @@
-import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { SwUpdate } from '@angular/service-worker';
 import {
   Component,
@@ -15,14 +14,36 @@ import {
   map,
   tap,
 } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import {
+  MatDrawerMode,
+  MatSidenav,
+  MatSidenavModule,
+} from '@angular/material/sidenav';
 
 import { ResponsiveLayoutService } from './core/layout/responsive-layout.service';
 import { RefreshService } from './core/refresh.service';
+import { SponsorComponent } from './core/sponsor/sponsor.component';
+import { ToolbarComponent } from './core/layout/toolbar/toolbar.component';
+import { FooterComponent } from './core/layout/footer/footer.component';
+import { NavigationComponent } from './core/layout/navigation/navigation.component';
+import { IconRegistryService } from './core/icon-registry.service';
 
 @Component({
   selector: 'demo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    RouterOutlet,
+    SponsorComponent,
+    ToolbarComponent,
+    FooterComponent,
+    NavigationComponent,
+    MatSidenavModule,
+  ],
 })
 export class AppComponent implements OnInit {
   @HostBinding('class')
@@ -38,6 +59,11 @@ export class AppComponent implements OnInit {
   private readonly responsiveLayoutService = inject(ResponsiveLayoutService);
   private readonly swUpdate = inject(SwUpdate);
   private readonly refreshService = inject(RefreshService);
+  private readonly registerIconService = inject(IconRegistryService);
+
+  constructor() {
+    this.registerIconService.registerIcon();
+  }
 
   ngOnInit() {
     if (this.swUpdate.isEnabled) {

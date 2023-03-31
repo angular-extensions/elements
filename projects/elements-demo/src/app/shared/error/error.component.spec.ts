@@ -9,7 +9,7 @@ describe('ErrorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ErrorComponent],
+      imports: [ErrorComponent],
       providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
     }).compileComponents();
   }));

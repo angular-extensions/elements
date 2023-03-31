@@ -1,19 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { HighlightModule } from 'ngx-highlightjs';
-
+import { importProvidersFrom } from '@angular/core';
+import { Route } from '@angular/router';
 import {
-  LazyElementModuleOptions,
-  LazyElementsModule,
   ElementConfig,
   LAZY_ELEMENT_CONFIGS,
+  LazyElementModuleOptions,
+  LazyElementsModule,
 } from '@angular-extensions/elements';
 
-import { SharedModule } from '../../../shared/shared.module';
-import { ErrorComponent } from '../../../shared/error/error.component';
-import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
-
-import { AdvancedRoutingModule } from './advanced-routing.module';
 import { AdvancedComponent } from './advanced.component';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
+import { ErrorComponent } from '../../../shared/error/error.component';
 
 export function beforeLoadHook(tag: string): Promise<void> {
   alert(
@@ -69,21 +65,17 @@ const options: LazyElementModuleOptions = {
   ],
 };
 
-@NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [AdvancedComponent],
-  imports: [
-    HighlightModule,
-    LazyElementsModule.forFeature(options),
-    SharedModule,
-    AdvancedRoutingModule,
-  ],
-  providers: [
-    {
-      provide: LAZY_ELEMENT_CONFIGS,
-      useFactory: elementConfigsFactory,
-      multi: true,
-    },
-  ],
-})
-export class AdvancedModule {}
+export default [
+  {
+    path: '',
+    component: AdvancedComponent,
+    providers: [
+      importProvidersFrom(LazyElementsModule.forFeature(options)),
+      {
+        provide: LAZY_ELEMENT_CONFIGS,
+        useFactory: elementConfigsFactory,
+        multi: true,
+      },
+    ],
+  },
+] as Route[];
