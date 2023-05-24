@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.0.0](https://github.com/angular-extensions/elements/compare/v15.3.0...v16.0.0) (2023-05-24)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** upgrade to Angular 16
+
+### Features
+
+- deprecated ComponentFactoryResolver ([bfba547](https://github.com/angular-extensions/elements/commit/bfba547066220b2bcc2ec1d18c938dc83756547a))
+- **lib:** upgrade to Angular 16 ([7d9e7b9](https://github.com/angular-extensions/elements/commit/7d9e7b94ddc12875eb4008229d00443ab5eec0d3))
+- migrating to mdc based angular material components ([6cf2950](https://github.com/angular-extensions/elements/commit/6cf295028ad75752931af9118f5e9962788f710b))
+- use standalone components in demo ([4c34427](https://github.com/angular-extensions/elements/commit/4c3442762f79c2a5e69777836577e1254e72b801))
+
 ## [15.3.0](https://github.com/angular-extensions/elements/compare/v15.2.0...v15.3.0) (2023-02-08)
 
 ### Features
