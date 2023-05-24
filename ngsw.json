@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1684940311167,
+  "timestamp": 1684940328750,
   "index": "/elements/index.html",
   "assetGroups": [
     {
@@ -28,12 +28,12 @@
         "/elements/834.fae85195e1227f07.js",
         "/elements/846.a1e110c3fffbdfc5.js",
         "/elements/949.c9331f3e06001a6a.js",
-        "/elements/990.329cb84e1c66f123.js",
+        "/elements/990.fc9bb8778a11a8d9.js",
         "/elements/favicon.ico",
         "/elements/index.html",
-        "/elements/main.c2177351d3b2eaa9.js",
+        "/elements/main.77dac98a81211d8b.js",
         "/elements/polyfills.13c82169cb19ea5e.js",
-        "/elements/runtime.78b440f61fc073ad.js",
+        "/elements/runtime.261012e31e25b51f.js",
         "/elements/styles.1274be1c94feff57.css"
       ],
       "patterns": []
@@ -85,7 +85,7 @@
     "/elements/834.fae85195e1227f07.js": "f024478dc8b8397c95577c32d67df0dca1b9e9f9",
     "/elements/846.a1e110c3fffbdfc5.js": "3646c398ee1e00b77ecdb5f40a279591dba4ddd3",
     "/elements/949.c9331f3e06001a6a.js": "07ca543c210922ef41ec10bc75eb29269352a359",
-    "/elements/990.329cb84e1c66f123.js": "36dadc68a663cb2ef4c4340d1980dd8c7702f4f1",
+    "/elements/990.fc9bb8778a11a8d9.js": "994c1828eef6d342f6035ebf350a24883edfce8f",
     "/elements/assets/icons/icon-128x128.png": "bb4c16ecdaf39eed9392f004d47690c6ca74a0ec",
     "/elements/assets/icons/icon-144x144.png": "5e239a5f4a1baf09ecc26ab67b1661d606a312b2",
     "/elements/assets/icons/icon-152x152.png": "d006afa46e441ae9aecedc44499afe54522147be",
@@ -103,10 +103,10 @@
     "/elements/assets/social-preview.png": "3d8cf5e84d0f8cadde88484381062aa37b745b5a",
     "/elements/assets/tomastrajan.webp": "1f7f5cb0099ef60ca85d4d2605abf990e0f67bf8",
     "/elements/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/elements/index.html": "8fea579110451888a8c33ab078804f28ff5e0f1f",
-    "/elements/main.c2177351d3b2eaa9.js": "000783fc2df35aed4009e7968d64b0312f88f41c",
+    "/elements/index.html": "a9d64f3b1274898ae96ceb607c792d8926addba5",
+    "/elements/main.77dac98a81211d8b.js": "af5b1097b8c6ceb16a4030111e4233f2f12515aa",
     "/elements/polyfills.13c82169cb19ea5e.js": "a11f8218aab78e008977bb594abdd6ac2c16ee9f",
-    "/elements/runtime.78b440f61fc073ad.js": "ea8592bfd29278f89562e6b826d02407553d2ab2",
+    "/elements/runtime.261012e31e25b51f.js": "22e34b042da68deece7f04b1e4dde9c107cf4dcb",
     "/elements/styles.1274be1c94feff57.css": "e4ad28b85aa6f7dfa7ed44de9a64d9f02a65d46d"
   },
   "navigationUrls": [
