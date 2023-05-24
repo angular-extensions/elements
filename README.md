@@ -123,6 +123,9 @@ or submit a [pull request](https://github.com/angular-extensions/elements/pulls)
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/apokralipsa"><img src="https://avatars.githubusercontent.com/u/7910183?v=4?s=85" width="85px;" alt="Jakub Stawiarski"/><br /><sub><b>Jakub Stawiarski</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=apokralipsa" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/9kubczas4"><img src="https://avatars.githubusercontent.com/u/43759569?v=4?s=85" width="85px;" alt="Paweł Kubiak"/><br /><sub><b>Paweł Kubiak</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=9kubczas4" title="Code">💻</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/volvachev"><img src="https://avatars.githubusercontent.com/u/34657605?v=4?s=85" width="85px;" alt="Egor Volvachev"/><br /><sub><b>Egor Volvachev</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=volvachev" title="Code">💻</a></td>
+    </tr>
   </tbody>
 </table>
 
