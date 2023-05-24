@@ -1,6 +1,6 @@
 export default {
   preset: 'jest-preset-angular/presets/defaults-esm',
-  globalSetup: 'jest-preset-angular/global-setup.mjs',
+  // globalSetup: 'jest-preset-angular/global-setup.mjs',
   extensionsToTreatAsEsm: ['.ts'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   globals: {

@@ -12,7 +12,6 @@ class SpinnerTestComponent {}
 
 @NgModule({
   declarations: [SpinnerTestComponent],
-  entryComponents: [SpinnerTestComponent],
 })
 class TestModule {}
 
