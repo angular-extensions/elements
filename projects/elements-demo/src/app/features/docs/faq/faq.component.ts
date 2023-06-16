@@ -62,4 +62,40 @@ const FAQ = [
     It is possible to override the <code>LAZY_ELEMENTS_REGISTRY</code> token and provide your own implementation of the registry which should implement <code>LazyElementsRegistry</code> interface. Such an overridden registry then could store the value globally (for example on the <code>window</code>). That way every instance of lazy elements library can work with this shared state and prevent multiple downloads of some element bundle in case it was already loaded by other library instance before.
     `,
   },
+  {
+    question: 'Does the application not detect changes of web component?',
+    answer: `
+    One of the reasons that may be causing the problem is that the web component's server may
+    be telling the browser to cache the result within the <strong>cache-control</strong> header.<br>
+    To further illustrate this situation, let's assume you're loading a web component and this is
+    happening:<br><br>
+    <ol>
+    <li>
+      When the user accesses the page for the first time, Angular Elements send a request to your
+      web component and get the result to load the component on the screen.
+    </li>
+    <li>
+      Let's assume the response of this previous request returned with the header <strong>Cache-Control:
+      max-age=3600</strong>. This means that the browser can store the response for up to 3600 seconds (1 hour).
+    </li>
+    <li>
+      Now you have made changes in your web component and hope for Angular Elements to load this new version
+      on your page.
+    </li>
+    <li>
+      When the user refreshes the page, Angular Elements will try to make a new request to your web component.
+      However, the browser will automatically return the last cached response
+      we mentioned in step 2.
+    </li>
+    </ol>
+    <br>
+    The solution to this scenario, if you want to detect changes of your web component as soon as
+    they occur, it's to inform in the <strong>Cache-Control header: no-cache</strong>.<br><br>
+
+    <em>Useful links:</em>
+    <br>
+    <em><a href="https://github.com/angular-extensions/elements/issues/148" target="_blank">Issue 148</a></em><br>
+    <em><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control" target="_blank">Cache-Control</a></em>
+    `,
+  },
 ];
