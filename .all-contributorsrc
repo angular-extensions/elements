@@ -200,6 +200,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "DanielBou99",
+      "name": "Daniel Bou",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43351001?v=4",
+      "profile": "https://github.com/DanielBou99",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "commitConvention": "none"

@@ -125,6 +125,7 @@ or submit a [pull request](https://github.com/angular-extensions/elements/pulls)
     </tr>
     <tr>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/volvachev"><img src="https://avatars.githubusercontent.com/u/34657605?v=4?s=85" width="85px;" alt="Egor Volvachev"/><br /><sub><b>Egor Volvachev</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=volvachev" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/DanielBou99"><img src="https://avatars.githubusercontent.com/u/43351001?v=4?s=85" width="85px;" alt="Daniel Bou"/><br /><sub><b>Daniel Bou</b></sub></a><br /><a href="https://github.com/angular-extensions/elements/commits?author=DanielBou99" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
