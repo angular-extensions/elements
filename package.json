@@ -12,7 +12,7 @@
     "watch": "ng test --watch",
     "prebuild": "",
     "build": "ng build elements-demo && ng build elements",
-    "postbuild": "npm ru nbuild:copy-changelog && replace \"onFetch.*\\{\" \"onFetch(event) { if (event.request.url.indexOf('unpkg.com') > -1) { return; }\" ./dist/elements-demo/ngsw-worker.js",
+    "postbuild": "npm run build:copy-changelog && replace \"onFetch.*\\{\" \"onFetch(event) { if (event.request.url.indexOf('unpkg.com') > -1) { return; }\" ./dist/elements-demo/ngsw-worker.js",
     "build:copy-assets": "cpx README.md dist/elements",
     "build:copy-changelog": "cpx CHANGELOG.md projects/elements-demo/src/assets",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
