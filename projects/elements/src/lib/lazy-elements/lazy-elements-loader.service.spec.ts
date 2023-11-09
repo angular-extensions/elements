@@ -8,7 +8,7 @@ import { LazyElementsLoaderService } from './lazy-elements-loader.service';
 
 describe('LazyElementsLoaderService', () => {
   let service: LazyElementsLoaderService;
-  let appendChildSpy: jest.SpyInstance;
+  let appendChildSpy: jest.SpiedFunction<any>;
   let shouldLoadSucceed: boolean;
   let appendedScripts: Array<HTMLScriptElement>;
 
@@ -210,7 +210,7 @@ describe('LazyElementsLoaderService', () => {
 
 describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () => {
   let service: LazyElementsLoaderService;
-  let appendChildSpy: jest.SpyInstance;
+  let appendChildSpy: jest.SpiedFunction<any>;
   let shouldLoadSucceed: boolean;
   let appendedScripts: Array<HTMLScriptElement>;
   let rootHooks: HooksConfig;

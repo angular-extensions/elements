@@ -48,7 +48,7 @@
             "outputPath": "dist/elements-demo",
             "index": "projects/elements-demo/src/index.html",
             "main": "projects/elements-demo/src/main.ts",
-            "polyfills": "projects/elements-demo/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/elements-demo/tsconfig.app.json",
             "assets": [
               "projects/elements-demo/src/favicon.ico",

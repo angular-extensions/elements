@@ -11,21 +11,23 @@ export class RefreshService {
   private readonly snackbar = inject(MatSnackBar);
 
   checkUpdate() {
-    this.swUpdate.available.pipe(take(1)).subscribe(() => {
-      const snack = this.snackbar.open(
-        'There is a new version of the docs available',
-        'Reload page',
-        {
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        }
-      );
-      snack
-        .onAction()
-        .pipe(take(1))
-        .subscribe(() => {
-          this.swUpdate.activateUpdate().then(() => window.location.reload());
-        });
+    this.swUpdate.versionUpdates.pipe(take(1)).subscribe((updates) => {
+      if (updates.type === 'VERSION_DETECTED') {
+        const snack = this.snackbar.open(
+          'There is a new version of the docs available',
+          'Reload page',
+          {
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          }
+        );
+        snack
+          .onAction()
+          .pipe(take(1))
+          .subscribe(() => {
+            this.swUpdate.activateUpdate().then(() => window.location.reload());
+          });
+      }
     });
   }
 }

@@ -10,11 +10,11 @@
   </h2>
   <h3>Description</h3>
   <p>
-    This issue happens when using <code>@angular/element</code> inside of a
+    This issue happens when using <code>&#64;angular/element</code> inside of a
     parent Angular application. The parent application and element will NOT run
     in the same zone. This will lead to problems with change detection inside of
     the element when the <code>rxjs</code> stream was triggered by the change of
-    the <code>@Input() prop</code> originating in the parent application.
+    the <code>&#64;Input() prop</code> originating in the parent application.
   </p>
   <p>
     The stream will run in parent zone (instead of element zone) so any async

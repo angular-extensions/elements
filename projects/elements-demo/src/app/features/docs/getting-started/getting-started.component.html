@@ -7,11 +7,12 @@
   </p>
 
   <ol>
-    <li>Install <code>npm i @angular-extensions/elements</code></li>
+    <li>Install <code>npm i &#64;angular-extensions/elements</code></li>
     <li>
       Add
       <code>
-        import &#123; LazyElementsModule } from '@angular-extensions/elements';
+        import &#123; LazyElementsModule &#125; from
+        '&#64;angular-extensions/elements';
       </code>
     </li>
     <li>
@@ -22,7 +23,7 @@
     <li>
       Add new <code>schemas: []</code> property with
       <code>CUSTOM_ELEMENTS_SCHEMA</code> value to
-      <code>@NgModule</code> decorator of your
+      <code>&#64;NgModule</code> decorator of your
       <code>AppModule</code>
     </li>
     <li>
@@ -53,7 +54,7 @@
     Any module which contains components which are using
     <code>*axLazyElement</code> directive has to have
     <code>schemas: [CUSTOM_ELEMENTS_SCHEMA]</code> in its
-    <code>@NgModule</code> decorator configuration. Also the module has to
+    <code>&#64;NgModule</code> decorator configuration. Also the module has to
     either import <code>LazyElementsModule</code>. Let's have a look on the
     following example...
   </p>

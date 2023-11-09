@@ -93,8 +93,8 @@ class TestHostComponent {
 describe('LazyElementDirective', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let appendChildSpy: jest.MockInstance<any, any>;
-  let whenDefinedSpy: jest.MockInstance<any, any>;
+  let appendChildSpy: jest.MockedFunction<any>;
+  let whenDefinedSpy: jest.MockedFunction<any>;
 
   function appendedScriptElements(): HTMLScriptElement[] {
     return appendChildSpy.mock.calls.map((args) => args[0]);
@@ -278,6 +278,7 @@ describe('LazyElementDirective', () => {
     testHostComponent.useImportMap = true;
     fixture.detectChanges();
     await fixture.whenStable();
+    await fixture.whenRenderingDone();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
     expect(getAppendChildSecondScript().src).toBe(

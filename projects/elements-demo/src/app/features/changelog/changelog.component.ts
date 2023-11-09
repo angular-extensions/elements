@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-
-import changelog from 'raw-loader!../../../../../../CHANGELOG.md';
 
 @Component({
   selector: 'demo-changelog',
   templateUrl: './changelog.component.html',
   styleUrls: ['./changelog.component.scss'],
   standalone: true,
-  imports: [MarkdownModule],
+  imports: [AsyncPipe, MarkdownModule],
 })
 export class ChangelogComponent {
-  changelog = changelog;
+  private http = inject(HttpClient);
+
+  changelog = this.http.get<string>('assets/CHANGELOG.md', {
+    responseType: 'text' as any,
+  });
 }
