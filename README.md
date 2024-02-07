@@ -73,6 +73,42 @@ export class FeatureComponent {
 }
 ```
 
+For standalone components, the modules and the schema are moved to the component declaration itself
+
+```typescript
+import { Component } from '@angular/core';
+import { LazyElementsModule } from '@angular-extensions/elements';
+
+@Component({
+  selector: 'your-org-feature',
+  standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [
+     LazyElementsModule,
+     // your own imports below
+  ]
+  template: `
+    <!-- will be lazy loaded and uses standard Angular template bindings -->
+    <some-element
+      *axLazyElement="elementUrl"
+      [data]="data"
+      (dataChange)="handleChange($event)"
+    >
+    </some-element>
+  `,
+})
+export class FeatureComponent {
+  elementUrl = 'https://your-org.com/elements/some-element.js';
+
+  data: SomeData;
+
+  handleChange(change: Partial<SomeData>) {
+    // ...
+  }
+}
+```
+
+
 ## Supported Angular versions
 
 Library was tested with the following versions of Angular and is meant to be used
