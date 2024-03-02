@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.1.0](https://github.com/angular-extensions/elements/compare/v17.0.0...v17.1.0) (2024-03-02)
+
+### Features
+
+- add trusted types support "angular-extensions#elements" ([f07ed3e](https://github.com/angular-extensions/elements/commit/f07ed3ec1665be4335921f31996bb0514b314a18))
+
 ## [17.0.0](https://github.com/angular-extensions/elements/compare/v16.0.0...v17.0.0) (2023-11-09)
 
 ### ⚠ BREAKING CHANGES
