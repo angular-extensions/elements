@@ -15,6 +15,7 @@ import {
   LAZY_ELEMENT_ROOT_OPTIONS,
   LAZY_ELEMENTS_REGISTRY,
 } from './lazy-elements.tokens';
+import { getPolicy } from './trusted-types';
 
 import './ng-dev-mode';
 
@@ -132,7 +133,7 @@ export class LazyElementsLoaderService implements OnDestroy {
       if (isModule) {
         script.type = 'module';
       }
-      script.src = url;
+      script.src = getPolicy().createScriptURL(url);
       const onLoad = () => {
         if (afterLoadHook) {
           this.handleHook(afterLoadHook, tag)
