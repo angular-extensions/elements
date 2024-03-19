@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.0.0](https://github.com/angular-extensions/elements/compare/v16.0.0...v17.0.0) (2023-11-09)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** upgrade to Angular 17
+
+* remove empty test stubs
+
+### Features
+
+- **lib:** upgrade to Angular 17 ([2404cbb](https://github.com/angular-extensions/elements/commit/2404cbbb94a637ea83abf1abb99efcbf5f05c091))
+
 ## [16.0.0](https://github.com/angular-extensions/elements/compare/v15.3.0...v16.0.0) (2023-05-24)
 
 ### ⚠ BREAKING CHANGES
