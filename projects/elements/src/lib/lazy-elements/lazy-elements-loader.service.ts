@@ -133,7 +133,7 @@ export class LazyElementsLoaderService implements OnDestroy {
       if (isModule) {
         script.type = 'module';
       }
-      script.src = getPolicy().createScriptURL(url);
+      script.src = getPolicy()?.createScriptURL(url) ?? url;
       const onLoad = () => {
         if (afterLoadHook) {
           this.handleHook(afterLoadHook, tag)
