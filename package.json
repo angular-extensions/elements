@@ -17,7 +17,7 @@
     "build:copy-changelog": "cpx CHANGELOG.md projects/elements-demo/src/assets",
     "format:write": "prettier projects/**/*.{ts,json,md} --write",
     "format:test": "prettier projects/**/*.{ts,json,md} --list-different",
-    "release": "standard-version -a && git push --follow-tags origin master",
+    "release": "npm run build:copy-changelog && standard-version -a && git push --follow-tags origin master",
     "analyze": "ng build elements-demo --stats-json && webpack-bundle-analyzer ./dist/elements-demo/stats.json",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate && node sync-contributors.js",
