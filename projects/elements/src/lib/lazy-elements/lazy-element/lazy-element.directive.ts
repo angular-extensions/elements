@@ -7,6 +7,7 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
+  output,
   PLATFORM_ID,
   SimpleChanges,
   TemplateRef,
@@ -23,6 +24,7 @@ import {
   debounceTime,
   mergeMap,
   switchMap,
+  tap,
 } from 'rxjs';
 
 import { ElementConfig } from '../lazy-elements.interface';
@@ -41,6 +43,9 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
   errorTemplateRef: TemplateRef<any> | null = null;
   @Input('axLazyElementModule') isModule?: boolean; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
+
+  loadingSuccess = output<void>();
+  loadingError = output<ErrorEvent>();
 
   private viewRef: EmbeddedViewRef<any> | null = null;
   private subscription = Subscription.EMPTY;
@@ -117,7 +122,8 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
               elementConfig?.hooks,
             ),
           ).pipe(
-            catchError(() => {
+            catchError((error) => {
+              this.loadingError.emit(error);
               this.vcr.clear();
               const errorComponent =
                 elementConfig.errorComponent || options.errorComponent;
@@ -136,6 +142,7 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
             }),
           );
         }),
+        tap(() => this.loadingSuccess.emit()),
         mergeMap(() => customElements.whenDefined(elementTag)),
       )
       .subscribe({

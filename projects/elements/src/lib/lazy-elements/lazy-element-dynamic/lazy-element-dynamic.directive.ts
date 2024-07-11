@@ -1,18 +1,20 @@
 import {
   ChangeDetectorRef,
+  DestroyRef,
   Directive,
   EmbeddedViewRef,
   inject,
   Input,
-  OnDestroy,
   OnInit,
+  output,
   PLATFORM_ID,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
-import { from, Subscription, mergeMap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { from, mergeMap } from 'rxjs';
 
 import { ElementConfig } from '../lazy-elements.interface';
 import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
@@ -22,7 +24,7 @@ const LOG_PREFIX = '@angular-extensions/elements';
 @Directive({
   selector: '[axLazyElementDynamic]',
 })
-export class LazyElementDynamicDirective implements OnInit, OnDestroy {
+export class LazyElementDynamicDirective implements OnInit {
   @Input('axLazyElementDynamic') tag: string | null = null;
   @Input('axLazyElementDynamicUrl') url: string | null = null; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementDynamicLoadingTemplate') // eslint-disable-line @angular-eslint/no-input-rename
@@ -32,9 +34,12 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
   @Input('axLazyElementDynamicModule') isModule = false; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementDynamicImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
 
-  private viewRef: EmbeddedViewRef<any> | null = null;
-  private subscription = Subscription.EMPTY;
+  loadingSuccess = output<void>();
+  loadingError = output<ErrorEvent>();
 
+  private viewRef: EmbeddedViewRef<any> | null = null;
+
+  private readonly destroyRef = inject(DestroyRef);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(Renderer2);
@@ -84,10 +89,14 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
       ),
     );
 
-    this.subscription = loadElement$
-      .pipe(mergeMap(() => customElements.whenDefined(tag)))
+    loadElement$
+      .pipe(
+        mergeMap(() => customElements.whenDefined(tag)),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe({
         next: () => {
+          this.loadingSuccess.emit();
           this.vcr.clear();
           const originalCreateElement = this.renderer.createElement;
           this.renderer.createElement = (name: string, namespace: string) => {
@@ -101,6 +110,7 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
           this.cdr.markForCheck();
         },
         error: (error) => {
+          this.loadingError.emit(error);
           const errorComponent =
             elementConfig.errorComponent || options.errorComponent;
           this.vcr.clear();
@@ -118,10 +128,6 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
           }
         },
       });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   destroyEmbeddedView() {
