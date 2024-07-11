@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.0.0](https://github.com/angular-extensions/elements/compare/v17.1.1...v18.0.0) (2024-07-11)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** upgrade to Angular 18
+
+### Features
+
+- **lib:** add new loading success / error outputs ([03182ad](https://github.com/angular-extensions/elements/commit/03182ad8cfda53af48740cc6820f00511d277b00))
+- **lib:** modernize apis, use standalone, js private fields ([b656749](https://github.com/angular-extensions/elements/commit/b6567491ec6fe0c89db370e5fa60a7ff37664537))
+- **lib:** upgrade to Angular 18 ([a871dd0](https://github.com/angular-extensions/elements/commit/a871dd0860cca70e4d3d503521b69071bc2de12b))
+- new control flow ([e962f61](https://github.com/angular-extensions/elements/commit/e962f618dba4a52883d23ef7a27f6cbf0fdf557b))
+
 ### [17.1.1](https://github.com/angular-extensions/elements/compare/v17.1.0...v17.1.1) (2024-03-20)
 
 ### Bug Fixes
