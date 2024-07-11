@@ -9,15 +9,15 @@
 
   demo-api {
     th {
-      background-color: mat.get-color-from-palette($background, app-bar);
+      background-color: mat.m2-get-color-from-palette($background, app-bar);
     }
 
     th,
     td {
       border-bottom: 1px solid
-        mat.get-color-from-palette($background, disabled-list-option);
+        mat.m2-get-color-from-palette($background, disabled-list-option);
       border-right: 1px solid
-        mat.get-color-from-palette($background, disabled-list-option);
+        mat.m2-get-color-from-palette($background, disabled-list-option);
     }
   }
 }

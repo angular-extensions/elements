@@ -8,30 +8,33 @@
   $background: map-get($theme, background);
 
   a {
-    color: mat.get-color-from-palette($primary);
+    color: mat.m2-get-color-from-palette($primary);
 
     &:hover {
-      color: mat.get-color-from-palette($primary, darker);
+      color: mat.m2-get-color-from-palette($primary, darker);
     }
   }
 
   code {
-    color: mat.get-color-from-palette($foreground, text);
-    background-color: mat.get-color-from-palette($background, unselected-chip);
+    color: mat.m2-get-color-from-palette($foreground, text);
+    background-color: mat.m2-get-color-from-palette(
+      $background,
+      unselected-chip
+    );
 
     &[color='primary'] {
-      color: mat.get-color-from-palette($primary, default-contrast);
-      background-color: mat.get-color-from-palette($primary);
+      color: mat.m2-get-color-from-palette($primary, default-contrast);
+      background-color: mat.m2-get-color-from-palette($primary);
     }
 
     &[color='accent'] {
-      color: mat.get-color-from-palette($accent, default-contrast);
-      background-color: mat.get-color-from-palette($accent);
+      color: mat.m2-get-color-from-palette($accent, default-contrast);
+      background-color: mat.m2-get-color-from-palette($accent);
     }
 
     &[color='warn'] {
-      color: mat.get-color-from-palette($warn, default-contrast);
-      background-color: mat.get-color-from-palette($warn);
+      color: mat.m2-get-color-from-palette($warn, default-contrast);
+      background-color: mat.m2-get-color-from-palette($warn);
     }
   }
 }

@@ -2,8 +2,8 @@
   "name": "@angular-extensions/elements",
   "version": "17.1.1",
   "peerDependencies": {
-    "@angular/common": ">=15",
-    "@angular/core": ">=15",
+    "@angular/common": ">=18",
+    "@angular/core": ">=18",
     "rxjs": ">=7.5.0"
   },
   "publishConfig": {

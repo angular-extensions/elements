@@ -8,12 +8,12 @@
   $background: map-get($theme, background);
 
   demo-footer {
-    color: mat.get-color-from-palette($primary, lighter-contrast);
-    background-color: mat.get-color-from-palette($primary, lighter);
+    color: mat.m2-get-color-from-palette($primary, lighter-contrast);
+    background-color: mat.m2-get-color-from-palette($primary, lighter);
 
     a {
       &:hover {
-        color: mat.get-color-from-palette($primary, lighter-contrast);
+        color: mat.m2-get-color-from-palette($primary, lighter-contrast);
       }
     }
 
@@ -21,7 +21,7 @@
       align-items: center;
       display: flex;
       gap: 10px;
-      color: mat.get-color-from-palette($primary, lighter-contrast);
+      color: mat.m2-get-color-from-palette($primary, lighter-contrast);
     }
 
     img {

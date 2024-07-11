@@ -9,7 +9,7 @@
 
   demo-navigation {
     .active {
-      color: mat.get-color-from-palette($primary) !important;
+      color: mat.m2-get-color-from-palette($primary) !important;
     }
 
     .mat-mdc-list-item-unscoped-content {

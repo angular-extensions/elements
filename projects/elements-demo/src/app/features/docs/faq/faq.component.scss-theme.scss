@@ -10,7 +10,7 @@
   demo-faq {
     .mat-expanded {
       mat-expansion-panel-header {
-        background-color: mat.get-color-from-palette(
+        background-color: mat.m2-get-color-from-palette(
           $background,
           disabled-list-option
         ) !important;
