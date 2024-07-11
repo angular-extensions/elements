@@ -44,7 +44,7 @@ export class LazyElementsLoaderService implements OnDestroy {
       if (existingConfig) {
         ngDevMode &&
           console.warn(
-            `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`
+            `${LOG_PREFIX} - ElementConfig for tag '${newConfig.tag}' was previously added, it will not be added multiple times, continue...`,
           );
       } else {
         newConfig.isAdded = true;
@@ -59,7 +59,7 @@ export class LazyElementsLoaderService implements OnDestroy {
             newConfig.tag,
             newConfig.isModule,
             newConfig.importMap,
-            newConfig.hooks
+            newConfig.hooks,
           );
         }
       }
@@ -81,8 +81,8 @@ export class LazyElementsLoaderService implements OnDestroy {
         config.tag,
         config.isModule,
         config.importMap,
-        config.hooks
-      )
+        config.hooks,
+      ),
     );
   }
 
@@ -91,7 +91,7 @@ export class LazyElementsLoaderService implements OnDestroy {
     tag: string,
     isModule?: boolean,
     importMap?: boolean,
-    hooksConfig?: HooksConfig
+    hooksConfig?: HooksConfig,
   ): Promise<void> {
     const config = this.getElementConfig(tag);
     isModule ??= config?.isModule ?? this.options.isModule;
@@ -99,7 +99,7 @@ export class LazyElementsLoaderService implements OnDestroy {
 
     if (ngDevMode && !tag) {
       throw new Error(
-        `${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`
+        `${LOG_PREFIX} - tag for '${url}' not found, the *axLazyElement has to be used on HTML element`,
       );
     }
 
@@ -180,7 +180,7 @@ export class LazyElementsLoaderService implements OnDestroy {
     let notifier: Notifier;
     this.registry.set(
       this.stripUrlProtocol(url),
-      new Promise<void>((resolve, reject) => (notifier = { resolve, reject }))
+      new Promise<void>((resolve, reject) => (notifier = { resolve, reject })),
     );
     return notifier!;
   }
@@ -208,7 +208,7 @@ export class LazyElementsLoaderService implements OnDestroy {
       url = System.resolve(url);
     } else if (ngDevMode) {
       throw new Error(
-        `${LOG_PREFIX} - importMap feature depends on SystemJS library to be globally loaded but none was found, thus '${url}' can't be resolved. You should either load SystemJS or remove the importMap flag.`
+        `${LOG_PREFIX} - importMap feature depends on SystemJS library to be globally loaded but none was found, thus '${url}' can't be resolved. You should either load SystemJS or remove the importMap flag.`,
       );
     }
     return url;

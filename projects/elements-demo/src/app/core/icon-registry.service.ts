@@ -12,21 +12,23 @@ export class IconRegistryService {
   public registerIcon(): void {
     this.matIconRegistry.addSvgIcon(
       'github',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/github.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        'assets/logo/github.svg',
+      ),
     );
     this.matIconRegistry.addSvgIcon(
       'npm',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/npm.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/npm.svg'),
     );
     this.matIconRegistry.addSvgIcon(
       'twitter',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        'assets/logo/twitter.svg'
-      )
+        'assets/logo/twitter.svg',
+      ),
     );
     this.matIconRegistry.addSvgIcon(
       'logo',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/logo.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo/logo.svg'),
     );
   }
 }

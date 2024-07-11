@@ -114,8 +114,8 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
               elementTag,
               this.isModule,
               this.importMap,
-              elementConfig?.hooks
-            )
+              elementConfig?.hooks,
+            ),
           ).pipe(
             catchError(() => {
               this.vcr.clear();
@@ -129,14 +129,14 @@ export class LazyElementDirective implements OnChanges, OnInit, OnDestroy {
                 this.cdr.markForCheck();
               } else if (ngDevMode) {
                 console.error(
-                  `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`
+                  `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`,
                 );
               }
               return EMPTY;
-            })
+            }),
           );
         }),
-        mergeMap(() => customElements.whenDefined(elementTag))
+        mergeMap(() => customElements.whenDefined(elementTag)),
       )
       .subscribe({
         next: () => {

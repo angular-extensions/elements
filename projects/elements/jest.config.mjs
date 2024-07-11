@@ -3,12 +3,15 @@ export default {
   // globalSetup: 'jest-preset-angular/global-setup.mjs',
   extensionsToTreatAsEsm: ['.ts'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.(html|svg)$',
-      useESM: true,
-    },
+  transform: {
+    '^.+\\.(ts|js|html)$': [
+      'ts-jest',
+      {
+        tsconfig: '<rootDir>/tsconfig.spec.json',
+        stringifyContentPathRegex: '\\.(html|svg)$',
+        useESM: true,
+      },
+    ],
   },
   moduleNameMapper: {
     tslib: 'tslib/tslib.es6.js',

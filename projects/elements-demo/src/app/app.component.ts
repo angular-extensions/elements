@@ -84,18 +84,20 @@ export class AppComponent implements OnInit {
           this.demoRootCssClass = 'responsive-large';
         }
       }),
-      map(([isSmall]) => isSmall)
+      map(([isSmall]) => isSmall),
     );
 
     this.navOpened = combineLatest([
       this.isSmallOrSmaller,
       this.navToggled,
     ]).pipe(
-      map(([isSmallScreen, navToggled]) => (!isSmallScreen ? true : navToggled))
+      map(([isSmallScreen, navToggled]) =>
+        !isSmallScreen ? true : navToggled,
+      ),
     );
 
     this.sidenavMode = this.isSmallOrSmaller.pipe(
-      map((isSmallOrSmaller) => (isSmallOrSmaller ? 'push' : 'side'))
+      map((isSmallOrSmaller) => (isSmallOrSmaller ? 'push' : 'side')),
     );
   }
 

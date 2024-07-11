@@ -2,13 +2,15 @@
   <h1>Frequently asked questions</h1>
 
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let item of faq">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <span [innerHTML]="item.question"></span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p [innerHTML]="item.answer"></p>
-    </mat-expansion-panel>
+    @for (item of faq; track item) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span [innerHTML]="item.question"></span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p [innerHTML]="item.answer"></p>
+      </mat-expansion-panel>
+    }
   </mat-accordion>
 </div>

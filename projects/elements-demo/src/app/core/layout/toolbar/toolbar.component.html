@@ -1,14 +1,11 @@
 <mat-toolbar color="primary">
-  <button
-    mat-icon-button
-    *ngIf="isResponsiveLayout | async"
-    class="menu"
-    (click)="toggleMenu()"
-  >
-    <mat-icon aria-hidden="false" aria-label="Menu">{{
-      navOpened ? 'close' : 'menu'
-    }}</mat-icon>
-  </button>
+  @if (isResponsiveLayout()) {
+    <button mat-icon-button class="menu" (click)="toggle.emit()">
+      <mat-icon aria-hidden="false" aria-label="Menu">{{
+        navOpened ? 'close' : 'menu'
+      }}</mat-icon>
+    </button>
+  }
 
   <span class="spacer-responsive"></span>
 
@@ -21,25 +18,25 @@
     ></mat-icon>
   </a>
   <span class="project-name"
-    >{{
-      (isResponsiveLayout | async) ? '' : '&#64;angular-extensions/'
-    }}elements</span
+    >{{ isResponsiveLayout() ? '' : '&#64;angular-extensions/' }}elements</span
   >
-  <img
-    *ngIf="(isResponsiveLayout | async) !== undefined"
-    alt="downloads per month"
-    src="https://img.shields.io/npm/dm/&#64;angular-extensions/elements"
-  />
-  <iframe
-    *ngIf="(isResponsiveLayout | async) !== undefined"
-    allowtransparency="true"
-    frameborder="0"
-    scrolling="no"
-    src="//platform.twitter.com/widgets/follow_button.html?screen_name=tomastrajan&show_screen_name=false"
-  ></iframe>
+  @if (isResponsiveLayout() !== undefined) {
+    <img
+      alt="downloads per month"
+      src="https://img.shields.io/npm/dm/&#64;angular-extensions/elements"
+    />
+  }
+  @if (isResponsiveLayout() !== undefined) {
+    <iframe
+      allowtransparency="true"
+      frameborder="0"
+      scrolling="no"
+      src="//platform.twitter.com/widgets/follow_button.html?screen_name=tomastrajan&show_screen_name=false"
+    ></iframe>
+  }
 
   <span class="spacer"></span>
-  <ng-container *ngIf="(isResponsiveLayout | async) === false">
+  @if (isResponsiveLayout() === false) {
     <button
       mat-flat-button
       routerLink="home"
@@ -64,7 +61,7 @@
     >
       EXAMPLES
     </button>
-  </ng-container>
+  }
   <a
     mat-icon-button
     href="https://github.com/angular-extensions/elements"

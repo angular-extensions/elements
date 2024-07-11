@@ -13,7 +13,7 @@ import { ErrorComponent } from '../../../shared/error/error.component';
 
 export function beforeLoadHook(tag: string): Promise<void> {
   alert(
-    `Starting download of ${tag} web component! The download will be artificially postponed for 5 seconds.`
+    `Starting download of ${tag} web component! The download will be artificially postponed for 5 seconds.`,
   );
   return new Promise((res) => setTimeout(res, 5000));
 }

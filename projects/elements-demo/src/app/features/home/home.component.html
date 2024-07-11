@@ -75,21 +75,23 @@
   <li>
     Use <code>*axLazyElement</code> directive on an element you wish to load and
     pass in the url of the element bundle
-    <pre [highlight]="codeExampleComponent"></pre>
+    <pre [highlight]="codeExampleComponent" language="typescript"></pre>
   </li>
 </ol>
 
 <h2>Features</h2>
 <mat-grid-list [cols]="columnCount | async" rowHeight="150" gutterSize="18">
-  <mat-grid-tile *ngFor="let feature of features">
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar>
-          <mat-icon color="primary">{{ feature.icon }}</mat-icon>
-        </div>
-        <mat-card-title>{{ feature.title }}</mat-card-title>
-        <mat-card-subtitle [innerHTML]="feature.subtitle"></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </mat-grid-tile>
+  @for (feature of features; track feature) {
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon color="primary">{{ feature.icon }}</mat-icon>
+          </div>
+          <mat-card-title>{{ feature.title }}</mat-card-title>
+          <mat-card-subtitle [innerHTML]="feature.subtitle"></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </mat-grid-tile>
+  }
 </mat-grid-list>

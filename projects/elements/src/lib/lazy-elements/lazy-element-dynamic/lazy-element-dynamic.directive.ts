@@ -55,7 +55,7 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
     if (ngDevMode) {
       if (!this.tag || this.tag.length === 0 || !this.tag.includes('-')) {
         throw new Error(
-          `${LOG_PREFIX} - Valid tag has to be specified when using *axLazyElementDynamic directive (use *axLazyElementDynamic="'some-tag'"), got: "${this.tag}"`
+          `${LOG_PREFIX} - Valid tag has to be specified when using *axLazyElementDynamic directive (use *axLazyElementDynamic="'some-tag'"), got: "${this.tag}"`,
         );
       }
     }
@@ -80,8 +80,8 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
         tag,
         this.isModule,
         this.importMap,
-        elementConfig?.hooks
-      )
+        elementConfig?.hooks,
+      ),
     );
 
     this.subscription = loadElement$
@@ -113,7 +113,7 @@ export class LazyElementDynamicDirective implements OnInit, OnDestroy {
           } else if (ngDevMode) {
             console.error(
               `${LOG_PREFIX} - Loading of element <${this.tag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElementDynamic="errorTemplate: error" to display customized error message in place of element\n\n`,
-              error
+              error,
             );
           }
         },

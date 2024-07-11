@@ -26,7 +26,7 @@ describe('LazyElementsLoaderService', () => {
           Promise.resolve().then(() => script.dispatchEvent(new Event('load')));
         } else {
           Promise.resolve().then(() =>
-            script.dispatchEvent(new Event('error'))
+            script.dispatchEvent(new Event('error')),
           );
         }
         return script;
@@ -43,17 +43,17 @@ describe('LazyElementsLoaderService', () => {
 
   it('throws error if used without url', async () => {
     await expect(
-      service.loadElement(undefined, 'some-element')
+      service.loadElement(undefined, 'some-element'),
     ).rejects.toThrowError(
-      '@angular-extensions/elements - url for <some-element> not found'
+      '@angular-extensions/elements - url for <some-element> not found',
     );
   });
 
   it('throws error if used without valid tag', async () => {
     await expect(
-      service.loadElement('http://elements.com/some-element', '')
+      service.loadElement('http://elements.com/some-element', ''),
     ).rejects.toThrowError(
-      "@angular-extensions/elements - tag for 'http://elements.com/some-element' not found, the *axLazyElement has to be used on HTML element"
+      "@angular-extensions/elements - tag for 'http://elements.com/some-element' not found, the *axLazyElement has to be used on HTML element",
     );
   });
 
@@ -77,20 +77,20 @@ describe('LazyElementsLoaderService', () => {
     service.loadElement('http://elements.com/some-element', 'some-element');
     service.loadElement(
       'http://elements.com/some-other-element',
-      'some-other-element'
+      'some-other-element',
     );
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
     expect(appendedScripts[0].src).toBe('http://elements.com/some-element');
     expect(appendedScripts[1].src).toBe(
-      'http://elements.com/some-other-element'
+      'http://elements.com/some-other-element',
     );
   });
 
   it('resolves promise once element bundle was loaded', (done) => {
     const promise = service.loadElement(
       'http://elements.com/some-element',
-      'some-element'
+      'some-element',
     );
 
     promise.then((value) => {
@@ -104,7 +104,7 @@ describe('LazyElementsLoaderService', () => {
 
     const promise = service.loadElement(
       'http://elements.com/some-element',
-      'some-element'
+      'some-element',
     );
 
     promise
@@ -129,7 +129,7 @@ describe('LazyElementsLoaderService', () => {
     service.loadElement(
       'http://elements.com/some-element',
       'some-element',
-      true
+      true,
     );
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -152,7 +152,7 @@ describe('LazyElementsLoaderService', () => {
             expect(appendChildSpy).not.toHaveBeenCalled();
             wasHookCalled = true;
           },
-        }
+        },
       )
       .then(() => {
         expect(wasHookCalled).toBe(true);
@@ -176,7 +176,7 @@ describe('LazyElementsLoaderService', () => {
             expect(appendChildSpy).toHaveBeenCalledTimes(1);
             wasHookCalled = true;
           },
-        }
+        },
       )
       .then(() => {
         expect(wasHookCalled).toBe(true);
@@ -199,7 +199,7 @@ describe('LazyElementsLoaderService', () => {
               expect(appendChildSpy).not.toHaveBeenCalled();
               promiseResolved = true;
             }),
-        }
+        },
       )
       .then(() => {
         expect(promiseResolved).toBe(true);
@@ -249,7 +249,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     });
 
     service = TestBed.inject<LazyElementsLoaderService>(
-      LazyElementsLoaderService
+      LazyElementsLoaderService,
     );
     appendedScripts = [];
     shouldLoadSucceed = true;
@@ -261,7 +261,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
           Promise.resolve().then(() => script.dispatchEvent(new Event('load')));
         } else {
           Promise.resolve().then(() =>
-            script.dispatchEvent(new Event('error'))
+            script.dispatchEvent(new Event('error')),
           );
         }
         return script;
@@ -319,7 +319,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
   it('should call root hook if hook in elementConfig was not provided', async () => {
     await service.loadElement(
       'http://elements.com/element-with-hook',
-      'element-with-hook'
+      'element-with-hook',
     );
 
     expect(rootHooks.afterLoad).toHaveBeenCalledTimes(1);
@@ -331,7 +331,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       'element-with-hook',
       false,
       false,
-      elementHooks
+      elementHooks,
     );
 
     expect(rootHooks.afterLoad).not.toHaveBeenCalled();
@@ -342,9 +342,9 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
     it('throws error if SystemJS is not available', async () => {
       (window as any).System = null;
       await expect(
-        service.loadElement('element', 'element-using-import-map', false, true)
+        service.loadElement('element', 'element-using-import-map', false, true),
       ).rejects.toThrowError(
-        "@angular-extensions/elements - importMap feature depends on SystemJS library to be globally loaded but none was found, thus 'element' can't be resolved. You should either load SystemJS or remove the importMap flag."
+        "@angular-extensions/elements - importMap feature depends on SystemJS library to be globally loaded but none was found, thus 'element' can't be resolved. You should either load SystemJS or remove the importMap flag.",
       );
     });
 
@@ -376,7 +376,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
 
       const promise = service.loadElement(
         'http://elements.com/some-element',
-        'some-element'
+        'some-element',
       );
 
       promise

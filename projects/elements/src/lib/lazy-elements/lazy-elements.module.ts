@@ -25,11 +25,11 @@ import { LazyElementsLoaderService } from './lazy-elements-loader.service';
 import './ng-dev-mode';
 
 export function createLazyElementRootGuard(
-  rootOptions: LazyElementRootOptions
+  rootOptions: LazyElementRootOptions,
 ) {
   if (ngDevMode && rootOptions) {
     throw new TypeError(
-      `LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.`
+      `LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.`,
     );
   }
   return 'LazyElementsModule.forRoot() multiple execution guard';
@@ -42,7 +42,7 @@ export function createLazyElementRootGuard(
 })
 export class LazyElementsModule {
   static forRoot(
-    options: LazyElementModuleRootOptions
+    options: LazyElementModuleRootOptions,
   ): ModuleWithProviders<LazyElementsModule> {
     return {
       ngModule: LazyElementsModule,
@@ -67,7 +67,7 @@ export class LazyElementsModule {
   }
 
   static forFeature(
-    options: LazyElementModuleOptions
+    options: LazyElementModuleOptions,
   ): ModuleWithProviders<LazyElementsModule> {
     return {
       ngModule: LazyElementsModule,
@@ -85,7 +85,7 @@ export class LazyElementsModule {
   readonly lazyElementsLoaderService = inject(LazyElementsLoaderService);
   readonly elementConfigsMultiProvider = inject<ElementConfig[][]>(
     LAZY_ELEMENT_CONFIGS,
-    { optional: true }
+    { optional: true },
   );
   readonly guard = inject(LAZY_ELEMENT_ROOT_GUARD, { optional: true });
 
@@ -97,7 +97,7 @@ export class LazyElementsModule {
       this.elementConfigsMultiProvider
         .filter((configs) => configs.some((config) => !config.isAdded))
         .forEach((configs) =>
-          this.lazyElementsLoaderService.addConfigs(configs)
+          this.lazyElementsLoaderService.addConfigs(configs),
         );
     }
   }

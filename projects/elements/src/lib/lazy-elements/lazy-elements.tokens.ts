@@ -7,14 +7,14 @@ import {
 } from './lazy-elements.interface';
 
 export const LAZY_ELEMENT_CONFIGS = new InjectionToken<ElementConfig[]>(
-  'LAZY_ELEMENT_CONFIGS'
+  'LAZY_ELEMENT_CONFIGS',
 );
 
 export const LAZY_ELEMENT_ROOT_OPTIONS =
   new InjectionToken<LazyElementRootOptions>('LAZY_ELEMENT_ROOT_OPTIONS');
 
 export const LAZY_ELEMENT_ROOT_GUARD = new InjectionToken<void>(
-  'LAZY_ELEMENT_ROOT_GUARD'
+  'LAZY_ELEMENT_ROOT_GUARD',
 );
 
 export const LAZY_ELEMENTS_REGISTRY = new InjectionToken<LazyElementsRegistry>(
@@ -22,5 +22,5 @@ export const LAZY_ELEMENTS_REGISTRY = new InjectionToken<LazyElementsRegistry>(
   {
     providedIn: 'root',
     factory: () => new Map<string, Promise<void>>(),
-  }
+  },
 );

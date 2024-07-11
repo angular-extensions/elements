@@ -42,20 +42,20 @@ bootstrapApplication(AppComponent, {
       }),
       withRouterConfig({
         onSameUrlNavigation: 'reload',
-      })
+      }),
     ),
     importProvidersFrom(
       LazyElementsModule.forRoot({
         rootOptions: {
           errorComponent: RootErrorComponent,
         },
-      })
+      }),
     ),
     HIGHLIGHT_JS_PROVIDER,
     importProvidersFrom(
       ServiceWorkerModule.register('ngsw-worker.js', {
         enabled: environment.production,
-      })
+      }),
     ),
     importProvidersFrom(MatSnackBarModule),
   ],

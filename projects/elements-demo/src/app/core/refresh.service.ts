@@ -19,7 +19,7 @@ export class RefreshService {
           {
             horizontalPosition: 'center',
             verticalPosition: 'top',
-          }
+          },
         );
         snack
           .onAction()

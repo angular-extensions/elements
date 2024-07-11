@@ -7,7 +7,7 @@ export declare interface TrustedTypePolicyFactory {
     policyName: string,
     policyOptions: {
       createScriptURL?: (url: string) => string;
-    }
+    },
   ): TrustedTypePolicy;
 }
 
@@ -25,7 +25,7 @@ export function getPolicy(): TrustedTypePolicy | null {
           'angular-extensions#elements',
           {
             createScriptURL: (url: string) => url,
-          }
+          },
         );
       }
     }

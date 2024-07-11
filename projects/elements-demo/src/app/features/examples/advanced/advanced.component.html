@@ -54,8 +54,12 @@
         <code>*axLazyElement</code> directive. The element will be lazy-loaded
         the same way as if we specified url directly.
       </p>
-      <pre [highlight]="codeExample1html"></pre>
-      <pre [highlight]="codeExample1module"></pre>
+      <pre
+        [highlight]="codeExample1html"
+        language="typescript"
+        language="html"
+      ></pre>
+      <pre [highlight]="codeExample1module" language="typescript"></pre>
     </div>
   </div>
 
@@ -80,8 +84,12 @@
         during runtime. We're using <code>LAZY_ELEMENT_CONFIGS</code> token as a
         multi provider with a custom factory function.
       </p>
-      <pre [highlight]="codeExample7html"></pre>
-      <pre [highlight]="codeExample7module"></pre>
+      <pre
+        [highlight]="codeExample7html"
+        language="typescript"
+        language="html"
+      ></pre>
+      <pre [highlight]="codeExample7module" language="typescript"></pre>
     </div>
   </div>
 
@@ -110,8 +118,12 @@
         we want to use other options like <code>module</code> or
         <code>loadingTemplate</code>.
       </p>
-      <pre [highlight]="codeExample2html"></pre>
-      <pre [highlight]="codeExample2module"></pre>
+      <pre
+        [highlight]="codeExample2html"
+        language="typescript"
+        language="html"
+      ></pre>
+      <pre [highlight]="codeExample2module" language="typescript"></pre>
     </div>
   </div>
 
@@ -137,8 +149,12 @@
         the <code>LazyElementsModule</code>config. That way we don't have to
         specify it in the template for module style elements!
       </p>
-      <pre [highlight]="codeExample3html"></pre>
-      <pre [highlight]="codeExample3module"></pre>
+      <pre
+        [highlight]="codeExample3html"
+        language="typescript"
+        language="html"
+      ></pre>
+      <pre [highlight]="codeExample3module" language="typescript"></pre>
     </div>
   </div>
 
@@ -167,14 +183,16 @@
         can be pre-configured centrally removing the need to configure them in
         feature modules or inline in the templates.
       </p>
-      <pre [highlight]="codeExample4html"></pre>
-      <pre [highlight]="codeExample4coreModule"></pre>
+      <pre
+        [highlight]="codeExample4html"
+        language="typescript"
+        language="html"
+      ></pre>
+      <pre [highlight]="codeExample4coreModule" language="typescript"></pre>
     </div>
   </div>
 
-  <h2 id="preloading">
-    Preloading
-  </h2>
+  <h2 id="preloading">Preloading</h2>
   <div class="content">
     <div class="implementation">
       <div>
@@ -201,14 +219,16 @@
         conditions ) because they were pre-loaded! Check out the dev tools
         network tab to see it in action...
       </p>
-      <pre [highlight]="codeExample5html"></pre>
-      <pre [highlight]="codeExample5ts"></pre>
+      <pre
+        [highlight]="codeExample5html"
+        language="typescript"
+        language="html"
+      ></pre>
+      <pre [highlight]="codeExample5ts" language="typescript"></pre>
     </div>
   </div>
 
-  <h2 id="hooks">
-    Hooks
-  </h2>
+  <h2 id="hooks">Hooks</h2>
   <div class="content">
     <div class="implementation" *ngIf="!example6">
       <button mat-flat-button color="accent" (click)="example6 = true">
@@ -227,8 +247,12 @@
         lifecycle. Clicking the run button below will trigger the download of
         the custom element which has been configured with a hook.
       </p>
-      <pre [highlight]="codeExample6html"></pre>
-      <pre [highlight]="codeExample6module"></pre>
+      <pre
+        [highlight]="codeExample6html"
+        language="typescript"
+        language="html"
+      ></pre>
+      <pre [highlight]="codeExample6module" language="typescript"></pre>
     </div>
   </div>
 </div>

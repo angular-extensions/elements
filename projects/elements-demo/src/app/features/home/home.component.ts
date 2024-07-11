@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +18,6 @@ import { ResponsiveLayoutService } from '../../core/layout/responsive-layout.ser
   imports: [
     RouterLink,
     AsyncPipe,
-    NgForOf,
     MatButtonModule,
     MatIconModule,
     MatCardModule,

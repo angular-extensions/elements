@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForOf } from '@angular/common';
+
 import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
@@ -7,7 +7,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss'],
   standalone: true,
-  imports: [NgForOf, MatExpansionModule],
+  imports: [MatExpansionModule],
 })
 export class FaqComponent implements OnInit {
   faq = FAQ;

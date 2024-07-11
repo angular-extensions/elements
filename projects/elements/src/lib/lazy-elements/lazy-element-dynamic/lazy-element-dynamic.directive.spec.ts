@@ -12,19 +12,23 @@ import { LazyElementDynamicDirective } from './lazy-element-dynamic.directive';
         url: 'http://elements.com/some-element'
       "
     ></div>
-    <div *ngIf="useWithoutTag">
-      <div
-        *axLazyElementDynamic="null; url: 'http://elements.com/some-element'"
-      ></div>
-    </div>
-    <div *ngIf="useWithInvalidTag">
-      <div
-        *axLazyElementDynamic="
-          'invalid';
-          url: 'http://elements.com/some-element'
-        "
-      ></div>
-    </div>
+    @if (useWithoutTag) {
+      <div>
+        <div
+          *axLazyElementDynamic="null; url: 'http://elements.com/some-element'"
+        ></div>
+      </div>
+    }
+    @if (useWithInvalidTag) {
+      <div>
+        <div
+          *axLazyElementDynamic="
+            'invalid';
+            url: 'http://elements.com/some-element'
+          "
+        ></div>
+      </div>
+    }
   `,
 })
 class TestHostComponent {
@@ -62,7 +66,7 @@ describe('LazyElementDirectiveDynamic', () => {
   it('adds a script tag into dom to load element bundle', () => {
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
     expect((appendChildSpy.mock.calls[0][0] as any).src).toBe(
-      'http://elements.com/some-element'
+      'http://elements.com/some-element',
     );
   });
 
@@ -72,8 +76,8 @@ describe('LazyElementDirectiveDynamic', () => {
       fixture.detectChanges();
     }).toThrow(
       new Error(
-        `@angular-extensions/elements - Valid tag has to be specified when using *axLazyElementDynamic directive (use *axLazyElementDynamic="'some-tag'"), got: "null"`
-      )
+        `@angular-extensions/elements - Valid tag has to be specified when using *axLazyElementDynamic directive (use *axLazyElementDynamic="'some-tag'"), got: "null"`,
+      ),
     );
   });
 
@@ -83,8 +87,8 @@ describe('LazyElementDirectiveDynamic', () => {
       fixture.detectChanges();
     }).toThrow(
       new Error(
-        `@angular-extensions/elements - Valid tag has to be specified when using *axLazyElementDynamic directive (use *axLazyElementDynamic="'some-tag'"), got: "invalid"`
-      )
+        `@angular-extensions/elements - Valid tag has to be specified when using *axLazyElementDynamic directive (use *axLazyElementDynamic="'some-tag'"), got: "invalid"`,
+      ),
     );
   });
 });

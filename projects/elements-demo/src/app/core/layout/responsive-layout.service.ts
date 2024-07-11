@@ -44,8 +44,8 @@ export class ResponsiveLayoutService {
       this.isLargeScreen,
     ]).pipe(
       map(([isXSmall, isSmall, isMedium, isLarge]) =>
-        isXSmall ? 1 : isSmall ? 2 : isMedium ? 2 : isLarge ? 3 : 4
-      )
+        isXSmall ? 1 : isSmall ? 2 : isMedium ? 2 : isLarge ? 3 : 4,
+      ),
     );
 
     this.isSmallOrSmaller = this.breakpointObserver

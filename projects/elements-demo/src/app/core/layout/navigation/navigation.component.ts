@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgForOf, NgIf } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
@@ -80,14 +80,7 @@ const NAVIGATION = [
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
   standalone: true,
-  imports: [
-    NgIf,
-    NgForOf,
-    RouterLink,
-    RouterLinkActive,
-    MatIconModule,
-    MatListModule,
-  ],
+  imports: [RouterLink, RouterLinkActive, MatIconModule, MatListModule],
 })
 export class NavigationComponent implements OnInit {
   navigation = NAVIGATION;

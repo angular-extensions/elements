@@ -73,7 +73,7 @@ describe('LazyElementsModule', () => {
     }
     expect(caughtError).toBeDefined();
     expect(caughtError.message).toContain(
-      'LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.'
+      'LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.',
     );
   });
 });

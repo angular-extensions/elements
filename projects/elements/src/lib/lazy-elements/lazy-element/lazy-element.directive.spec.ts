@@ -140,7 +140,7 @@ describe('LazyElementDirective', () => {
     whenDefinedSpy = jest
       .spyOn(customElements, 'whenDefined')
       .mockReturnValue(
-        Promise.resolve(class DummyElement extends HTMLElement {})
+        Promise.resolve(class DummyElement extends HTMLElement {}),
       ) as any;
     fixture.detectChanges();
     await fixture.whenRenderingDone();
@@ -158,7 +158,7 @@ describe('LazyElementDirective', () => {
   it('adds a script tag into dom to load element bundle', () => {
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
     expect(getAppendChildFirstScript().src).toBe(
-      'http://elements.com/some-element'
+      'http://elements.com/some-element',
     );
   });
 
@@ -168,7 +168,7 @@ describe('LazyElementDirective', () => {
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
     expect(getAppendChildFirstScript().src).toBe(
-      'http://elements.com/some-element'
+      'http://elements.com/some-element',
     );
   });
 
@@ -180,10 +180,10 @@ describe('LazyElementDirective', () => {
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
     expect(getAppendChildFirstScript().src).toBe(
-      'http://elements.com/some-element'
+      'http://elements.com/some-element',
     );
     expect(getAppendChildSecondScript().src).toBe(
-      'http://elements.com/some-other-element'
+      'http://elements.com/some-other-element',
     );
   });
 
@@ -232,11 +232,11 @@ describe('LazyElementDirective', () => {
     fixture.detectChanges();
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
-      '@angular-extensions/elements - Loading of element <some-element> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element'
+      '@angular-extensions/elements - Loading of element <some-element> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element',
     );
     expect(document.querySelector('.loading')).toBe(null);
     expect(document.querySelector('.error').textContent).toBe(
-      'Loading failed...'
+      'Loading failed...',
     );
     consoleErrorSpy.mockRestore();
   });
@@ -246,7 +246,7 @@ describe('LazyElementDirective', () => {
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
     expect(getAppendChildFirstScript().src).toBe(
-      'http://elements.com/some-element'
+      'http://elements.com/some-element',
     );
     expect(getAppendChildFirstScript().type).toBe('');
 
@@ -267,7 +267,7 @@ describe('LazyElementDirective', () => {
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
     expect(getAppendChildFirstScript().src).toBe(
-      'http://elements.com/some-element'
+      'http://elements.com/some-element',
     );
     expect(getAppendChildFirstScript().type).toBe('');
 
@@ -282,7 +282,7 @@ describe('LazyElementDirective', () => {
 
     expect(appendChildSpy).toHaveBeenCalledTimes(2);
     expect(getAppendChildSecondScript().src).toBe(
-      'http://elements.com/element-using-import-map'
+      'http://elements.com/element-using-import-map',
     );
   });
 
@@ -314,10 +314,10 @@ describe('LazyElementDirective', () => {
     // Assert
     expect(loadElementSpy).toHaveBeenCalledTimes(2);
     expect(loadElementSpy.mock.calls[0][0]).toBe(
-      'http://elements.com/some-configured-element-module'
+      'http://elements.com/some-configured-element-module',
     );
     expect(loadElementSpy.mock.calls[1][0]).toBe(
-      'http://elements.com/some-configured-element-module-es2015'
+      'http://elements.com/some-configured-element-module-es2015',
     );
   });
 });
