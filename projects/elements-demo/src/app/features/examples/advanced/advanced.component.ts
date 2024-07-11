@@ -7,8 +7,8 @@ import {
 import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {
+  LazyElementDirective,
   LazyElementsLoaderService,
-  LazyElementsModule,
 } from '@angular-extensions/elements';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,7 +25,7 @@ import { HighlightModule } from 'ngx-highlightjs';
     MatIconModule,
     MatButtonModule,
     HighlightModule,
-    LazyElementsModule,
+    LazyElementDirective,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -110,7 +110,7 @@ const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
       tag: 'mwc-checkbox',
-      url: 'https://unpkg.com/@material/mwc-checkbox@0.18.0/mwc-checkbox.js?module'
+      url: 'https://unpkg.com/@material/mwc-checkbox@0.27.0/mwc-checkbox.js?module'
     }
   ]
 };
@@ -133,7 +133,7 @@ const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
       tag: 'mwc-switch',
-      url: 'https://unpkg.com/@material/mwc-switch@0.18.0/mwc-switch.js?module',
+      url: 'https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module',
       isModule: true
     }
   ]
@@ -165,7 +165,7 @@ const options: LazyElementModuleRootOptions = {
   elementConfigs: [
     {
       tag: 'mwc-switch',
-      url: 'https://unpkg.com/@material/mwc-switch@0.18.0/mwc-switch.js?module'
+      url: 'https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module'
     }
   ]
 };

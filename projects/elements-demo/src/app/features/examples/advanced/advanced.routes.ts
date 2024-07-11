@@ -1,10 +1,8 @@
-import { importProvidersFrom } from '@angular/core';
 import { Routes } from '@angular/router';
 import {
   ElementConfig,
   LAZY_ELEMENT_CONFIGS,
-  LazyElementModuleOptions,
-  LazyElementsModule,
+  provideAxLazyElementsConfigs,
 } from '@angular-extensions/elements';
 
 import { AdvancedComponent } from './advanced.component';
@@ -29,48 +27,46 @@ export function elementConfigsFactory(): ElementConfig[] {
   ];
 }
 
-const options: LazyElementModuleOptions = {
-  elementConfigs: [
-    {
-      tag: 'wired-button',
-      url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
-      loadingComponent: SpinnerComponent,
-      errorComponent: ErrorComponent,
-      preload: true,
+const configs: ElementConfig[] = [
+  {
+    tag: 'wired-button',
+    url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
+    loadingComponent: SpinnerComponent,
+    errorComponent: ErrorComponent,
+    preload: true,
+  },
+  {
+    tag: 'mwc-switch',
+    url: 'https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module',
+    isModule: true,
+  },
+  {
+    tag: 'mwc-checkbox',
+    url: 'https://unpkg.com/@material/mwc-checkbox@0.27.0/mwc-checkbox.js?module',
+    isModule: true,
+  },
+  {
+    tag: 'mwc-fab',
+    url: 'https://unpkg.com/@material/mwc-fab@0.27.0/mwc-fab.js?module',
+    isModule: true,
+    loadingComponent: SpinnerComponent,
+  },
+  {
+    tag: 'mwc-slider',
+    url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
+    isModule: true,
+    hooks: {
+      beforeLoad: beforeLoadHook,
     },
-    {
-      tag: 'mwc-switch',
-      url: 'https://unpkg.com/@material/mwc-switch@0.18.0/mwc-switch.js?module',
-      isModule: true,
-    },
-    {
-      tag: 'mwc-checkbox',
-      url: 'https://unpkg.com/@material/mwc-checkbox@0.18.0/mwc-checkbox.js?module',
-      isModule: true,
-    },
-    {
-      tag: 'mwc-fab',
-      url: 'https://unpkg.com/@material/mwc-fab@0.18.0/mwc-fab.js?module',
-      isModule: true,
-      loadingComponent: SpinnerComponent,
-    },
-    {
-      tag: 'mwc-slider',
-      url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
-      isModule: true,
-      hooks: {
-        beforeLoad: beforeLoadHook,
-      },
-    },
-  ],
-};
+  },
+];
 
 export default <Routes>[
   {
     path: '',
     component: AdvancedComponent,
     providers: [
-      importProvidersFrom(LazyElementsModule.forFeature(options)),
+      provideAxLazyElementsConfigs(configs),
       {
         provide: LAZY_ELEMENT_CONFIGS,
         useFactory: elementConfigsFactory,

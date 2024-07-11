@@ -2,7 +2,7 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
-import { LazyElementsModule } from '@angular-extensions/elements';
+import { provideAxLazyElements } from '@angular-extensions/elements';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -44,13 +44,11 @@ bootstrapApplication(AppComponent, {
         onSameUrlNavigation: 'reload',
       }),
     ),
-    importProvidersFrom(
-      LazyElementsModule.forRoot({
-        rootOptions: {
-          errorComponent: RootErrorComponent,
-        },
-      }),
-    ),
+    provideAxLazyElements({
+      rootOptions: {
+        errorComponent: RootErrorComponent,
+      },
+    }),
     HIGHLIGHT_JS_PROVIDER,
     importProvidersFrom(
       ServiceWorkerModule.register('ngsw-worker.js', {

@@ -28,7 +28,7 @@ export function createLazyElementRootGuard(
 ) {
   if (ngDevMode && rootOptions) {
     throw new TypeError(
-      `LazyElementsModule.forRoot() called twice. Feature modules should use LazyElementsModule.forFeature() instead.`,
+      `LazyElementsModule.forRoot() called twice. Lazy feature modules should use LazyElementsModule.forFeature() instead.`,
     );
   }
   return 'LazyElementsModule.forRoot() multiple execution guard';

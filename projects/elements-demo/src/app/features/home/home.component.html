@@ -57,20 +57,20 @@
   <li>
     Add
     <code>
-      import &#123; LazyElementsModule &#125; from
+      import &#123; LazyElementDirective &#125; from
       '&#64;angular-extensions/elements';
     </code>
   </li>
   <li>
-    Append <code>LazyElementsModule</code> to the <code>imports: []</code> of
+    Append <code>LazyElementDirective</code> to the <code>imports: []</code> of
     your
-    <code>AppModule</code>
+    <code>MyOrgComponent</code>
   </li>
   <li>
     Add new <code>schemas: []</code> property with
     <code>CUSTOM_ELEMENTS_SCHEMA</code> value to
-    <code>&#64;NgModule</code> decorator of your
-    <code>AppModule</code>
+    <code>&#64;Component</code> decorator of your
+    <code>MyOrgComponent</code>
   </li>
   <li>
     Use <code>*axLazyElement</code> directive on an element you wish to load and

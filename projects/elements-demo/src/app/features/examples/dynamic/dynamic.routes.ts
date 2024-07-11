@@ -1,25 +1,28 @@
 import { importProvidersFrom } from '@angular/core';
 import { Routes } from '@angular/router';
 import {
-  LazyElementModuleOptions,
-  LazyElementsModule,
+  ElementConfig,
+  provideAxLazyElementsConfigs,
 } from '@angular-extensions/elements';
 
 import { DynamicComponent } from './dynamic.component';
 
-const options: LazyElementModuleOptions = {
-  elementConfigs: [
-    {
-      tag: 'wired-button',
-      url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
-    },
-  ],
-};
+const configs: ElementConfig[] = [
+  {
+    tag: 'wired-button',
+    url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js',
+  },
+];
 
 export default <Routes>[
   {
+    providers: [provideAxLazyElementsConfigs(configs)],
     path: '',
-    component: DynamicComponent,
-    providers: [importProvidersFrom(LazyElementsModule.forFeature(options))],
+    children: [
+      {
+        path: '',
+        component: DynamicComponent,
+      },
+    ],
   },
 ];

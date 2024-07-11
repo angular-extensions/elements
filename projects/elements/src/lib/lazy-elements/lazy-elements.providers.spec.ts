@@ -1,9 +1,11 @@
-import { Router } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { LazyElementsModule } from './lazy-elements.module';
+import {
+  provideAxLazyElements,
+  provideAxLazyElementsConfigs,
+} from './lazy-elements.providers';
 
 const config = {
   elementConfigs: [
@@ -22,39 +24,39 @@ const config = {
 };
 
 @NgModule({
-  imports: [LazyElementsModule.forFeature({})],
+  providers: [provideAxLazyElementsConfigs([])],
 })
-class ForFeatureModule {}
+class LazyFeature {}
 
 @NgModule({
-  imports: [LazyElementsModule.forRoot({})],
+  providers: [provideAxLazyElements({})],
 })
-class ForRootModule {}
+class LazyFeatureToTestRootConfig {}
 
-describe('LazyElementsModule', () => {
+describe('provideAxLazyElements', () => {
   let router: Router;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        LazyElementsModule.forRoot(config),
-        RouterTestingModule.withRoutes([
+      providers: [
+        provideAxLazyElements(config),
+        provideRouter([
           {
             path: 'feature',
-            loadChildren: () => ForFeatureModule,
+            loadChildren: () => LazyFeature,
           },
           {
             path: 'root',
-            loadChildren: () => ForRootModule,
+            loadChildren: () => LazyFeatureToTestRootConfig,
           },
         ]),
       ],
     });
-    router = TestBed.inject<Router>(Router);
+    router = TestBed.inject(Router);
     router.initialNavigation();
   });
 
-  it('forFeature() can be called twice', async () => {
+  it('provideAxLazyElementsConfigs() can be called twice', async () => {
     let caughtError: Error | null = null;
     try {
       await router.navigate(['/feature']);
@@ -64,7 +66,7 @@ describe('LazyElementsModule', () => {
     expect(caughtError).toBeNull();
   });
 
-  it('forRoot() cannot be called twice', async () => {
+  it('provideAxLazyElements() cannot be called twice', async () => {
     let caughtError: Error | null = null;
     try {
       await router.navigate(['/root']);
@@ -73,7 +75,7 @@ describe('LazyElementsModule', () => {
     }
     expect(caughtError).toBeDefined();
     expect(caughtError.message).toContain(
-      'LazyElementsModule.forRoot() called twice. Lazy feature modules should use LazyElementsModule.forFeature() instead.',
+      'provideAxLazyElements() called twice. Lazy feature modules should use provideAxLazyElementsConfigs() instead.',
     );
   });
 });

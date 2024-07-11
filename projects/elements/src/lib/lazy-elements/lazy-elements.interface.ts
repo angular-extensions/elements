@@ -42,3 +42,9 @@ export interface LazyElementRootOptions {
   preload?: boolean;
   hooks?: HooksConfig;
 }
+
+// provide APIs
+export interface LazyElementOptions {
+  elementConfigs?: ElementConfig[];
+  rootOptions?: LazyElementRootOptions;
+}

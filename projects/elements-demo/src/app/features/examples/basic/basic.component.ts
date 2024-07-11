@@ -5,8 +5,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { LazyElementsModule } from '@angular-extensions/elements';
 import { HighlightModule } from 'ngx-highlightjs';
+
+import { LazyElementDirective } from '@angular-extensions/elements';
 
 @Component({
   selector: 'demo-basic',
@@ -23,7 +24,7 @@ import { HighlightModule } from 'ngx-highlightjs';
     MatSliderModule,
     MatFormFieldModule,
     HighlightModule,
-    LazyElementsModule,
+    LazyElementDirective,
   ],
 })
 export class BasicComponent implements OnInit {
@@ -58,12 +59,12 @@ export class BasicComponent implements OnInit {
   }
 }
 
-const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-icon@0.18.0/mwc-icon.js?module'; -->
+const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-icon@0.27.0/mwc-icon.js?module'; -->
 <mwc-icon *axLazyElement="url; module: true">
   favorite
 </mwc-icon>`;
 
-const CODE_EXAMPLE_2 = `<!-- url = 'https://unpkg.com/@material/mwc-button@0.18.0/mwc-button.js?module' -->;
+const CODE_EXAMPLE_2 = `<!-- url = 'https://unpkg.com/@material/mwc-button@0.27.0/mwc-button.js?module' -->;
 <ng-template #loading>Loading...</ng-template>
 <mwc-button *axLazyElement="url; loadingTemplate: loading; module: true"
             (click)="increment()">
@@ -82,7 +83,7 @@ const CODE_EXAMPLE_4 = `<!-- https://unpkg.com/ink-components' -->;
   <ink-chart-eqn eqn="Math.sin(x)"></ink-chart-eqn>
 </ink-chart>`;
 
-const CODE_EXAMPLE_5 = `<!-- url = 'https://unpkg.com/@material/mwc-switch@0.18.0//mwc-switch.js?module'; -->
+const CODE_EXAMPLE_5 = `<!-- url = 'https://unpkg.com/@material/mwc-switch@0.27.0//mwc-switch.js?module'; -->
 <mwc-switch checked *axLazyElement="'mwc-switch'; module: true; importMap: true"></mwc-switch>`;
 
 const CODE_EXAMPLE_5_IMPORT_MAP = `
@@ -90,7 +91,7 @@ const CODE_EXAMPLE_5_IMPORT_MAP = `
 <script type="systemjs-importmap">
   {
     "imports": {
-      "mwc-switch": "https://unpkg.com/@material/mwc-switch@0.18.0/mwc-switch.js?module"
+      "mwc-switch": "https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module"
     }
   }
 </script>`;

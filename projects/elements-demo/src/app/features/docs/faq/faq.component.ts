@@ -46,7 +46,7 @@ const FAQ = [
     question:
       'When do we need to use <code>*axLazyElement="module: true"</code> flag?',
     answer:
-      'Some web components libraries might be distributed using ES modules, for example if we look at <a href="https://unpkg.com/@material/mwc-button@0.18.0/mwc-button.js?module" target="_blank">@material/mwc-button</a> we will see that it imports additional things like <code>@material/mwc-base</code> using import statement in its implementation. This means it will need to download multiple files compared to a single bundle when using Angular elements. To make this work, library has to generate <code>\t&#60;script type="module"></code> instead of just plain <code>\t&#60;script></code> tag.',
+      'Some web components libraries might be distributed using ES modules, for example if we look at <a href="https://unpkg.com/@material/mwc-button@0.27.0/mwc-button.js?module" target="_blank">@material/mwc-button</a> we will see that it imports additional things like <code>@material/mwc-base</code> using import statement in its implementation. This means it will need to download multiple files compared to a single bundle when using Angular elements. To make this work, library has to generate <code>\t&#60;script type="module"></code> instead of just plain <code>\t&#60;script></code> tag.',
   },
   {
     question: 'Angular elements / web components / custom elements / what?',

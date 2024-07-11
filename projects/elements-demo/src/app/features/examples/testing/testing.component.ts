@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LazyElementsModule } from '@angular-extensions/elements';
+import { LazyElementDirective } from '@angular-extensions/elements';
 import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
@@ -8,7 +8,7 @@ import { HighlightModule } from 'ngx-highlightjs';
   templateUrl: './testing.component.html',
   styleUrls: ['./testing.component.scss'],
   standalone: true,
-  imports: [RouterLink, LazyElementsModule, HighlightModule],
+  imports: [RouterLink, LazyElementDirective, HighlightModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TestingComponent implements OnInit {
