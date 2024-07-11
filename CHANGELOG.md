@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.1.0](https://github.com/angular-extensions/elements/compare/v18.0.0...v18.1.0) (2024-07-11)
+
+### Features
+
+- **lib:** add provideAxLazyElements() & provideAxLazyElementsConfigs() (use without NgModules) ([7822155](https://github.com/angular-extensions/elements/commit/782215535e0cbc3dbb0aa82eeb2953f503754328))
+
 ## [18.0.0](https://github.com/angular-extensions/elements/compare/v17.1.1...v18.0.0) (2024-07-11)
 
 ### ⚠ BREAKING CHANGES
