@@ -10,9 +10,10 @@ import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-basic',
+  standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
-  standalone: true,
   imports: [
     NgIf,
     JsonPipe,
@@ -24,7 +25,6 @@ import { HighlightModule } from 'ngx-highlightjs';
     HighlightModule,
     LazyElementsModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BasicComponent implements OnInit {
   // example toggles

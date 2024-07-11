@@ -5,6 +5,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LazyElementDynamicDirective } from './lazy-element-dynamic.directive';
 
 @Component({
+  standalone: true,
+  imports: [LazyElementDynamicDirective],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <div
       *axLazyElementDynamic="
@@ -43,8 +46,8 @@ describe('LazyElementDirectiveDynamic', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [TestHostComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [TestHostComponent, LazyElementDynamicDirective],
     }).compileComponents();
   });
 

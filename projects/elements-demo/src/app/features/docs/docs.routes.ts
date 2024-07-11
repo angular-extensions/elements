@@ -1,8 +1,8 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { DocsComponent } from './docs.component';
 
-export default [
+export default <Routes>[
   {
     path: '',
     redirectTo: 'getting-started',
@@ -43,4 +43,4 @@ export default [
       },
     ],
   },
-] as Route[];
+];

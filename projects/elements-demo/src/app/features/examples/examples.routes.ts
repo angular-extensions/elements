@@ -1,8 +1,8 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { ExamplesComponent } from './examples.component';
 
-export default [
+export default <Routes>[
   {
     path: '',
     redirectTo: 'basic',
@@ -30,4 +30,4 @@ export default [
       },
     ],
   },
-] as Route[];
+];

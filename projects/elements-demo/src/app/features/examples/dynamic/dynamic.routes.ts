@@ -1,5 +1,5 @@
 import { importProvidersFrom } from '@angular/core';
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 import {
   LazyElementModuleOptions,
   LazyElementsModule,
@@ -16,10 +16,10 @@ const options: LazyElementModuleOptions = {
   ],
 };
 
-export default [
+export default <Routes>[
   {
     path: '',
     component: DynamicComponent,
     providers: [importProvidersFrom(LazyElementsModule.forFeature(options))],
   },
-] as Route[];
+];

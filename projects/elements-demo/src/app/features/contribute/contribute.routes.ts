@@ -1,5 +1,5 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { ContributeComponent } from './contribute.component';
 
-export default [{ path: '', component: ContributeComponent }] as Route[];
+export default <Routes>[{ path: '', component: ContributeComponent }];

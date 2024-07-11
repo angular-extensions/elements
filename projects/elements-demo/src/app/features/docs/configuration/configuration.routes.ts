@@ -1,5 +1,5 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { ConfigurationComponent } from './configuration.component';
 
-export default [{ path: '', component: ConfigurationComponent }] as Route[];
+export default <Routes>[{ path: '', component: ConfigurationComponent }];

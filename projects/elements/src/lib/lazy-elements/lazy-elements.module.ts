@@ -5,7 +5,6 @@ import {
   Optional,
   SkipSelf,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import {
   ElementConfig,
@@ -36,8 +35,7 @@ export function createLazyElementRootGuard(
 }
 
 @NgModule({
-  declarations: [LazyElementDirective, LazyElementDynamicDirective],
-  imports: [CommonModule],
+  imports: [LazyElementDirective, LazyElementDynamicDirective],
   exports: [LazyElementDirective, LazyElementDynamicDirective],
 })
 export class LazyElementsModule {

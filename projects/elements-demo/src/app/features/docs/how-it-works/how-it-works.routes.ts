@@ -1,5 +1,5 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { HowItWorksComponent } from './how-it-works.component';
 
-export default [{ path: '', component: HowItWorksComponent }] as Route[];
+export default <Routes>[{ path: '', component: HowItWorksComponent }];

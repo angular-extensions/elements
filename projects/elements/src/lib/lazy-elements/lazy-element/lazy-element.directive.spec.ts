@@ -1,36 +1,37 @@
 import { jest } from '@jest/globals';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LazyElementsModule } from '../lazy-elements.module';
 import { LazyElementsLoaderService } from '../lazy-elements-loader.service';
+import { LazyElementDirective } from './lazy-element.directive';
 
 @Component({
+  standalone: true,
   template: ` <p class="loading">Spinner...</p> `,
 })
 class SpinnerTestComponent {}
 
-@NgModule({
-  declarations: [SpinnerTestComponent],
-})
-class TestModule {}
-
 @Component({
+  standalone: true,
+  imports: [SpinnerTestComponent, LazyElementDirective],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <some-element
       *axLazyElement="'http://elements.com/some-element'"
     ></some-element>
-    <div *ngIf="addSameElement">
+    @if (addSameElement) {
       <some-element
         *axLazyElement="'http://elements.com/some-element'"
       ></some-element>
-    </div>
-    <div *ngIf="addOtherElement">
+    }
+    @if (addOtherElement) {
       <some-other-element
         *axLazyElement="'http://elements.com/some-other-element'"
       ></some-other-element>
-    </div>
-    <div *ngIf="useLoadingTemplate">
+    }
+
+    @if (useLoadingTemplate) {
       <ng-template #loading>
         <p class="loading">Loading...</p>
       </ng-template>
@@ -40,8 +41,9 @@ class TestModule {}
           loadingTemplate: loading
         "
       ></some-element>
-    </div>
-    <div *ngIf="useErrorTemplate">
+    }
+
+    @if (useErrorTemplate) {
       <ng-template #loading>
         <p class="loading">Loading...</p>
       </ng-template>
@@ -55,26 +57,30 @@ class TestModule {}
           errorTemplate: error
         "
       ></some-element>
-    </div>
-    <div *ngIf="useModule">
+    }
+
+    @if (useModule) {
       <some-element
         *axLazyElement="'http://elements.com/some-element-module'; module: true"
       ></some-element>
       <some-configured-module-element
         *axLazyElement
       ></some-configured-module-element>
-    </div>
-    <div *ngIf="useImportMap">
+    }
+
+    @if (useImportMap) {
       <some-element
         *axLazyElement="'some-element'; importMap: true"
       ></some-element>
-    </div>
-    <div *ngIf="useElementConfig">
+    }
+
+    @if (useElementConfig) {
       <some-configured-element *axLazyElement></some-configured-element>
-    </div>
-    <div *ngIf="useUrlBinding">
+    }
+
+    @if (useUrlBinding) {
       <some-configured-element *axLazyElement="url"></some-configured-element>
-    </div>
+    }
   `,
 })
 class TestHostComponent {
@@ -111,7 +117,7 @@ describe('LazyElementDirective', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        TestModule,
+        TestHostComponent,
         LazyElementsModule.forRoot({
           elementConfigs: [
             {
@@ -129,7 +135,6 @@ describe('LazyElementDirective', () => {
         }),
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [TestHostComponent],
     }).compileComponents();
   });
 

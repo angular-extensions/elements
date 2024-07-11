@@ -1,13 +1,9 @@
-.project-name {
-  padding: 0 0 0 10px;
+mat-toolbar {
+  gap: 10px;
 }
 
 .spacer {
   flex: 1 0 auto;
-}
-
-button {
-  margin: 0 0 0 10px;
 }
 
 .menu {
@@ -27,16 +23,6 @@ a {
   &:hover {
     color: #fff;
   }
-}
-
-iframe {
-  width: 160px;
-  height: 20px;
-  margin: 0 0 0 10px;
-}
-
-img {
-  margin: 0 0 0 10px;
 }
 
 :host-context(.responsive) {

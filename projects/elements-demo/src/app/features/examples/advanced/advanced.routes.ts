@@ -1,5 +1,5 @@
 import { importProvidersFrom } from '@angular/core';
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 import {
   ElementConfig,
   LAZY_ELEMENT_CONFIGS,
@@ -65,7 +65,7 @@ const options: LazyElementModuleOptions = {
   ],
 };
 
-export default [
+export default <Routes>[
   {
     path: '',
     component: AdvancedComponent,
@@ -78,4 +78,4 @@ export default [
       },
     ],
   },
-] as Route[];
+];

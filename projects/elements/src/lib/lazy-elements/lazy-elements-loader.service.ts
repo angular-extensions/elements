@@ -30,13 +30,20 @@ interface Notifier {
   providedIn: 'root',
 })
 export class LazyElementsLoaderService implements OnDestroy {
-  static controller: any = new AbortController();
-  configs: ElementConfig[] = [];
+  static controller = new AbortController();
 
-  private readonly errorHandler = inject(ErrorHandler);
-  private readonly registry = inject(LAZY_ELEMENTS_REGISTRY);
+  readonly #errorHandler = inject(ErrorHandler);
+  readonly #registry = inject(LAZY_ELEMENTS_REGISTRY);
   public readonly options =
     inject(LAZY_ELEMENT_ROOT_OPTIONS, { optional: true }) ?? {};
+
+  configs: ElementConfig[] = [];
+
+  @HostListener('unloaded')
+  ngOnDestroy(): void {
+    LazyElementsLoaderService.controller?.abort();
+    LazyElementsLoaderService.controller = null;
+  }
 
   addConfigs(newConfigs: ElementConfig[]) {
     newConfigs.forEach((newConfig) => {
@@ -113,8 +120,8 @@ export class LazyElementsLoaderService implements OnDestroy {
       }
     }
 
-    if (!this.hasElement(url)) {
-      const notifier = this.addElement(url);
+    if (!this.#hasElement(url)) {
+      const notifier = this.#addElement(url);
 
       const beforeLoadHook =
         hooksConfig?.beforeLoad ??
@@ -126,7 +133,7 @@ export class LazyElementsLoaderService implements OnDestroy {
         this.options?.hooks?.afterLoad;
 
       if (importMap) {
-        url = await this.resolveImportMap(url);
+        url = await this.#resolveImportMap(url);
       }
 
       const script = document.createElement('script') as HTMLScriptElement;
@@ -136,7 +143,7 @@ export class LazyElementsLoaderService implements OnDestroy {
       script.src = getPolicy()?.createScriptURL(url) ?? url;
       const onLoad = () => {
         if (afterLoadHook) {
-          this.handleHook(afterLoadHook, tag)
+          this.#handleHook(afterLoadHook, tag)
             .then(notifier.resolve)
             .catch(notifier.reject);
         } else {
@@ -151,7 +158,7 @@ export class LazyElementsLoaderService implements OnDestroy {
         // Caretaker note: don't put it before the `reject` and `cleanup` since the user may have some
         // custom error handler that will re-throw the error through `throw error`. Hence the code won't
         // be executed, and the promise won't be rejected.
-        this.errorHandler.handleError(error);
+        this.#errorHandler.handleError(error);
       };
       // The `load` and `error` event listeners capture `this`. That's why they have to be removed manually.
       // Otherwise, the `LazyElementsLoaderService` is not going to be GC'd.
@@ -166,34 +173,34 @@ export class LazyElementsLoaderService implements OnDestroy {
         signal: LazyElementsLoaderService.controller?.signal,
       } as AddEventListenerOptions);
       if (beforeLoadHook) {
-        this.handleHook(beforeLoadHook, tag)
+        this.#handleHook(beforeLoadHook, tag)
           .then(() => document.body.appendChild(script))
           .catch(notifier.reject);
       } else {
         document.body.appendChild(script);
       }
     }
-    return this.registry.get(this.stripUrlProtocol(url));
+    return this.#registry.get(this.#stripUrlProtocol(url));
   }
 
-  private addElement(url: string): Notifier {
+  #addElement(url: string): Notifier {
     let notifier: Notifier;
-    this.registry.set(
-      this.stripUrlProtocol(url),
+    this.#registry.set(
+      this.#stripUrlProtocol(url),
       new Promise<void>((resolve, reject) => (notifier = { resolve, reject })),
     );
     return notifier!;
   }
 
-  private hasElement(url: string): boolean {
-    return this.registry.has(this.stripUrlProtocol(url));
+  #hasElement(url: string): boolean {
+    return this.#registry.has(this.#stripUrlProtocol(url));
   }
 
-  private stripUrlProtocol(url: string): string {
+  #stripUrlProtocol(url: string): string {
     return url.replace(/https?:\/\//, '');
   }
 
-  private handleHook(hook: Hook, tag: string): Promise<void> {
+  #handleHook(hook: Hook, tag: string): Promise<void> {
     try {
       return Promise.resolve(hook(tag));
     } catch (err) {
@@ -201,7 +208,7 @@ export class LazyElementsLoaderService implements OnDestroy {
     }
   }
 
-  private async resolveImportMap(url: string) {
+  async #resolveImportMap(url: string) {
     const System = (window as any).System;
     if (System) {
       await System.prepareImport();
@@ -212,11 +219,5 @@ export class LazyElementsLoaderService implements OnDestroy {
       );
     }
     return url;
-  }
-
-  @HostListener('unloaded')
-  public ngOnDestroy(): void {
-    LazyElementsLoaderService.controller?.abort();
-    LazyElementsLoaderService.controller = null;
   }
 }

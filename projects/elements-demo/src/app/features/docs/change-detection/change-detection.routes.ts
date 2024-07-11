@@ -1,5 +1,5 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { ChangeDetectionComponent } from './change-detection.component';
 
-export default [{ path: '', component: ChangeDetectionComponent }] as Route[];
+export default <Routes>[{ path: '', component: ChangeDetectionComponent }];
