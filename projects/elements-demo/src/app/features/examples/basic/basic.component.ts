@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { JsonPipe, NgIf } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
@@ -8,6 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { HighlightModule } from 'ngx-highlightjs';
 
 import { LazyElementDirective } from '@angular-extensions/elements';
+
+import { ExampleComponent } from '../../../shared/example/example.component';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'demo-basic',
@@ -25,16 +28,11 @@ import { LazyElementDirective } from '@angular-extensions/elements';
     MatFormFieldModule,
     HighlightModule,
     LazyElementDirective,
+    ExampleComponent,
+    SpinnerComponent,
   ],
 })
-export class BasicComponent implements OnInit {
-  // example toggles
-  example1 = false;
-  example2 = false;
-  example3 = false;
-  example4 = false;
-  example5 = false;
-
+export class BasicComponent {
   // example code examples
   codeExample1 = CODE_EXAMPLE_1;
   codeExample2 = CODE_EXAMPLE_2;
@@ -47,8 +45,6 @@ export class BasicComponent implements OnInit {
   counter = 0;
   xAxis = [-6.28, 6.28];
   yAxis = [-1, 1];
-
-  ngOnInit() {}
 
   increment() {
     this.counter++;

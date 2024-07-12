@@ -38,32 +38,6 @@
     flex-direction: column;
     margin: 0 0 50px 0;
 
-    .implementation {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-      margin: 0 20px 20px 0;
-      border: 2px solid #eee;
-      padding: 20px;
-
-      p {
-        margin: 10px 0 0 0;
-      }
-
-      .controls {
-        display: flex;
-        align-items: center;
-
-        .values {
-          display: inline-block;
-          width: 100px;
-          text-align: center;
-        }
-      }
-    }
-
     .description {
       flex: 1.5;
     }

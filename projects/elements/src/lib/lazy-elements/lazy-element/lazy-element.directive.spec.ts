@@ -8,7 +8,9 @@ import { LazyElementDirective } from './lazy-element.directive';
 
 @Component({
   standalone: true,
-  template: ` <p class="loading">Spinner...</p> `,
+  template: `
+    <p class="loading">Spinner...</p>
+  `,
 })
 class SpinnerTestComponent {}
 

@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HighlightModule } from 'ngx-highlightjs';
 import { LazyElementDynamicDirective } from '@angular-extensions/elements';
+import { ExampleComponent } from '../../../shared/example/example.component';
 
 @Component({
   selector: 'demo-dynamic',
@@ -23,15 +24,11 @@ import { LazyElementDynamicDirective } from '@angular-extensions/elements';
     FormsModule,
     LazyElementDynamicDirective,
     HighlightModule,
+    ExampleComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DynamicComponent implements OnInit {
-  // example toggles
-  example1 = false;
-  example2 = false;
-  example3 = false;
-
   // example code examples
   codeExample1 = CODE_EXAMPLE_1;
   codeExample2module = CODE_EXAMPLE_2_MODULE;

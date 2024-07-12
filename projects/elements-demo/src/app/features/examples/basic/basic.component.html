@@ -5,9 +5,9 @@
     <li><a routerLink="." fragment="loading-template">Loading template</a></li>
     <li><a routerLink="." fragment="error-template">Error template</a></li>
     <li>
-      <a routerLink="." fragment="advanced-angular-template-binding"
-        >Advanced Angular template bindings</a
-      >
+      <a routerLink="." fragment="advanced-angular-template-binding">
+        Advanced Angular template bindings
+      </a>
     </li>
   </ul>
 </div>
@@ -17,99 +17,97 @@
 
   <h2 id="basic-usage">Basic usage</h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example1">
-      <button mat-flat-button color="accent" (click)="example1 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example1">
-      <mwc-icon
-        *axLazyElement="
-          'https://unpkg.com/&#64;material/mwc-icon&#64;0.27.0/mwc-icon.js?module';
-          module: true
-        "
-      >
-        favorite
-      </mwc-icon>
-    </div>
+    <demo-example>
+      <ng-template>
+        <mwc-icon
+          *axLazyElement="
+            'https://unpkg.com/&#64;material/mwc-icon&#64;0.27.0/mwc-icon.js?module';
+            module: true
+          "
+        >
+          favorite
+        </mwc-icon>
+      </ng-template>
+    </demo-example>
+
     <div class="description">
       <p>
         The most simple example, all we need is to use element tag, for example
-        <code>&#60;mwc-icon></code> and add
-        <code>*axLazyElement</code> directive with the url pointing to the
-        element implementation.
+        <code>&#60;mwc-icon></code>
+        and add
+        <code>*axLazyElement</code>
+        directive with the url pointing to the element implementation.
       </p>
       <pre [highlight]="codeExample1" language="typescript"></pre>
     </div>
   </div>
 
   <h2 id="loading-template">
-    Use loading <code>&#60;ng-template #loading></code>
+    Use loading
+    <code>&#60;ng-template #loading></code>
   </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example2">
-      <button mat-flat-button color="accent" (click)="example2 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example2">
-      <ng-template #loading>Loading...</ng-template>
-      <mwc-button
-        *axLazyElement="
-          'https://unpkg.com/&#64;material/mwc-button&#64;0.27.0/mwc-button.js?module';
-          loadingTemplate: loading;
-          module: true
-        "
-        raised
-        (click)="increment()"
-      >
-        Increment
-      </mwc-button>
-      <p>Counter: {{ counter }}</p>
-    </div>
+    <demo-example>
+      <ng-template>
+        <ng-template #loading><demo-spinner /></ng-template>
+        <mwc-button
+          *axLazyElement="
+            'https://unpkg.com/&#64;material/mwc-button&#64;0.27.0/mwc-button.js?module';
+            loadingTemplate: loading;
+            module: true
+          "
+          raised
+          (click)="increment()"
+        >
+          Increment
+        </mwc-button>
+        <p>Counter: {{ counter }}</p>
+      </ng-template>
+    </demo-example>
     <div class="description">
       <p>
         In this example we're loading
-        <code>&#60;mwc-button></code> using the
-        <code>*axLazyElement</code> directive but we're also adding
-        <code>&#60;ng-template #loading>Loading...&#60;ng-template></code> which
-        will be displayed before the element was loaded (depending on your
+        <code>&#60;mwc-button></code>
+        using the
+        <code>*axLazyElement</code>
+        directive but we're also adding
+        <code>&#60;ng-template #loading>Loading...&#60;ng-template></code>
+        which will be displayed before the element was loaded (depending on your
         connection speed)
       </p>
       <pre [highlight]="codeExample2" language="typescript"></pre>
     </div>
   </div>
 
-  <h2 id="error-template">Use error <code>&#60;ng-template #error></code></h2>
+  <h2 id="error-template">
+    Use error
+    <code>&#60;ng-template #error></code>
+  </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example3">
-      <button mat-flat-button color="accent" (click)="example3 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example3">
-      <ng-template #loading>Loading...</ng-template>
-      <ng-template #error>Loading failed...</ng-template>
-      <mwc-button
-        *axLazyElement="
-          'https://unpkg.com/wrong-url.js?module';
-          loadingTemplate: loading;
-          errorTemplate: error;
-          module: true
-        "
-        raised
-      >
-        Submit
-      </mwc-button>
-    </div>
+    <demo-example>
+      <ng-template>
+        <ng-template #loading>Loading...</ng-template>
+        <ng-template #error>Loading failed...</ng-template>
+        <mwc-button
+          *axLazyElement="
+            'https://unpkg.com/wrong-url.js?module';
+            loadingTemplate: loading;
+            errorTemplate: error;
+            module: true
+          "
+          raised
+        >
+          Submit
+        </mwc-button>
+      </ng-template>
+    </demo-example>
     <div class="description">
       <p>
         In this example we're loading
-        <code>&#60;mwc-button></code> using the
-        <code>*axLazyElement</code> directive but we're also adding
+        <code>&#60;mwc-button></code>
+        using the
+        <code>*axLazyElement</code>
+        directive but we're also adding
         <code>&#60;ng-template #error>Loading failed...&#60;ng-template></code>
         which will be displayed because the loading request will fail (wrong
         url)
@@ -122,62 +120,62 @@
     Advanced binding (objects instead of primitives)
   </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example4">
-      <button mat-flat-button color="accent" (click)="example4 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example4">
-      <div class="controls">
-        <mat-label
-          >Adjust the <code>xAxis</code> array values
-          <code class="values">{{ xAxis | json }}</code></mat-label
+    <demo-example>
+      <ng-template>
+        <div>
+          <mat-label>
+            Adjust the
+            <code>xAxis</code>
+            array values
+            <code style="display: inline-block; width: 100px">
+              {{ xAxis | json }}
+            </code>
+          </mat-label>
+          <mat-slider max="10" min="1" step="0.5" thumbLabel #ngSlider>
+            <input
+              matSliderThumb
+              (input)="onSliderChange(ngSliderThumb.value)"
+              #ngSliderThumb="matSliderThumb"
+              value="6.28"
+            />
+          </mat-slider>
+        </div>
+        <ng-template #loading>Loading...</ng-template>
+        <ng-template #error>Loading failed...</ng-template>
+        <ink-chart
+          *axLazyElement="
+            'https://unpkg.com/ink-components';
+            loadingTemplate: loading;
+            errorTemplate: error
+          "
+          xlabel="x"
+          ylabel="sin(x)"
+          x-axis-location="origin"
+          y-axis-location="origin"
+          [xlim]="xAxis"
+          [ylim]="yAxis"
         >
-        <mat-slider
-          class="example-margin"
-          max="10"
-          min="1"
-          step="0.5"
-          thumbLabel
-          #ngSlider
-        >
-          <input
-            matSliderThumb
-            (input)="onSliderChange(ngSliderThumb.value)"
-            #ngSliderThumb="matSliderThumb"
-            value="6.28"
-          />
-        </mat-slider>
-      </div>
-      <ng-template #loading>Loading...</ng-template>
-      <ng-template #error>Loading failed...</ng-template>
-      <ink-chart
-        *axLazyElement="
-          'https://unpkg.com/ink-components';
-          loadingTemplate: loading;
-          errorTemplate: error
-        "
-        xlabel="x"
-        ylabel="sin(x)"
-        x-axis-location="origin"
-        y-axis-location="origin"
-        [xlim]="xAxis"
-        [ylim]="yAxis"
-      >
-        <ink-chart-eqn eqn="Math.sin(x)"></ink-chart-eqn>
-      </ink-chart>
-    </div>
+          <ink-chart-eqn eqn="Math.sin(x)"></ink-chart-eqn>
+        </ink-chart>
+      </ng-template>
+    </demo-example>
+
     <div class="description">
       <p>
         In this example we're loading
-        <a href="https://components.ink/" target="_blank">Ink</a> chart element!
-        Ink comes with all elements in single bundle so we can use multiple Ink
-        elements while using <code>*axLazyElement</code> directive only on the
-        outmost element. Besides that in our Angular component we have defined
-        <code>xAxix</code> array with the <code>[-6.28, 6.28]</code> values
-        which are passed in the element using standard Angular property binding
-        <code>[xlim]="xAxis"</code>.
+        <a href="https://components.ink/" target="_blank">Ink</a>
+        chart element! Ink comes with all elements in single bundle so we can
+        use multiple Ink elements while using
+        <code>*axLazyElement</code>
+        directive only on the outmost element. Besides that in our Angular
+        component we have defined
+        <code>xAxix</code>
+        array with the
+        <code>[-6.28, 6.28]</code>
+        values which are passed in the element using standard Angular property
+        binding
+        <code>[xlim]="xAxis"</code>
+        .
       </p>
       <pre [highlight]="codeExample4" language="typescript"></pre>
     </div>
@@ -185,34 +183,35 @@
 
   <h2 id="import-maps">Using import maps (SystemJS is required)</h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example5">
-      <button mat-flat-button color="accent" (click)="example5 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example5">
-      <mwc-switch
-        checked
-        *axLazyElement="'mwc-switch'; module: true; importMap: true"
-      ></mwc-switch>
-    </div>
+    <demo-example>
+      <ng-template>
+        <mwc-switch
+          checked
+          *axLazyElement="'mwc-switch'; module: true; importMap: true"
+        ></mwc-switch>
+      </ng-template>
+    </demo-example>
     <div class="description">
       <p>
         In this example we are using axLazyElement with Import Maps to load
-        <code>&#60;mwc-switch></code>. Any key can be used in the URL that is
-        mapped to a import map. For this feature to work properly a peer
-        dependency of having
-        <a href="https://github.com/systemjs/systemjs" target="_blank"
-          >SystemJS</a
-        >
+        <code>&#60;mwc-switch></code>
+        . Any key can be used in the URL that is mapped to a import map. For
+        this feature to work properly a peer dependency of having
+        <a href="https://github.com/systemjs/systemjs" target="_blank">
+          SystemJS
+        </a>
         globally loaded needs to be satisfied. For instance your index.html may
         have the following code:
       </p>
       <pre [highlight]="codeExample5ImportMap" language="typescript"></pre>
       <p>
-        So when adding <code>&#60;mwc-switch></code> with
-        <code>*axLazyElement </code> with the <code>importMap</code> flag set to
+        So when adding
+        <code>&#60;mwc-switch></code>
+        with
+        <code>*axLazyElement</code>
+        with the
+        <code>importMap</code>
+        flag set to
         <code>true</code>
         the directive will look for the key stored in the import map and load
         the correct script.

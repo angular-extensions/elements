@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HighlightModule } from 'ngx-highlightjs';
 
+import { ExampleComponent } from '../../../shared/example/example.component';
+
 @Component({
   selector: 'demo-advanced',
   templateUrl: './advanced.component.html',
@@ -26,18 +28,11 @@ import { HighlightModule } from 'ngx-highlightjs';
     MatButtonModule,
     HighlightModule,
     LazyElementDirective,
+    ExampleComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdvancedComponent implements OnInit {
-  // example toggles
-  example1 = false;
-  example2 = false;
-  example3 = false;
-  example4 = false;
-  example6 = false;
-  example7 = false;
-
   // example code examples
   codeExample1module = CODE_EXAMPLE_1_MODULE;
   codeExample1html = CODE_EXAMPLE_1_HTML;

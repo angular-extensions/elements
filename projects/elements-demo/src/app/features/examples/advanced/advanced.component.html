@@ -2,27 +2,28 @@
   <h3>Quick navigation</h3>
   <ul>
     <li>
-      <a routerLink="." fragment="feature-module-pre-configuration"
-        >Feature module pre-configuration</a
-      >
+      <a routerLink="." fragment="feature-module-pre-configuration">
+        Feature module pre-configuration
+      </a>
     </li>
     <li>
-      <a routerLink="." fragment="feature-module-dynamic-pre-configuration"
-        >Feature module dynamic pre-configuration</a
-      >
+      <a routerLink="." fragment="feature-module-dynamic-pre-configuration">
+        Feature module dynamic pre-configuration
+      </a>
     </li>
     <li>
-      <a routerLink="." fragment="inline-options"
-        >Pre-configuration with inline options</a
-      >
+      <a routerLink="." fragment="inline-options">
+        Pre-configuration with inline options
+      </a>
     </li>
     <li>
       <a routerLink="." fragment="is-module-option">The "isModule" option</a>
     </li>
     <li>
-      <a routerLink="." fragment="global-pre-configuration-with-for-root"
-        >Global pre-configuration with <code>forRoot()</code></a
-      >
+      <a routerLink="." fragment="global-pre-configuration-with-for-root">
+        Global pre-configuration with
+        <code>forRoot()</code>
+      </a>
     </li>
     <li><a routerLink="." fragment="preloading">Element pre-loading</a></li>
     <li><a routerLink="." fragment="hooks">Hooks</a></li>
@@ -36,23 +37,23 @@
     Elements configured in a feature module
   </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example1">
-      <button mat-flat-button color="accent" (click)="example1 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example1">
-      <wired-button *axLazyElement (click)="increment()">Click me</wired-button>
-      <p>Counter: {{ counter }}</p>
-    </div>
+    <demo-example>
+      <ng-template>
+        <wired-button *axLazyElement (click)="increment()">
+          Click me
+        </wired-button>
+        <p>Counter: {{ counter }}</p>
+      </ng-template>
+    </demo-example>
     <div class="description">
       <p>
         In this example we're pre-configuring
-        <code>LazyElementsModule</code> with the element config. That way we
-        don't have to specify url of the element in the
-        <code>*axLazyElement</code> directive. The element will be lazy-loaded
-        the same way as if we specified url directly.
+        <code>LazyElementsModule</code>
+        with the element config. That way we don't have to specify url of the
+        element in the
+        <code>*axLazyElement</code>
+        directive. The element will be lazy-loaded the same way as if we
+        specified url directly.
       </p>
       <pre
         [highlight]="codeExample1html"
@@ -67,22 +68,21 @@
     Dynamic configuration resolved at runtime
   </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example7">
-      <button mat-flat-button color="accent" (click)="example7 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example7">
-      <wired-toggle *axLazyElement (change)="toggle()">Toggle me</wired-toggle>
-      <p>Value: {{ flag }}</p>
-    </div>
+    <demo-example>
+      <ng-template>
+        <wired-toggle *axLazyElement (change)="toggle()">
+          Toggle me
+        </wired-toggle>
+        <p>Value: {{ flag }}</p>
+      </ng-template>
+    </demo-example>
     <div class="description">
       <p>
         In this example we're pre-configuring
-        <code>LazyElementsModule</code> with the element config that is provided
-        during runtime. We're using <code>LAZY_ELEMENT_CONFIGS</code> token as a
-        multi provider with a custom factory function.
+        <code>LazyElementsModule</code>
+        with the element config that is provided during runtime. We're using
+        <code>LAZY_ELEMENT_CONFIGS</code>
+        token as a multi provider with a custom factory function.
       </p>
       <pre
         [highlight]="codeExample7html"
@@ -97,26 +97,32 @@
     Elements configured in a feature module with HTML inline options
   </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example2">
-      <button mat-flat-button color="accent" (click)="example2 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example2">
-      <ng-template #loading>Loading...</ng-template>
-      <mwc-checkbox
-        *axLazyElement="null; module: true; loadingTemplate: loading"
-        >Click me</mwc-checkbox
-      >
-    </div>
+    <demo-example>
+      <ng-template>
+        <ng-template #loading>Loading...</ng-template>
+        <mwc-checkbox
+          *axLazyElement="null; module: true; loadingTemplate: loading"
+        >
+          Click me
+        </mwc-checkbox>
+      </ng-template>
+    </demo-example>
+
     <div class="description">
       <p>
-        We don't have to specify <code>url</code> when using pre-configured
-        <code>LazyElementsModule</code>. We still might need to pass in
-        <code>null</code> url into <code>*axLazyElement</code> directive in case
-        we want to use other options like <code>module</code> or
-        <code>loadingTemplate</code>.
+        We don't have to specify
+        <code>url</code>
+        when using pre-configured
+        <code>LazyElementsModule</code>
+        . We still might need to pass in
+        <code>null</code>
+        url into
+        <code>*axLazyElement</code>
+        directive in case we want to use other options like
+        <code>module</code>
+        or
+        <code>loadingTemplate</code>
+        .
       </p>
       <pre
         [highlight]="codeExample2html"
@@ -128,26 +134,27 @@
   </div>
 
   <h2 id="is-module-option">
-    Elements configured in a feature module with <code>isModule</code> option
+    Elements configured in a feature module with
+    <code>isModule</code>
+    option
   </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example3">
-      <button mat-flat-button color="accent" (click)="example3 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example3">
-      <ng-template #loading>Loading...</ng-template>
-      <mwc-switch *axLazyElement="null; loadingTemplate: loading">
-        Click me</mwc-switch
-      >
-    </div>
+    <demo-example>
+      <ng-template>
+        <ng-template #loading>Loading...</ng-template>
+        <mwc-switch *axLazyElement="null; loadingTemplate: loading">
+          Click me
+        </mwc-switch>
+      </ng-template>
+    </demo-example>
     <div class="description">
       <p>
-        We can also pre-configure <code>isModule</code> flag by passing it to
-        the <code>LazyElementsModule</code>config. That way we don't have to
-        specify it in the template for module style elements!
+        We can also pre-configure
+        <code>isModule</code>
+        flag by passing it to the
+        <code>LazyElementsModule</code>
+        config. That way we don't have to specify it in the template for module
+        style elements!
       </p>
       <pre
         [highlight]="codeExample3html"
@@ -159,29 +166,32 @@
   </div>
 
   <h2 id="global-pre-configuration-with-for-root">
-    Elements configured in <code>AppModule</code> or
-    <code>CoreModule</code> using <code>forRoot</code>
+    Elements configured in
+    <code>AppModule</code>
+    or
+    <code>CoreModule</code>
+    using
+    <code>forRoot</code>
   </h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example4">
-      <button mat-flat-button color="accent" (click)="example4 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example4">
-      <mwc-fab icon="code" *axLazyElement></mwc-fab>
-    </div>
+    <demo-example>
+      <ng-template><mwc-fab icon="code" *axLazyElement></mwc-fab></ng-template>
+    </demo-example>
     <div class="description">
       <p>
         Some options can be pre-configured for the whole application using
-        <code>LazyElementsModule.forRoot()</code>. This is usually done in
-        <code>AppModule</code> or in the <code>CoreModule</code>. That way we
-        don't have to specify this options in the feature modules while still
-        preserving posibility to override them if necessary. The
-        <code>forRoot()</code> accepts also <code>elementConfigs</code> so they
-        can be pre-configured centrally removing the need to configure them in
-        feature modules or inline in the templates.
+        <code>LazyElementsModule.forRoot()</code>
+        . This is usually done in
+        <code>AppModule</code>
+        or in the
+        <code>CoreModule</code>
+        . That way we don't have to specify this options in the feature modules
+        while still preserving posibility to override them if necessary. The
+        <code>forRoot()</code>
+        accepts also
+        <code>elementConfigs</code>
+        so they can be pre-configured centrally removing the need to configure
+        them in feature modules or inline in the templates.
       </p>
       <pre
         [highlight]="codeExample4html"
@@ -197,8 +207,9 @@
     <div class="implementation">
       <div>
         <button mat-flat-button color="accent" (click)="preload()">
-          Preload everything</button
-        >&nbsp;
+          Preload everything
+        </button>
+        &nbsp;
         <button
           class="additional-btn"
           mat-flat-button
@@ -211,13 +222,16 @@
     </div>
     <div class="description">
       <p>
-        You can inject <code>LazyElementLoaderService</code> and call the
-        <code>preload</code> method to preload all the configured modules, or
-        specify the list of <code>tags</code> you want to preload. You can try
-        to refresh the page, preload elements and then try previous examples.
-        Notice how they show elements immediately (depending on the newtrowk
-        conditions ) because they were pre-loaded! Check out the dev tools
-        network tab to see it in action...
+        You can inject
+        <code>LazyElementLoaderService</code>
+        and call the
+        <code>preload</code>
+        method to preload all the configured modules, or specify the list of
+        <code>tags</code>
+        you want to preload. You can try to refresh the page, preload elements
+        and then try previous examples. Notice how they show elements
+        immediately (depending on the newtrowk conditions ) because they were
+        pre-loaded! Check out the dev tools network tab to see it in action...
       </p>
       <pre
         [highlight]="codeExample5html"
@@ -230,18 +244,14 @@
 
   <h2 id="hooks">Hooks</h2>
   <div class="content">
-    <div class="implementation" *ngIf="!example6">
-      <button mat-flat-button color="accent" (click)="example6 = true">
-        <mat-icon>play_arrow</mat-icon>
-        Run
-      </button>
-    </div>
-    <div class="implementation" *ngIf="example6">
-      <mwc-slider *axLazyElement></mwc-slider>
-    </div>
+    <demo-example>
+      <ng-template><mwc-slider *axLazyElement></mwc-slider></ng-template>
+    </demo-example>
     <div class="description">
       <p>
-        By providing hooks in <code>ElementConfig</code> or
+        By providing hooks in
+        <code>ElementConfig</code>
+        or
         <code>LazyElementRootOptions</code>
         you can run custom logic after certain points in the element's
         lifecycle. Clicking the run button below will trigger the download of
