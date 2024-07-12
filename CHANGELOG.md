@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.2.0](https://github.com/angular-extensions/elements/compare/v18.1.0...v18.2.0) (2024-07-12)
+
+### Features
+
+- **demo:** add docs for standalone approach ([686e877](https://github.com/angular-extensions/elements/commit/686e87791a5967a30d79019ab38c1f90ef6471c5))
+- **demo:** add standalone code examples ([c2c51b7](https://github.com/angular-extensions/elements/commit/c2c51b7a88720f39b3a2da30650f92ed7a088857))
+- **demo:** standardize / simplify example impl ([c480cf9](https://github.com/angular-extensions/elements/commit/c480cf9a02a291a91a9b7b89f3a8eafc7fced300))
+- **lib:** add standalone support for testing ([634be3f](https://github.com/angular-extensions/elements/commit/634be3fe16fcbc9247825c01719425d0c3805709))
+
 ## [18.1.0](https://github.com/angular-extensions/elements/compare/v18.0.0...v18.1.0) (2024-07-11)
 
 ### Features
