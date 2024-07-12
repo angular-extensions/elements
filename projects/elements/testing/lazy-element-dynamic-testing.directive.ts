@@ -7,13 +7,14 @@ import {
 } from '@angular/core';
 
 @Directive({
+  standalone: true,
   selector: '[axLazyElementDynamic]',
 })
 export class LazyElementDynamicTestingDirective implements OnInit {
-  private readonly vcr = inject(ViewContainerRef);
-  private readonly template = inject(TemplateRef<any>);
+  readonly #vcr = inject(ViewContainerRef);
+  readonly #template = inject(TemplateRef<any>);
 
   ngOnInit() {
-    this.vcr.createEmbeddedView(this.template);
+    this.#vcr.createEmbeddedView(this.#template);
   }
 }
