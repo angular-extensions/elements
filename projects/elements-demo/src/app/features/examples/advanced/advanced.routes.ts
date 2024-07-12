@@ -64,13 +64,18 @@ const configs: ElementConfig[] = [
 export default <Routes>[
   {
     path: '',
-    component: AdvancedComponent,
     providers: [
       provideAxLazyElementsConfigs(configs),
       {
         provide: LAZY_ELEMENT_CONFIGS,
         useFactory: elementConfigsFactory,
         multi: true,
+      },
+    ],
+    children: [
+      {
+        path: '',
+        component: AdvancedComponent,
       },
     ],
   },

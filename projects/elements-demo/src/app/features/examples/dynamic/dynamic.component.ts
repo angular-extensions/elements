@@ -8,6 +8,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HighlightModule } from 'ngx-highlightjs';
 import { LazyElementDynamicDirective } from '@angular-extensions/elements';
 import { ExampleComponent } from '../../../shared/example/example.component';
+import { ExampleCodeComponent } from '../../../shared/example-code/example-code.component';
 
 @Component({
   selector: 'demo-dynamic',
@@ -25,12 +26,14 @@ import { ExampleComponent } from '../../../shared/example/example.component';
     LazyElementDynamicDirective,
     HighlightModule,
     ExampleComponent,
+    ExampleCodeComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DynamicComponent implements OnInit {
   // example code examples
   codeExample1 = CODE_EXAMPLE_1;
+  codeExample2standalone = CODE_EXAMPLE_2_STANDALONE;
   codeExample2module = CODE_EXAMPLE_2_MODULE;
   codeExample2html = CODE_EXAMPLE_2_HTML;
   codeExample3html = CODE_EXAMPLE_3_HTML;
@@ -122,6 +125,25 @@ const options: LazyElementModuleOptions = {
   ]
 })
 export class FeatureModule {}`;
+
+export const CODE_EXAMPLE_2_STANDALONE = `// pre-configured lazy loaded feature
+const configs: ElementConfig[] = [
+  { tag: 'wired-button', url: 'https://unpkg.com/wired-elements@1.0.0/dist/wired-elements.bundled.js' }
+];
+
+export default <Routes>[
+  {
+    path: '',
+    providers: [provideAxLazyElementsConfigs(configs)],
+    children: [
+      {
+        path: '',
+        component: LazyFeatureComponent,
+      },
+    ],
+  },
+];
+`;
 
 export const CODE_EXAMPLE_3_HTML = `<ng-container *ngFor="let c of dynamicConfigs">
   <ax-lazy-element

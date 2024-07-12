@@ -1,16 +1,16 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { JsonPipe, NgIf } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { HighlightModule } from 'ngx-highlightjs';
 
 import { LazyElementDirective } from '@angular-extensions/elements';
 
 import { ExampleComponent } from '../../../shared/example/example.component';
 import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
+import { ExampleCodeComponent } from '../../../shared/example-code/example-code.component';
 
 @Component({
   selector: 'demo-basic',
@@ -19,17 +19,16 @@ import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
   imports: [
-    NgIf,
     JsonPipe,
     RouterLink,
     MatIconModule,
     MatButtonModule,
     MatSliderModule,
     MatFormFieldModule,
-    HighlightModule,
     LazyElementDirective,
-    ExampleComponent,
     SpinnerComponent,
+    ExampleComponent,
+    ExampleCodeComponent,
   ],
 })
 export class BasicComponent {

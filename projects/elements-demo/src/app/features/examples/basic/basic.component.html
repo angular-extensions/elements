@@ -29,7 +29,6 @@
         </mwc-icon>
       </ng-template>
     </demo-example>
-
     <div class="description">
       <p>
         The most simple example, all we need is to use element tag, for example
@@ -38,7 +37,7 @@
         <code>*axLazyElement</code>
         directive with the url pointing to the element implementation.
       </p>
-      <pre [highlight]="codeExample1" language="typescript"></pre>
+      <demo-example-code [example]="codeExample1" />
     </div>
   </div>
 
@@ -75,7 +74,7 @@
         which will be displayed before the element was loaded (depending on your
         connection speed)
       </p>
-      <pre [highlight]="codeExample2" language="typescript"></pre>
+      <demo-example-code [example]="codeExample2" />
     </div>
   </div>
 
@@ -112,7 +111,7 @@
         which will be displayed because the loading request will fail (wrong
         url)
       </p>
-      <pre [highlight]="codeExample3" language="typescript"></pre>
+      <demo-example-code [example]="codeExample3" />
     </div>
   </div>
 
@@ -159,7 +158,6 @@
         </ink-chart>
       </ng-template>
     </demo-example>
-
     <div class="description">
       <p>
         In this example we're loading
@@ -177,7 +175,7 @@
         <code>[xlim]="xAxis"</code>
         .
       </p>
-      <pre [highlight]="codeExample4" language="typescript"></pre>
+      <demo-example-code [example]="codeExample4" />
     </div>
   </div>
 
@@ -203,7 +201,7 @@
         globally loaded needs to be satisfied. For instance your index.html may
         have the following code:
       </p>
-      <pre [highlight]="codeExample5ImportMap" language="typescript"></pre>
+      <demo-example-code [example]="codeExample5ImportMap" />
       <p>
         So when adding
         <code>&#60;mwc-switch></code>
@@ -216,7 +214,7 @@
         the directive will look for the key stored in the import map and load
         the correct script.
       </p>
-      <pre [highlight]="codeExample5" language="typescript"></pre>
+      <demo-example-code [example]="codeExample5" />
     </div>
   </div>
 </div>

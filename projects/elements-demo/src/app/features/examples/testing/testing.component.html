@@ -14,10 +14,12 @@
       <h3>Component</h3>
       <p>
         Let's say we have a component which uses
-        <code>&lt;my-org-element></code> element in its template with the help
-        of <code>*axLazyElement</code> directive.
+        <code>&lt;my-org-element></code>
+        element in its template with the help of
+        <code>*axLazyElement</code>
+        directive.
       </p>
-      <pre [highlight]="codeExampleComponent" language="typescript"></pre>
+      <demo-example-code [example]="codeExampleComponent" />
       <p>
         We would like to test if the component is passing correct data to the
         element based on some interactions but at the same time, we would like
@@ -27,16 +29,27 @@
       <h3>Test</h3>
       <p>
         We want to mock our element in the test and for that we can use
-        <code>LazyElementsTestingModule</code> which comes with two mock
-        directives for both <code>*axLazyElement</code> and
-        <code>*axLazyElementDynamic</code>.
+        standalone
+        <code>LazyElementTestingDirective</code>
+        and
+        <code>LazyElementDynamicTestingDirective</code>
+        (or
+        <code>LazyElementsTestingModule</code>
+        which comes with two mock directives for both
+        <code>*axLazyElement</code>
+        and
+        <code>*axLazyElementDynamic</code>
+        ).
       </p>
       <p>
         Their behavior was adjusted so that they just render the host
         immediately without trying to lazy load element, display loading or
         error
       </p>
-      <pre [highlight]="codeExampleTest" language="typescript"></pre>
+      <demo-example-code
+        [example]="codeExampleTestStandalone"
+        [exampleModule]="codeExampleTestModule"
+      />
     </div>
   </div>
 </div>

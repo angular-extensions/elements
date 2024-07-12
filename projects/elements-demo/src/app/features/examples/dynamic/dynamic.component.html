@@ -71,7 +71,7 @@
         . Please, feel free to open your browsers dev tools to check resulting
         element tag!
       </p>
-      <pre [highlight]="codeExample1" language="typescript"></pre>
+      <demo-example-code [example]="codeExample1" language="html" />
       <p>
         You might be asking why do we use
         <code>&#60;ax-lazy-element></code>
@@ -115,12 +115,11 @@
         . Please, feel free to open your browsers dev tools to check resulting
         element tag!
       </p>
-      <pre
-        [highlight]="codeExample2html"
-        language="typescript"
-        language="html"
-      ></pre>
-      <pre [highlight]="codeExample2module" language="typescript"></pre>
+      <demo-example-code [example]="codeExample2html" language="html" />
+      <demo-example-code
+        [example]="codeExample2standalone"
+        [exampleModule]="codeExample2module"
+      />
     </div>
   </div>
 
@@ -163,11 +162,7 @@
         into the template during build time! Please, feel free to open your
         browsers dev tools to check resulting element tags!
       </p>
-      <pre
-        [highlight]="codeExample3html"
-        language="typescript"
-        language="html"
-      ></pre>
+      <demo-example-code [example]="codeExample3html" language="html" />
     </div>
   </div>
 </div>
