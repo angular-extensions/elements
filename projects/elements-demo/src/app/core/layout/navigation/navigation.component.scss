@@ -23,6 +23,14 @@ a[mat-list-item] {
     padding-left: 32px !important;
     font-size: 1em !important;
   }
+
+  &.active {
+    ::ng-deep {
+      .mdc-list-item__primary-text {
+        font-weight: bold !important;
+      }
+    }
+  }
 }
 
 .image-link {

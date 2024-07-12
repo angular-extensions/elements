@@ -26,10 +26,11 @@ export class TestingComponent implements OnInit {
 }
 
 const CODE_EXAMPLE_COMPONENT = `@Component({
-  standalone: true,
   selector: 'my-org-feature'
-  template: '<my-org-element *axLazyElement [context]="context"></my-org-element>',
+  standalone: true,
   imports: [LazyElementDirective]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: '<my-org-element *axLazyElement [context]="context"></my-org-element>',
 })
 export class FeatureComponent {
     context: '123'

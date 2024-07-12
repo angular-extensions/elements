@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
   @if (isResponsiveLayout()) {
     <button mat-icon-button class="menu" (click)="toggle.emit()">
-      <mat-icon aria-hidden="false" aria-label="Menu">{{
-        navOpened ? 'close' : 'menu'
-      }}</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Menu">
+        {{ navOpened() ? 'close' : 'menu' }}
+      </mat-icon>
     </button>
   }
 
@@ -17,9 +17,9 @@
       aria-label="&#64;angular-extensions/elements"
     ></mat-icon>
   </a>
-  <span class="project-name"
-    >{{ isResponsiveLayout() ? '' : '&#64;angular-extensions/' }}elements</span
-  >
+  <span class="project-name">
+    {{ isResponsiveLayout() ? '' : '&#64;angular-extensions/' }}elements
+  </span>
   @if (isResponsiveLayout() !== undefined) {
     <img
       alt="downloads per month"
@@ -32,8 +32,9 @@
       class="twitter-follow-button"
       data-lang="en"
       data-show-count="false"
-      >Follow &#64;tomastrajan</a
     >
+      Follow &#64;tomastrajan
+    </a>
   }
 
   <span class="spacer"></span>

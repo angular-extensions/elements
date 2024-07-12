@@ -53,10 +53,6 @@
   }
 }
 
-::ng-deep wired-button {
-  padding: 10px 20px !important;
-}
-
 :host-context(.responsive-large) {
   .quick-nav {
     display: block;

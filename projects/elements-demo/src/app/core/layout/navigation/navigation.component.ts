@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -82,8 +82,6 @@ const NAVIGATION = [
   standalone: true,
   imports: [RouterLink, RouterLinkActive, MatIconModule, MatListModule],
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
   navigation = NAVIGATION;
-
-  ngOnInit() {}
 }

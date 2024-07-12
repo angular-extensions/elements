@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
+import { ExampleCodeComponent } from '../../../shared/example-code/example-code.component';
 
 @Component({
   selector: 'demo-getting-started',
   templateUrl: './getting-started.component.html',
   styleUrls: ['./getting-started.component.scss'],
   standalone: true,
-  imports: [HighlightModule],
+  imports: [HighlightModule, ExampleCodeComponent],
 })
 export class GettingStartedComponent implements OnInit {
   codeExampleComponent = CODE_EXAMPLE_COMPONENT;
   codeExampleModule = CODE_EXAMPLE_MODULE;
+  codeExampleAppConfig = CODE_EXAMPLE_APP_CONFIG;
   codeExampleAppModule = CODE_EXAMPLE_APP_MODULE;
   codeExampleSharedModule = CODE_EXAMPLE_SHARED_MODULE;
 
@@ -21,6 +23,9 @@ const CODE_EXAMPLE_COMPONENT = `import { Component } from '@angular/core';
 
 @Component({
   selector: 'your-org-feature',
+  standalone: true,
+  imports: [LazyElementDirective],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: \`
     <some-element *axLazyElement="elementUrl"></some-element>
   \`
@@ -42,6 +47,14 @@ import { FeatureComponent } from './feature-component';
   declarations: [FeatureComponent]
 })
 export class FeatureModule {}
+`;
+
+const CODE_EXAMPLE_APP_CONFIG = `export const appConfig: ApplicationConfig = {
+  providers: [
+    // other providers...
+    provideAxLazyElements(),
+  ]
+);
 `;
 
 const CODE_EXAMPLE_APP_MODULE = `import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';

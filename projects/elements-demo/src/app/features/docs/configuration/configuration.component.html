@@ -13,11 +13,12 @@
   </p>
   <blockquote>
     Example of such an use case could be that we have a
-    <code>&#60;user-profile-element></code> and we want to display top 3 users
-    for a given month. We would need to pass url in all of the elements...
+    <code>&#60;user-profile-element></code>
+    and we want to display top 3 users for a given month. We would need to pass
+    url in all of the elements...
   </blockquote>
 
-  <pre [highlight]="codeExampleInline" language="typescript"></pre>
+  <demo-example-code [example]="codeExampleInline" />
 
   <p>
     This could be optimized by storing url once in the component variable but
@@ -29,24 +30,36 @@
   <p>
     Compare this to the following solution where we pre-configure all of the
     elements we will be using in our application with the help of the
-    <code>LazyElementsModule.forRoot(options)</code> (or
-    <code>.forFeature()</code>) static functions!
+    <code>LazyElementsModule.forRoot(options)</code>
+    (or
+    <code>.forFeature()</code>
+    ) static functions!
   </p>
 
-  <pre [highlight]="codeExampleModule" language="typescript"></pre>
+  <demo-example-code
+    [example]="codeExampleStandalone"
+    [exampleModule]="codeExampleModule"
+  />
 
   <p>
-    We're creating options of the <code>LazyElementModuleOptions</code> type and
-    passing in array of <code>ElementConfig</code> items. Every item specifies
-    element <code>tag</code> and <code>url</code>...
+    We're creating options of the
+    <code>LazyElementModuleOptions</code>
+    type and passing in array of
+    <code>ElementConfig</code>
+    items. Every item specifies element
+    <code>tag</code>
+    and
+    <code>url</code>
+    ...
   </p>
 
   <p>
     With this configuration in place, we can adjust original
-    <code>FeatureComponent</code> template to look like this...
+    <code>FeatureComponent</code>
+    template to look like this...
   </p>
 
-  <pre [highlight]="codeExamplePreConfigured" language="typescript"></pre>
+  <demo-example-code [example]="codeExamplePreConfigured" />
 
   <p>
     As we can see, the component template got simple! There is less redundant
@@ -55,23 +68,31 @@
   </p>
 
   <p>
-    Check out the <a routerLink="/examples/advanced">working demo</a> of this
-    approach!
+    Check out the
+    <a routerLink="/examples/advanced">working demo</a>
+    of this approach!
   </p>
 
   <h2>Supported features</h2>
   <ul>
     <li>
-      ✅ Global and granular configuration of <code>isModule</code> flag (script
-      type module for ECMAScript modules)
+      ✅ Global and granular configuration of
+      <code>isModule</code>
+      flag (script type module for ECMAScript modules)
     </li>
     <li>
-      ✅ Global and granular configuration of <code>loadingComponent</code> (and
-      <code>loadingTemplate</code>)
+      ✅ Global and granular configuration of
+      <code>loadingComponent</code>
+      (and
+      <code>loadingTemplate</code>
+      )
     </li>
     <li>
-      ✅ Global and granular configuration of <code>errorComponent</code> (and
-      <code>errorTemplate</code>)
+      ✅ Global and granular configuration of
+      <code>errorComponent</code>
+      (and
+      <code>errorTemplate</code>
+      )
     </li>
     <li>✅ Granular element pre-loading (config based)</li>
     <li>

@@ -33,7 +33,7 @@ export function createProvideLazyElementsGuard(
 }
 
 export function provideAxLazyElements(
-  options: LazyElementOptions,
+  options: LazyElementOptions = {},
 ): EnvironmentProviders {
   return makeEnvironmentProviders([
     {
@@ -74,7 +74,7 @@ export function provideAxLazyElements(
   ]);
 }
 
-export function provideAxLazyElementsConfigs(configs: ElementConfig[]) {
+export function provideAxLazyElementsConfigs(configs: ElementConfig[] = []) {
   return makeEnvironmentProviders([
     {
       provide: LAZY_ELEMENT_CONFIGS,

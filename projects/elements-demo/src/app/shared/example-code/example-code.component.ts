@@ -28,7 +28,7 @@ import { Highlight } from 'ngx-highlightjs';
   styles: `
     :host {
       display: block;
-      margin: 10px 0 0 0;
+      margin: 20px 0;
     }
     pre {
       margin: 10px 0 0 0;
