@@ -34,9 +34,10 @@ export class LazyElementDynamicDirective implements OnInit {
   errorTemplateRef: TemplateRef<any> | null = null;
   @Input('axLazyElementDynamicModule') isModule = false; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementDynamicImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
-
-  loadingSuccess = output<void>();
-  loadingError = output<ErrorEvent>();
+  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void;
+  @Input('axLazyElementLoadingError') loadingError?: (
+    error: ErrorEvent,
+  ) => void;
 
   #viewRef: EmbeddedViewRef<any> | null = null;
 
@@ -98,7 +99,7 @@ export class LazyElementDynamicDirective implements OnInit {
       )
       .subscribe({
         next: () => {
-          this.loadingSuccess.emit();
+          this.loadingSuccess?.();
           this.#vcr.clear();
           const originalCreateElement = this.#renderer.createElement;
           this.#renderer.createElement = (name: string, namespace: string) => {
@@ -112,7 +113,7 @@ export class LazyElementDynamicDirective implements OnInit {
           this.#cdr.markForCheck();
         },
         error: (error) => {
-          this.loadingError.emit(error);
+          this.loadingError?.(error);
           const errorComponent =
             elementConfig.errorComponent || options.errorComponent;
           this.#vcr.clear();
@@ -122,7 +123,7 @@ export class LazyElementDynamicDirective implements OnInit {
           } else if (errorComponent) {
             this.#vcr.createComponent(errorComponent);
             this.#cdr.markForCheck();
-          } else if (ngDevMode) {
+          } else if (ngDevMode && !this.loadingError) {
             console.error(
               `${LOG_PREFIX} - Loading of element <${this.tag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElementDynamic="errorTemplate: error" to display customized error message in place of element\n\n`,
               error,

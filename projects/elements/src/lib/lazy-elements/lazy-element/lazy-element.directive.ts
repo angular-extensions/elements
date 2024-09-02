@@ -51,9 +51,10 @@ export class LazyElementDirective implements OnInit, OnChanges {
   errorTemplateRef: TemplateRef<any> | null = null;
   @Input('axLazyElementModule') isModule?: boolean; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
-
-  loadingSuccess = output<void>();
-  loadingError = output<ErrorEvent>();
+  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void;
+  @Input('axLazyElementLoadingError') loadingError?: (
+    error: ErrorEvent,
+  ) => void;
 
   #viewRef: EmbeddedViewRef<any> | null = null;
   #url$ = new BehaviorSubject<string | null>(null);
@@ -86,6 +87,7 @@ export class LazyElementDirective implements OnInit, OnChanges {
 
   #setupUrlListener(): void {
     const tpl = this.#template as any;
+    console.log(tpl);
     const elementTag = tpl._declarationTContainer
       ? tpl._declarationTContainer.tagName || tpl._declarationTContainer.value
       : tpl._def.element.#template.nodes[0].element.name;
@@ -120,7 +122,7 @@ export class LazyElementDirective implements OnInit, OnChanges {
             ),
           ).pipe(
             catchError((error) => {
-              this.loadingError.emit(error);
+              this.loadingError?.(error);
               this.#vcr.clear();
               const errorComponent =
                 elementConfig.errorComponent || options.errorComponent;
@@ -130,7 +132,7 @@ export class LazyElementDirective implements OnInit, OnChanges {
               } else if (errorComponent) {
                 this.#vcr.createComponent(errorComponent);
                 this.#cdr.markForCheck();
-              } else if (ngDevMode) {
+              } else if (ngDevMode && !this.loadingError) {
                 console.error(
                   `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`,
                 );
@@ -139,7 +141,7 @@ export class LazyElementDirective implements OnInit, OnChanges {
             }),
           );
         }),
-        tap(() => this.loadingSuccess.emit()),
+        tap(() => this.loadingSuccess?.()),
         mergeMap(() => customElements.whenDefined(elementTag)),
         takeUntilDestroyed(this.#destroyRef),
       )

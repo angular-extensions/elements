@@ -52,6 +52,13 @@ export class BasicComponent {
   onSliderChange(value: number) {
     this.xAxis = [-value, value];
   }
+
+  customLoadingErrorHandler(error: ErrorEvent) {
+    console.log(
+      '[Optional custom loading error handler] Loading failed:',
+      error,
+    );
+  }
 }
 
 const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-icon@0.27.0/mwc-icon.js?module'; -->
