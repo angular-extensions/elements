@@ -34,7 +34,8 @@ export class LazyElementDynamicDirective implements OnInit {
   errorTemplateRef: TemplateRef<any> | null = null;
   @Input('axLazyElementDynamicModule') isModule = false; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementDynamicImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void;
+  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void; // eslint-disable-line @angular-eslint/no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('axLazyElementLoadingError') loadingError?: (
     error: ErrorEvent,
   ) => void;

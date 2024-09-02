@@ -51,7 +51,8 @@ export class LazyElementDirective implements OnInit, OnChanges {
   errorTemplateRef: TemplateRef<any> | null = null;
   @Input('axLazyElementModule') isModule?: boolean; // eslint-disable-line @angular-eslint/no-input-rename
   @Input('axLazyElementImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void;
+  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void; // eslint-disable-line @angular-eslint/no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('axLazyElementLoadingError') loadingError?: (
     error: ErrorEvent,
   ) => void;
@@ -87,7 +88,6 @@ export class LazyElementDirective implements OnInit, OnChanges {
 
   #setupUrlListener(): void {
     const tpl = this.#template as any;
-    console.log(tpl);
     const elementTag = tpl._declarationTContainer
       ? tpl._declarationTContainer.tagName || tpl._declarationTContainer.value
       : tpl._def.element.#template.nodes[0].element.name;
