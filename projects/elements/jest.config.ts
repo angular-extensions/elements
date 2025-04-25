@@ -1,6 +1,10 @@
-export default {
-  preset: 'jest-preset-angular/presets/defaults-esm',
-  // globalSetup: 'jest-preset-angular/global-setup.mjs',
+import { createEsmPreset } from 'jest-preset-angular/presets';
+import type { Config } from 'jest';
+
+const esmPreset = createEsmPreset();
+
+const jestConfig: Config = {
+  ...esmPreset,
   extensionsToTreatAsEsm: ['.ts'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
@@ -31,3 +35,5 @@ export default {
   coverageReporters: ['json', 'lcovonly', 'text', 'html'],
   testPathIgnorePatterns: ['/dist/', '/node_modules/'],
 };
+
+export default jestConfig;

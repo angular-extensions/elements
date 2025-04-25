@@ -14,7 +14,6 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
 
 @Component({
   selector: 'demo-basic',
-  standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],

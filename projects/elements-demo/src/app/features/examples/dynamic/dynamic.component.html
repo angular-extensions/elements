@@ -130,7 +130,7 @@
     <demo-example>
       <ng-template>
         <div class="actions">
-          <ng-container *ngFor="let c of dynamicConfigs">
+          @for (c of dynamicConfigs; track c.tag) {
             <ng-template #loading>
               Loading <{{ c.tag }}>...&nbsp;&nbsp;
             </ng-template>
@@ -146,7 +146,7 @@
             >
               {{ c.content }}
             </ax-lazy-element>
-          </ng-container>
+          }
         </div>
         <p>Counter: {{ counter3 }}</p>
       </ng-template>
@@ -156,7 +156,7 @@
         The
         <code>*axLazyElementDynamic</code>
         directive works also with
-        <code>*ngFor</code>
+        <code>&#64;for</code>
         directive to render fully dynamic configuration which could have been
         retrieved from backend during the runtime in comparison to hard-coded
         into the template during build time! Please, feel free to open your

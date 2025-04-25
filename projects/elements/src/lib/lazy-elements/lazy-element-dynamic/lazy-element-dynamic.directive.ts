@@ -6,7 +6,6 @@ import {
   inject,
   Input,
   OnInit,
-  output,
   PLATFORM_ID,
   Renderer2,
   TemplateRef,

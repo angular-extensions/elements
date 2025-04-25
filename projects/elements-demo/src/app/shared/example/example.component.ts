@@ -11,7 +11,6 @@ import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'demo-example',
-  standalone: true,
   imports: [MatButton, MatIcon, NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

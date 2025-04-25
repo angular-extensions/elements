@@ -3,11 +3,22 @@
 @use '@angular/material' as mat;
 // Plus imports for other components in your app.
 
+// custom theme imports
+@use './styles-reset.scss-theme' as styles-reset;
+@use './app/app.component.scss-theme' as demo-root-component;
+@use './app/core/layout/navigation/navigation.component.scss-theme' as
+  demo-navigation-component;
+@use './app/core/layout/footer/footer.component.scss-theme' as
+  demo-footer-component;
+@use './app/features/docs/faq/faq.component.scss-theme' as demo-faq-component;
+@use './app/features/docs/api/api.component.scss-theme' as demo-api-component;
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.all-component-typographies();
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -36,22 +47,14 @@ $elements-demo-theme: mat.m2-define-light-theme(
   )
 );
 
-// custom theme imports
-@import './styles-reset.scss-theme';
-@import './app/app.component.scss-theme';
-@import './app/core/layout/navigation/navigation.component.scss-theme';
-@import './app/core/layout/footer/footer.component.scss-theme';
-@import './app/features/docs/faq/faq.component.scss-theme';
-@import './app/features/docs/api/api.component.scss-theme';
-
 @mixin custom-components-theme($theme) {
   // include custom components themes
-  @include styles-reset-theme($theme);
-  @include demo-root-component-theme($theme);
-  @include demo-navigation-component-theme($theme);
-  @include demo-footer-component-theme($theme);
-  @include demo-faq-component-theme($theme);
-  @include demo-api-component-theme($theme);
+  @include styles-reset.styles-reset-theme($theme);
+  @include demo-root-component.demo-root-component-theme($theme);
+  @include demo-navigation-component.demo-navigation-component-theme($theme);
+  @include demo-footer-component.demo-footer-component-theme($theme);
+  @include demo-faq-component.demo-faq-component-theme($theme);
+  @include demo-api-component.demo-api-component-theme($theme);
 }
 
 // Include theme styles for core and each component used in your app.

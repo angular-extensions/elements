@@ -7,7 +7,6 @@ import {
   Input,
   OnChanges,
   OnInit,
-  output,
   PLATFORM_ID,
   SimpleChanges,
   TemplateRef,

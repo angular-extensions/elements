@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
   selector: 'demo-api',
   templateUrl: './api.component.html',
   styleUrls: ['./api.component.scss'],
-  standalone: true,
   imports: [RouterLink, MatCardModule],
 })
 export class ApiComponent implements OnInit {

@@ -11,7 +11,6 @@ import { ResponsiveLayoutService } from '../responsive-layout.service';
   selector: 'demo-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
-  standalone: true,
   imports: [
     RouterLink,
     RouterLinkActive,
@@ -24,6 +23,7 @@ export class ToolbarComponent {
   readonly #responsiveLayoutService = inject(ResponsiveLayoutService);
 
   navOpened = input(false);
+  // eslint-disable-next-line @angular-eslint/no-output-native
   toggle = output<void>();
 
   isResponsiveLayout = toSignal(this.#responsiveLayoutService.isSmallOrSmaller);

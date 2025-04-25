@@ -17,8 +17,6 @@ import {
 } from './lazy-elements.tokens';
 import { getPolicy } from './trusted-types';
 
-import './ng-dev-mode';
-
 const LOG_PREFIX = '@angular-extensions/elements';
 
 interface Notifier {

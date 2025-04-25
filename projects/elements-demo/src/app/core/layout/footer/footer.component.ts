@@ -7,7 +7,6 @@ import { environment } from '../../../../environments/environment';
   selector: 'demo-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  standalone: true,
   imports: [MatButtonModule],
 })
 export class FooterComponent {

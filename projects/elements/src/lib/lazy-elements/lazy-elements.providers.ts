@@ -19,8 +19,6 @@ import {
 } from './lazy-elements.tokens';
 import { LazyElementsLoaderService } from './lazy-elements-loader.service';
 
-import './ng-dev-mode';
-
 export function createProvideLazyElementsGuard(
   rootOptions: LazyElementRootOptions,
 ) {

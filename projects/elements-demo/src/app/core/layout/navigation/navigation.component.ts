@@ -79,7 +79,6 @@ const NAVIGATION = [
   selector: 'demo-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  standalone: true,
   imports: [RouterLink, RouterLinkActive, MatIconModule, MatListModule],
 })
 export class NavigationComponent {

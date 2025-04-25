@@ -5,7 +5,6 @@ import { HighlightModule } from 'ngx-highlightjs';
   selector: 'demo-change-detection',
   templateUrl: './change-detection.component.html',
   styleUrls: ['./change-detection.component.scss'],
-  standalone: true,
   imports: [HighlightModule],
 })
 export class ChangeDetectionComponent implements OnInit {

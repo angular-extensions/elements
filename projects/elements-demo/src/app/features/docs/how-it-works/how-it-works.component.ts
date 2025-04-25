@@ -7,7 +7,6 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   selector: 'demo-how-it-works',
   templateUrl: './how-it-works.component.html',
   styleUrls: ['./how-it-works.component.scss'],
-  standalone: true,
   imports: [RouterLink, HighlightModule, ExampleCodeComponent],
 })
 export class HowItWorksComponent implements OnInit {
@@ -42,9 +41,9 @@ const CODE_EXAMPLE_COMPONENT_LAZY = `import { Component } from '@angular/core';
   imports: [LazyElementDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: \`
-    <ng-container *ngIf="showEditor">
+    @if(showEditor) {
       <your-org-customer-editor *axLazyElement="url"></your-org-customer-editor>
-    </ng-container>
+    }
     <button (click)="toggleShowEditor()">Edit customer</button>
   \`
 })

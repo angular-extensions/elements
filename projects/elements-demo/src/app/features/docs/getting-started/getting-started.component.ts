@@ -6,7 +6,6 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   selector: 'demo-getting-started',
   templateUrl: './getting-started.component.html',
   styleUrls: ['./getting-started.component.scss'],
-  standalone: true,
   imports: [HighlightModule, ExampleCodeComponent],
 })
 export class GettingStartedComponent implements OnInit {

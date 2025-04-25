@@ -21,8 +21,6 @@ import { LazyElementDirective } from './lazy-element/lazy-element.directive';
 import { LazyElementDynamicDirective } from './lazy-element-dynamic/lazy-element-dynamic.directive';
 import { LazyElementsLoaderService } from './lazy-elements-loader.service';
 
-import './ng-dev-mode';
-
 export function createLazyElementRootGuard(
   rootOptions: LazyElementRootOptions,
 ) {

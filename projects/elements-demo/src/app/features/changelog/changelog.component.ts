@@ -7,7 +7,6 @@ import { MarkdownModule } from 'ngx-markdown';
   selector: 'demo-changelog',
   templateUrl: './changelog.component.html',
   styleUrls: ['./changelog.component.scss'],
-  standalone: true,
   imports: [AsyncPipe, MarkdownModule],
 })
 export class ChangelogComponent {

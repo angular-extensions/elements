@@ -4,7 +4,6 @@ import { Highlight } from 'ngx-highlightjs';
 
 @Component({
   selector: 'demo-example-code',
-  standalone: true,
   imports: [Highlight, MatTabGroup, MatTab],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

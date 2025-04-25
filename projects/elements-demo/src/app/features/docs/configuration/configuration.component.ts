@@ -7,7 +7,6 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   selector: 'demo-configuration',
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss'],
-  standalone: true,
   imports: [RouterLink, HighlightModule, ExampleCodeComponent],
 })
 export class ConfigurationComponent implements OnInit {

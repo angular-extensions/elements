@@ -1,20 +1,14 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LazyElementDirective } from '@angular-extensions/elements';
 import { HighlightModule } from 'ngx-highlightjs';
+
 import { ExampleCodeComponent } from '../../../shared/example-code/example-code.component';
 
 @Component({
   selector: 'demo-testing',
   templateUrl: './testing.component.html',
   styleUrls: ['./testing.component.scss'],
-  standalone: true,
-  imports: [
-    RouterLink,
-    LazyElementDirective,
-    HighlightModule,
-    ExampleCodeComponent,
-  ],
+  imports: [RouterLink, HighlightModule, ExampleCodeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TestingComponent implements OnInit {

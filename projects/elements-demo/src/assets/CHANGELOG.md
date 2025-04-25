@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [18.2.1](https://github.com/angular-extensions/elements/compare/v18.2.0...v18.2.1) (2024-09-02)
+
+### Bug Fixes
+
+- **lib:** rework loadingSuccess and loadingError outputs to inputs (pass in handler) ([40e2058](https://github.com/angular-extensions/elements/commit/40e2058e079f8e47bce9685e6b08ac5c8d6fd385))
+
 ## [18.2.0](https://github.com/angular-extensions/elements/compare/v18.1.0...v18.2.0) (2024-07-12)
 
 ### Features

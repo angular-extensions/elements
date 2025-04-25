@@ -4,7 +4,6 @@ import {
   inject,
   CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {
   LazyElementDirective,
@@ -21,9 +20,7 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   selector: 'demo-advanced',
   templateUrl: './advanced.component.html',
   styleUrls: ['./advanced.component.scss'],
-  standalone: true,
   imports: [
-    NgIf,
     RouterLink,
     MatIconModule,
     MatButtonModule,

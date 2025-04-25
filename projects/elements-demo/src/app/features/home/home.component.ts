@@ -14,7 +14,6 @@ import { ResponsiveLayoutService } from '../../core/layout/responsive-layout.ser
   selector: 'demo-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: true,
   imports: [
     RouterLink,
     AsyncPipe,

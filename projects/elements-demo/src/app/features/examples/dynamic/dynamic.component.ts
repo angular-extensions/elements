@@ -1,12 +1,13 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HighlightModule } from 'ngx-highlightjs';
+
 import { LazyElementDynamicDirective } from '@angular-extensions/elements';
+
 import { ExampleComponent } from '../../../shared/example/example.component';
 import { ExampleCodeComponent } from '../../../shared/example-code/example-code.component';
 
@@ -14,10 +15,7 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   selector: 'demo-dynamic',
   templateUrl: './dynamic.component.html',
   styleUrls: ['./dynamic.component.scss'],
-  standalone: true,
   imports: [
-    NgIf,
-    NgForOf,
     RouterLink,
     MatIconModule,
     MatButtonModule,
@@ -145,7 +143,7 @@ export default <Routes>[
 ];
 `;
 
-export const CODE_EXAMPLE_3_HTML = `<ng-container *ngFor="let c of dynamicConfigs">
+export const CODE_EXAMPLE_3_HTML = `&#64;for(c of dynamicConfigs; track c.url) {
   <ax-lazy-element
     *axLazyElementDynamic="c.tag; url: c.url; module: c.isModule"
     (click)="performAction(c.actionName)"
@@ -153,7 +151,7 @@ export const CODE_EXAMPLE_3_HTML = `<ng-container *ngFor="let c of dynamicConfig
   >
     {{ c.content }}
   </ax-lazy-element>
-</ng-container>
+}
 
 <!--
 dynamicConfigs = [

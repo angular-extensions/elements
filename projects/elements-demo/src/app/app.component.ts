@@ -34,7 +34,6 @@ import { IconRegistryService } from './core/icon-registry.service';
   selector: 'demo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [
     AsyncPipe,
     RouterOutlet,

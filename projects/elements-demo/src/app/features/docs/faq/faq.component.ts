@@ -6,7 +6,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
   selector: 'demo-faq',
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss'],
-  standalone: true,
   imports: [MatExpansionModule],
 })
 export class FaqComponent implements OnInit {
@@ -26,7 +25,7 @@ const FAQ = [
         <li>Angular component uses element in its template</li>
         <li>
           Angular component uses element in its template conditionally
-          (<code>*ngIf</code>, <code>*ngFor</code>, ...) and the condition was
+          (<code>&#64;if</code>, <code>>&#64;for</code>, ...) and the condition was
           fulfilled
         </li>
         <li>

@@ -1,4 +1,4 @@
-@import 'highlight.js/styles/rainbow.css';
+@use 'highlight.js/styles/rainbow.css';
 
-@import './styles-theme';
-@import './styles-reset';
+@use './styles-theme';
+@use './styles-reset';
