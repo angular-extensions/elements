@@ -97,6 +97,7 @@
     "raw-loader": "^4.0.2",
     "replace": "^1.2.0",
     "standard-version": "^9.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "5.5.3",
     "webpack-bundle-analyzer": "^4.4.1"
   },

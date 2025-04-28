@@ -12,6 +12,7 @@
         "createDefaultProgram": true
       },
       "rules": {
+        "@angular-eslint/no-input-rename": ["off"],
         "@angular-eslint/directive-selector": [
           "error",
           {

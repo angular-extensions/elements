@@ -26,15 +26,14 @@ const LOG_PREFIX = '@angular-extensions/elements';
 })
 export class LazyElementDynamicDirective implements OnInit {
   @Input('axLazyElementDynamic') tag: string | null = null;
-  @Input('axLazyElementDynamicUrl') url: string | null = null; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementDynamicLoadingTemplate') // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementDynamicUrl') url: string | null = null;
+  @Input('axLazyElementDynamicLoadingTemplate')
   loadingTemplateRef: TemplateRef<any> | null = null;
-  @Input('axLazyElementDynamicErrorTemplate') // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementDynamicErrorTemplate')
   errorTemplateRef: TemplateRef<any> | null = null;
-  @Input('axLazyElementDynamicModule') isModule = false; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementDynamicImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void; // eslint-disable-line @angular-eslint/no-input-rename
-  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('axLazyElementDynamicModule') isModule = false;
+  @Input('axLazyElementDynamicImportMap') importMap = false;
+  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void;
   @Input('axLazyElementLoadingError') loadingError?: (
     error: ErrorEvent,
   ) => void;

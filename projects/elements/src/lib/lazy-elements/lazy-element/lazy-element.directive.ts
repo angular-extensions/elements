@@ -44,14 +44,13 @@ export class LazyElementDirective implements OnInit, OnChanges {
   readonly #elementsLoaderService = inject(LazyElementsLoaderService);
 
   @Input('axLazyElement') url: string | null = null;
-  @Input('axLazyElementLoadingTemplate') // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementLoadingTemplate')
   loadingTemplateRef: TemplateRef<any> | null = null;
-  @Input('axLazyElementErrorTemplate') // eslint-disable-line @angular-eslint/no-input-rename
+  @Input('axLazyElementErrorTemplate')
   errorTemplateRef: TemplateRef<any> | null = null;
-  @Input('axLazyElementModule') isModule?: boolean; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementImportMap') importMap = false; // eslint-disable-line @angular-eslint/no-input-rename
-  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void; // eslint-disable-line @angular-eslint/no-input-rename
-  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('axLazyElementModule') isModule?: boolean;
+  @Input('axLazyElementImportMap') importMap = false;
+  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void;
   @Input('axLazyElementLoadingError') loadingError?: (
     error: ErrorEvent,
   ) => void;
