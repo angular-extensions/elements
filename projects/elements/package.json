@@ -1,6 +1,6 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "18.2.1",
+  "version": "19.0.0",
   "peerDependencies": {
     "@angular/common": ">=19",
     "@angular/core": ">=19",

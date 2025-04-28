@@ -1,6 +1,6 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "18.2.1",
+  "version": "19.0.0",
   "scripts": {
     "ng": "ng",
     "prestart": "npm run build:copy-changelog",
