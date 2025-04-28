@@ -33,7 +33,7 @@ jobs:
         if: success()
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/elements-demo
+          folder: dist/elements-demo/browser
 
       - name: Publish to NPM
         uses: JS-DevTools/npm-publish@v1
