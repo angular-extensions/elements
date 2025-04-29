@@ -9,7 +9,7 @@ const jestConfig: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
     '^.+\\.(ts|js|html)$': [
-      'ts-jest',
+      'jest-preset-angular',
       {
         tsconfig: '<rootDir>/tsconfig.spec.json',
         stringifyContentPathRegex: '\\.(html|svg)$',
@@ -18,7 +18,6 @@ const jestConfig: Config = {
     ],
   },
   moduleNameMapper: {
-    tslib: 'tslib/tslib.es6.js',
     '^rxjs(/operators$)?$':
       '<rootDir>../../node_modules/rxjs/dist/bundles/rxjs.umd.js',
     '^rxjs/testing$':

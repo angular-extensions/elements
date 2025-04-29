@@ -2,10 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/spec",
-    "module": "es2020",
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "allowJs": true,
+    "module": "es2022",
     "types": ["jest", "node"]
   },
   "files": [],

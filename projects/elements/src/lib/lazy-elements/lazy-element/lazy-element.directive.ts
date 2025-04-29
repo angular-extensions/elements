@@ -4,16 +4,18 @@ import {
   Directive,
   EmbeddedViewRef,
   inject,
-  Input,
-  OnChanges,
   OnInit,
   PLATFORM_ID,
-  SimpleChanges,
   TemplateRef,
   ViewContainerRef,
+  input,
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  takeUntilDestroyed,
+  toObservable,
+  toSignal,
+} from '@angular/core/rxjs-interop';
 import {
   animationFrameScheduler,
   BehaviorSubject,
@@ -35,7 +37,7 @@ const LOG_PREFIX = '@angular-extensions/elements';
   standalone: true,
   selector: '[axLazyElement]',
 })
-export class LazyElementDirective implements OnInit, OnChanges {
+export class LazyElementDirective implements OnInit {
   readonly #platformId = inject(PLATFORM_ID);
   readonly #destroyRef = inject(DestroyRef);
   readonly #vcr = inject(ViewContainerRef);
@@ -43,26 +45,26 @@ export class LazyElementDirective implements OnInit, OnChanges {
   readonly #template = inject(TemplateRef<any>);
   readonly #elementsLoaderService = inject(LazyElementsLoaderService);
 
-  @Input('axLazyElement') url: string | null = null;
-  @Input('axLazyElementLoadingTemplate')
-  loadingTemplateRef: TemplateRef<any> | null = null;
-  @Input('axLazyElementErrorTemplate')
-  errorTemplateRef: TemplateRef<any> | null = null;
-  @Input('axLazyElementModule') isModule?: boolean;
-  @Input('axLazyElementImportMap') importMap = false;
-  @Input('axLazyElementLoadingSuccess') loadingSuccess?: () => void;
-  @Input('axLazyElementLoadingError') loadingError?: (
-    error: ErrorEvent,
-  ) => void;
+  readonly url = input<string | null>(null, { alias: 'axLazyElement' });
+  readonly loadingTemplateRef = input<TemplateRef<any> | null>(null, {
+    alias: 'axLazyElementLoadingTemplate',
+  });
+  readonly errorTemplateRef = input<TemplateRef<any> | null>(null, {
+    alias: 'axLazyElementErrorTemplate',
+  });
+  readonly isModule = input<boolean>(undefined, {
+    alias: 'axLazyElementModule',
+  });
+  readonly importMap = input(false, { alias: 'axLazyElementImportMap' });
+  readonly loadingSuccess = input<() => void>(undefined, {
+    alias: 'axLazyElementLoadingSuccess',
+  });
+  readonly loadingError = input<(error: ErrorEvent) => void>(undefined, {
+    alias: 'axLazyElementLoadingError',
+  });
 
   #viewRef: EmbeddedViewRef<any> | null = null;
-  #url$ = new BehaviorSubject<string | null>(null);
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.url) {
-      this.#url$.next(this.url);
-    }
-  }
+  #url$ = toObservable(this.url);
 
   ngOnInit() {
     // There's no sense to execute the below logic on the Node.js side since the JavaScript
@@ -104,8 +106,9 @@ export class LazyElementDirective implements OnInit, OnChanges {
         // The `animationFrameScheduler` is used to prevent the frame drop.
         debounceTime(0, animationFrameScheduler),
         switchMap((url) => {
-          if (this.loadingTemplateRef) {
-            this.#vcr.createEmbeddedView(this.loadingTemplateRef);
+          const loadingTemplateRef = this.loadingTemplateRef();
+          if (loadingTemplateRef) {
+            this.#vcr.createEmbeddedView(loadingTemplateRef);
           } else if (loadingComponent) {
             this.#vcr.createComponent(loadingComponent);
           }
@@ -114,23 +117,24 @@ export class LazyElementDirective implements OnInit, OnChanges {
             this.#elementsLoaderService.loadElement(
               url,
               elementTag,
-              this.isModule,
-              this.importMap,
+              this.isModule(),
+              this.importMap(),
               elementConfig?.hooks,
             ),
           ).pipe(
             catchError((error) => {
-              this.loadingError?.(error);
+              this.loadingError()?.(error);
               this.#vcr.clear();
               const errorComponent =
                 elementConfig.errorComponent || options.errorComponent;
-              if (this.errorTemplateRef) {
-                this.#vcr.createEmbeddedView(this.errorTemplateRef);
+              const errorTemplateRef = this.errorTemplateRef();
+              if (errorTemplateRef) {
+                this.#vcr.createEmbeddedView(errorTemplateRef);
                 this.#cdr.markForCheck();
               } else if (errorComponent) {
                 this.#vcr.createComponent(errorComponent);
                 this.#cdr.markForCheck();
-              } else if (ngDevMode && !this.loadingError) {
+              } else if (ngDevMode && !this.loadingError()) {
                 console.error(
                   `${LOG_PREFIX} - Loading of element <${elementTag}> failed, please provide <ng-template #error>Loading failed...</ng-template> and reference it in *axLazyElement="errorTemplate: error" to display customized error message in place of element`,
                 );
@@ -139,7 +143,7 @@ export class LazyElementDirective implements OnInit, OnChanges {
             }),
           );
         }),
-        tap(() => this.loadingSuccess?.()),
+        tap(() => this.loadingSuccess()?.()),
         mergeMap(() => customElements.whenDefined(elementTag)),
         takeUntilDestroyed(this.#destroyRef),
       )
