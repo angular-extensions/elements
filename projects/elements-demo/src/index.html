@@ -40,22 +40,27 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/themes/light.css"
+    />
+
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#1976d2" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.6.1/system.min.js"></script>
     <script type="systemjs-importmap">
       {
         "imports": {
-          "mwc-switch": "https://unpkg.com/@material/mwc-switch@0.18.0/mwc-switch.js?module"
+          "sl-switch": "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/switch/switch.js"
         }
       }
     </script>
   </head>
   <body class="mat-typography">
     <demo-root></demo-root>
-    <noscript
-      >Please enable JavaScript to continue using this application.</noscript
-    >
+    <noscript>
+      Please enable JavaScript to continue using this application.
+    </noscript>
   </body>
   <script
     async

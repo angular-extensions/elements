@@ -19,20 +19,20 @@
   <div class="content">
     <demo-example>
       <ng-template>
-        <mwc-icon
+        <sl-icon
+          style="font-size: 24px"
+          name="heart"
           *axLazyElement="
-            'https://unpkg.com/&#64;material/mwc-icon&#64;0.27.0/mwc-icon.js?module';
+            'https://cdn.jsdelivr.net/npm/&#64;shoelace-style/shoelace&#64;2.3.0/dist/components/icon/icon.js';
             module: true
           "
-        >
-          favorite
-        </mwc-icon>
+        />
       </ng-template>
     </demo-example>
     <div class="description">
       <p>
         The most simple example, all we need is to use element tag, for example
-        <code>&#60;mwc-icon></code>
+        <code>&#60;sl-icon></code>
         and add
         <code>*axLazyElement</code>
         directive with the url pointing to the element implementation.
@@ -49,24 +49,24 @@
     <demo-example>
       <ng-template>
         <ng-template #loading><demo-spinner /></ng-template>
-        <mwc-button
+        <sl-button
+          variant="default"
           *axLazyElement="
-            'https://unpkg.com/&#64;material/mwc-button&#64;0.27.0/mwc-button.js?module';
+            'https://cdn.jsdelivr.net/npm/&#64;shoelace-style/shoelace&#64;2.3.0/dist/components/button/button.js';
             loadingTemplate: loading;
             module: true
           "
-          raised
           (click)="increment()"
         >
           Increment
-        </mwc-button>
+        </sl-button>
         <p>Counter: {{ counter }}</p>
       </ng-template>
     </demo-example>
     <div class="description">
       <p>
         In this example we're loading
-        <code>&#60;mwc-button></code>
+        <code>&#60;sl-button></code>
         using the
         <code>*axLazyElement</code>
         directive but we're also adding
@@ -184,16 +184,15 @@
   <div class="content">
     <demo-example>
       <ng-template>
-        <mwc-switch
-          checked
-          *axLazyElement="'mwc-switch'; module: true; importMap: true"
-        ></mwc-switch>
+        <sl-switch
+          *axLazyElement="'sl-switch'; module: true; importMap: true"
+        ></sl-switch>
       </ng-template>
     </demo-example>
     <div class="description">
       <p>
         In this example we are using axLazyElement with Import Maps to load
-        <code>&#60;mwc-switch></code>
+        <code>&#60;sl-switch></code>
         . Any key can be used in the URL that is mapped to a import map. For
         this feature to work properly a peer dependency of having
         <a href="https://github.com/systemjs/systemjs" target="_blank">
@@ -205,7 +204,7 @@
       <demo-example-code [example]="codeExample5ImportMap" />
       <p>
         So when adding
-        <code>&#60;mwc-switch></code>
+        <code>&#60;sl-switch></code>
         with
         <code>*axLazyElement</code>
         with the
