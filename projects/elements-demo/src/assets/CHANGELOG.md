@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [19.1.0](https://github.com/angular-extensions/elements/compare/v19.0.1...v19.1.0) (2025-04-30)
+
+### Features
+
+- **demo:** use shoelace instead of material for advanced examples ([348f506](https://github.com/angular-extensions/elements/commit/348f506d14854d34c71138a6e750f95a35262470))
+- **demo:** use shoelace instead of material for basic examples ([f18f9fe](https://github.com/angular-extensions/elements/commit/f18f9fe81dd234d0485e76ba689aea822db66eb3))
+- **demo:** use shoelace instead of material for dynamic examples ([7388f7e](https://github.com/angular-extensions/elements/commit/7388f7e73e647eea0a60c1ae450e94c8bd02bca2))
+
 ### [19.0.1](https://github.com/angular-extensions/elements/compare/v19.0.0...v19.0.1) (2025-04-29)
 
 ## [19.0.0](https://github.com/angular-extensions/elements/compare/v18.2.1...v19.0.0) (2025-04-28)
