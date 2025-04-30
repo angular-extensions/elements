@@ -37,15 +37,15 @@ export class DynamicComponent implements OnInit {
   codeExample3html = CODE_EXAMPLE_3_HTML;
 
   // example state
-  buttonTypeIsOutlined = true;
+  isButtonVariantPrimary = true;
   counter1 = 0;
   counter2 = 0;
   counter3 = 0;
 
   dynamicConfigs = [
     {
-      tag: 'mwc-button',
-      url: 'https://unpkg.com/@material/mwc-button@0.27.0/mwc-button.js?module',
+      tag: 'sl-button',
+      url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/button/button.js',
       isModule: true,
       content: 'Increment',
       actionName: 'increment',
@@ -57,9 +57,10 @@ export class DynamicComponent implements OnInit {
       actionName: 'decrement',
     },
     {
-      tag: 'mwc-icon',
-      url: 'https://unpkg.com/@material/mwc-icon@0.27.0/mwc-icon.js?module',
-      content: 'replay',
+      tag: 'sl-icon',
+      url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/icon/icon.js',
+      isModule: true,
+      name: 'reset',
       actionName: 'reset',
     },
   ];
@@ -89,15 +90,15 @@ export class DynamicComponent implements OnInit {
   }
 }
 
-export const CODE_EXAMPLE_1 = `<!-- url = 'https://unpkg.com/@material/mwc-button@0.27.0/mwc-button.js?module' -->;
-<ax-lazy-element *axLazyElementDynamic="'mwc-button', url: url; module: true"
-     [outlined]="true"
+export const CODE_EXAMPLE_1 = `<!-- url = 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/button/button.js' -->;
+<ax-lazy-element *axLazyElementDynamic="'sl-button', url: url; module: true"
+     variant="primary"
      (click)="increment()">
   Increment
 </ax-lazy-element>
 
 <!-- will be rendered as ...
-  <mwc-button outlined (click)="increment()">Increment</mwc-button>
+  <sl-button variant="primary" (click)="increment()">Increment</sl-button>
 -->`;
 
 export const CODE_EXAMPLE_2_HTML = `<ax-lazy-element *axLazyElementDynamic="'wired-button'" (click)="increment()">
@@ -156,8 +157,8 @@ export const CODE_EXAMPLE_3_HTML = `&#64;for(c of dynamicConfigs; track c.url) {
 <!--
 dynamicConfigs = [
   {
-    tag: 'mwc-button',
-    url: 'https://unpkg.com/@material/mwc-button@0.27.0/mwc-button.js?module',
+    tag: 'sl-button',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/button/button.js',
     isModule: true,
     content: 'Increment',
     actionName: 'increment'
@@ -169,9 +170,9 @@ dynamicConfigs = [
     actionName: 'decrement'
   },
   {
-    tag: 'mwc-icon',
-    url: 'https://unpkg.com/@material/mwc-icon@0.27.0/mwc-icon.js?module',
-    content: 'replay',
+    tag: 'sl-icon',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/icon/icon.js',
+    name: 'reset',
     actionName: 'reset'
   }
 ];
