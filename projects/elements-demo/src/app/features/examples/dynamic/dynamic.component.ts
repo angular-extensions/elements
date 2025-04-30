@@ -144,13 +144,15 @@ export default <Routes>[
 ];
 `;
 
-export const CODE_EXAMPLE_3_HTML = `&#64;for(c of dynamicConfigs; track c.url) {
+export const CODE_EXAMPLE_3_HTML = `@for(c of dynamicConfigs; track c.url) {
   <ax-lazy-element
     *axLazyElementDynamic="c.tag; url: c.url; module: c.isModule"
     (click)="performAction(c.actionName)"
-    raised
+    [name]="c.name ? c.name : undefined"
   >
-    {{ c.content }}
+    @if (c.content) {
+      {{ c.content }}
+    }
   </ax-lazy-element>
 }
 
