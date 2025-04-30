@@ -36,24 +36,24 @@ const configs: ElementConfig[] = [
     preload: true,
   },
   {
-    tag: 'mwc-switch',
-    url: 'https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module',
+    tag: 'sl-switch',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/switch/switch.js',
     isModule: true,
   },
   {
-    tag: 'mwc-checkbox',
-    url: 'https://unpkg.com/@material/mwc-checkbox@0.27.0/mwc-checkbox.js?module',
+    tag: 'sl-checkbox',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/checkbox/checkbox.js',
     isModule: true,
   },
   {
-    tag: 'mwc-fab',
-    url: 'https://unpkg.com/@material/mwc-fab@0.27.0/mwc-fab.js?module',
+    tag: 'sl-avatar',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/avatar/avatar.js',
     isModule: true,
     loadingComponent: SpinnerComponent,
   },
   {
-    tag: 'mwc-slider',
-    url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
+    tag: 'sl-range',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/range/range.js',
     isModule: true,
     hooks: {
       beforeLoad: beforeLoadHook,

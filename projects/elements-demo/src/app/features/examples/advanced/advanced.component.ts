@@ -80,8 +80,8 @@ export class AdvancedComponent implements OnInit {
     this.lazyElementLoaderService.preload();
   }
 
-  preloadFab() {
-    this.lazyElementLoaderService.preload(['mwc-fab']);
+  preloadSome() {
+    this.lazyElementLoaderService.preload(['sl-avatar']);
   }
 }
 
@@ -139,8 +139,8 @@ const CODE_EXAMPLE_2_MODULE = `// pre-configured LazyElementsModule in FeatureMo
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
-      tag: 'mwc-checkbox',
-      url: 'https://unpkg.com/@material/mwc-checkbox@0.27.0/mwc-checkbox.js?module'
+      tag: 'sl-checkbox',
+      url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/checkbox/checkbox.js'
     }
   ]
 };
@@ -157,8 +157,8 @@ export class FeatureModule { }
 const CODE_EXAMPLE_2_STANDALONE = `// pre-configured routes based lazy feature
 const configs: ElementConfig[] = [
   {
-    tag: 'wired-button',
-    url: 'https://unpkg.com/@material/mwc-checkbox@0.27.0/mwc-checkbox.js?module',
+    tag: 'sl-checkbox',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/checkbox/checkbox.js',
   }
 ];
 
@@ -177,14 +177,14 @@ export default <Routes>[
   },
 ];`;
 const CODE_EXAMPLE_2_HTML = `<!-- We have to specify null; url to be able to pass in additional options -->
-<mwc-checkbox *axLazyElement="null; module: true; loadingTemplate: loading;"></mwc-checkbox>`;
+<sl-checkbox *axLazyElement="null; module: true; loadingTemplate: loading;"></sl-checkbox>`;
 
 const CODE_EXAMPLE_3_MODULE = `// pre-configured LazyElementsModule
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
-      tag: 'mwc-switch',
-      url: 'https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module',
+      tag: 'sl-switch',
+      url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/switch/switch.js',
       isModule: true
     }
   ]
@@ -202,8 +202,8 @@ export class FeatureModule { }
 const CODE_EXAMPLE_3_STANDALONE = `// pre-configured routes based lazy feature
 const configs: ElementConfig[] = [
   {
-    tag: 'wired-button',
-    url: 'https://unpkg.com/@material/mwc-checkbox@0.27.0/mwc-checkbox.js?module',
+    tag: 'sl-switch',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/switch/switch.js',
     isModule: true
   }
 ];
@@ -223,10 +223,10 @@ export default <Routes>[
   },
 ];`;
 const CODE_EXAMPLE_3_HTML = `<!-- We have to specify null; url to be able to pass in additional options -->
-<mwc-switch *axLazyElement="null; loadingTemplate: loading;"></mwc-switch>`;
+<sl-switch *axLazyElement="null; loadingTemplate: loading;"></sl-switch>`;
 
 const CODE_EXAMPLE_4_HTML = `<!-- This can be used in any place in the whole application -->
-<mwc-fab icon="code" *axLazyElement></mwc-fab>`;
+<sl-avatar *axLazyElement></sl-avatar>`;
 const CODE_EXAMPLE_4_CORE_MODULE = `// pre-configured LazyElementsModule in CoreModule or AppModule
 const options: LazyElementModuleRootOptions = {
   rootOptions: {
@@ -236,8 +236,8 @@ const options: LazyElementModuleRootOptions = {
   },
   elementConfigs: [
     {
-      tag: 'mwc-switch',
-      url: 'https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module'
+      tag: 'sl-avatar',
+      url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/avatar/avatar.js'
     }
   ]
 };
@@ -262,8 +262,8 @@ bootstrapApplication(AppComponent, {
       },
        elementConfigs: [
         {
-          tag: 'mwc-switch',
-          url: 'https://unpkg.com/@material/mwc-switch@0.27.0/mwc-switch.js?module'
+          tag: 'sl-avatar',
+          url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/avatar/avatar.js'
         }
       ]
     }),
@@ -280,7 +280,7 @@ class LazyFeatureComponent {
   }
 
   preloadFab() {
-    this.lazyElementLoaderService.preload(['mwc-fab']);
+    this.lazyElementLoaderService.preload(['sl-avatar']);
   }
 }
 `;
@@ -292,8 +292,8 @@ const CODE_EXAMPLE_6_STANDALONE = `export function beforeLoadHook(tag: string): 
 
 const options: ElementConfig[] = [
   {
-    tag: 'mwc-slider',
-    url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
+    tag: 'sl-range',
+    url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/range/range.js',
     isModule: true,
     hooks: {
       beforeLoad: beforeLoadHook
@@ -325,8 +325,8 @@ export function beforeLoadHook(tag: string): Promise<void> {
 const options: LazyElementModuleOptions = {
   elementConfigs: [
     {
-      tag: 'mwc-slider',
-      url: 'https://unpkg.com/@material/mwc-slider@0.14.1/mwc-slider.js?module',
+      tag: 'sl-range',
+      url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/range/range.js',
       isModule: true,
       hooks: {
         beforeLoad: beforeLoadHook
@@ -346,7 +346,7 @@ const options: LazyElementModuleOptions = {
 })
 export class FeatureModule { }
 `;
-const CODE_EXAMPLE_6_HTML = `<mwc-slider *axLazyElement></mwc-slider>`;
+const CODE_EXAMPLE_6_HTML = `<sl-range *axLazyElement></sl-range>`;
 
 const CODE_EXAMPLE_7_HTML = `<!-- No need to specify url -->
 <wired-toggle *axLazyElement (change)="toggle()"></wired-toggle>`;

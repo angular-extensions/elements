@@ -95,11 +95,11 @@
     <demo-example>
       <ng-template>
         <ng-template #loading>Loading...</ng-template>
-        <mwc-checkbox
+        <sl-checkbox
           *axLazyElement="null; module: true; loadingTemplate: loading"
         >
           Click me
-        </mwc-checkbox>
+        </sl-checkbox>
       </ng-template>
     </demo-example>
 
@@ -136,9 +136,9 @@
     <demo-example>
       <ng-template>
         <ng-template #loading>Loading...</ng-template>
-        <mwc-switch *axLazyElement="null; loadingTemplate: loading">
+        <sl-switch *axLazyElement="null; loadingTemplate: loading">
           Click me
-        </mwc-switch>
+        </sl-switch>
       </ng-template>
     </demo-example>
     <div class="description">
@@ -161,7 +161,7 @@
   <h2 id="global-pre-configuration">Global preconfiguration</h2>
   <div class="content">
     <demo-example>
-      <ng-template><mwc-fab icon="code" *axLazyElement></mwc-fab></ng-template>
+      <ng-template><sl-avatar *axLazyElement></sl-avatar></ng-template>
     </demo-example>
     <div class="description">
       <p>
@@ -200,9 +200,9 @@
         class="additional-btn"
         mat-flat-button
         color="accent"
-        (click)="preloadFab()"
+        (click)="preloadSome()"
       >
-        Preload "fab" only (the previous example)
+        Preload "sl-avatar" only (the previous example)
       </button>
     </div>
     <div class="description">
@@ -227,7 +227,7 @@
   <h2 id="hooks">Hooks</h2>
   <div class="content">
     <demo-example>
-      <ng-template><mwc-slider *axLazyElement></mwc-slider></ng-template>
+      <ng-template><sl-range *axLazyElement></sl-range></ng-template>
     </demo-example>
     <div class="description">
       <p>
