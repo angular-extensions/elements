@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [20.0.0](https://github.com/angular-extensions/elements/compare/v19.1.0...v20.0.0) (2025-05-29)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** Angular 20
+
+* cleanups, automatic migrations
+
+### Features
+
+- **docs:** improve docs, modernize readme quickstart ([84562d5](https://github.com/angular-extensions/elements/commit/84562d5ddc48c21cc3f6fefb6acde03b870885a1))
+- **lib:** upgrade to Angular 20 ([03f393c](https://github.com/angular-extensions/elements/commit/03f393c2f625f98ea27c8309d5fef3114ea29d38))
+
+### Bug Fixes
+
+- **demo:** dynamic code example ([85a9a53](https://github.com/angular-extensions/elements/commit/85a9a53afe91ce63af0aefc4cc91ea87cf7dca6a))
+- **demo:** set base path for sl-icon svg assets ([5f5a8ec](https://github.com/angular-extensions/elements/commit/5f5a8ec74c9d7ecc4028b301c739c0883f43d1d9))
+
 ## [19.1.0](https://github.com/angular-extensions/elements/compare/v19.0.1...v19.1.0) (2025-04-30)
 
 ### Features
