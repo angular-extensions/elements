@@ -38,9 +38,8 @@ export class HomeComponent implements OnInit {
 }
 
 const CODE_EXAMPLE_COMPONENT = `@Component({
-  standalone: true,
-  selector: 'your-org-feature',
-  imports: [LazyElementDirective]
+  selector: 'my-org-component',
+  imports: [LazyElementDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: \`
     <!-- will be lazy loaded and uses standard Angular template bindings -->

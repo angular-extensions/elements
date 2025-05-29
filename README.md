@@ -24,45 +24,31 @@ by [@tomastrajan](https://twitter.com/tomastrajan)
 ## Quickstart
 
 1. Install `npm i @angular-extensions/elements`
-2. Add `import { LazyElementsModule } from '@angular-extensions/elements';`
-3. Append `LazyElementsModule` to the `imports: []` of your `AppModule`
-4. Add new `schemas: []` property with `CUSTOM_ELEMENTS_SCHEMA` value to `@NgModule` decorator of your `AppModule`
+2. Add `import { LazyElementDirective } from '@angular-extensions/elements'`;
+3. Append `LazyElementDirective` to the `imports: []` of your `MyOrgComponent`
+4. Add new `schemas: []` property with `CUSTOM_ELEMENTS_SCHEMA` value to `@Component` decorator of your `MyOrgComponent`
 5. Use `*axLazyElement` directive on an element you wish to load and pass in the url of the element bundle
-
-Example of module implementation...
-
-```typescript
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { LazyElementsModule } from '@angular-extensions/elements';
-
-@NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [BrowserModule, LazyElementsModule],
-  declarations: [AppComponent, FeatureComponent],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
-```
 
 Example of component implementation
 
 ```typescript
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { LazyElementDirective } from '@angular-extensions/elements';
 
 @Component({
   selector: 'your-org-feature',
+  imports: [LazyElementDirective],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- will be lazy loaded and uses standard Angular template bindings -->
     <some-element
       *axLazyElement="elementUrl"
       [data]="data"
       (dataChange)="handleChange($event)"
-    >
-    </some-element>
+    ></some-element>
   `,
 })
-export class FeatureComponent {
+export class MyOrgComponent {
   elementUrl = 'https://your-org.com/elements/some-element.js';
 
   data: SomeData;
