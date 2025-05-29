@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [20.0.2](https://github.com/angular-extensions/elements/compare/v20.0.1...v20.0.2) (2025-05-29)
+
+### Bug Fixes
+
+- bump nested peer dependencies in the library ([5676762](https://github.com/angular-extensions/elements/commit/5676762c5bcecfc1c0968423331f50beebc084bb))
+
 ### [20.0.1](https://github.com/angular-extensions/elements/compare/v20.0.0...v20.0.1) (2025-05-29)
 
 ## [20.0.0](https://github.com/angular-extensions/elements/compare/v19.1.0...v20.0.0) (2025-05-29)
