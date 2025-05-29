@@ -10,8 +10,9 @@ import {
   TemplateRef,
   ViewContainerRef,
   input,
+  DOCUMENT,
 } from '@angular/core';
-import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { isPlatformServer } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { from, mergeMap } from 'rxjs';
 
