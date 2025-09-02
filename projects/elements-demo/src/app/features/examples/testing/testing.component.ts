@@ -48,11 +48,11 @@ describe('FeatureComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [FeatureComponent, MockElementComponent],
+            imports: [FeatureComponent],
         })
         .overrideComponent(FeatureComponent, {
           remove: { imports: [ LazyElementDirective ] },
-          add: { imports: [ LazyElementTestingDirective ] }
+          add: { imports: [ LazyElementTestingDirective, MockElementComponent ] }
         })
         .compileComponents();
     });
