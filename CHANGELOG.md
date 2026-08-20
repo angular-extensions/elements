@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [22.0.0](https://github.com/angular-extensions/elements/compare/v21.0.1...v22.0.0) (2026-08-20)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** Angular 22
+
+* run official Angular migrations and update library peer ranges
+* migrate tests from Jest to Vitest and align Node 24.15 across local and CI environments
+* modernize showcase state with signals and computed values
+
+### Features
+
+- **lib:** upgrade to Angular 22 ([1455bbf](https://github.com/angular-extensions/elements/commit/1455bbf6c3c7ba7e0fc3c58aea4f5a109c01af0d))
+
 ### [21.0.1](https://github.com/angular-extensions/elements/compare/v21.0.0...v21.0.1) (2026-08-20)
 
 ### Bug Fixes

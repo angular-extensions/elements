@@ -1,6 +1,6 @@
 {
   "name": "@angular-extensions/elements",
-  "version": "21.0.1",
+  "version": "22.0.0",
   "engines": {
     "node": ">=24.15.0 <25"
   },
