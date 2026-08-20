@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [21.0.1](https://github.com/angular-extensions/elements/compare/v21.0.0...v21.0.1) (2026-08-20)
+
+### Bug Fixes
+
+- **ci:** publish packages with npm trusted publishing ([723e6d0](https://github.com/angular-extensions/elements/commit/723e6d01999c674303daa171cd4907fcdb2408d5))
+
 ## [21.0.0](https://github.com/angular-extensions/elements/compare/v20.0.2...v21.0.0) (2026-08-20)
 
 ### ⚠ BREAKING CHANGES
