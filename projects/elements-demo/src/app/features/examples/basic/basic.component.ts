@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { JsonPipe } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
@@ -32,24 +32,24 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
 })
 export class BasicComponent {
   // example code examples
-  codeExample1 = CODE_EXAMPLE_1;
-  codeExample2 = CODE_EXAMPLE_2;
-  codeExample3 = CODE_EXAMPLE_3;
-  codeExample4 = CODE_EXAMPLE_4;
-  codeExample5 = CODE_EXAMPLE_5;
-  codeExample5ImportMap = CODE_EXAMPLE_5_IMPORT_MAP;
+  readonly codeExample1 = CODE_EXAMPLE_1;
+  readonly codeExample2 = CODE_EXAMPLE_2;
+  readonly codeExample3 = CODE_EXAMPLE_3;
+  readonly codeExample4 = CODE_EXAMPLE_4;
+  readonly codeExample5 = CODE_EXAMPLE_5;
+  readonly codeExample5ImportMap = CODE_EXAMPLE_5_IMPORT_MAP;
 
   // example state
-  counter = 0;
-  xAxis = [-6.28, 6.28];
-  yAxis = [-1, 1];
+  readonly counter = signal(0);
+  readonly xAxis = signal([-6.28, 6.28]);
+  readonly yAxis = signal([-1, 1]);
 
   increment() {
-    this.counter++;
+    this.counter.update((counter) => counter + 1);
   }
 
   onSliderChange(value: number) {
-    this.xAxis = [-value, value];
+    this.xAxis.set([-value, value]);
   }
 
   customLoadingErrorHandler(error: ErrorEvent) {
@@ -77,8 +77,8 @@ const CODE_EXAMPLE_3 = `<!-- url = 'https://unpkg.com/wrong-url.js?module' -->;
 </sl-button>`;
 
 const CODE_EXAMPLE_4 = `<!-- https://unpkg.com/ink-components' -->;
-<!-- xAxis = [-6.28, 6.28] -->;
-<ink-chart *axLazyElement="url" [xlim]="xAxis">
+<!-- readonly xAxis = signal([-6.28, 6.28]) -->;
+<ink-chart *axLazyElement="url" [xlim]="xAxis()">
   <ink-chart-eqn eqn="Math.sin(x)"></ink-chart-eqn>
 </ink-chart>`;
 

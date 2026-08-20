@@ -1,5 +1,5 @@
-import { jest } from '@jest/globals';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { type MockedFunction, vi } from 'vitest';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LazyElementsModule } from '../lazy-elements.module';
@@ -16,24 +16,24 @@ class SpinnerTestComponent {}
 
 @Component({
   standalone: true,
-  imports: [SpinnerTestComponent, LazyElementDirective],
+  imports: [LazyElementDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <some-element
       *axLazyElement="'http://elements.com/some-element'"
     ></some-element>
-    @if (addSameElement) {
+    @if (addSameElement()) {
       <some-element
         *axLazyElement="'http://elements.com/some-element'"
       ></some-element>
     }
-    @if (addOtherElement) {
+    @if (addOtherElement()) {
       <some-other-element
         *axLazyElement="'http://elements.com/some-other-element'"
       ></some-other-element>
     }
 
-    @if (useLoadingTemplate) {
+    @if (useLoadingTemplate()) {
       <ng-template #loading>
         <p class="loading">Loading...</p>
       </ng-template>
@@ -45,7 +45,7 @@ class SpinnerTestComponent {}
       ></some-element>
     }
 
-    @if (useErrorTemplate) {
+    @if (useErrorTemplate()) {
       <ng-template #loading>
         <p class="loading">Loading...</p>
       </ng-template>
@@ -61,7 +61,7 @@ class SpinnerTestComponent {}
       ></some-element>
     }
 
-    @if (useModule) {
+    @if (useModule()) {
       <some-element
         *axLazyElement="'http://elements.com/some-element-module'; module: true"
       ></some-element>
@@ -70,39 +70,38 @@ class SpinnerTestComponent {}
       ></some-configured-module-element>
     }
 
-    @if (useImportMap) {
+    @if (useImportMap()) {
       <some-element
         *axLazyElement="'some-element'; importMap: true"
       ></some-element>
     }
 
-    @if (useElementConfig) {
+    @if (useElementConfig()) {
       <some-configured-element *axLazyElement></some-configured-element>
     }
 
-    @if (useUrlBinding) {
-      <some-configured-element *axLazyElement="url"></some-configured-element>
+    @if (useUrlBinding()) {
+      <some-configured-element *axLazyElement="url()"></some-configured-element>
     }
   `,
 })
 class TestHostComponent {
-  addSameElement = false;
-  addOtherElement = false;
-  useLoadingTemplate = false;
-  useErrorTemplate = false;
-  useModule = false;
-  useImportMap = false;
-  useElementConfig = false;
-
-  useUrlBinding = false;
-  url: string | null = null;
+  readonly addSameElement = signal(false);
+  readonly addOtherElement = signal(false);
+  readonly useLoadingTemplate = signal(false);
+  readonly useErrorTemplate = signal(false);
+  readonly useModule = signal(false);
+  readonly useImportMap = signal(false);
+  readonly useElementConfig = signal(false);
+  readonly useUrlBinding = signal(false);
+  readonly url = signal<string | null>(null);
 }
 
 describe('LazyElementDirective', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let appendChildSpy: jest.MockedFunction<any>;
-  let whenDefinedSpy: jest.MockedFunction<any>;
+  let appendChildSpy: MockedFunction<any>;
+  let whenDefinedSpy: MockedFunction<any>;
 
   function appendedScriptElements(): HTMLScriptElement[] {
     return appendChildSpy.mock.calls.map((args) => args[0]);
@@ -143,8 +142,8 @@ describe('LazyElementDirective', () => {
   beforeEach(async () => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
-    appendChildSpy = jest.spyOn(document.body, 'appendChild') as any;
-    whenDefinedSpy = jest
+    appendChildSpy = vi.spyOn(document.body, 'appendChild') as any;
+    whenDefinedSpy = vi
       .spyOn(customElements, 'whenDefined')
       .mockReturnValue(
         Promise.resolve(class DummyElement extends HTMLElement {}),
@@ -170,7 +169,7 @@ describe('LazyElementDirective', () => {
   });
 
   it('adds a script tag only once for elements with same url', () => {
-    testHostComponent.addSameElement = true;
+    testHostComponent.addSameElement.set(true);
     fixture.detectChanges();
 
     expect(appendChildSpy).toHaveBeenCalledTimes(1);
@@ -180,7 +179,7 @@ describe('LazyElementDirective', () => {
   });
 
   it('adds multiple script tags if elements have different bundle url', async () => {
-    testHostComponent.addOtherElement = true;
+    testHostComponent.addOtherElement.set(true);
     fixture.detectChanges();
 
     await fixture.whenStable();
@@ -197,7 +196,7 @@ describe('LazyElementDirective', () => {
   it('renders loading template', async () => {
     expect(document.querySelector('.loading')).toBe(null);
 
-    testHostComponent.useLoadingTemplate = true;
+    testHostComponent.useLoadingTemplate.set(true);
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -207,7 +206,7 @@ describe('LazyElementDirective', () => {
   it('removes loading template when element is loaded', async () => {
     expect(document.querySelector('.loading')).toBe(null);
 
-    testHostComponent.useLoadingTemplate = true;
+    testHostComponent.useLoadingTemplate.set(true);
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -222,11 +221,11 @@ describe('LazyElementDirective', () => {
   });
 
   it('renders error template loading of element failed', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error');
+    const consoleErrorSpy = vi.spyOn(console, 'error');
     expect(document.querySelector('.loading')).toBe(null);
     expect(document.querySelector('.error')).toBe(null);
 
-    testHostComponent.useErrorTemplate = true;
+    testHostComponent.useErrorTemplate.set(true);
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -257,7 +256,7 @@ describe('LazyElementDirective', () => {
     );
     expect(getAppendChildFirstScript().type).toBe('');
 
-    testHostComponent.useModule = true;
+    testHostComponent.useModule.set(true);
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -282,7 +281,7 @@ describe('LazyElementDirective', () => {
       prepareImport: () => null,
       resolve: () => `http://elements.com/element-using-import-map`,
     };
-    testHostComponent.useImportMap = true;
+    testHostComponent.useImportMap.set(true);
     fixture.detectChanges();
     await fixture.whenStable();
     await fixture.whenRenderingDone();
@@ -294,7 +293,7 @@ describe('LazyElementDirective', () => {
   });
 
   it('uses elementConfig for the tag', async () => {
-    testHostComponent.useElementConfig = true;
+    testHostComponent.useElementConfig.set(true);
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -304,17 +303,19 @@ describe('LazyElementDirective', () => {
   it('should load another element when the `url` binding changes', async () => {
     // Arrange
     const elementsLoaderService = TestBed.inject(LazyElementsLoaderService);
-    const loadElementSpy = jest.spyOn(elementsLoaderService, 'loadElement');
+    const loadElementSpy = vi.spyOn(elementsLoaderService, 'loadElement');
 
     // Act
-    testHostComponent.useUrlBinding = true;
-    testHostComponent.url =
-      'http://elements.com/some-configured-element-module';
+    testHostComponent.useUrlBinding.set(true);
+    testHostComponent.url.set(
+      'http://elements.com/some-configured-element-module',
+    );
     fixture.detectChanges();
     await fixture.whenStable();
 
-    testHostComponent.url =
-      'http://elements.com/some-configured-element-module-es2015';
+    testHostComponent.url.set(
+      'http://elements.com/some-configured-element-module-es2015',
+    );
     fixture.detectChanges();
     await fixture.whenStable();
 

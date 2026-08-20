@@ -2,7 +2,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": false,
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -13,13 +12,12 @@
     "importHelpers": true,
     "target": "es2022",
     "resolveJsonModule": true,
-    "types": ["jest"],
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@angular-extensions/elements/*": ["projects/elements/*"],
-      "@angular-extensions/elements": ["projects/elements/src/public-api.ts"]
+      "@angular-extensions/elements/*": ["./projects/elements/*"],
+      "@angular-extensions/elements": ["./projects/elements/src/public-api.ts"]
     }
   },
   "angularCompilerOptions": {

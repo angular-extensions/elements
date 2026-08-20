@@ -1,11 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Observable } from 'rxjs';
 import { HighlightModule } from 'ngx-highlightjs';
 
 import { ResponsiveLayoutService } from '../../core/layout/responsive-layout.service';
@@ -16,7 +14,6 @@ import { ResponsiveLayoutService } from '../../core/layout/responsive-layout.ser
   styleUrls: ['./home.component.scss'],
   imports: [
     RouterLink,
-    AsyncPipe,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
@@ -24,17 +21,12 @@ import { ResponsiveLayoutService } from '../../core/layout/responsive-layout.ser
     HighlightModule,
   ],
 })
-export class HomeComponent implements OnInit {
-  columnCount: Observable<number>;
-
-  features = FEATURES;
-  codeExampleComponent = CODE_EXAMPLE_COMPONENT;
-
+export class HomeComponent {
   private readonly responsiveLayoutService = inject(ResponsiveLayoutService);
 
-  ngOnInit() {
-    this.columnCount = this.responsiveLayoutService.columnCount;
-  }
+  readonly columnCount = this.responsiveLayoutService.columnCount;
+  readonly features = FEATURES;
+  readonly codeExampleComponent = CODE_EXAMPLE_COMPONENT;
 }
 
 const CODE_EXAMPLE_COMPONENT = `@Component({
@@ -45,19 +37,19 @@ const CODE_EXAMPLE_COMPONENT = `@Component({
     <!-- will be lazy loaded and uses standard Angular template bindings -->
     <some-element
       *axLazyElement="elementUrl"
-      [data]="data"
+      [data]="data()"
       (dataChange)="handleChange($event)"
     >
     </some-element>
   \`
 })
 export class MyOrgComponent {
-  elementUrl = 'https://your-org.com/elements/some-element.js';
+  readonly elementUrl = 'https://your-org.com/elements/some-element.js';
 
-  data: SomeData;
+  readonly data = signal<SomeData>(initialData);
 
   handleChange(change: Partial<SomeData>) {
-    // ...
+    this.data.update((data) => ({ ...data, ...change }));
   }
 }
 `;

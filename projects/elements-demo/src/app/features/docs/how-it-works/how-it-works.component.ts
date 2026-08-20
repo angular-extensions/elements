@@ -10,9 +10,9 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   imports: [RouterLink, HighlightModule, ExampleCodeComponent],
 })
 export class HowItWorksComponent implements OnInit {
-  codeExampleComponent = CODE_EXAMPLE_COMPONENT;
-  codeExampleComponentBinding = CODE_EXAMPLE_COMPONENT_BINDING;
-  codeExampleComponentLazy = CODE_EXAMPLE_COMPONENT_LAZY;
+  readonly codeExampleComponent = CODE_EXAMPLE_COMPONENT;
+  readonly codeExampleComponentBinding = CODE_EXAMPLE_COMPONENT_BINDING;
+  readonly codeExampleComponentLazy = CODE_EXAMPLE_COMPONENT_LAZY;
 
   ngOnInit() {}
 }
@@ -29,11 +29,11 @@ const CODE_EXAMPLE_COMPONENT = `import { Component } from '@angular/core';
   \`
 })
 export class FeatureComponent {
-  url = 'path/to/your-org-customer-editor.js';
+  readonly url = 'path/to/your-org-customer-editor.js';
 }
 `;
 
-const CODE_EXAMPLE_COMPONENT_LAZY = `import { Component } from '@angular/core';
+const CODE_EXAMPLE_COMPONENT_LAZY = `import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'your-org-feature',
@@ -41,19 +41,19 @@ const CODE_EXAMPLE_COMPONENT_LAZY = `import { Component } from '@angular/core';
   imports: [LazyElementDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: \`
-    @if(showEditor) {
+    @if(showEditor()) {
       <your-org-customer-editor *axLazyElement="url"></your-org-customer-editor>
     }
     <button (click)="toggleShowEditor()">Edit customer</button>
   \`
 })
 export class FeatureComponent {
-  showEditor = false;
+  readonly showEditor = signal(false);
 
-  url = 'path/to/your-org-customer-editor.js';
+  readonly url = 'path/to/your-org-customer-editor.js';
 
   toggleShowEditor() {
-    this.showEditor = !showEditor;
+    this.showEditor.update((showEditor) => !showEditor);
   }
 }
 `;
@@ -73,9 +73,9 @@ const CODE_EXAMPLE_COMPONENT_BINDING = `import { Component } from '@angular/core
   \`
 })
 export class FeatureComponent {
-  url = 'path/to/your-org-customer-editor.js';
+  readonly url = 'path/to/your-org-customer-editor.js';
 
-  customerId = 'C-123-456';
+  readonly customerId = 'C-123-456';
 
   handleCustomerDataChange(change) {
     // handle change ...

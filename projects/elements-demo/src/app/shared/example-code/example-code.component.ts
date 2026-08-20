@@ -35,7 +35,7 @@ import { Highlight } from 'ngx-highlightjs';
   `,
 })
 export class ExampleCodeComponent {
-  example = input<string>();
-  exampleModule = input<string>();
-  language = input<string>('typescript');
+  readonly example = input<string>();
+  readonly exampleModule = input<string>();
+  readonly language = input<string>('typescript');
 }

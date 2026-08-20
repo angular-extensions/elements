@@ -1,16 +1,9 @@
-<demo-toolbar
-  (toggle)="onNavToggle()"
-  [navOpened]="navOpened | async"
-></demo-toolbar>
+<demo-toolbar (toggle)="onNavToggle()" [navOpened]="navOpened()"></demo-toolbar>
 <mat-sidenav-container
-  [hasBackdrop]="isSmallOrSmaller | async"
+  [hasBackdrop]="isSmallOrSmaller()"
   (backdropClick)="onBackdropClick()"
 >
-  <mat-sidenav
-    [mode]="sidenavMode | async"
-    [opened]="navOpened | async"
-    disableClose
-  >
+  <mat-sidenav [mode]="sidenavMode()" [opened]="navOpened()" disableClose>
     <demo-navigation></demo-navigation>
   </mat-sidenav>
   <mat-sidenav-content>

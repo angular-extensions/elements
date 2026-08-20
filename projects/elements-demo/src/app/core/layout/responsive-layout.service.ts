@@ -1,59 +1,65 @@
-import { Injectable, inject } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { combineLatest, Observable, map } from 'rxjs';
+
+const OBSERVED_BREAKPOINTS = [
+  Breakpoints.XSmall,
+  Breakpoints.Small,
+  Breakpoints.Medium,
+  Breakpoints.Large,
+  Breakpoints.XLarge,
+];
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResponsiveLayoutService {
-  // basic
-  isXSmallScreen: Observable<boolean>;
-  isSmallScreen: Observable<boolean>;
-  isMediumScreen: Observable<boolean>;
-  isLargeScreen: Observable<boolean>;
-  isXLargeScreen: Observable<boolean>;
+  readonly #breakpointObserver = inject(BreakpointObserver);
 
-  // derived
-  columnCount: Observable<number>;
-  isSmallOrSmaller: Observable<boolean>;
-  isLargeOrBigger: Observable<boolean>;
+  readonly #breakpointState = toSignal(
+    this.#breakpointObserver.observe(OBSERVED_BREAKPOINTS),
+    {
+      initialValue: {
+        matches: this.#breakpointObserver.isMatched(OBSERVED_BREAKPOINTS),
+        breakpoints: Object.fromEntries(
+          OBSERVED_BREAKPOINTS.map((breakpoint) => [
+            breakpoint,
+            this.#breakpointObserver.isMatched(breakpoint),
+          ]),
+        ),
+      },
+    },
+  );
 
-  private readonly breakpointObserver = inject(BreakpointObserver);
+  readonly isXSmallScreen = computed(
+    () => this.#breakpointState().breakpoints[Breakpoints.XSmall] ?? false,
+  );
+  readonly isSmallScreen = computed(
+    () => this.#breakpointState().breakpoints[Breakpoints.Small] ?? false,
+  );
+  readonly isMediumScreen = computed(
+    () => this.#breakpointState().breakpoints[Breakpoints.Medium] ?? false,
+  );
+  readonly isLargeScreen = computed(
+    () => this.#breakpointState().breakpoints[Breakpoints.Large] ?? false,
+  );
+  readonly isXLargeScreen = computed(
+    () => this.#breakpointState().breakpoints[Breakpoints.XLarge] ?? false,
+  );
 
-  constructor() {
-    this.isXSmallScreen = this.breakpointObserver
-      .observe([Breakpoints.XSmall])
-      .pipe(map((result) => result.matches));
-    this.isSmallScreen = this.breakpointObserver
-      .observe([Breakpoints.Small])
-      .pipe(map((result) => result.matches));
-    this.isMediumScreen = this.breakpointObserver
-      .observe([Breakpoints.Medium])
-      .pipe(map((result) => result.matches));
-    this.isLargeScreen = this.breakpointObserver
-      .observe([Breakpoints.Large])
-      .pipe(map((result) => result.matches));
-    this.isXLargeScreen = this.breakpointObserver
-      .observe([Breakpoints.XLarge])
-      .pipe(map((result) => result.matches));
-
-    this.columnCount = combineLatest([
-      this.isXSmallScreen,
-      this.isSmallScreen,
-      this.isMediumScreen,
-      this.isLargeScreen,
-    ]).pipe(
-      map(([isXSmall, isSmall, isMedium, isLarge]) =>
-        isXSmall ? 1 : isSmall ? 2 : isMedium ? 2 : isLarge ? 3 : 4,
-      ),
-    );
-
-    this.isSmallOrSmaller = this.breakpointObserver
-      .observe([Breakpoints.XSmall, Breakpoints.Small])
-      .pipe(map((result) => result.matches));
-
-    this.isLargeOrBigger = this.breakpointObserver
-      .observe([Breakpoints.Large, Breakpoints.XLarge])
-      .pipe(map((result) => result.matches));
-  }
+  readonly columnCount = computed(() =>
+    this.isXSmallScreen()
+      ? 1
+      : this.isSmallScreen() || this.isMediumScreen()
+        ? 2
+        : this.isLargeScreen()
+          ? 3
+          : 4,
+  );
+  readonly isSmallOrSmaller = computed(
+    () => this.isXSmallScreen() || this.isSmallScreen(),
+  );
+  readonly isLargeOrBigger = computed(
+    () => this.isLargeScreen() || this.isXLargeScreen(),
+  );
 }

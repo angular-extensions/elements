@@ -8,5 +8,13 @@
     "stripInternal": false,
     "types": []
   },
-  "exclude": ["jest.setup.ts", "**/*.spec.ts"]
+  "exclude": ["vitest.setup.ts", "**/*.spec.ts"],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

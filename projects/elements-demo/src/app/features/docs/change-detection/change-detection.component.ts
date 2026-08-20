@@ -8,14 +8,14 @@ import { HighlightModule } from 'ngx-highlightjs';
   imports: [HighlightModule],
 })
 export class ChangeDetectionComponent implements OnInit {
-  codeExampleShareNgZone = CODE_EXAMPLE_SHARE_NG_ZONE;
+  readonly codeExampleShareNgZone = CODE_EXAMPLE_SHARE_NG_ZONE;
 
   ngOnInit() {}
 }
 
 export const CODE_EXAMPLE_SHARE_NG_ZONE = `// in parent app (app.module.ts)
 export class AppModule {
-  private ngZone = inject(NgZone);
+  private readonly ngZone = inject(NgZone);
 
   constructor() {
     (window as any).ngZone = this.ngZone // store ngZone reference on the window object

@@ -41,16 +41,17 @@
             loadingTemplate: loading;
             module: true
           "
-          [variant]="isButtonVariantPrimary ? 'primary' : 'default'"
+          [variant]="isButtonVariantPrimary() ? 'primary' : 'default'"
           (click)="increment1()"
         >
           Increment
         </ax-lazy-element>
-        <p>Counter: {{ counter1 }}</p>
+        <p>Counter: {{ counter1() }}</p>
         <div class="controls">
           <span>Default button</span>
           <mat-slide-toggle
-            [(ngModel)]="isButtonVariantPrimary"
+            [ngModel]="isButtonVariantPrimary()"
+            (ngModelChange)="isButtonVariantPrimary.set($event)"
           ></mat-slide-toggle>
           <span>Primary button</span>
         </div>
@@ -97,7 +98,7 @@
         >
           Increment
         </ax-lazy-element>
-        <p>Counter: {{ counter2 }}</p>
+        <p>Counter: {{ counter2() }}</p>
       </ng-template>
     </demo-example>
     <div class="description">
@@ -149,7 +150,7 @@
             </ax-lazy-element>
           }
         </div>
-        <p>Counter: {{ counter3 }}</p>
+        <p>Counter: {{ counter3() }}</p>
       </ng-template>
     </demo-example>
     <div class="description">

@@ -82,5 +82,5 @@ const NAVIGATION = [
   imports: [RouterLink, RouterLinkActive, MatIconModule, MatListModule],
 })
 export class NavigationComponent {
-  navigation = NAVIGATION;
+  readonly navigation = NAVIGATION;
 }

@@ -1,24 +1,8 @@
 import { SwUpdate } from '@angular/service-worker';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  HostBinding,
-  inject,
-} from '@angular/core';
-import {
-  BehaviorSubject,
-  combineLatest,
-  Observable,
-  delay,
-  map,
-  tap,
-} from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {
-  MatDrawerMode,
-  MatSidenav,
+  type MatDrawerMode,
   MatSidenavModule,
 } from '@angular/material/sidenav';
 
@@ -34,8 +18,10 @@ import { IconRegistryService } from './core/icon-registry.service';
   selector: 'demo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  host: {
+    '[class]': 'demoRootCssClass()',
+  },
   imports: [
-    AsyncPipe,
     RouterOutlet,
     SponsorComponent,
     ToolbarComponent,
@@ -45,20 +31,26 @@ import { IconRegistryService } from './core/icon-registry.service';
   ],
 })
 export class AppComponent implements OnInit {
-  @HostBinding('class')
-  demoRootCssClass = '';
-
-  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
-
-  navOpened: Observable<boolean>;
-  navToggled = new BehaviorSubject(false);
-  isSmallOrSmaller: Observable<boolean>;
-  sidenavMode: Observable<MatDrawerMode>;
-
   private readonly responsiveLayoutService = inject(ResponsiveLayoutService);
   private readonly swUpdate = inject(SwUpdate);
   private readonly refreshService = inject(RefreshService);
   private readonly registerIconService = inject(IconRegistryService);
+
+  readonly navToggled = signal(false);
+  readonly isSmallOrSmaller = this.responsiveLayoutService.isSmallOrSmaller;
+  readonly navOpened = computed(
+    () => !this.isSmallOrSmaller() || this.navToggled(),
+  );
+  readonly sidenavMode = computed<MatDrawerMode>(() =>
+    this.isSmallOrSmaller() ? 'push' : 'side',
+  );
+  readonly demoRootCssClass = computed(() => {
+    if (this.responsiveLayoutService.isLargeOrBigger()) {
+      return 'responsive-large';
+    }
+
+    return this.isSmallOrSmaller() ? 'responsive' : '';
+  });
 
   constructor() {
     this.registerIconService.registerIcon();
@@ -68,43 +60,13 @@ export class AppComponent implements OnInit {
     if (this.swUpdate.isEnabled) {
       this.refreshService.checkUpdate();
     }
-
-    this.isSmallOrSmaller = combineLatest([
-      this.responsiveLayoutService.isSmallOrSmaller,
-      this.responsiveLayoutService.isLargeOrBigger,
-    ]).pipe(
-      delay(1),
-      tap(([isSmall, isLarge]) => {
-        this.demoRootCssClass = '';
-        if (isSmall) {
-          this.demoRootCssClass = 'responsive';
-        }
-        if (isLarge) {
-          this.demoRootCssClass = 'responsive-large';
-        }
-      }),
-      map(([isSmall]) => isSmall),
-    );
-
-    this.navOpened = combineLatest([
-      this.isSmallOrSmaller,
-      this.navToggled,
-    ]).pipe(
-      map(([isSmallScreen, navToggled]) =>
-        !isSmallScreen ? true : navToggled,
-      ),
-    );
-
-    this.sidenavMode = this.isSmallOrSmaller.pipe(
-      map((isSmallOrSmaller) => (isSmallOrSmaller ? 'push' : 'side')),
-    );
   }
 
   onNavToggle() {
-    this.navToggled.next(!this.navToggled.value);
+    this.navToggled.update((isOpen) => !isOpen);
   }
 
   onBackdropClick() {
-    this.navToggled.next(false);
+    this.navToggled.set(false);
   }
 }

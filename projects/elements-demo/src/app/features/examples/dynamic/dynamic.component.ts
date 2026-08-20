@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,21 +28,21 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DynamicComponent implements OnInit {
+export class DynamicComponent {
   // example code examples
-  codeExample1 = CODE_EXAMPLE_1;
-  codeExample2standalone = CODE_EXAMPLE_2_STANDALONE;
-  codeExample2module = CODE_EXAMPLE_2_MODULE;
-  codeExample2html = CODE_EXAMPLE_2_HTML;
-  codeExample3html = CODE_EXAMPLE_3_HTML;
+  readonly codeExample1 = CODE_EXAMPLE_1;
+  readonly codeExample2standalone = CODE_EXAMPLE_2_STANDALONE;
+  readonly codeExample2module = CODE_EXAMPLE_2_MODULE;
+  readonly codeExample2html = CODE_EXAMPLE_2_HTML;
+  readonly codeExample3html = CODE_EXAMPLE_3_HTML;
 
   // example state
-  isButtonVariantPrimary = true;
-  counter1 = 0;
-  counter2 = 0;
-  counter3 = 0;
+  readonly isButtonVariantPrimary = signal(true);
+  readonly counter1 = signal(0);
+  readonly counter2 = signal(0);
+  readonly counter3 = signal(0);
 
-  dynamicConfigs = [
+  readonly dynamicConfigs = [
     {
       tag: 'sl-button',
       url: 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/components/button/button.js',
@@ -65,27 +65,25 @@ export class DynamicComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {}
-
   increment1() {
-    this.counter1++;
+    this.counter1.update((counter) => counter + 1);
   }
 
   increment2() {
-    this.counter2++;
+    this.counter2.update((counter) => counter + 1);
   }
 
   performAction(actionName: string) {
     if (actionName === 'increment') {
-      this.counter3++;
+      this.counter3.update((counter) => counter + 1);
     }
 
     if (actionName === 'decrement') {
-      this.counter3--;
+      this.counter3.update((counter) => counter - 1);
     }
 
     if (actionName === 'reset') {
-      this.counter3 = 0;
+      this.counter3.set(0);
     }
   }
 }

@@ -39,7 +39,7 @@ import { NgTemplateOutlet } from '@angular/common';
   `,
 })
 export class ExampleComponent {
-  showExample = signal(false);
+  readonly showExample = signal(false);
 
-  example = contentChild(TemplateRef);
+  readonly example = contentChild(TemplateRef);
 }

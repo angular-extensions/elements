@@ -31,28 +31,32 @@
     href="https://medium.com/&#64;tomastrajan/the-best-way-to-lazy-load-angular-elements-97a51a5c2007"
     target="_blank"
   >
-    <mat-icon>book</mat-icon> Read blog post
+    <mat-icon>book</mat-icon>
+    Read blog post
   </a>
   <a
     mat-stroked-button
     href="https://www.youtube.com/watch?v=X__jkPGYRUs"
     target="_blank"
   >
-    <mat-icon>play_circle_outline</mat-icon> Watch presentation
+    <mat-icon>play_circle_outline</mat-icon>
+    Watch presentation
   </a>
   <a
     mat-stroked-button
     href="https://open.spotify.com/episode/2PI6K8sdxeBweDw3JtmJX8"
     target="_blank"
   >
-    <mat-icon>audiotrack</mat-icon> Listen to podcast
+    <mat-icon>audiotrack</mat-icon>
+    Listen to podcast
   </a>
 </div>
 
 <h2>Quickstart</h2>
 <ol>
   <li>
-    Install <code color="accent">npm i &#64;angular-extensions/elements</code>
+    Install
+    <code color="accent">npm i &#64;angular-extensions/elements</code>
   </li>
   <li>
     Add
@@ -62,25 +66,34 @@
     </code>
   </li>
   <li>
-    Append <code>LazyElementDirective</code> to the <code>imports: []</code> of
-    your
+    Append
+    <code>LazyElementDirective</code>
+    to the
+    <code>imports: []</code>
+    of your
     <code>MyOrgComponent</code>
   </li>
   <li>
-    Add new <code>schemas: []</code> property with
-    <code>CUSTOM_ELEMENTS_SCHEMA</code> value to
-    <code>&#64;Component</code> decorator of your
+    Add new
+    <code>schemas: []</code>
+    property with
+    <code>CUSTOM_ELEMENTS_SCHEMA</code>
+    value to
+    <code>&#64;Component</code>
+    decorator of your
     <code>MyOrgComponent</code>
   </li>
   <li>
-    Use <code>*axLazyElement</code> directive on an element you wish to load and
-    pass in the url of the element bundle
+    Use
+    <code>*axLazyElement</code>
+    directive on an element you wish to load and pass in the url of the element
+    bundle
     <pre [highlight]="codeExampleComponent" language="typescript"></pre>
   </li>
 </ol>
 
 <h2>Features</h2>
-<mat-grid-list [cols]="columnCount | async" rowHeight="150" gutterSize="18">
+<mat-grid-list [cols]="columnCount()" rowHeight="150" gutterSize="18">
   @for (feature of features; track feature) {
     <mat-grid-tile>
       <mat-card>

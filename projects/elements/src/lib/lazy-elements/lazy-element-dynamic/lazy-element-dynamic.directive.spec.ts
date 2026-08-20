@@ -1,5 +1,5 @@
-import { jest } from '@jest/globals';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { type MockInstance, vi } from 'vitest';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LazyElementDynamicDirective } from './lazy-element-dynamic.directive';
@@ -15,14 +15,14 @@ import { LazyElementDynamicDirective } from './lazy-element-dynamic.directive';
         url: 'http://elements.com/some-element'
       "
     ></div>
-    @if (useWithoutTag) {
+    @if (useWithoutTag()) {
       <div>
         <div
           *axLazyElementDynamic="null; url: 'http://elements.com/some-element'"
         ></div>
       </div>
     }
-    @if (useWithInvalidTag) {
+    @if (useWithInvalidTag()) {
       <div>
         <div
           *axLazyElementDynamic="
@@ -35,14 +35,14 @@ import { LazyElementDynamicDirective } from './lazy-element-dynamic.directive';
   `,
 })
 class TestHostComponent {
-  useWithoutTag = false;
-  useWithInvalidTag = false;
+  readonly useWithoutTag = signal(false);
+  readonly useWithInvalidTag = signal(false);
 }
 
 describe('LazyElementDirectiveDynamic', () => {
   let testHostComponent: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let appendChildSpy: jest.SpiedFunction<any>;
+  let appendChildSpy: MockInstance<any>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -54,7 +54,7 @@ describe('LazyElementDirectiveDynamic', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = fixture.componentInstance;
-    appendChildSpy = jest.spyOn(document.body, 'appendChild');
+    appendChildSpy = vi.spyOn(document.body, 'appendChild');
     fixture.detectChanges();
   });
 
@@ -75,7 +75,7 @@ describe('LazyElementDirectiveDynamic', () => {
 
   it('throws error if called without tag', () => {
     expect(() => {
-      testHostComponent.useWithoutTag = true;
+      testHostComponent.useWithoutTag.set(true);
       fixture.detectChanges();
     }).toThrow(
       new Error(
@@ -86,7 +86,7 @@ describe('LazyElementDirectiveDynamic', () => {
 
   it('throws error if called with invalid tag', () => {
     expect(() => {
-      testHostComponent.useWithInvalidTag = true;
+      testHostComponent.useWithInvalidTag.set(true);
       fixture.detectChanges();
     }).toThrow(
       new Error(

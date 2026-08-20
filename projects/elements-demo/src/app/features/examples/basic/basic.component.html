@@ -60,7 +60,7 @@
         >
           Increment
         </sl-button>
-        <p>Counter: {{ counter }}</p>
+        <p>Counter: {{ counter() }}</p>
       </ng-template>
     </demo-example>
     <div class="description">
@@ -128,7 +128,7 @@
             <code>xAxis</code>
             array values
             <code style="display: inline-block; width: 100px">
-              {{ xAxis | json }}
+              {{ xAxis() | json }}
             </code>
           </mat-label>
           <mat-slider max="10" min="1" step="0.5" thumbLabel #ngSlider>
@@ -152,8 +152,8 @@
           ylabel="sin(x)"
           x-axis-location="origin"
           y-axis-location="origin"
-          [xlim]="xAxis"
-          [ylim]="yAxis"
+          [xlim]="xAxis()"
+          [ylim]="yAxis()"
         >
           <ink-chart-eqn eqn="Math.sin(x)"></ink-chart-eqn>
         </ink-chart>
@@ -173,7 +173,7 @@
         <code>[-6.28, 6.28]</code>
         values which are passed in the element using standard Angular property
         binding
-        <code>[xlim]="xAxis"</code>
+        <code>[xlim]="xAxis()"</code>
         .
       </p>
       <demo-example-code [example]="codeExample4" />

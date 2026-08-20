@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { provideAxLazyElements } from '@angular-extensions/elements';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -31,7 +31,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideZoneChangeDetection(),
     provideAnimations(),
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     {
       provide: ROUTER_CONFIGURATION,
       useValue: {

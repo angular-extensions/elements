@@ -10,10 +10,10 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   imports: [RouterLink, HighlightModule, ExampleCodeComponent],
 })
 export class ConfigurationComponent implements OnInit {
-  codeExampleInline = CODE_EXAMPLE_INLINE;
-  codeExampleModule = CODE_EXAMPLE_MODULE;
-  codeExampleStandalone = CODE_EXAMPLE_STANDALONE;
-  codeExamplePreConfigured = CODE_EXAMPLE_PRE_CONFIGURED;
+  readonly codeExampleInline = CODE_EXAMPLE_INLINE;
+  readonly codeExampleModule = CODE_EXAMPLE_MODULE;
+  readonly codeExampleStandalone = CODE_EXAMPLE_STANDALONE;
+  readonly codeExamplePreConfigured = CODE_EXAMPLE_PRE_CONFIGURED;
 
   ngOnInit() {}
 }

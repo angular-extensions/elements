@@ -41,7 +41,7 @@
         <wired-button *axLazyElement (click)="increment()">
           Click me
         </wired-button>
-        <p>Counter: {{ counter }}</p>
+        <p>Counter: {{ counter() }}</p>
       </ng-template>
     </demo-example>
     <div class="description">
@@ -69,7 +69,7 @@
         <wired-toggle *axLazyElement (change)="toggle()">
           Toggle me
         </wired-toggle>
-        <p>Value: {{ flag }}</p>
+        <p>Value: {{ flag() }}</p>
       </ng-template>
     </demo-example>
     <div class="description">

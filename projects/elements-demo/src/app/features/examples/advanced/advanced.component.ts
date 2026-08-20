@@ -1,8 +1,8 @@
 import {
   Component,
-  OnInit,
   inject,
   CUSTOM_ELEMENTS_SCHEMA,
+  signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
@@ -31,49 +31,47 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AdvancedComponent implements OnInit {
+export class AdvancedComponent {
   // example code examples
-  codeExample1standalone = CODE_EXAMPLE_1_STANDALONE;
-  codeExample1module = CODE_EXAMPLE_1_MODULE;
-  codeExample1html = CODE_EXAMPLE_1_HTML;
+  readonly codeExample1standalone = CODE_EXAMPLE_1_STANDALONE;
+  readonly codeExample1module = CODE_EXAMPLE_1_MODULE;
+  readonly codeExample1html = CODE_EXAMPLE_1_HTML;
 
-  codeExample2standalone = CODE_EXAMPLE_2_STANDALONE;
-  codeExample2module = CODE_EXAMPLE_2_MODULE;
-  codeExample2html = CODE_EXAMPLE_2_HTML;
+  readonly codeExample2standalone = CODE_EXAMPLE_2_STANDALONE;
+  readonly codeExample2module = CODE_EXAMPLE_2_MODULE;
+  readonly codeExample2html = CODE_EXAMPLE_2_HTML;
 
-  codeExample3standalone = CODE_EXAMPLE_3_STANDALONE;
-  codeExample3module = CODE_EXAMPLE_3_MODULE;
-  codeExample3html = CODE_EXAMPLE_3_HTML;
+  readonly codeExample3standalone = CODE_EXAMPLE_3_STANDALONE;
+  readonly codeExample3module = CODE_EXAMPLE_3_MODULE;
+  readonly codeExample3html = CODE_EXAMPLE_3_HTML;
 
-  codeExample4html = CODE_EXAMPLE_4_HTML;
-  codeExample4coreModule = CODE_EXAMPLE_4_CORE_MODULE;
-  codeExample4standalone = CODE_EXAMPLE_4_STANDALONE;
+  readonly codeExample4html = CODE_EXAMPLE_4_HTML;
+  readonly codeExample4coreModule = CODE_EXAMPLE_4_CORE_MODULE;
+  readonly codeExample4standalone = CODE_EXAMPLE_4_STANDALONE;
 
-  codeExample5html = CODE_EXAMPLE_5_HTML;
-  codeExample5ts = CODE_EXAMPLE_5_TS;
+  readonly codeExample5html = CODE_EXAMPLE_5_HTML;
+  readonly codeExample5ts = CODE_EXAMPLE_5_TS;
 
-  codeExample6html = CODE_EXAMPLE_6_HTML;
-  codeExample6module = CODE_EXAMPLE_6_MODULE;
-  codeExample6standalone = CODE_EXAMPLE_6_STANDALONE;
+  readonly codeExample6html = CODE_EXAMPLE_6_HTML;
+  readonly codeExample6module = CODE_EXAMPLE_6_MODULE;
+  readonly codeExample6standalone = CODE_EXAMPLE_6_STANDALONE;
 
-  codeExample7standalone = CODE_EXAMPLE_7_STANDALONE;
-  codeExample7module = CODE_EXAMPLE_7_MODULE;
-  codeExample7html = CODE_EXAMPLE_7_HTML;
+  readonly codeExample7standalone = CODE_EXAMPLE_7_STANDALONE;
+  readonly codeExample7module = CODE_EXAMPLE_7_MODULE;
+  readonly codeExample7html = CODE_EXAMPLE_7_HTML;
 
   // example state
-  counter = 0;
-  flag = false;
+  readonly counter = signal(0);
+  readonly flag = signal(false);
 
   private readonly lazyElementLoaderService = inject(LazyElementsLoaderService);
 
-  ngOnInit() {}
-
   increment() {
-    this.counter++;
+    this.counter.update((counter) => counter + 1);
   }
 
   toggle() {
-    this.flag = !this.flag;
+    this.flag.update((flag) => !flag);
   }
 
   preload() {

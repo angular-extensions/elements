@@ -9,7 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
   imports: [MatExpansionModule],
 })
 export class FaqComponent implements OnInit {
-  faq = FAQ;
+  readonly faq = FAQ;
 
   ngOnInit() {}
 }

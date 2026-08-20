@@ -9,11 +9,11 @@ import { ExampleCodeComponent } from '../../../shared/example-code/example-code.
   imports: [HighlightModule, ExampleCodeComponent],
 })
 export class GettingStartedComponent implements OnInit {
-  codeExampleComponent = CODE_EXAMPLE_COMPONENT;
-  codeExampleModule = CODE_EXAMPLE_MODULE;
-  codeExampleAppConfig = CODE_EXAMPLE_APP_CONFIG;
-  codeExampleAppModule = CODE_EXAMPLE_APP_MODULE;
-  codeExampleSharedModule = CODE_EXAMPLE_SHARED_MODULE;
+  readonly codeExampleComponent = CODE_EXAMPLE_COMPONENT;
+  readonly codeExampleModule = CODE_EXAMPLE_MODULE;
+  readonly codeExampleAppConfig = CODE_EXAMPLE_APP_CONFIG;
+  readonly codeExampleAppModule = CODE_EXAMPLE_APP_MODULE;
+  readonly codeExampleSharedModule = CODE_EXAMPLE_SHARED_MODULE;
 
   ngOnInit() {}
 }
@@ -30,7 +30,7 @@ const CODE_EXAMPLE_COMPONENT = `import { Component } from '@angular/core';
   \`
 })
 export class FeatureComponent {
-  elementUrl = 'https://your-org.com/elements/some-element.js';
+  readonly elementUrl = 'https://your-org.com/elements/some-element.js';
 }
 `;
 

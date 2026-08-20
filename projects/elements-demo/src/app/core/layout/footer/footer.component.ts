@@ -10,6 +10,6 @@ import { environment } from '../../../../environments/environment';
   imports: [MatButtonModule],
 })
 export class FooterComponent {
-  year = new Date().getFullYear();
-  version = environment.version;
+  readonly year = new Date().getFullYear();
+  readonly version = environment.version;
 }
