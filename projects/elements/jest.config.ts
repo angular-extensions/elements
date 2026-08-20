@@ -1,4 +1,4 @@
-import { createEsmPreset } from 'jest-preset-angular/presets';
+import { createEsmPreset } from 'jest-preset-angular/presets/index.js';
 import type { Config } from 'jest';
 
 const esmPreset = createEsmPreset();

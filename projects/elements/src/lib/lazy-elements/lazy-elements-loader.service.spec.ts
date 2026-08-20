@@ -44,7 +44,7 @@ describe('LazyElementsLoaderService', () => {
   it('throws error if used without url', async () => {
     await expect(
       service.loadElement(undefined, 'some-element'),
-    ).rejects.toThrowError(
+    ).rejects.toThrow(
       '@angular-extensions/elements - url for <some-element> not found',
     );
   });
@@ -52,7 +52,7 @@ describe('LazyElementsLoaderService', () => {
   it('throws error if used without valid tag', async () => {
     await expect(
       service.loadElement('http://elements.com/some-element', ''),
-    ).rejects.toThrowError(
+    ).rejects.toThrow(
       "@angular-extensions/elements - tag for 'http://elements.com/some-element' not found, the *axLazyElement has to be used on HTML element",
     );
   });
@@ -343,7 +343,7 @@ describe('LazyElementsLoaderService preconfigured with LazyElementsModule', () =
       (window as any).System = null;
       await expect(
         service.loadElement('element', 'element-using-import-map', false, true),
-      ).rejects.toThrowError(
+      ).rejects.toThrow(
         "@angular-extensions/elements - importMap feature depends on SystemJS library to be globally loaded but none was found, thus 'element' can't be resolved. You should either load SystemJS or remove the importMap flag.",
       );
     });
