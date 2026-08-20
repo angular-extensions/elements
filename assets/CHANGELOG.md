@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [21.0.0](https://github.com/angular-extensions/elements/compare/v20.0.2...v21.0.0) (2026-08-20)
+
+### ⚠ BREAKING CHANGES
+
+- **lib:** Angular 21
+
+* run official Angular migrations and update library peer ranges
+* align compatible tooling and tests
+
+### Features
+
+- **lib:** upgrade to Angular 21 ([666db3f](https://github.com/angular-extensions/elements/commit/666db3fe3ea545690c3aad12af5b80d8f6910c36))
+
 ### [20.0.2](https://github.com/angular-extensions/elements/compare/v20.0.1...v20.0.2) (2025-05-29)
 
 ### Bug Fixes
