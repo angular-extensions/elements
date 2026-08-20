@@ -1312,7 +1312,7 @@ ${error.stack}`;
   };
 
   // packages/service-worker/worker/src/debug.js
-  var SW_VERSION = "21.2.20";
+  var SW_VERSION = "22.1.2";
   var DEBUG_LOG_BUFFER_SIZE = 100;
   var DebugHandler = class {
     constructor(driver, adapter2) {
@@ -1590,11 +1590,7 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ "Content-Type": "text/plain" }
       this.scope.addEventListener("push", (event) => this.onPush(event));
       this.scope.addEventListener("notificationclick", (event) => this.onClick(event));
       this.scope.addEventListener("notificationclose", (event) => this.onClose(event));
-      this.scope.addEventListener("pushsubscriptionchange", (event) => (
-        // This is a bug in TypeScript, where they removed `PushSubscriptionChangeEvent`
-        // based on the incorrect assumption that browsers don't support it.
-        this.onPushSubscriptionChange(event)
-      ));
+      this.scope.addEventListener("pushsubscriptionchange", (event) => this.onPushSubscriptionChange(event));
       this.scope.addEventListener("messageerror", (event) => this.onMessageError(event));
       this.scope.addEventListener("unhandledrejection", (event) => this.onUnhandledRejection(event));
       this.debugger = new DebugHandler(this, this.adapter);
