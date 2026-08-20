@@ -1,0 +1,46 @@
+name: Publish package
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Build (copy assets)
+        run: npm run build:copy-assets
+
+      - name: Verify tag matches package version
+        if: github.ref_type == 'tag'
+        working-directory: dist/elements
+        run: test "v$(node --print "require('./package.json').version")" = "$GITHUB_REF_NAME"
+
+      - name: Publish to npm
+        working-directory: dist/elements
+        run: npm publish

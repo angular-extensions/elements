@@ -5,20 +5,23 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install dependencies
-        run: npm ci --force
+        run: npm ci
 
       - name: Test
         run: npm run test
@@ -30,15 +33,6 @@ jobs:
         run: npm run build:copy-assets
 
       - name: Deploy Github Pages
-        if: success()
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist/elements-demo/browser
-
-      - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: public
-          check-version: true
-          package: dist/elements/package.json
